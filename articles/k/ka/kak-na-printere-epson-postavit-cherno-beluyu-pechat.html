@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как настроить черно-белую печать на принтерах Epson — Эпсон Помощь</title>
+    <meta name="description" content="Пошаговая инструкция: как включить ч/б режим в драйвере Epson и меню МФУ. Экономия цветных картриджей и настройка качества печати.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-na-printere-epson-postavit-cherno-beluyu-pechat.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как настроить черно-белую печать на принтерах Epson">
+    <meta property="og:description" content="Пошаговая инструкция: как включить ч/б режим в драйвере Epson и меню МФУ. Экономия цветных картриджей и настройка качества печати.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/drugoe/">Другое</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как настроить черно-белую печать на принтерах Epson</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Полное руководство по настройке черно-белой печати на принтерах Epson</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#введение">Введение</a></li><li><a href="#базовые-настройки-через-драйвер-в-windows">Базовые настройки через драйвер в Windows</a></li><li><a href="#настройка-через-меню-самого-принтера-экранное-управление">Настройка через меню самого принтера (Экранное управление)</a></li><li><a href="#особенности-работы-с-macos-и-устройствами-apple">Особенности работы с macOS и устройствами Apple</a></li><li><a href="#экономия-ресурсов-и-качество-печати">Экономия ресурсов и качество печати</a></li><li><a href="#решение-частых-проблем-при-настройке">Решение частых проблем при настройке</a></li><li><a href="#использование-утилит-epson-print-layout">Использование утилит Epson Print Layout</a></li><li><a href="#итоговые-рекомендации-по-эксплуатации">Итоговые рекомендации по эксплуатации</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><h2 id="введение">Введение</h2>
+<p>Многие пользователи сталкиваются с ситуацией, когда необходимо напечатать документ, но цветные картриджи закончились или просто не требуются для задачи. Принтеры <em>Epson</em>, особенно популярные модели серий <em>L</em> с системой непрерывной подачи чернил, часто по умолчанию пытаются использовать все доступные цвета для создания оттенков серого, что приводит к быстрому расходу синего и красного пигмента.</p>
+<p>Для решения этой проблемы требуется правильное изменение настроек как в программном обеспечении компьютера, так и непосредственно на панели управления самого устройства. Грамотная настройка <strong>монохромного режима</strong> позволит сэкономить значительные средства на замене расходных материалов и ускорить процесс вывода документа на бумагу.</p>
+
+<h2 id="базовые-настройки-через-драйвер-в-windows">Базовые настройки через драйвер в Windows</h2>
+<p>Основной способ управления печатью осуществляется через окно драйвера, которое вызывается из любой программы для работы с документами. Первым делом откройте нужный файл и выберите опцию печати, а затем нажмите кнопку <strong>Свойства</strong> или <strong>Настройки</strong> рядом с именем вашего принтера <em>Epson</em>.</p>
+<p>В открывшемся окне переключитесь на вкладку <code>Главная</code> (Main), где расположены основные параметры вывода. Вам нужно найти выпадающий список <code>Качество/Среда</code> и выбрать режим, подходящий для ваших задач, например, <strong>Текст</strong> или <strong>Черновик</strong>, если важна скорость, а не фотореализм.</p>
+<p>Ключевым моментом является поиск галочки или переключателя с названием <code>Оттенки серого</code> (Grayscale). Именно эта опция заставляет печатающую головку использовать только черные чернила для формирования изображения, игнорируя цветные пигменты.</p>
+<blockquote>Внимание: Если галочка <code>Оттенки серого</code> неактивна, проверьте, выбран ли в списке типа бумаги формат, поддерживающий черно-белый режим, так как некоторые фотобумаги требуют обязательного использования всех цветов.</blockquote>
+
+<h2 id="настройка-через-меню-самого-принтера-экранное-управление">Настройка через меню самого принтера (Экранное управление)</h2>
+<p>На современных моделях МФУ <em>Epson</em> с сенсорным дисплеем настройки можно изменить без участия компьютера. Это особенно удобно при копировании документов или печати изображений с флеш-накопителя. Зайдите в главное меню на экране устройства и найдите значок <strong>Настройки</strong> (шестеренка).</p>
+<p>Внутри раздела настроек перейдите в пункт <code>Настройки системы</code> или <code>Параметры копирования</code>. Ищите опцию <code>Цвет</code> или <code>Тип цветности</code>. По умолчанию там часто стоит значение <strong>Автоматически</strong>, что заставляет принтер анализировать изображение и использовать цветные чернила даже для серых участков.</p>
+<p>Измените этот параметр на <strong>Черно-белый</strong> или <strong>Одноцветный</strong>. После выбора сохраните настройки, нажав кнопку <code>ОК</code> или <strong>Далее</strong>. Теперь все копирования и прямые печати будут выполняться строго в монохроме.</p>
+<div class="checklist-block"><h4>☑️ Проверка настроек устройства</h4><label class="check-item"><input type="checkbox"><span>Перейти в Главное меню</span></label><label class="check-item"><input type="checkbox"><span>Выбрать раздел Настройки</span></label><label class="check-item"><input type="checkbox"><span>Найти пункт Цвет/Тип цветности</span></label><label class="check-item"><input type="checkbox"><span>Переключить на Черно-белый</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="особенности-работы-с-macos-и-устройствами-apple">Особенности работы с macOS и устройствами Apple</h2>
+<p>Если вы работаете на компьютере под управлением <em>macOS</em>, логика действий немного отличается от Windows. После нажатия команды печати в окне предпросмотра разверните выпадающее меню, которое обычно по умолчанию показывает <strong>Краткое</strong> или <strong>Стандартные</strong> параметры.</p>
+<p>В списке доступных разделов найдите пункт <code>Чернила</code> (Ink) или <code>Качество</code> (Quality). Здесь необходимо снять галочку с параметра <strong>Цвет</strong> и активировать опцию <code>Черно-белый</code>. В некоторых версиях драйверов <em>Epson</em> для Mac это может называться <code>Grayscale Printing</code>.</p>
+<p>Важно отметить, что в операционной системе macOS иногда требуется выбирать профиль цвета <strong>Цветовой профиль</strong> и задавать его вручную, чтобы система не пыталась автоматически подбирать цвета для черно-белого изображения.</p>
+
+<h2 id="экономия-ресурсов-и-качество-печати">Экономия ресурсов и качество печати</h2>
+<p>Переход в черно-белый режим позволяет существенно продлить срок службы цветных баков, что критично для владельцев моделей с СНПЧ. Вы можете напечатать десятки страниц текста, используя только черный пигмент, что снижает эксплуатационные расходы в разы.</p>
+<p>Однако стоит понимать, что качество отпечатков может измениться. При использовании только черного картриджа полутона и серые переходы создаются путем микропиксельного растрирования, что может выглядеть как легкая зернистость на фотографиях.</p>
+<p>Для текстовых документов, таблиц и схем такой режим является идеальным, обеспечивая максимальную четкость шрифтов. Для фотографий рекомендуется использовать гибридный режим, если устройство позволяет, или печатать в цвете с отключенным черным пигментом, если это необходимо для коррекции цветов.</p>
+<div class="poll-widget" id="poll-7a394fc5"><div class="poll-widget-question">📊 Как часто вы печатаете документы в ч/б?</div><div class="poll-widget-option" data-poll="7a394fc5" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Всегда</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="7a394fc5" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Иногда</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="7a394fc5" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Редко</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="7a394fc5" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Никогда не использую ч/б принтеры</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<table>
+<thead>
+<tr>
+<th>Модель принтера</th>
+<th>Название раздела меню</th>
+<th>Параметр настройки</th>
+<th>Рекомендуемое значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Epson L3250</td>
+<td>Настройки системы</td>
+<td>Параметры копирования</td>
+<td>Черно-белый</td>
+</tr>
+<tr>
+<td>Epson L805</td>
+<td>Свойства принтера</td>
+<td>Вкладка Главная</td>
+<td>Оттенки серого</td>
+</tr>
+<tr>
+<td>Epson WorkForce WF-2860</td>
+<td>Настройки печати</td>
+<td>Цвет/Тип</td>
+<td>Монохромный</td>
+</tr>
+<tr>
+<td>Epson EcoTank M1120</td>
+<td>Меню настроек</td>
+<td>Качество печати</td>
+<td>Черновик (BW)</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="решение-частых-проблем-при-настройке">Решение частых проблем при настройке</h2>
+<p>Иногда пользователи сталкиваются с тем, что опция черно-белой печати недоступна или "серая". Это может быть связано с тем, что в системе установлен драйвер в режиме <strong>Расширенный</strong> (Advanced), где некоторые базовые настройки скрыты от пользователя.</p>
+<p>Попробуйте переключить режим просмотра драйвера на <strong>Стандартный</strong> (Basic), чтобы получить доступ к основным переключателям. Также проверьте, не стоит ли у вас режим <code>Двусторонняя печать</code> на некоторых моделях, который требует цветного дублирования для корректного выравнивания.</p>
+<blockquote>Внимание: В редких случаях обновление драйвера может сбросить все настройки на заводские. Если вы потеряли конфигурацию после апдейта, придется заново выбрать галочку <strong>Оттенки серого</strong> в свойствах принтера.</blockquote>
+
+<h2 id="использование-утилит-epson-print-layout">Использование утилит Epson Print Layout</h2>
+<p>Для продвинутых пользователей, работающих с графикой, компания <em>Epson</em> предлагает специализированное ПО — <strong>Epson Print Layout</strong>. Это программное обеспечение позволяет детально настроить цветовые профили и принудительно отключить использование цветных чернил даже при печати сложных графических элементов.</p>
+<p>В интерфейсе этой утилиты можно задать профиль бумаги вручную и выбрать режим печати <strong>Black Ink Only</strong> (Только черные чернила). Это гарантирует, что при печати не будет использоваться ни капли цветного пигмента, что полезно для проверки качества черного цвета.</p>
+<blockquote>Внимание: Утилита <em>Epson Print Layout</em> требует наличия подключения к интернету для загрузки профилей бумаги, поэтому убедитесь, что принтер подключен к сети перед началом работы с программой.</blockquote>
+<details class="faq-item"><summary>Что делать, если принтер все равно печатает цветом?</summary><div class="faq-answer"><p>Проверьте, не стоит ли в настройках драйвера режим "Фото" или "Максимальное качество", так как в этих режимах принтер может игнорировать настройки ч/б для улучшения полутонов. Попробуйте принудительно выбрать тип бумаги "Обычная бумага" вместо "Фотобумага".</p></div></details>
+
+<h2 id="итоговые-рекомендации-по-эксплуатации">Итоговые рекомендации по эксплуатации</h2>
+<p>Регулярное использование черно-белого режима помогает сбалансировать расход всех картриджей в системе СНПЧ. Если вы печатаете в основном текстовые отчеты, установите <strong>черно-белый режим</strong> в качестве параметра по умолчанию в настройках принтера, чтобы не менять его каждый раз вручную.</p>
+<p>Помните, что даже в режиме монохромной печати черная головка должна промываться, чтобы избежать засыхания. Не оставляйте принтер <em>Epson</em> без работы на долгое время, если вы используете только один цвет.</p>
+<p>Следуя этим простым инструкциям, вы сможете оптимизировать работу вашего устройства и избежать незапланированных расходов на цветные чернила, сохраняя при этом высокое качество вывода текстовой информации.</p>
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Настройка галочки "Оттенки серого" в драйвере — это самый быстрый и надежный способ принудительно перевести принтер Epson в режим экономии цветных чернил.</p></div>
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если вы печатаете много документов, создайте отдельный ярлык на рабочем столе с предустановленными настройками драйвера, где уже выбрана черно-белая печать, чтобы не заходить в свойства каждый раз.</p></div>
+
+<details>
+<summary>Почему принтер Epson печатает серым, если я выбрал черно-белый режим?</summary>
+<p>Это происходит из-за смешивания цветов. Если выбран режим "Автоматически" или "Цвет", принтер может использовать синие и красные чернила для создания оттенков серого. Переключите галочку на "Оттенки серого" или "Только черный" в настройках драйвера.</p>
+</details>
+<details>
+<summary>Можно ли печатать черно-белые фото на цветных принтерах Epson L3250?</summary>
+<p>Да, можно. Для этого в настройках драйвера выберите режим "Оттенки серого". Однако качество фото будет ниже, так как используется только один цветной пигмент для создания градаций. Для лучших результатов используйте режим "Черно-белый" в утилите печати.</p>
+</details>
+<details>
+<summary>Как сбросить настройки обратно на цветную печать?</summary>
+<p>Вам нужно зайти в свойства принтера, открыть вкладку "Главная" или "Качество" и снять галочку с пункта "Оттенки серого". Также можно выбрать профиль "По умолчанию" в настройках устройства.</p>
+</details>
+<details>
+<summary>Влияет ли черно-белая печать на скорость работы принтера?</summary>
+<p>Да, обычно печать в черно-белом режиме происходит быстрее, так как печатающая головке выполняет меньше проходов и не тратит время на смешивание цветов для создания оттенков серого.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#введение">Введение</a></li><li><a href="#базовые-настройки-через-драйвер-в-windows">Базовые настройки через драйвер в Windows</a></li><li><a href="#настройка-через-меню-самого-принтера-экранное-управление">Настройка через меню самого принтера (Экранное управление)</a></li><li><a href="#особенности-работы-с-macos-и-устройствами-apple">Особенности работы с macOS и устройствами Apple</a></li><li><a href="#экономия-ресурсов-и-качество-печати">Экономия ресурсов и качество печати</a></li><li><a href="#решение-частых-проблем-при-настройке">Решение частых проблем при настройке</a></li><li><a href="#использование-утилит-epson-print-layout">Использование утилит Epson Print Layout</a></li><li><a href="#итоговые-рекомендации-по-эксплуатации">Итоговые рекомендации по эксплуатации</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-vstavit-kartridzhi-v-printer-epson.html" class="related-card">Инструкция: как вставить картриджи в принтер Epson правильно</a></li><li><a href="/articles/k/ka/kak-zapustit-mfu-epson-3151.html" class="related-card">Как запустить МФУ Epson L3151: установка, драйверы и настройка</a></li><li><a href="/articles/k/ka/kak-prochistit-pechatayushchuyu-golovku-printera-epson-l3100.html" class="related-card">Как прочистить печатающую головку принтера Epson L3100: полное руководство</a></li><li><a href="/articles/k/ka/kak-raspechatat-s-telefona-na-printer-epson-l3151.html" class="related-card">Как распечатать с телефона на Epson L3151: Полная инструкция</a></li><li><a href="/articles/k/ka/kak-nastroit-tsvetnuyu-pechat-na-printere-epson-l3100.html" class="related-card">Настройка цветной печати Epson L3100: Полное руководство</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-vstavit-kartridzhi-v-printer-epson.html" class="related-bottom-card"><span class="related-bottom-title">Инструкция: как вставить картриджи в принтер Epson правильно</span><span class="related-bottom-desc">Пошаговое руководство по замене картриджей в принтерах Epson. Узнайте, как избежать ошибок при устан</span></a><a href="/articles/k/ka/kak-zapustit-mfu-epson-3151.html" class="related-bottom-card"><span class="related-bottom-title">Как запустить МФУ Epson L3151: установка, драйверы и настройка</span><span class="related-bottom-desc">Пошаговая инструкция по запуску многофункционального устройства Epson L3151. Установка драйверов, на</span></a><a href="/articles/k/ka/kak-prochistit-pechatayushchuyu-golovku-printera-epson-l3100.html" class="related-bottom-card"><span class="related-bottom-title">Как прочистить печатающую головку принтера Epson L3100: полное руководство</span><span class="related-bottom-desc">Пошаговая инструкция по очистке дюз и прокачке системы подачи чернил в Epson L3100. Решаем проблему </span></a><a href="/articles/k/ka/kak-raspechatat-s-telefona-na-printer-epson-l3151.html" class="related-bottom-card"><span class="related-bottom-title">Как распечатать с телефона на Epson L3151: Полная инструкция</span><span class="related-bottom-desc">Подробное руководство по печати с Android и iOS на принтер Epson L3151 через Wi-Fi. Настройка Epson </span></a><a href="/articles/k/ka/kak-nastroit-tsvetnuyu-pechat-na-printere-epson-l3100.html" class="related-bottom-card"><span class="related-bottom-title">Настройка цветной печати Epson L3100: Полное руководство</span><span class="related-bottom-desc">Пошаговая инструкция по настройке цветной печати на Epson L3100. Решение проблем с цветом, калибровк</span></a><a href="/articles/c/ch/chem-zapravit-epson-m2000.html" class="related-bottom-card"><span class="related-bottom-title">Чем заправить Epson M2000: инструкция, чернила и нюансы заправки</span><span class="related-bottom-desc">Полный гайд по заправке МФУ Epson M2000. Какие чернила выбрать, как работают СНПЧ, таблица совместим</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Сброс чернил Epson: Resetter, прошивка и очистка платы — Эпсон Помощь</title>
+    <meta name="description" content="Полная инструкция по сбросу счетчика чернил Epson. Узнайте, как использовать программу Resetter, заменить прошивку или обнулить плату без сервиса.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-sdelat-sbros-chernil-na-epson.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Сброс чернил Epson: Resetter, прошивка и очистка платы">
+    <meta property="og:description" content="Полная инструкция по сбросу счетчика чернил Epson. Узнайте, как использовать программу Resetter, заменить прошивку или обнулить плату без сервиса.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/drugoe/">Другое</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Сброс чернил Epson: Resetter, прошивка и очистка платы</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Как сделать сброс чернил на Epson: Полное руководство по сбросу Waste Ink Pad Counter</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#понимание-работы-счетчика-отработанных-чернил">Понимание работы счетчика отработанных чернил</a></li><li><a href="#выбор-и-установка-программы-resetter-ssc-service-utility">Выбор и установка программы Resetter (SSC Service Utility)</a></li><li><a href="#пошаговая-инструкция-по-программе-ssc-service-utility">Пошаговая инструкция по программе SSC Service Utility</a></li><li><a href="#использование-сервиса-epson-adjustment-program">Использование сервиса Epson Adjustment Program</a></li><li><a href="#физическая-очистка-и-замена-абсорбента">Физическая очистка и замена абсорбента</a></li><li><a href="#таблица-кодов-ошибок-и-методов-сброса">Таблица кодов ошибок и методов сброса</a></li><li><a href="#аппаратный-сброс-через-джамперы">Аппаратный сброс через джамперы</a></li><li><a href="#решение-проблем-после-сброса">Решение проблем после сброса</a></li><li><a href="#частые-вопросы-faq">Частые вопросы (FAQ)</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Система Epson постоянно отслеживает уровень абсорбента, накапливающего отработанные чернила во время промывки печатающей головки. Когда этот ресурс подходит к концу, аппарат блокирует печать, выдавая ошибку «Служба обслуживания нужна» или «Принтер требует внимания». Многие пользователи воспринимают это как приговор и несут устройство в сервис, хотя часто можно выполнить процедуру <strong>сброса чернил</strong> самостоятельно, сэкономив значительную сумму.</p>
+
+<p>Процедура <em>обнуления счетчика</em> (Waste Ink Pad Counter) может быть реализована через специализированное программное обеспечение, встроенные сервисные меню или физическую замену чипа. Важно понимать, что программный сброс не очищает физическую губку внутри корпуса, а лишь возвращает программный показатель в ноль, давая устройству «вторую жизнь». Остальное — это вопрос аккуратности пользователя и своевременной очистки внутренних элементов.</p>
+
+<h2 id="понимание-работы-счетчика-отработанных-чернил">Понимание работы счетчика отработанных чернил</h2>
+
+<p>Каждый принтер <em>Epson</em> оснащен невидимым программным счетчиком, который суммирует количество капель чернил, потраченных на очистку дюз и выравнивание сопел. Когда значение достигает лимита (обычно 100%), контроллер блокирует любые попытки печати, чтобы предотвратить переполнение абсорбента и вытекание чернил на стол. Это защитная мера, но она не всегда оправдана, если владелец принтера регулярно обслуживает устройство.</p>
+
+<p>Счетчик не зависит от количества напечатанных страниц, а от объема промывочных операций. Если вы часто запускаете глубокую очистку головки, ресурс исчерпается быстрее. Бывает, что при <strong>заправке картриджей</strong> или установке СНПЧ пользователь не замечает, как быстро нарастает этот параметр. В некоторых моделях <em>Epson L</em> или <em>WorkForce</em> этот процесс скрыт, и пользователь узнает о проблеме только при появлении мигающих ламп.</p>
+
+<p>Существует два типа сброса: программный и аппаратный. Программный сброс через сервисный софт подходит для большинства пользователей и не требует разборки корпуса. Аппаратный метод подразумевает перепайку чипа или использование джамперов на плате, что является сложным ремонтом и требует паяльных навыков. Мы сосредоточимся на программных методах, так как они безопаснее и доступнее.</p>
+
+<blockquote>⚠️ Внимание: Программный сброс не удаляет чернила из губки. Если вы сбросите счетчик, но физически не очистите или не замените абсорбент, чернила могут потечь на электронику, вызывая короткое замыкание.</blockquote>
+
+<h2 id="выбор-и-установка-программы-resetter-ssc-service-utility">Выбор и установка программы Resetter (SSC Service Utility)</h2>
+
+<p>Для выполнения <strong>сброса чернил</strong> чаще всего используется программа <em>SSC Service Utility</em> или специализированный «Resetter» для конкретной серии принтера. Эти утилиты предоставляют доступ к секретному сервисному меню, скрытому от обычного пользователя. Скачать их можно в специализированных форумах, но важно убедиться в отсутствии вирусов в архиве.</p>
+
+<p>Процесс установки начинается с подключения принтера к компьютеру через USB-кабель. Убедитесь, что устройство определено системой и драйверы установлены корректно. Если принтер находится в режиме ошибки, программа все равно должна его увидеть. Запустите утилиту от имени администратора, чтобы избежать проблем с правами доступа к портам.</p>
+
+<p>В меню программы необходимо выбрать точную модель вашего устройства. Ошибка в выборе модели может привести к блокировке платы управления. После выбора модели перейдите в раздел «Particular adjustment mode» (Специальный режим настройки). Здесь вы увидите список параметров, которые можно регулировать, включая уровень чернил и счетчик Waste Ink.</p>
+
+<p> Если программа выдает ошибку соединения, возможно, потребуется отключить защиту драйверов или использовать версию утилиты, соответствующую версии прошивки вашего принтера. Иногда помогает принудительный вход в сервисный режим через комбинацию кнопок на панели управления.</p>
+
+<div class="poll-widget" id="poll-6e3cdc6d"><div class="poll-widget-question">📊 Какой метод сброса вы предпочитаете?</div><div class="poll-widget-option" data-poll="6e3cdc6d" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Программа Resetter</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="6e3cdc6d" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Сервисное меню</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="6e3cdc6d" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Обращение в сервис</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="6e3cdc6d" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Не пробовал</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="пошаговая-инструкция-по-программе-ssc-service-utility">Пошаговая инструкция по программе SSC Service Utility</h2>
+
+<p>Это самый популярный и универсальный способ для старых и средних моделей. Алгоритм действий строг и требует внимательности. Вам нужно открыть программу, выбрать вашу модель из выпадающего списка и нажать кнопку «Adjustment Mode».</p>
+
+<p>В открывшемся окне настроек найдите пункт <code>Waste Ink Pad Counter</code>. Нажмите на него, чтобы развернуть параметры. Вы увидите текущее значение в процентах и галочку «Main pad counter». Именно этот параметр отвечает за основной абсорбент. Установите галочку и нажмите кнопку «Initialize».</p>
+
+<p>После нажатия появится всплывающее окно с подтверждением. Система предупредит, что действие необратимо до следующего завершения ресурса губки. Подтвердите действие, нажав «ОК». Процесс сброса займет несколько секунд, после чего программа сообщит об успешном завершении операции.</p>
+
+<div class="checklist-block"><h4>☑️ Подготовка к сбросу через SSC</h4><label class="check-item"><input type="checkbox"><span>Установить драйверы</span></label><label class="check-item"><input type="checkbox"><span>Запустить программу от имени администратора</span></label><label class="check-item"><input type="checkbox"><span>Выбрать модель принтера</span></label><label class="check-item"><input type="checkbox"><span>Подключить принтер по USB</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="использование-сервиса-epson-adjustment-program">Использование сервиса Epson Adjustment Program</h2>
+
+<p>Для новых моделей <em>Epson L3110, L4160, L805</em> и серии WorkForce часто требуется более специфический софт — <strong>Epson Adjustment Program</strong>. Эти программы разрабатываются отдельно под каждую серию устройств и имеют более узкий функционал, но гарантируют работу с актуальными прошивками. Интерфейс здесь может отличаться, но логика остается прежней.</p>
+
+<p>Запустите файл <code>AdjProg.exe</code>. В главном окне слева выберите раздел <code>Maintenance</code> или <code>Particular adjustment mode</code>. Далее найдите пункт <code>Waste Ink Pad Counter</code>. Здесь важно обратить внимание на дополнительные галочки, такие как «End of life counter» или «Sub pad counter», если они есть.</p>
+
+<p>После выбора галочек нажмите кнопку <code>Check</code>, чтобы увидеть текущий процент заполнения. Убедитесь, что значение высокое (обычно 100% или около того), прежде чем приступать к сбросу. Затем нажмите кнопку <code>Initialization</code>. Не выключайте принтер в момент выполнения команды, иначе связь с контроллером может быть разорвана.</p>
+
+<p>Если программа выдает ошибку <code>Command Error</code> или <code>Check sum error</code>, это может означать, что версия прошивки принтера обновлена и блокирует доступ к сервисным функциям. В таком случае потребуется либо откатить прошивку, либо использовать аппаратные методы обхода защиты.</p>
+
+<blockquote>⚠️ Внимание: Если после сброса программа выдает ошибку проверки контрольной суммы, немедленно прекратите попытки. Это может привести к «окирпичиванию» устройства, когда оно перестанет реагировать на любые команды компьютера.</blockquote>
+
+<details class="faq-item"><summary>Что делать, если программа не видит принтер?</summary><div class="faq-answer"><p>Убедитесь, что кабель USB исправен. Попробуйте другой порт. Проверьте Диспетчер устройств Windows: принтер должен отображаться как «Epson XXXXX» без восклицательного знака. Если драйвер не установлен, скачайте его с официального сайта. Иногда помогает ручное указание COM-порта в настройках программы, если устройство подключено через переходник.</p></div></details>
+
+<h2 id="физическая-очистка-и-замена-абсорбента">Физическая очистка и замена абсорбента</h2>
+
+<p>Многие пользователи совершают ошибку, думая, что сброс программы решает все проблемы. На самом деле, <strong>Waste Ink Pad</strong> — это физический материал, который впитывает жидкость. Если вы сбросили счетчик, но губка переполнена, чернила начнут вытекать наружу или внутрь корпуса. Это критическая ситуация.</p>
+
+<p>После успешного программного сброса рекомендуется открыть корпус принтера и визуально оценить состояние абсорбента. В моделях серии <em>Epson L</em> он часто расположен в нижней части или сзади. Если губка мокрая, ее необходимо извлечь, промыть в теплой воде с моющим средством и высушить, либо заменить на новую.</p>
+
+<p>Для сложной очистки может потребоваться частичная разборка устройства. Открутите винты, снимите верхнюю крышку и аккуратно извлеките блок с губками. Не повреждайте шлейфы сенсоров, которые могут проходить рядом. Если замена невозможна, можно временно вставить впитывающие салфетки под губку, но это лишь временное решение.</p>
+
+<p>После очистки и сборки обязательно снова проверьте уровень чернил, если у вас есть доступ к диагностическому режиму, чтобы убедиться, что система не «запомнила» старое состояние. Однако, если вы сбросили счетчик, система считает, что губка новая, и начнет отсчет заново с нуля.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Программный сброс — это лишь обнуление цифр. Физическая очистка или замена абсорбента обязательна для предотвращения протечек и порчи электроники принтера.</p></div>
+
+<h2 id="таблица-кодов-ошибок-и-методов-сброса">Таблица кодов ошибок и методов сброса</h2>
+
+<p>Разные модели Epson имеют различные коды ошибок, указывающие на необходимость обслуживания. Понимание этих кодов поможет быстрее определить проблему. Приведенная ниже таблица содержит наиболее распространенные индикаторы и способы их устранения программным путем.</p>
+
+<table>
+<thead>
+<tr>
+<th>Модель</th>
+<th>Индикатор ошибки</th>
+<th>Значение</th>
+<th>Рекомендуемый софт</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Epson L360/L380</em></td>
+<td>Мигают обе кнопки</td>
+<td>Счетчик 100%</td>
+<td>SSC Service Utility v4</td>
+</tr>
+<tr>
+<td><em>Epson L805</em></td>
+<td>Лампа «Очередь»</td>
+<td>Нужна чистка</td>
+<td>Epson Adjustment Program</td>
+</tr>
+<tr>
+<td><em>Epson L120/L220</em></td>
+<td>Мигание «Красный треугольник»</td>
+<td>Переполнение</td>
+<td>WIC Reset Utility</td>
+</tr>
+<tr>
+<td><em>Epson WorkForce WF</em></td>
+<td>Мигающий восклицательный знак</td>
+<td>Сервисное обслуживание</td>
+<td>WIC Reset Key / SSC</td>
+</tr>
+<tr>
+<td><em>Epson Artisan</em></td>
+<td>Мигание всех ламп</td>
+<td>Критическая ошибка</td>
+<td>Специфический Resetter</td>
+</tr>
+</tbody>
+</table>
+
+<p>Обратите внимание, что для некоторых моделей, особенно последних выпусков, бесплатные версии программ могут не работать или требовать покупки лицензионного ключа. В таких случаях альтернативой является использование платных утилит, таких как <em>WIC Reset Utility</em>, которые стоят недорого, но гарантируют сброс.</p>
+
+<h2 id="аппаратный-сброс-через-джамперы">Аппаратный сброс через джамперы</h2>
+
+<p>Если программные методы не работают из-за блокировки прошивкой, остается аппаратный способ. Он требует разборки корпуса и доступа к плате контроллера. На плате есть специальные контакты (джамперы), замыкание которых сбрасывает энергонезависимую память, хранящую счетчик. Этот метод подходит только опытным пользователям.</p>
+
+<p>Для начала необходимо найти схему вашей модели в интернете, чтобы определить расположение контактов сброса. Обычно это два маленьких контакта рядом с чипом памяти или контроллером. Замкните их пинцетом на несколько секунд при выключенном питании, затем включите устройство, продолжая замыкание.</p>
+
+<p>После замыкания сброс можно считать завершенным. Убедитесь, что вы не замкнули соседние контакты, что может сжечь плату. Этот метод эффективен, но несет высокий риск повреждения устройства при неосторожном обращении с электроникой.</p>
+
+<p>В некоторых случаях проще заменить чип памяти на плате, если он поврежден. Однако для большинства бытовых задач программного сброса достаточно, чтобы вернуть принтер в строй.</p>
+
+<blockquote>⚠️ Внимание: Аппаратный сброс может привести к полной потере гарантии на устройство. Если ваш принтер на гарантии, немедленно обратитесь в авторизованный сервисный центр.</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если вы часто заправляете картриджи, установите счетчик на печать, чтобы отслеживать расход чернил и более точно прогнозировать необходимость очистки абсорбента.</p></div>
+
+<h2 id="решение-проблем-после-сброса">Решение проблем после сброса</h2>
+
+<p>Иногда после успешного сброса принтер продолжает выдавать ошибку или не печатает. Это может быть связано с тем, что не все параметры были сброшены. Проверьте, не остался ли активным счетчик <em>Sub pad</em> (вторичный абсорбент). В некоторых моделях их два, и сброс только одного не снимает блокировку.</p>
+
+<p>Также возможен сбой в работе драйверов. После сброса рекомендуется удалить текущий драйвер принтера и установить его заново. Это поможет системе Windows корректно распознать обновленное состояние устройства. Перезагрузите компьютер перед повторной установкой.</p>
+
+<p>Если вы используете СНПЧ, убедитесь, что шланги не перекручены и чернила нормально поступают в головку. Проблемы с подачей чернил часто маскируются под ошибки обслуживания. Проверьте наличие воздуха в трубках и уровень чернил в баках.</p>
+
+<p>В редких случаях проблема может быть в самом датчике уровня чернил, который загрязнился и передает ложные данные. Очистка сенсора спиртом может решить проблему без необходимости повторного сброса.</p>
+
+<details class="faq-item"><summary>Как проверить успешность сброса?</summary><div class="faq-answer"><p>Снова зайдите в программу сброса. Если текущее значение показывает 0% или 10% (в зависимости от модели), а кнопка «Initialize» неактивна или выдает сообщение «Completed», значит сброс прошел успешно. Также принтер должен перестать мигать лампами при включении.</p></div></details>
+
+<h2 id="частые-вопросы-faq">Частые вопросы (FAQ)</h2>
+
+<details>
+<summary>Нужно ли покупать ключ для сброса Epson?</summary>
+<p>Для старых моделей часто существуют бесплатные программы (SSC, Resetter). Для новых моделей (L3110, L4160 и др.) производители часто блокируют утилиты, и для сброса требуется покупка уникального ключа, который разблокирует функцию в платной версии программы WIC Reset.</p>
+</details>
+
+<details>
+<summary>Можно ли сбросить счетчик, не скачивая программы?</summary>
+<p>Без использования специального программного обеспечения сброс невозможен. Некоторые модели имеют скрытое сервисное меню, вызываемое комбинацией кнопок, но в нем редко доступна функция сброса счетчика отработанных чернил. В большинстве случаев требуется подключение к ПК.</p>
+</details>
+
+<details>
+<summary>Что будет, если не сбрасывать счетчик чернил?</summary>
+<p>Принтер просто перестанет печатать и будет мигать индикаторами ошибки. Печать будет заблокирована до тех пор, пока не будет выполнен сброс или не будет проведена замена платы. Это не приведет к поломке, но сделает устройство неработоспособным.</p>
+</details>
+
+<details>
+<summary>Справедливо ли, что сброс не очищает губку?</summary>
+<p>Да, это так. Сброс — это лишь программное действие, возвращающее счетчик в ноль. Физическая губка остается переполненной. Если не очистить её вручную, чернила могут вытечь на стол или внутрь корпуса, повредив электронику.</p>
+</details>
+
+<details>
+<summary>Как часто нужно делать сброс?</summary>
+<p>Частота зависит от количества печати и частоты очистки головки. При активной печати и использовании СНПЧ сброс может потребоваться раз в 6-12 месяцев. При редкой печати этот интервал может растянуться на несколько лет.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#понимание-работы-счетчика-отработанных-чернил">Понимание работы счетчика отработанных чернил</a></li><li><a href="#выбор-и-установка-программы-resetter-ssc-service-utility">Выбор и установка программы Resetter (SSC Service Utility)</a></li><li><a href="#пошаговая-инструкция-по-программе-ssc-service-utility">Пошаговая инструкция по программе SSC Service Utility</a></li><li><a href="#использование-сервиса-epson-adjustment-program">Использование сервиса Epson Adjustment Program</a></li><li><a href="#физическая-очистка-и-замена-абсорбента">Физическая очистка и замена абсорбента</a></li><li><a href="#таблица-кодов-ошибок-и-методов-сброса">Таблица кодов ошибок и методов сброса</a></li><li><a href="#аппаратный-сброс-через-джамперы">Аппаратный сброс через джамперы</a></li><li><a href="#решение-проблем-после-сброса">Решение проблем после сброса</a></li><li><a href="#частые-вопросы-faq">Частые вопросы (FAQ)</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/c/ch/chto-delat-chtoby-printer-ne-pechatal-polosami-epson.html" class="related-card">Что делать, если Epson печатает полосами: пошаговое решение</a></li><li><a href="/articles/k/ka/kak-otmenit-pechat-na-printere-epson-l3150.html" class="related-card">Как отменить печать на принтере Epson L3150 — 5 способов 2026</a></li><li><a href="/articles/k/ka/kak-zamenit-vpityvayushchuyu-prokladku-v-printere-epson-l355.html" class="related-card">Замена впитывающей прокладки Epson L355: инструкция по сбросу счетчика</a></li><li><a href="/articles/o/os/oshibka-printera-000021-epson-chto-delat.html" class="related-card">Ошибка 000021 Epson: причины и 7 способов исправления</a></li><li><a href="/articles/k/ka/kak-proverit-pechatayushchuyu-golovku-epson.html" class="related-card">Как проверить печатающую головку Epson: диагностика и чистка</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/c/ch/chto-delat-chtoby-printer-ne-pechatal-polosami-epson.html" class="related-bottom-card"><span class="related-bottom-title">Что делать, если Epson печатает полосами: пошаговое решение</span><span class="related-bottom-desc">Полное руководство по устранению полос при печати на принтерах Epson. Диагностика засоров, промывка </span></a><a href="/articles/k/ka/kak-otmenit-pechat-na-printere-epson-l3150.html" class="related-bottom-card"><span class="related-bottom-title">Как отменить печать на принтере Epson L3150 — 5 способов 2026</span><span class="related-bottom-desc">Пошаговая инструкция по остановке печати на Epson L3150: через ПК, кнопки на корпусе, очередь задач </span></a><a href="/articles/k/ka/kak-zamenit-vpityvayushchuyu-prokladku-v-printere-epson-l355.html" class="related-bottom-card"><span class="related-bottom-title">Замена впитывающей прокладки Epson L355: инструкция по сбросу счетчика</span><span class="related-bottom-desc">Подробная инструкция как очистить счетчик абсорбера Epson L355. Сброс программной защиты, замена про</span></a><a href="/articles/o/os/oshibka-printera-000021-epson-chto-delat.html" class="related-bottom-card"><span class="related-bottom-title">Ошибка 000021 Epson: причины и 7 способов исправления</span><span class="related-bottom-desc">Почему принтер Epson показывает ошибку 000021 и как устранить проблему самостоятельно? Пошаговые инс</span></a><a href="/articles/k/ka/kak-proverit-pechatayushchuyu-golovku-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как проверить печатающую головку Epson: диагностика и чистка</span><span class="related-bottom-desc">Полная инструкция по проверке состояния дюз, тесту печати и диагностике засоров в головках принтеров</span></a><a href="/articles/e/ep/epson-perfection-v19-kak-razobrat.html" class="related-bottom-card"><span class="related-bottom-title">Как разобрать сканер Epson Perfection V19: пошаговая инструкция</span><span class="related-bottom-desc">Пошаговое руководство по разборке сканера Epson Perfection V19. Инструкция по замене ламп, очистке м</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

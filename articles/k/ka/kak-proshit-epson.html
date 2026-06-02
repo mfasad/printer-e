@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как прошить Epson: инструкция, сброс счетчика и обновление ПО — Эпсон Помощь</title>
+    <meta name="description" content="Полное руководство по прошивке принтеров Epson. Сброс программных счетчиков, обновление драйверов и восстановление после ошибок сервисного режима.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-proshit-epson.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как прошить Epson: инструкция, сброс счетчика и обновление ПО">
+    <meta property="og:description" content="Полное руководство по прошивке принтеров Epson. Сброс программных счетчиков, обновление драйверов и восстановление после ошибок сервисного режима.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/drugoe/">Другое</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как прошить Epson: инструкция, сброс счетчика и обновление ПО</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Прошивка принтеров Epson: полная инструкция по сбросу и обновлению</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#определение-типа-проблемы-и-подготовка-оборудования">Определение типа проблемы и подготовка оборудования</a></li><li><a href="#сброс-программных-счетчиков-через-adjustment-program">Сброс программных счетчиков через Adjustment Program</a></li><li><a href="#обновление-микропрограммы-через-официальный-софт">Обновление микропрограммы через официальный софт</a></li><li><a href="#аппаратные-методы-и-работа-с-чипами">Аппаратные методы и работа с чипами</a></li><li><a href="#решение-частых-ошибок-при-перепрошивке">Решение частых ошибок при перепрошивке</a></li><li><a href="#профилактика-и-обслуживание-после-прошивки">Профилактика и обслуживание после прошивки</a></li><li><a href="#часто-задаваемые-вопросы">Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Владельцы струйных устройств <em>Epson</em> часто сталкиваются с необходимостью вмешательства в программное обеспечение устройства. Это может быть вызвано ошибками в работе счетчика отработанных страниц, сбоями после обновления драйверов или необходимостью активации новых функций. Процесс восстановления или обновления <strong>прошивки</strong> требует внимательности, так как неправильные действия могут привести к неработоспособности оборудования.</p>
+
+<p>Существует два основных направления работы с ПО <em>Epson</em>: обновление внутренней микропрограммы для исправления ошибок и сброс сервисного счетчика (программного чипа), который блокирует печать при достижении лимита. Важно понимать разницу между этими процедурами, так как методы их реализации кардинально отличаются. Независимо от модели, будь то серия <em>L</em> или WorkForce, базовые принципы подготовки остаются схожими.</p>
+
+<p>Ниже мы подробно разберем алгоритмы действий для различных сценариев. Мы коснемся использования официального софта и специализированных утилит для аппаратного сброса. Помните, что вмешательство в программную часть устройства часто лишает его гарантии, поэтому действовать стоит осознанно.</p>
+
+<h2 id="определение-типа-проблемы-и-подготовка-оборудования">Определение типа проблемы и подготовка оборудования</h2>
+
+<p>Прежде чем приступать к любым манипуляциям с кодом или утилитами, необходимо точно идентифицировать причину сбоя. Ошибка, связанная с <strong>переполнением памперса</strong>, требует сброса программных счетчиков, в то время как глючность интерфейса или проблемы с подключением к сети могут решаться обычной перепрошивкой микропрограммы. Ошибка <em>Service Required</em> часто является первым сигналом о необходимости вмешательства.</p>
+
+<p>Подготовка к процессу включает в себя проверку стабильности питания и целостности кабельных соединений. Используйте только оригинальные кабели USB, так как некачественные провода могут прервать поток данных во время записи <strong>прошивки</strong> и привести к «окирпичиванию» устройства. Убедитесь, что в системе отключены все антивирусы и брандмауэры, которые могут блокировать работу специальных утилит.</p>
+
+<p>Для большинства процедур сброса вам понадобится специализированное программное обеспечение, часто называемое «Adjustment Program». Для обновления микропрограммы достаточно официального инструмента от производителя. Важно заранее скачать нужные файлы на компьютер, чтобы процесс не прервался из-за отсутствия доступа к сети.</p>
+
+<blockquote>
+<p>⚠️ <strong>Внимание:</strong> Процесс перепрошивки или сброса счетчиков требует непрерывного питания в течение всего времени выполнения операции. Любое отключение электричества может сделать оборудование невосстановимым без обращения в авторизованный сервисный центр.</p>
+</blockquote>
+
+<h2 id="сброс-программных-счетчиков-через-adjustment-program">Сброс программных счетчиков через Adjustment Program</h2>
+
+<p>Самая частая процедура, которую ищут пользователи — это сброс счетчика отработанных страниц (Waste Ink Pad Counter). Когда <strong>Epson</strong> сообщает о переполнении прокладки, печать блокируется. Решение заключается в использовании утилиты <code>Adjustment Program</code>, которая имеет доступ к скрытым настройкам принтера.</p>
+
+<p>Запуск утилиты требует выбора правильной модели и порта подключения. Если вы выберете неверный принтер или порт, программа не сможет связаться с устройством. После успешного соединения необходимо найти вкладку <code>Particular adjustment mode</code> и выбрать пункт <strong>Waste ink pad counter</strong>.</p>
+
+<p>В открывшемся окне нужно отметить галочками соответствующие счетчики (обычно это Main Pad и Platen Pad). Затем нажмите кнопку <code>Check</code> для отображения текущего значения, а после — <code>Initialization</code> для сброса. Важно дождаться сообщения о завершении операции, после чего принтер перезагрузится.</p>
+
+<p>Вот основные шаги для корректного выполнения сброса:</p>
+<ul>
+<li>🔌 Отключите лишние USB-устройства, чтобы избежать конфликтов портов.</li>
+<li>🖥️ Запустите утилиту <code>Adjustment Program</code> от имени администратора.</li>
+<li>🔢 Введите <strong>серийный номер</strong> устройства, если программа запрашивает его для активации.</li>
+<li>🔄 Нажмите кнопку <code>End</code> только после подтверждения успешного сброса.</li>
+</ul>
+
+<div class="checklist-block"><h4>☑️ Подготовка к сбросу счетчика</h4><label class="check-item"><input type="checkbox"><span>Подключить принтер к ПК</span></label><label class="check-item"><input type="checkbox"><span>Запустить утилиту от имени админа</span></label><label class="check-item"><input type="checkbox"><span>Выбрать правильную модель и порт</span></label><label class="check-item"><input type="checkbox"><span>Перед сбросом проверить уровень чернил</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<details class="faq-item"><summary>Что делать, если утилита не видит принтер?</summary><div class="faq-answer"><p>Часто проблема кроется в драйверах. Попробуйте переустановить драйверы в режиме совместимости или использовать Windows 7/8, так как утилиты для старых моделей Epson часто некорректно работают на Windows 10/11. Также проверьте, не занята ли COM-порта другими устройствами.</p></div></details>
+
+<h2 id="обновление-микропрограммы-через-официальный-софт">Обновление микропрограммы через официальный софт</h2>
+
+<p>Если устройство работает нестабильно, появляются артефакты на печати или не распознаются новые картриджи с чипами, может потребоваться апгрейд <strong>прошивки</strong> (firmware). В отличие от сброса счетчиков, это официальная процедура, выполняемая через утилиту <code>Epson Firmware Update Tool</code>.</p>
+
+<p>Процесс начинается с загрузки инструмента с официального сайта производителя. После установки запустите программу и подключите принтер. Утилита автоматически определит текущую версию микропрограммы и предложит обновить её до последней доступной. Нажимать «Обновить» стоит только при стабильном интернете и заряде аккумулятора ноутбука (если он используется).</p>
+
+<p>В процессе обновления экран принтера может гаснуть, а индикаторы могут мигать в необычном ритме — это нормально. Главное — не трогать кнопки на панели управления и не отключать кабель. После завершения процесса устройство самостоятельно перезагрузится с новыми настройками.</p>
+
+<blockquote>
+<p>⚠️ <strong>Внимание:</strong> Обновление прошивки через официальный софт может заблокировать использование совместимых картриджей или чипов, если они не актуализированы производителем. Перед началом операции убедитесь, что ваши расходные материалы поддерживают новую версию ПО.</p>
+</blockquote>
+
+<h2 id="аппаратные-методы-и-работа-с-чипами">Аппаратные методы и работа с чипами</h2>
+
+<p>Для некоторых моделей <em>Epson</em>, особенно оснащенных чипированными картриджами, программный сброс счетчиков может быть невозможен без замены чипа. В таких случаях требуется аппаратное вмешательство. Менять чипы рекомендуется только в специализированных мастерских или при наличии соответствующего оборудования.</p>
+
+<p>Существуют также аппаратные программаторы, которые позволяют «перепрошить» сам чип картриджа или модуль управления принтера без использования ПК. Это более надежный метод, так как он исключает влияние драйверов операционной системы. Однако стоимость такого оборудования часто превышает цену самого принтера.</p>
+
+<p>При замене чипа важно соблюдать полярность и аккуратно обращаться с контактами. Микросхемы очень чувствительны к статическому электричеству. Рекомендуется использовать антистатический браслет или хотя бы дотронуться до заземленного металла перед началом работы.</p>
+
+<p>Сравнение методов сброса и восстановления:</p>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Сложность</th>
+<th>Риск поломки</th>
+<th>Необходимое ПО/Оборудование</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Сброс счетчиков</td>
+<td>Низкая</td>
+<td>Средний</td>
+<td><code>Adjustment Program</code></td>
+</tr>
+<tr>
+<td>Обновление ПО</td>
+<td>Низкая</td>
+<td>Низкий</td>
+<td><code>Epson Firmware Update Tool</code></td>
+</tr>
+<tr>
+<td>Замена чипа</td>
+<td>Высокая</td>
+<td>Высокий</td>
+<td>Паяльник, новый чип</td>
+</tr>
+<tr>
+<td>Аппаратный сброс</td>
+<td>Средняя</td>
+<td>Средний</td>
+<td>Программатор, адаптер</td>
+</tr>
+</tbody>
+</table>
+
+<div class="poll-widget" id="poll-3f89f5b9"><div class="poll-widget-question">📊 Какой метод вы планируете использовать?</div><div class="poll-widget-option" data-poll="3f89f5b9" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Сброс счетчиков</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="3f89f5b9" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Обновление прошивки</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="3f89f5b9" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Замена чипа</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="3f89f5b9" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Не знаю, нужна помощь</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Программный сброс счетчиков — это временное решение. Физический объем абсорбирующей прокладки не меняется, и со временем ее придется заменить вручную.</p></div>
+
+<h2 id="решение-частых-ошибок-при-перепрошивке">Решение частых ошибок при перепрошивке</h2>
+
+<p>Даже опытные пользователи могут столкнуться с проблемами. Самая распространенная ошибка — «Device not found» или «Connection error». Это обычно означает, что компьютер не видит принтер. Проверьте, установлен ли драйвер <strong>USB-устройства</strong> и не заблокирован ли порт системными настройками.</p>
+
+<p>Иногда утилита выдает ошибку при попытке сброса, несмотря на правильное подключение. В таких случаях попробуйте отключить кабель, перезагрузить принтер, включить его снова и только потом запускать программу. Если ошибка сохраняется, попробуйте другой USB-порт, желательно расположенный на задней панели системного блока (напрямую в материнскую плату).</p>
+
+<p>Еще одной проблемой может быть несовместимость версии утилиты и модели принтера. Убедитесь, что скачанная версия <code>Adjustment Program</code> поддерживает именно вашу серию. Для моделей серии <em>L805</em> или <em>L1800</em> требуются разные версии софта, и использование неподходящего может привести к сбоям.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если утилита зависла на 99%, не выключайте принтер сразу. Подождите 5-10 минут. Иногда процесс записи данных в энергонезависимую память занимает больше времени, чем показывает индикатор прогресса.</p></div>
+
+<h2 id="профилактика-и-обслуживание-после-прошивки">Профилактика и обслуживание после прошивки</h2>
+
+<p>После успешного завершения всех процедур рекомендуется провести тестовую печать. Запустите проверку дюз и выравнивание печатающей головки через стандартное меню драйвера. Это позволит убедиться, что переходные процессы не повлияли на качество изображения.</p>
+
+<p>Если вы сбрасывали счетчик, Физический объем впитывающей прокладки остается прежним. <mark>Критически важно вовремя заменить физический абсорбент, иначе чернила могут вытечь на стол или внутрь корпуса устройства.</mark> Игнорирование этого факта может привести к коррозии электроники.</p>
+
+<p>Регулярное обслуживание и использование качественных чернил продлят жизнь <em>Epson</em>. Избегайте дешевых аналогов, которые могут засорить головки и создать ложные показания счетчиков. Чистка головки должна проводиться по мере необходимости, а не по расписанию, чтобы не пересушивать сопла.</p>
+
+<h2 id="часто-задаваемые-вопросы">Часто задаваемые вопросы</h2>
+
+<details>
+<summary>Можно ли прошить Epson самостоятельно без сервисного центра?</summary>
+<p>Да, большинство операций по сбросу счетчиков и обновлению микропрограммы можно выполнить самостоятельно, скачав соответствующие утилиты. Однако для аппаратных вмешательств требуется специальное оборудование и навыки.</p>
+</details>
+
+<details>
+<summary>Что делать, если после сброса счетчика ошибка вернулась через неделю?</summary>
+<p>Это означает, что физическая прокладка переполнена. Программный сброс лишь обнуляет счетчик, но не освобождает место для чернил. Необходимо заменить прокладку или установить систему непрерывной подачи чернил с внешним сборником отходов.</p>
+</details>
+
+<details>
+<summary>Где скачать официальную утилиту для сброса?</summary>
+<p>Официальные утилиты <code>Adjustment Program</code> обычно не публикуются на сайте производителя для свободного скачивания. Их ищут на специализированных форумах или сайтах, посвященных ремонту оргтехники, но следует быть внимательным к безопасности файлов.</p>
+</details>
+
+<details>
+<summary>Прервался процесс прошивки, принтер не включается. Как спасти?</summary>
+<p>Восстановление «окирпиченного» устройства — сложная задача. Потребуется программатор для перепрошивки микросхемы памяти (EEPROM) на плате управления. Без специального оборудования в домашних условиях это сделать практически невозможно.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#определение-типа-проблемы-и-подготовка-оборудования">Определение типа проблемы и подготовка оборудования</a></li><li><a href="#сброс-программных-счетчиков-через-adjustment-program">Сброс программных счетчиков через Adjustment Program</a></li><li><a href="#обновление-микропрограммы-через-официальный-софт">Обновление микропрограммы через официальный софт</a></li><li><a href="#аппаратные-методы-и-работа-с-чипами">Аппаратные методы и работа с чипами</a></li><li><a href="#решение-частых-ошибок-при-перепрошивке">Решение частых ошибок при перепрошивке</a></li><li><a href="#профилактика-и-обслуживание-после-прошивки">Профилактика и обслуживание после прошивки</a></li><li><a href="#часто-задаваемые-вопросы">Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-pechatat-kachestvennye-foto-na-printere-epson.html" class="related-card">Как печатать качественные фото на принтере Epson: полное руководство</a></li><li><a href="/articles/k/ka/kak-ustanovit-drajvera-epson-l805.html" class="related-card">Как установить драйверы Epson L805 на Windows и Mac: Полная инструкция 2026</a></li><li><a href="/articles/p/pr/printer-epson-perestal-pechatat-tsvetnym-chto-delat.html" class="related-card">Принтер Epson перестал печатать цветным: причины и ремонт</a></li><li><a href="/articles/k/ka/kak-sdelat-glubokuyu-chistku-printera-epson.html" class="related-card">Глубокая чистка принтера Epson: пошаговая инструкция и альтернативы</a></li><li><a href="/articles/p/po/pochemu-net-chernogo-tsveta-v-printere-epson.html" class="related-card">Почему нет черного цвета в принтере Epson: причины и способы решения</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-pechatat-kachestvennye-foto-na-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как печатать качественные фото на принтере Epson: полное руководство</span><span class="related-bottom-desc">Узнайте, как добиться фотоявления на Epson: выбор бумаги, настройки драйвера ICC-профили и уход за г</span></a><a href="/articles/k/ka/kak-ustanovit-drajvera-epson-l805.html" class="related-bottom-card"><span class="related-bottom-title">Как установить драйверы Epson L805 на Windows и Mac: Полная инструкция 2026</span><span class="related-bottom-desc">Пошаговое руководство по установке драйверов Epson L805. Решаем проблемы с поиском ПО, настройкой ск</span></a><a href="/articles/p/pr/printer-epson-perestal-pechatat-tsvetnym-chto-delat.html" class="related-bottom-card"><span class="related-bottom-title">Принтер Epson перестал печатать цветным: причины и ремонт</span><span class="related-bottom-desc">Принтер Epson перестал печатать цветным? Узнайте, как быстро вернуть цветную печать: от чистки дюз д</span></a><a href="/articles/k/ka/kak-sdelat-glubokuyu-chistku-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Глубокая чистка принтера Epson: пошаговая инструкция и альтернативы</span><span class="related-bottom-desc">Узнайте, как сделать глубокую чистку принтера Epson через меню и сервисное ПО. Разбор причин возникн</span></a><a href="/articles/p/po/pochemu-net-chernogo-tsveta-v-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Почему нет черного цвета в принтере Epson: причины и способы решения</span><span class="related-bottom-desc">Разбираем, почему не печатает черный цвет в принтерах Epson. Причины: засохшие дюзы, воздух, сбой фи</span></a><a href="/articles/p/pr/printer-epson-3151-kak-nastroit-vaj-faj.html" class="related-bottom-card"><span class="related-bottom-title">Как настроить WiFi на принтере Epson L3151: полная инструкция</span><span class="related-bottom-desc">Пошаговое руководство: как подключить МФУ Epson L3151 к роутеру через WPS, кнопку или утилиту. Решен</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

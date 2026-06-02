@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Сброс счетчика отработанных чернил Epson L800: способы и инструкция — Эпсон Помощь</title>
+    <meta name="description" content="Пошаговая инструкция по сбросу абсорбера (памперса) на Epson L800. Программные методы, обнуление счетчика и настройка WIC Reset.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-skinut-schetchik-na-printere-epson-l800.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Сброс счетчика отработанных чернил Epson L800: способы и инструкция">
+    <meta property="og:description" content="Пошаговая инструкция по сбросу абсорбера (памперса) на Epson L800. Программные методы, обнуление счетчика и настройка WIC Reset.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/sbros-pampersa/">Сброс памперса</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Сброс счетчика отработанных чернил Epson L800: способы и инструкция</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Как скинуть счетчик на принтере Epson L800: полное руководство</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#суть-проблемы-и-признаки-блокировки">Суть проблемы и признаки блокировки</a></li><li><a href="#методы-обнуления-программного-обеспечения">Методы обнуления программного обеспечения</a></li><li><a href="#пошаговая-инструкция-сброса-через-wic-reset">Пошаговая инструкция сброса через WIC Reset</a></li><li><a href="#механическая-очистка-абсорбера">Механическая очистка абсорбера</a></li><li><a href="#таблица-типовых-ошибок-и-их-решений">Таблица типовых ошибок и их решений</a></li><li><a href="#профилактика-и-обслуживание">Профилактика и обслуживание</a></li><li><a href="#альтернативные-способы-сброса">Альтернативные способы сброса</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Принтеры серии <em>Epson L800</em> завоевали популярность благодаря качественной фотопечати и экономичности, но их ресурс ограничен встроенным программным счетчиком. Когда устройство сообщает о полном абсорбере, печать блокируется, и пользователь сталкивается с необходимостью технического вмешательства. Игнорирование этого сообщения приводит к полной остановке работы аппарата, даже если картриджи и чернильная система функционируют исправно.</p>
+
+<p>Процедура <strong>сброса счетчика</strong> не требует обязательной замены прокладок абсорбера, если вы готовы регулярно проводить техническое обслуживание. Однако программное обнуление позволяет восстановить работоспособность <em>Epson L800</em> без обращения в сервисный центр. Важно понимать разницу между механической очисткой и программным сбросом, чтобы избежать ошибок при выполнении операций.</p>
+
+<h2 id="суть-проблемы-и-признаки-блокировки">Суть проблемы и признаки блокировки</h2>
+<p>Внутри корпуса <em>Epson L800</em> находится абсорбирующая прокладка, которая впитывает чернила, остающиеся после промывки головок и пусковых циклов. Специальная программа-счетчик отслеживает объем поглощенных чернил. Когда этот объем достигает 100%, срабатывает <strong>триггер блокировки</strong>, предотвращающий переполнение и загрязнение корпуса.</p>
+
+<p>Вы узнаете о критическом состоянии устройства по появлению мигающих красных индикаторов на панели управления. На экране компьютера в драйвере печати отобразится сообщение <code>Service Required: The printer's ink pad is at the end of its service life</code>. Попытки нажатия на кнопку сброса на самом устройстве в этот момент не дают результата.</p>
+
+<p>Некоторые пользователи пытаются игнорировать ошибку, но это опасно. Если не выполнить <strong>сброс памперса</strong>, чернила могут начать вытекать наружу, повредив стол или внутреннюю электронику принтера. В некоторых случаях аппарат переходит в режим <code>Service Required</code> навсегда без вмешательства со стороны специалиста.</p>
+
+<blockquote>⚠️ Внимание: Программный сброс не удаляет физически накопленные чернила из прокладки. Обязательно проверьте состояние абсорбера перед продолжением эксплуатации.</blockquote>
+
+<h2 id="методы-обнуления-программного-обеспечения">Методы обнуления программного обеспечения</h2>
+<p>Существует два основных подхода к решению проблемы: использование бесплатных утилит с ограниченным функционалом или покупка лицензионных ключей для профессионального софта. Бесплатные версии часто имеют ограничения по количеству сбросов или требуют сложных манипуляций с реестром, что может привести к нестабильной работе системы.</p>
+
+<p>Наиболее надежным инструментом является программа <strong>WIC Reset Utility</strong>. Она обеспечивает полный контроль над состоянием счетчиков и позволяет обнулить их в один клик. Для работы с ней вам потребуется приобрести специальный <strong>сбросочный ключ</strong> (reset key), который генерируется под конкретную модель принтера.</p>
+
+<p>Альтернативой может служить <em>SSC Service Utility</em>, который также популярен среди пользователей. Однако его интерфейс устарел, и поддержка новых версий драйверов может быть нестабильной. Выбор инструмента зависит от ваших технических навыков и готовности тратить средства на лицензию.</p>
+
+<div class="poll-widget" id="poll-dddccff5"><div class="poll-widget-question">📊 Какой метод сброса вы планируете использовать?</div><div class="poll-widget-option" data-poll="dddccff5" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Бесплатная утилита</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="dddccff5" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Покупка ключа WIC Reset</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="dddccff5" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Обращение в сервис</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="dddccff5" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Не знаю, что выбрать</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="пошаговая-инструкция-сброса-через-wic-reset">Пошаговая инструкция сброса через WIC Reset</h2>
+<p>Процесс обнуления начинается с установки и запуска утилиты <em>WIC Reset</em> на компьютере, к которому подключен принтер. Убедитесь, что кабель USB надежно соединен с портами, и устройство находится во включенном состоянии. Драйверы <em>Epson</em> должны быть установлены корректно, иначе программа не увидит аппарат.</p>
+
+<p>В открывшемся окне программы выберите ваш принтер из выпадающего списка. Нажмите кнопку <code>Read waste counters</code>, чтобы получить актуальные данные о заполнении. В разделе <code>Waste ink pad counter</code> вы увидите значение в процентах. Если оно равно <code>100%</code> или выше, необходимо инициировать сброс.</p>
+
+<p>Скачайте и вставьте <strong>сбросочный ключ</strong> в соответствующее поле. После этого нажмите кнопку <code>Reset waste counters</code>. Программа выдаст уведомление об успехе операции. Выключите принтер кнопкой на корпусе и отключите его от сети на 10-15 секунд для полной перезагрузки.</p>
+
+<div class="checklist-block"><h4>☑️ Подготовка к сбросу счетчика</h4><label class="check-item"><input type="checkbox"><span>Установить драйверы Epson L800</span></label><label class="check-item"><input type="checkbox"><span>Убедиться в стабильном подключении USB</span></label><label class="check-item"><input type="checkbox"><span>Запустить программу WIC Reset</span></label><label class="check-item"><input type="checkbox"><span>Подготовить сбросочный ключ</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>После включения устройство снова будет готово к работе, а индикаторы перестанут мигать. Важно отметить, что программа сбрасывает только программный счетчик, но не очищает физическую прокладку. Вам необходимо самостоятельно отслеживать физическое состояние абсорбера.</p>
+
+<blockquote>⚠️ Внимание: Если ошибка не исчезает после сброса, проверьте, не заблокирован ли принтер аппаратным чипом или не устарела ли версия прошивки устройства.</blockquote>
+
+<h2 id="механическая-очистка-абсорбера">Механическая очистка абсорбера</h2>
+<p>Многие пользователи совершают ошибку, полагая, что после программного сброса проблема решена навсегда. Если не очистить <strong>абсорбер чернил</strong>, прокладка перенасытится, и жидкость начнет вытекать на пол. Это может привести к коррозии контактов и поломке электроники.</p>
+
+<p>Для механической очистки придется разобрать корпус <em>Epson L800</em>. Снимите верхнюю крышку, открутив винты сзади и сбоку. Аккуратно извлеките контейнер с прокладками. Выжмите из него чернила или замените прокладку на новую.</p>
+
+<p>После очистки обязательно высушите прокладку перед установкой обратно. Убедитесь, что в зоне расположения абсорбера нет остатков чернил, которые могли пролиться на шестерни механизма. Чистый и сухой абсорбер обеспечит надежную работу принтера в течение длительного времени.</p>
+
+<details class="faq-item"><summary>Особенности разборки Epson L800</summary><div class="faq-answer"><p>При разборке будьте предельно осторожны с соединительными шлейфами. Они очень тонкие и легко рвутся при неаккуратном движении. Также Обратите внимание на фиксирующие защелки, которые могут сломаться при чрезмерном усилии.</p></div></details>
+
+<h2 id="таблица-типовых-ошибок-и-их-решений">Таблица типовых ошибок и их решений</h2>
+<p>В процессе обслуживания <em>Epson L800</em> пользователи могут столкнуться с различными ошибками. Ниже приведена таблица наиболее распространенных проблем и способы их устранения, которые помогут вам избежать повторного сброса.</p>
+
+<table>
+<thead>
+<tr>
+<th>Ошибка</th>
+<th>Причина</th>
+<th>Решение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service Required</td>
+<td>Переполнение счетчика</td>
+<td>Сброс через WIC Reset</td>
+</tr>
+<tr>
+<td>Ошибка подачи бумаги</td>
+<td>Засорение роликов</td>
+<td>Чистка роликов подачи</td>
+</tr>
+<tr>
+<td>Не видна принтер</td>
+<td>Проблема с USB</td>
+<td>Замена кабеля или порта</td>
+</tr>
+<tr>
+<td>Плохое качество печати</td>
+<td>Засорение дюз</td>
+<td>Прочистка головок</td>
+</tr>
+<tr>
+<td>Мигают все лампочки</td>
+<td>Аппаратный сбой</td>
+<td>Перепрошивка или ремонт</td>
+</tr>
+</tbody>
+</table>
+
+<p>Регулярная диагностика состояния принтера поможет предотвратить критические поломки. Следите за уровнем чернил и качеством печати. Если вы заметили снижение качества, выполните <strong>прочистку головок</strong> через драйвер.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Используйте впитывающие салфетки для периодической проверки состояния абсорбера. Это поможет выявить утечки на ранней стадии.</p></div>
+
+<h2 id="профилактика-и-обслуживание">Профилактика и обслуживание</h2>
+<p>Чтобы продлить жизнь <em>Epson L800</em>, рекомендуется выполнять регулярное обслуживание. Очищайте головки от засохших чернил, проверяйте уровень чернил в емкостях и следите за состоянием прокладок. Это позволит избежать частых сбросов и дорогостоящего ремонта.</p>
+
+<p>Используйте качественные чернила, которые не образуют осадка и не засоряют дюз. Дешевые аналоги могут привести к быстрому износу головок и увеличению объема отходов. Это критически важно для <strong>экономии ресурсов</strong> устройства.</p>
+
+<p>Не оставляйте принтер включенным на долгое время без работы. Это приводит к unnecessary промывкам и увеличению заполнения абсорбера. Выключайте устройство после использования, чтобы снизить износ.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярная очистка абсорбера и качественная печать — залог долгой работы Epson L800 без частых сбросов.</p></div>
+
+<h2 id="альтернативные-способы-сброса">Альтернативные способы сброса</h2>
+<p>Если программа WIC Reset по какой-то причине не подходит, можно рассмотреть другие варианты. Некоторые сервисы предлагают удаленный сброс через интернет-подключение, но это требует доверия к сторонним специалистам. Также существуют аппаратные ключи, которые подключаются к USB-порту и позволяют сбрасывать счетчики без программного обеспечения.</p>
+
+<p>Важно понимать, что любые манипуляции с прошивкой или программным обеспечением могут привести к потере гарантии. Если ваш <em>Epson L800</em> еще на гарантии, лучше обратиться в авторизованный сервисный центр. Они выполнят сброс и замену абсорбера официально.</p>
+
+<p>Однако, если гарантия утеряна, самостоятельный сброс — это самый экономичный способ. Это сэкономит вам деньги и время, потраченное на поездки в сервис. Главное — действовать аккуратно и следовать инструкциям.</p>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+<details>
+<summary>Сколько раз можно сбрасывать счетчик на Epson L800?</summary>
+<p>Программный сброс можно выполнять неограниченное количество раз. Однако физический абсорбер имеет предел впитывания, поэтому его необходимо чистить или заменять.</p>
+</details>
+
+<details>
+<summary>Нужно ли менять прокладки после сброса?</summary>
+<p>Не обязательно сразу, но рекомендуется. Если прокладки перенасыщены чернилами, они могут вытекать. Лучше заменить их или тщательно отжать и высушить.</p>
+</details>
+
+<details>
+<summary>Что делать, если программа не видит принтер?</summary>
+<p>Проверьте подключение USB-кабеля, попробуйте другой порт. Убедитесь, что драйверы установлены корректно и устройство определяется в "Устройствах и принтерах".</p>
+</details>
+
+<details>
+<summary>Можно ли сбросить счетчик без покупки ключа?</summary>
+<p>Да, существуют бесплатные версии утилит, но они имеют ограничения. Например, можно сбросить только один раз или требуется использование сложных методов.</p>
+</details>
+
+<blockquote>⚠️ Внимание: Если вы не уверены в своих силах, обратитесь к профессионалам. Ошибки при сбросе могут привести к полной потере работоспособности принтера.</blockquote></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#суть-проблемы-и-признаки-блокировки">Суть проблемы и признаки блокировки</a></li><li><a href="#методы-обнуления-программного-обеспечения">Методы обнуления программного обеспечения</a></li><li><a href="#пошаговая-инструкция-сброса-через-wic-reset">Пошаговая инструкция сброса через WIC Reset</a></li><li><a href="#механическая-очистка-абсорбера">Механическая очистка абсорбера</a></li><li><a href="#таблица-типовых-ошибок-и-их-решений">Таблица типовых ошибок и их решений</a></li><li><a href="#профилактика-и-обслуживание">Профилактика и обслуживание</a></li><li><a href="#альтернативные-способы-сброса">Альтернативные способы сброса</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-skinut-pampers-na-epson-l355.html" class="related-card">Сброс счетчика памперса Epson L355: Инструкция и методы</a></li><li><a href="/articles/k/ka/kak-sdelat-sbros-urovnya-chernil-epson-l110-nazhat-knopku.html" class="related-card">Сброс уровня чернил Epson L110: кнопка, программа и нюансы настройки</a></li><li><a href="/articles/k/ka/kak-sbrosit-pampers-na-epson-l3101-besplatno.html" class="related-card">Сброс памперса Epson L3101 бесплатно: пошаговая инструкция без платных программ</a></li><li><a href="/articles/k/ka/kak-sbrosit-schetchik-pampersa-epson-besplatno.html" class="related-card">Как сбросить счетчик памперса Epson бесплатно: 3 рабочих способа</a></li><li><a href="/articles/p/pr/printer-epson-l200-kak-sbrosit-uroven-chernil.html" class="related-card">Сброс уровня чернил Epson L200: пошаговая инструкция 2026</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-skinut-pampers-na-epson-l355.html" class="related-bottom-card"><span class="related-bottom-title">Сброс счетчика памперса Epson L355: Инструкция и методы</span><span class="related-bottom-desc">Полное руководство по очистке и программному сбросу счетчика отработанных чернил (памперса) на принт</span></a><a href="/articles/k/ka/kak-sdelat-sbros-urovnya-chernil-epson-l110-nazhat-knopku.html" class="related-bottom-card"><span class="related-bottom-title">Сброс уровня чернил Epson L110: кнопка, программа и нюансы настройки</span><span class="related-bottom-desc">Инструкция по сбросу уровня чернил на принтере Epson L110. Разбор работы с кнопкой, использование се</span></a><a href="/articles/k/ka/kak-sbrosit-pampers-na-epson-l3101-besplatno.html" class="related-bottom-card"><span class="related-bottom-title">Сброс памперса Epson L3101 бесплатно: пошаговая инструкция без платных программ</span><span class="related-bottom-desc">Как обнулить счетчик абсорбера Epson L3101 бесплатно. Полное руководство по сбросу Waste Ink Pad Cou</span></a><a href="/articles/k/ka/kak-sbrosit-schetchik-pampersa-epson-besplatno.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить счетчик памперса Epson бесплатно: 3 рабочих способа</span><span class="related-bottom-desc">Пошаговая инструкция по бесплатному сбросу счетчика отходов Epson. Разбор программ WicReset, Service</span></a><a href="/articles/p/pr/printer-epson-l200-kak-sbrosit-uroven-chernil.html" class="related-bottom-card"><span class="related-bottom-title">Сброс уровня чернил Epson L200: пошаговая инструкция 2026</span><span class="related-bottom-desc">Как обнулить счётчик чернил на Epson L200 без сервисного центра? Способы сброса через программу, кно</span></a><a href="/articles/k/ka/kak-obnulit-pampers-na-printere-epson-cx4300.html" class="related-bottom-card"><span class="related-bottom-title">Как обнулить памперс Epson Stylus CX4300: пошаговая инструкция</span><span class="related-bottom-desc">Самостоятельный сброс счетчика прокладок на Epson CX4300. Что такое сервисный режим, как использоват</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

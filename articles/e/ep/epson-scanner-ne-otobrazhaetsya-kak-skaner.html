@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Epson сканер не отображается в списке: Полное руководство по исправлению — Эпсон Помощь</title>
+    <meta name="description" content="Почему сканер Epson не виден системой? Пошаговая диагностика драйверов, службы WIA и сетевых настроек. Верните доступ к сканированию за 15 минут.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/e/ep/epson-scanner-ne-otobrazhaetsya-kak-skaner.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Epson сканер не отображается в списке: Полное руководство по исправлению">
+    <meta property="og:description" content="Почему сканер Epson не виден системой? Пошаговая диагностика драйверов, службы WIA и сетевых настроек. Верните доступ к сканированию за 15 минут.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/setevoe-podklyuchenie/">Сетевое подключение</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Epson сканер не отображается в списке: Полное руководство по исправлению</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Epson сканер не отображается: Полное руководство по устранению неполадок</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#проверка-физического-подключения-и-питания-устройства">Проверка физического подключения и питания устройства</a></li><li><a href="#анализ-служб-windows-и-системных-драйверов">Анализ служб Windows и системных драйверов</a></li><li><a href="#работа-с-утилитой-epson-scan-2-и-старыми-драйверами">Работа с утилитой Epson Scan 2 и старыми драйверами</a></li><li><a href="#настройки-сетевого-подключения-для-беспроводных-моделей">Настройки сетевого подключения для беспроводных моделей</a></li><li><a href="#таблица-частых-ошибок-и-способы-их-решения">Таблица частых ошибок и способы их решения</a></li><li><a href="#дополнительные-инструменты-диагностики-epson">Дополнительные инструменты диагностики Epson</a></li><li><a href="#когда-требуется-профессиональный-ремонт">Когда требуется профессиональный ремонт</a></li><li><a href="#частые-вопросы-пользователей-faq">Частые вопросы пользователей (FAQ)</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Ситуация, когда устройство Epson перестает определяться системой как сканер, знакома многим пользователям офисной и домашней техники. Часто проблема возникает внезапно: еще вчера вы успешно оцифровывали документы, а сегодня программа просто не видит аппаратную часть. Это не обязательно означает поломку «железа», чаще всего причина кроется в сбое программного обеспечения или сетевых настройках.</p>
+
+<p>Вам необходимо провести комплексную диагностику, начиная от проверки физического подключения и заканчивая анализом служб Windows. Игнорирование простых шагов, таких как перезагрузка службы WIA, может привести к потере времени на попытки переустановки драйверов, которые на самом деле работают корректно.</p>
+
+<h2 id="проверка-физического-подключения-и-питания-устройства">Проверка физического подключения и питания устройства</h2>
+
+<p>Первым шагом в диагностике является тщательный осмотр кабельной системы и индикаторов. Убедитесь, что кабель USB плотно вставлен в порты как самого устройства <em>Epson</em>, так и компьютера. Часто проблема возникает из-за окисления контактов или использования удлинителей, которые не обеспечивают достаточную мощность для инициализации сканера.</p>
+
+<p>Обратите внимание на индикаторы на панели управления. Если мигает оранжевый или красный свет, это может указывать на ошибку замятия бумаги или проблему с картриджами, что блокирует работу сканирующей головки. В таком случае устраните механические препятствия, прежде чем продолжать настройку ПО.</p>
+
+<p>Для сетевых моделей ситуация немного сложнее. Необходимо проверить, горит ли индикатор подключения к сети (обычно значок Wi-Fi или глобуса). Если он неактивен или мигает красным, устройство не имеет доступа к локальной сети, и компьютер не сможет его обнаружить.</p>
+
+<p><strong>Физический контакт</strong> — это фундамент стабильной работы. Без надежной связи между аппаратной частью и компьютером никакие программные исправления не сработают. Попробуйте подключить устройство в другой USB-порт, желательно находящийся на задней панели системного блока, так как передние порты часто работают нестабильно.</p>
+
+<blockquote>
+<p>⚠️ <strong>Внимание!</strong> Если вы используете USB-хаб (разветвитель), обязательно исключите его из цепи. Сканирующая головка требует стабильного тока, и через хабы часто происходит падение напряжения, из-за чего <em>Epson</em> перестает определяться как сканер, хотя и заряжается.</p>
+</blockquote>
+
+<div class="poll-widget" id="poll-6197950f"><div class="poll-widget-question">📊 Какой тип подключения у вашего сканера Epson?</div><div class="poll-widget-option" data-poll="6197950f" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">USB-кабель</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="6197950f" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Wi-Fi сеть</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="6197950f" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Ethernet кабель</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="анализ-служб-windows-и-системных-драйверов">Анализ служб Windows и системных драйверов</h2>
+
+<p>Если физическое подключение в порядке, следующим шагом станет проверка работы системных служб. В операционной системе Windows за распознавание сканеров отвечает служба WIA. Если она остановлена или зависла, даже исправное оборудование <em>Epson</em> не появится в списке доступных устройств.</p>
+
+<p>Чтобы проверить состояние службы, нажмите комбинацию клавиш <code>Win + R</code> и введите команду <code>services.msc</code>. В открывшемся окне найдите строку <code>Служба образа Windows (WIA)</code>. Убедитесь, что в столбце «Тип запуска» указано «Автоматически», а статус службы — «Выполняется».</p>
+
+<p>В редких случаях служба может работать некорректно. Попробуйте перезапустить её: нажмите правой кнопкой мыши на строку и выберите «Перезапустить». После этого подождите несколько секунд и проверьте, появился ли ваш сканер в системе.</p>
+
+<p>Также стоит обратить внимание на диспетчер устройств. Откройте его через <code>Win + X</code> и найдите раздел «Устройства обработки изображений». Если там есть устройство с желтым восклицательным знаком, это указывает на конфликт драйверов. В этом случае необходимо удалить устройство и обновить конфигурацию оборудования.</p>
+
+<p><strong>Служба WIA</strong> критически важна для работы сканирования. Без её корректной работы ни одно приложение не сможет инициировать процесс оцифровки. Если вы видите ошибку в логах событий, связанную с этой службой, возможно, потребуется более глубокое вмешательство в реестр системы.</p>
+
+<div class="checklist-block"><h4>☑️ Проверка служб и драйверов</h4><label class="check-item"><input type="checkbox"><span>Открыть services.msc</span></label><label class="check-item"><input type="checkbox"><span>Проверить статус WIA</span></label><label class="check-item"><input type="checkbox"><span>Перезапустить службу</span></label><label class="check-item"><input type="checkbox"><span>Посмотреть Диспетчер устройств</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="работа-с-утилитой-epson-scan-2-и-старыми-драйверами">Работа с утилитой Epson Scan 2 и старыми драйверами</h2>
+
+<p>Компания Epson выпустила новое программное обеспечение <code>Epson Scan 2</code>, которое заменило классический драйвер во многих современных моделях. Если вы пытаетесь использовать старое ПО с новым устройством или наоборот, сканер может не отображаться в интерфейсе программы.</p>
+
+<p>Важно проверить версию установленного драйвера. Зайдите в папку с программным обеспечением Epson на компьютере и запустите утилиту конфигурации. Убедитесь, что выбрана правильная модель устройства. Иногда драйвер пытается использовать настройки для другой модели, что приводит к ошибке инициализации.</p>
+
+<p>Если вы только что обновили Windows, старые версии драйверов могут стать несовместимыми. В таком случае необходимо загрузить последнюю версию <strong>драйверов</strong> с официального сайта. Скачивайте именно пакет <em>Epson Scan 2</em> или <em>IJ Scan Utility</em> для вашей конкретной серии.</p>
+
+<p><strong>Конфликт версий ПО</strong> — частая причина проблем после обновлений системы. Старые драйверы могут блокировать работу новых библиотек, создавая ситуацию, когда устройство физически подключено, но программно недоступно. Рекомендуется полностью удалить старый драйвер через панель управления перед установкой нового.</p>
+
+<blockquote>
+<p>⚠️ <strong>Внимание!</strong> При удалении драйверов обязательно используйте официальную утилиту чистки Epson, если она была установлена. Простое удаление через «Удаление программ» может оставить в реестре файлы конфигурации, которые будут мешать работе новой версии <em>Epson Scan 2</em>.</p>
+</blockquote>
+
+<details class="faq-item"><summary>Как откатить драйвер Epson до предыдущей версии?</summary><div class="faq-answer"><p>Если новая версия драйвера вызывает ошибки, можно попробовать вернуть старую версию через Диспетчер устройств, выбрав «Драйвер» -> «Откатить». Однако это возможно только если система сохранила предыдущую версию.</p></div></details>
+
+<h2 id="настройки-сетевого-подключения-для-беспроводных-моделей">Настройки сетевого подключения для беспроводных моделей</h2>
+
+<p>Для моделей с поддержкой Wi-Fi проблема отсутствия сканера в списке часто связана с настройками сети. Убедитесь, что компьютер и сканер находятся в одной подсети. Если вы используете гостевую сеть Wi-Fi, сканер может быть недоступен из соображений безопасности.</p>
+
+<p>Проверьте настройки брандмауэра Windows. Иногда антивирусные программы блокируют входящие соединения от устройства сканирования. Добавьте исключения для программ <code>Epson Scan 2</code> и <code>EpsonNet Setup</code> в настройках фаервола.</p>
+
+<p>Если устройство не находится автоматически, попробуйте ввести его IP-адрес вручную. Найдите IP-адрес сканера на его дисплее или распечатайте отчет о настройках сети. Затем в утилите <em>Epson Scan 2</em> перейдите в настройки и выберите «Добавить устройство», указав найденный <strong>IP-адрес</strong>.</p>
+
+<p><strong>Брандмауэр Windows</strong> часто становится невидимым препятствием. По умолчанию он может блокировать локальные порты, используемые для передачи изображений. Проверьте, не блокирует ли он UDP-порт 161 или TCP-порт 80, которые используются для обнаружения устройств Epson в сети.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед настройкой сети убедитесь, что роутер не имеет включенной функции «Изоляция клиентов» (AP Isolation), которая запрещает устройствам в одной Wi-Fi сети общаться друг с другом.</p></div>
+
+<h2 id="таблица-частых-ошибок-и-способы-их-решения">Таблица частых ошибок и способы их решения</h2>
+
+<p>Ниже представлена сводная таблица, которая поможет быстро сориентироваться в распространенных проблемах и их решениях. Используйте её как чек-лист при самостоятельной диагностике.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Симптом проблемы</th>
+      <th>Вероятная причина</th>
+      <th>Действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Сканер не светится</td>
+      <td>Нет питания</td>
+      <td>Проверить розетку и кнопку включения</td>
+    </tr>
+    <tr>
+      <td>Компьютер видит устройство, но не сканер</td>
+      <td>Ошибка драйвера</td>
+      <td>Переустановить <em>Epson Scan 2</em></td>
+    </tr>
+    <tr>
+      <td>Ошибка соединения по Wi-Fi</td>
+      <td>Разные сети</td>
+      <td>Подключить ПК и МФУ к одной сети</td>
+    </tr>
+    <tr>
+      <td>Сканер исчез после обновления Windows</td>
+      <td>Конфликт версий</td>
+      <td>Скачать драйвер с сайта Epson</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Обратите внимание, что в некоторых случаях система может распознавать устройство как «Неизвестное устройство». Это требует полного сброса драйверов. Пройдите в Диспетчер устройств, удалите все устройства, связанные с Epson, перезагрузите компьютер и установите ПО заново.</p>
+
+<blockquote>
+<p>⚠️ <strong>Внимание!</strong> Если вы используете корпоративную сеть, возможно, администратор ограничил доступ к сканерам через групповые политики. В этом случае самостоятельно решить проблему не получится — обратитесь в IT-отдел вашей организации.</p>
+</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Самая частая причина исчезновения сканера после обновлений Windows — это блокировка службы WIA или конфликт устаревших драйверов с новыми библиотеками безопасности.</p></div>
+
+<h2 id="дополнительные-инструменты-диагностики-epson">Дополнительные инструменты диагностики Epson</h2>
+
+<p>Для глубокой диагностики производитель предоставляет специальные утилиты. Утилита <code>Epson Printer Status Monitor</code> или <code>Epson Event Manager</code> может помочь определить, видит ли система устройство на низком уровне. Эти программы часто устанавливаются вместе с драйверами и работают в фоновом режиме.</p>
+
+<p>Если стандартные средства не помогают, попробуйте использовать утилиту <em>Epson Scan 2 Configuration Tool</em>. Она позволяет вручную добавить устройство по IP-адресу, если автоматический поиск не сработал. Это особенно актуально для сетевых моделей, которые перешли в режим энергосбережения.</p>
+
+<p>Также можно проверить логи событий Windows. В разделе «Журналы Windows» -> «Система» ищите события с источником <code>WIA</code>. Ошибки здесь могут дать подсказку о том, почему драйвер не инициализирует сканер. Часто там указывается код ошибки, который можно найти в базе знаний Epson.</p>
+
+<p><strong>Диагностические логи</strong> — это ваш главный источник информации при сложных сбоях. Не игнорируйте сообщения об ошибках в системных журналах. Они часто содержат технические детали, которые не видны в интерфейсе стандартных утилит.</p>
+
+<details class="faq-item"><summary>Что делать, если сканер определяется, но не сканирует?</summary><div class="faq-answer"><p>Возможно, поврежден файл конфигурации. Попробуйте удалить папку <code>C:\ProgramData\Epson\Scan</code> и перезапустить программу. Данные будут созданы заново при запуске.</p></div></details>
+
+<h2 id="когда-требуется-профессиональный-ремонт">Когда требуется профессиональный ремонт</h2>
+
+<p>Если все вышеперечисленные методы не помогли, и сканер не отображается даже в Диспетчере устройств, возможно, имеет место аппаратная неисправность. Проверьте, слышен ли звук работы двигателя сканера при включении. Если мотор не вращается, проблема может быть в шлейфе или самом механизме перемещения головки.</p>
+
+<p>Также стоит обратить внимание на оптический модуль. Если стекло сканера сильно загрязнено или повреждено, это может не влиять на обнаружение устройства, но если повреждена сама лампа или матрица, электроника может блокировать работу сканера.</p>
+
+<p>В случае с сетевыми моделями проблема может быть в слоте Wi-Fi модуля. Если устройство было сброшено до заводских настроек и не может подключиться к сети, возможно, модуль вышел из строя. В таких ситуациях самостоятельный ремонт может привести к полной потере гарантии.</p>
+
+<p><strong>Аппаратная неисправность</strong> требует вмешательства специалиста. Если вы чувствуете запах гари, видите искры или слышите странные щелчки изнутри корпуса, немедленно отключите устройство от сети. Продолжение эксплуатации может привести к возгоранию.</p>
+
+<h2 id="частые-вопросы-пользователей-faq">Частые вопросы пользователей (FAQ)</h2>
+
+<details>
+  <summary>Почему сканер Epson виден в Диспетчере устройств, но не в программе?</summary>
+  <p>Это указывает на то, что драйвер установлен неправильно или конфликтует с системными службами. Попробуйте удалить устройство в Диспетчере устройств, выбрать «Действие» -> «Обновить конфигурацию оборудования» и переустановить ПО <em>Epson Scan 2</em>.</p>
+</details>
+
+<details>
+  <summary>Как проверить, видит ли компьютер сканер через командную строку?</summary>
+  <p>Используйте утилиту <code>ping</code> для сетевых моделей (введите <code>ping IP_адрес_сканера</code>). Для USB-моделей прямой проверки через консоль нет, но можно проверить наличие устройства в разделе «Устройства обработки изображений» через PowerShell.</p>
+</details>
+
+<details>
+  <summary>Нужно ли перезагружать компьютер после установки драйвера?</summary>
+  <p>Да, перезагрузка необходима для корректной инициализации служб WIA и регистрации новых драйверов в системе. Без перезагрузки сканер может не появиться в списке доступных устройств.</p>
+</details>
+
+<details>
+  <summary>Можно ли сканировать, если компьютер не видит сканер как устройство?</summary>
+  <p>Нет, для сканирования необходимо, чтобы операционная система корректно идентифицировала оборудование и передала управление драйверу. Если сканер не отображается, передача данных невозможна.</p>
+</details>
+
+<details>
+  <summary>Поможет ли отключение антивируса?</summary>
+  <p>Часто помогает. Антивирусы могут блокировать драйверы сканера, считая их подозрительными. Попробуйте временно отключить защиту и проверить работу устройства.</p>
+</details>
+
+<p>Решение проблемы, когда <em>Epson</em> сканер не отображается, требует последовательного подхода. Начните с простых проверок кабеля и перезагрузки службы WIA, и лишь затем переходите к сложной перенастройке сети. В большинстве случаев проблема решается переустановкой драйверов или изменением настроек брандмауэра.</p>
+
+<p>Помните, что регулярное обновление драйверов и использование официальных утилит значительно снижают риск возникновения подобных сбоев. Если проблема сохраняется после всех попыток, не игнорируйте сигналы о потенциальной аппаратной поломке.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Главный вывод: в 90% случаев проблема отсутствия сканера в системе решается перезапуском службы WIA и переустановкой актуального драйвера Epson Scan 2.</p></div></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#проверка-физического-подключения-и-питания-устройства">Проверка физического подключения и питания устройства</a></li><li><a href="#анализ-служб-windows-и-системных-драйверов">Анализ служб Windows и системных драйверов</a></li><li><a href="#работа-с-утилитой-epson-scan-2-и-старыми-драйверами">Работа с утилитой Epson Scan 2 и старыми драйверами</a></li><li><a href="#настройки-сетевого-подключения-для-беспроводных-моделей">Настройки сетевого подключения для беспроводных моделей</a></li><li><a href="#таблица-частых-ошибок-и-способы-их-решения">Таблица частых ошибок и способы их решения</a></li><li><a href="#дополнительные-инструменты-диагностики-epson">Дополнительные инструменты диагностики Epson</a></li><li><a href="#когда-требуется-профессиональный-ремонт">Когда требуется профессиональный ремонт</a></li><li><a href="#частые-вопросы-пользователей-faq">Частые вопросы пользователей (FAQ)</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-raspechatat-po-wifi-epson.html" class="related-card">Как распечатать документ по Wi-Fi на принтере Epson: Полная инструкция</a></li><li><a href="/articles/k/ka/kak-podklyuchit-epson-l3256-k-wifi.html" class="related-card">Как подключить Epson L3256 к Wi-Fi: Полная инструкция по настройке сети</a></li><li><a href="/articles/k/ka/kak-nastroit-printer-epson-l3156-cherez-vaj-faj.html" class="related-card">Настройка принтера Epson L3156 через Wi-Fi: пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-podklyuchit-epson-k-vaj-fayu.html" class="related-card">Как подключить принтер Epson к Wi-Fi: пошаговая инструкция 2026</a></li><li><a href="/articles/k/ka/kak-podklyuchit-printer-epson-l3151-po-wifi-k-kompyuteru.html" class="related-card">Подключение Epson L3151 по Wi-Fi к ПК: пошаговая инструкция 2026</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-raspechatat-po-wifi-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как распечатать документ по Wi-Fi на принтере Epson: Полная инструкция</span><span class="related-bottom-desc">Пошаговое руководство: настройка Wi-Fi Direct, подключение через EPL и печать с телефона или ПК. Реш</span></a><a href="/articles/k/ka/kak-podklyuchit-epson-l3256-k-wifi.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить Epson L3256 к Wi-Fi: Полная инструкция по настройке сети</span><span class="related-bottom-desc">Пошаговое руководство по подключению МФУ Epson L3256 к беспроводной сети. Методы через кнопку WPS, у</span></a><a href="/articles/k/ka/kak-nastroit-printer-epson-l3156-cherez-vaj-faj.html" class="related-bottom-card"><span class="related-bottom-title">Настройка принтера Epson L3156 через Wi-Fi: пошаговая инструкция</span><span class="related-bottom-desc">Как подключить МФУ Epson L3156 к беспроводной сети. Обзор способов настройки через EPL, WPS и утилит</span></a><a href="/articles/k/ka/kak-podklyuchit-epson-k-vaj-fayu.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить принтер Epson к Wi-Fi: пошаговая инструкция 2026</span><span class="related-bottom-desc">Подробное руководство по настройке беспроводного подключения Epson. Методы WPS, через приложение Eps</span></a><a href="/articles/k/ka/kak-podklyuchit-printer-epson-l3151-po-wifi-k-kompyuteru.html" class="related-bottom-card"><span class="related-bottom-title">Подключение Epson L3151 по Wi-Fi к ПК: пошаговая инструкция 2026</span><span class="related-bottom-desc">Как настроить беспроводное подключение принтера Epson L3151 к компьютеру через Wi-Fi: драйвера, наст</span></a><a href="/articles/k/ka/kak-nastroit-wifi-na-printere-epson-l3050.html" class="related-bottom-card"><span class="related-bottom-title">Настройка Wi-Fi на принтере Epson L3050: пошаговая инструкция</span><span class="related-bottom-desc">Полное руководство по подключению МФУ Epson L3050 к беспроводной сети. Методы настройки с панели упр</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

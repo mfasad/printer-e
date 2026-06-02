@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как проверить цвета принтера Epson: диагностика, тест и калибровка — Эпсон Помощь</title>
+    <meta name="description" content="Пошаговая инструкция по проверке цветопередачи на Epson. Диагностика дюз, выравнивание головок и устранение полос. Работает для EcoTank и Stylus.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-proverit-printer-na-tsveta-epson.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как проверить цвета принтера Epson: диагностика, тест и калибровка">
+    <meta property="og:description" content="Пошаговая инструкция по проверке цветопередачи на Epson. Диагностика дюз, выравнивание головок и устранение полос. Работает для EcoTank и Stylus.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/nastrojka-tsveta/">Настройка цвета</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как проверить цвета принтера Epson: диагностика, тест и калибровка</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Как проверить цвета принтера Epson: полная диагностика и настройка</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#первичная-визуальная-диагностика-и-подготовка">Первичная визуальная диагностика и подготовка</a></li><li><a href="#запуск-теста-дюз-через-панель-управления">Запуск теста дюз через панель управления</a></li><li><a href="#использование-драйверов-и-утилит-на-пк">Использование драйверов и утилит на ПК</a></li><li><a href="#выравнивание-печатающей-головки">Выравнивание печатающей головки</a></li><li><a href="#анализ-таблицы-цветов-и-калибровка">Анализ таблицы цветов и калибровка</a></li><li><a href="#решение-проблем-с-конкретными-моделями">Решение проблем с конкретными моделями</a></li><li><a href="#поддержание-стабильности-цветопередачи">Поддержание стабильности цветопередачи</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Появление полос, бледных оттенков или полного отсутствия одного из цветов на отпечатке — частая проблема владельцев струйных устройств. Для брендов вроде <em>Epson</em> с технологией Micro Piezo это особенно актуально, так как высохшие чернила могут запереть сопла в узких каналах. Игнорирование сигнала о дефекте приводит к тому, что простая проблема с засором перерастает в необходимость дорогостоящего ремонта печатающей головки.</p>
+
+<p>Современные модели <em>Epson</em> оснащены продвинутым программным обеспечением, которое позволяет проводить глубокую диагностику без визита в сервисный центр. Вы можете самостоятельно запустить тест дюз, проверить выравнивание печатающей головки и даже откалибровать цвет, если отпечатки уходят в фиолетовый или желтый оттенок. Главное — понимать последовательность действий и не прерывать процессы на полпути.</p>
+
+<p>В этой статье мы разберем все доступные способы проверки: от встроенного меню самого устройства до специализированных утилит на компьютере. Мы также выясним, какие стандарты цветопередачи использует <em>Epson</em> и как правильно интерпретировать результаты тестовых страниц. Правильная диагностика сэкономит вам чернила и время, предотвратив ненужную заправку картриджей или баков.</p>
+
+<h2 id="первичная-визуальная-диагностика-и-подготовка">Первичная визуальная диагностика и подготовка</h2>
+
+<p>Прежде чем запускать сложные алгоритмы промывки, необходимо исключить банальные причины. Часто проблема кроется не в самом механизме, а в установленных расходных материалах или состоянии уплотнителей. Убедитесь, что вы используете оригинальные чернила или сертифицированные аналоги, так как <em>Epson</em> крайне чувствителен к химическому составу пигмента.</p>
+
+<p>Проверьте статус чипов на картриджах или уровень чернил в баках системы непрерывной подачи (СНПЧ). Если индикатор уровня показывает минимум или мигает красным, принтер может автоматически ограничивать количество подаваемого пигмента, что выльется в блеклые цвета. Зарядите устройство и убедитесь, что оно находится в рабочем режиме.</p>
+
+<p>Важно также проверить физическое состояние печатающей головки. Если принтер долго стоял в режиме ожидания, чернила могли загустеть. В этом случае простая проверка может показать нулевой результат. <div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед началом любых манипуляций с программным обеспечением убедитесь, что струйные головки прогреты до рабочей температуры — это ускорит растворение засохших частиц.</p></div></p>
+
+<blockquote>⚠️ Внимание: Не пытайтесь проверять цвета на принтерах, которые не были включены более трех месяцев без предварительной консервации, так как риск механического повреждения сопел при попытке запуска увеличивается в разы.</blockquote>
+
+<h2 id="запуск-теста-дюз-через-панель-управления">Запуск теста дюз через панель управления</h2>
+
+<p>Самый быстрый способ узнать состояние сопел — запустить встроенный тест печати. На большинстве устройств серии <em>Epson EcoTank</em> и <em>Stylus</em> это делается через комбинацию физических кнопок на корпусе. Вам нужно удерживать кнопку «Стоп» (треугольник в круге) в течение 5 секунд, пока индикатор не начнет мигать, после чего принтер выведет на печать шаблон с цветными полосками.</p>
+
+<p>На дисплее более новых моделей, таких как <em>Epson Expression</em>, процедура упрощена: перейдите в меню <code>Настройки → Обслуживание → Тест сопел</code>. Убедитесь, что в лотке лежит чистая бумага формата А4. Принтер начнет движение каретки и выдаст страницу с сеткой из цветных линий.</p>
+
+<p>Результат теста говорит сам за себя: сплошные линии без разрывов означают, что все дюзы открыты. Если линии прерывистые или отсутствуют полностью — требуется промывка. Обратите внимание на то, какой именно цвет отсутствует: это поможет локализовать проблему с каналом подачи конкретного пигмента.</p>
+
+<ul>
+<li>🖨️ Если отсутствует черный цвет — проверьте подачу из черного бака и наличие воздуха в трубке.</li>
+<li>🌈 Если пропадают только теплые или холодные тона — проблема в каналах CMY (циан, пурпур, желтый).</li>
+<li>📄 Если линии искажены или имеют «хвосты» — возможно, требуется выравнивание головки.</li>
+</ul>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Тест дюз — это базовый инструмент диагностики, который показывает физическое состояние сопел, но не исправляет программные ошибки калибровки цвета.</p></div>
+
+<h2 id="использование-драйверов-и-утилит-на-пк">Использование драйверов и утилит на ПК</h2>
+
+<p>Если кнопка на корпусе не дает нужной информации, используйте программное обеспечение, установленное на компьютере. Через драйвер вы можете получить более детализированную картину состояния принтера. Зайдите в <code>Панель управления → Устройства и принтеры</code>, выберите свой <em>Epson</em> правой кнопкой мыши и перейдите в «Настройка печати».</p>
+
+<p>В открывшемся окне найдите вкладку <code>Обслуживание</code> (Maintenance). Здесь находятся все инструменты: от простого теста до глубокой очистки. Обратите внимание на опцию «Проверка сопел» (Nozzle Check). Она запускает тот же процесс, что и кнопка на устройстве, но позволяет сохранить результат в памяти компьютера для последующего сравнения.</p>
+
+<p>Для продвинутых пользователей существует утилита <em>Epson Status Monitor 3</em>, которая висит в трее и показывает ошибки в реальном времени. Если принтер не реагирует на команды, попробуйте перезапустить службу печати Windows, но только после полной проверки драйверов.</p>
+
+<blockquote>⚠️ Внимание: При использовании глубокой промывки через драйвер не запускайте процесс повторно, если первый раз не помог. Дайте головке отдохнуть минимум 15-20 минут, чтобы не перегреть нагревательные элементы.</blockquote>
+
+<div class="poll-widget" id="poll-b2ff7cc6"><div class="poll-widget-question">📊 Как часто вы проверяете состояние сопел?</div><div class="poll-widget-option" data-poll="b2ff7cc6" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Перед каждым важным заданием</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="b2ff7cc6" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Раз в неделю</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="b2ff7cc6" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Только когда вижу полосы</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="b2ff7cc6" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Никогда не проверяю</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="выравнивание-печатающей-головки">Выравнивание печатающей головки</h2>
+
+<p>Иногда цвета на отпечатке есть, но они бледные или сдвинуты друг относительно друга, образуя «двойное изображение». Это свидетельствует о рассинхронизации движения каретки и выстрела чернил. В таких случаях тест дюз будет идеальным, а качество печати — низким. Решение — функция выравнивания головки.</p>
+
+<p>Запустите утилиту <code>Выравнивание печатающей головки</code> в меню обслуживания драйвера. Принтер выдаст несколько тестовых листов с пронумерованными квадратами. Вам нужно будет внимательно рассмотреть узоры и выбрать номер, где линии максимально ровные и не смещены.</p>
+
+<p>Процедура выравнивания требует времени, так как принтер проведет серию тестовых выстрелов. Не прерывайте процесс, иначе настройки сбросятся. После завершения устройства автоматически применят новые параметры задержки выстрела для каждого канала.</p>
+
+<div class="checklist-block"><h4>☑️ Процедура выравнивания головки</h4><label class="check-item"><input type="checkbox"><span>Запустить утилиту в драйвере</span></label><label class="check-item"><input type="checkbox"><span>Дождаться печати тестовых листов</span></label><label class="check-item"><input type="checkbox"><span>Выбрать номер с наименьшим смещением линий</span></label><label class="check-item"><input type="checkbox"><span>Подтвердить выбор и дождаться завершения</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<blockquote>⚠️ Внимание: Если выравнивание не помогает, а линии остаются размытыми, возможно, проблема не в калибровке, а в износе механических датчиков положения каретки или загрязнении энкодера.</blockquote>
+
+<h2 id="анализ-таблицы-цветов-и-калибровка">Анализ таблицы цветов и калибровка</h2>
+
+<p>Для профессиональной печати важно не просто наличие цветов, а их точность. <em>Epson</em> использует сложные профили ICC для управления цветом. Если вы видите, что фотографии выходят слишком темными или с неестественным оттенком, нужно проверить настройки управления цветом в драйвере.</p>
+
+<p>В окне печати перейдите на вкладку <code>Дополнительно</code> и посмотрите раздел «Управление цветом». Выберите режим «Цветопередача: Epson» или «Нет» (если используете внешнюю калибровку). Ошибка часто возникает, когда в программе редактирования фото включен ICC-профиль, а в драйвере принтера тоже активна коррекция цвета.</p>
+
+<p>Для точной настройки можно использовать встроенную утилиту <em>Epson Color Controls</em> (если она установлена). Она позволяет вручную корректировать насыщенность, яркость и оттенок каждого из трех цветов CMY. Это полезно, если вы используете чернила сторонних производителей, которые могут отличаться от оригинальных по спектру.</p>
+
+<table>
+<thead>
+<tr>
+<th>Симптом</th>
+<th>Вероятная причина</th>
+<th>Рекомендуемое действие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Полосы на черном цвете</td>
+<td>Засор черных сопел</td>
+<td>Тест дюз + 1 промывка</td>
+</tr>
+<tr>
+<td>Сдвиг цветов (фиолетовый контур)</td>
+<td>Рассинхронизация головки</td>
+<td>Выравнивание печатающей головки</td>
+</tr>
+<tr>
+<td>Бледные цвета</td>
+<td>Низкий уровень чернил</td>
+<td>Добавить чернила или заменить картридж</td>
+</tr>
+<tr>
+<td>Размытые или «мокрые» пятна</td>
+<td>Избыток чернил</td>
+<td>Проверка сушки и бумага</td>
+</tr>
+</tbody>
+</table>
+
+<details class="faq-item"><summary>Что делать, если тест дюз показывает идеальный результат, но печать бледная?</summary><div class="faq-answer"><p>Это может быть связано с использованием «эконом-режима» печати или некачественной бумагой, которая не впитывает пигмент должным образом. Попробуйте сменить режим качества на «Высокое» и использовать бумагу с покрытием.</p></div></details>
+
+<h2 id="решение-проблем-с-конкретными-моделями">Решение проблем с конкретными моделями</h2>
+
+<p>Каждая серия <em>Epson</em> имеет свои нюансы. Например, в моделях с СНПЧ серии <em>L</em> (L3150, L805) важно следить за вентиляцией банок с чернилами. Если крышка загрязнена, чернила могут не поступать в головку из-за вакуума, даже если дюзы чистые. В этом случае нужно прочистить вентиляционные отверстия на крышках баков.</p>
+
+<p>Для офисных моделей серии <em>WorkForce</em> частой проблемой является загрязнение датчиков бумаги, что может имитировать ошибку печати цвета. Убедитесь, что в тракте подачи бумаги нет остатков мусора. Проверка цвета должна сопровождаться визуальным осмотром внутренней полости принтера.</p>
+
+<p>Старые лазерные модели (которые иногда путают со струйными) проверяются иначе, но для струйных <em>Epson</em> есть универсальное правило: если автоматическая промывка не помогает после 3-4 циклов, нужно делать перерыв на несколько часов или использовать специальные жидкости для промывки вручную.</p>
+
+<p> Если физический засор слишком сильный, никакие утилиты не помогут. В таких случаях требуется демонтаж печатающей головки и замачивание в специальной жидкости. <mark>Глубокое замачивание головки — это крайняя мера, которая может привести к выходу из строя электроники при неправильном выполнении.</mark></p>
+
+<h2 id="поддержание-стабильности-цветопередачи">Поддержание стабильности цветопередачи</h2>
+
+<p>Регулярная профилактика — залог долговечности <em>Epson</em>. Запускайте тест дюз хотя бы раз в неделю, даже если принтер не печатает активно. Это предотвратит засыхание чернил в узких каналах. Если вы печатаете редко, запускайте тестовое изображение хотя бы раз в 5-7 дней.</p>
+
+<p>Храните принтер в помещении с нормальной влажностью. Слишком сухой воздух ускоряет испарение чернил, а слишком влажный может привести к окислению контактов. Используйте только рекомендуемые типы бумаги, так как несовместимое покрытие может забивать сопла.</p>
+
+<p>Своевременно обновляйте прошивку устройства. Производитель <em>Epson</em> часто выпускает обновления, улучшающие алгоритмы подачи чернил и управления головкой. Но перед обновлением обязательно прочитайте примечания, так как иногда новые версии меняют логику работы датчиков.</p>
+
+<p>Используйте качественные чернила. Дешевые аналоги часто имеют слишком низкую температуру кипения или агрессивный химический состав, что разрушает мембраны пьезоэлементов. Проверка цвета должна начинаться с анализа качества расходных материалов.</p>
+
+<details>
+<summary>Зачем нужен тест дюз, если принтер печатает?</summary>
+<p>Тест дюз позволяет выявить скрытые проблемы с соплами до того, как они проявятся на важном документе. Иногда в канале образуется воздушная пробка, которая не влияет на печать сразу, но может привести к полной потере цвета через пару дней.</p>
+</details>
+
+<details>
+<summary>Как часто нужно проводить глубокую промывку?</summary>
+<p>Глубокую промывку следует проводить только в крайних случаях, когда стандартная промывка не дала результата. Частое использование глубокой промывки может привести к переполнению памперса и выходу из строя платы управления.</p>
+</details>
+
+<details>
+<summary>Почему цвета на экране и на принтере отличаются?</summary>
+<p>Это связано с разными цветовыми моделями: экран использует RGB (свет), а принтер — CMYK (чернила). Для точного совпадения необходимо использовать ICC-профили и калибровать монитор.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#первичная-визуальная-диагностика-и-подготовка">Первичная визуальная диагностика и подготовка</a></li><li><a href="#запуск-теста-дюз-через-панель-управления">Запуск теста дюз через панель управления</a></li><li><a href="#использование-драйверов-и-утилит-на-пк">Использование драйверов и утилит на ПК</a></li><li><a href="#выравнивание-печатающей-головки">Выравнивание печатающей головки</a></li><li><a href="#анализ-таблицы-цветов-и-калибровка">Анализ таблицы цветов и калибровка</a></li><li><a href="#решение-проблем-с-конкретными-моделями">Решение проблем с конкретными моделями</a></li><li><a href="#поддержание-стабильности-цветопередачи">Поддержание стабильности цветопередачи</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/c/ch/chto-takoe-kalibrovka-pechatayushchej-golovki-epson-l110.html" class="related-card">Калибровка печатающей головки Epson L110: пошаговая настройка и выравнивание</a></li><li><a href="/articles/p/pr/printery-epson-chto-vybrat.html" class="related-card">Какой принтер Epson выбрать: Сравнение серий, технологий и моделей</a></li><li><a href="/articles/k/ka/kak-nastroit-tsvetoperedachu-printera-epson.html" class="related-card">Как настроить цветопередачу принтера Epson: Полное руководство</a></li><li><a href="/articles/k/ka/kak-sdelat-kalibrovku-epson-l805.html" class="related-card">Калибровка Epson L805: настройка цвета и выравнивание сопел</a></li><li><a href="/articles/k/ka/kak-postavit-cherno-beluyu-pechat-na-tsvetnom-printere-epson.html" class="related-card">Как печатать черно-белые документы на цветном принтере Epson</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/c/ch/chto-takoe-kalibrovka-pechatayushchej-golovki-epson-l110.html" class="related-bottom-card"><span class="related-bottom-title">Калибровка печатающей головки Epson L110: пошаговая настройка и выравнивание</span><span class="related-bottom-desc">Подробная инструкция по калибровке головки Epson L110. Устранение вертикальных полос, настройка сопе</span></a><a href="/articles/p/pr/printery-epson-chto-vybrat.html" class="related-bottom-card"><span class="related-bottom-title">Какой принтер Epson выбрать: Сравнение серий, технологий и моделей</span><span class="related-bottom-desc">Полный гид по выбору принтера Epson. Разбор систем непрерывной подачи чернил, лазерных технологий и </span></a><a href="/articles/k/ka/kak-nastroit-tsvetoperedachu-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как настроить цветопередачу принтера Epson: Полное руководство</span><span class="related-bottom-desc">Пошаговая инструкция по калибровке принтеров Epson. Настройка ICC-профилей, режимов печати и устране</span></a><a href="/articles/k/ka/kak-sdelat-kalibrovku-epson-l805.html" class="related-bottom-card"><span class="related-bottom-title">Калибровка Epson L805: настройка цвета и выравнивание сопел</span><span class="related-bottom-desc">Полная инструкция по калибровке принтера Epson L805. Настройка цвета, выравнивание головок и устране</span></a><a href="/articles/k/ka/kak-postavit-cherno-beluyu-pechat-na-tsvetnom-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как печатать черно-белые документы на цветном принтере Epson</span><span class="related-bottom-desc">Полная инструкция: настройка драйвера Epson, режимы экономии чернил и печать через систему Windows. </span></a><a href="/articles/p/po/pochemu-printer-epson-ne-pechataet-sinij-tsvet.html" class="related-bottom-card"><span class="related-bottom-title">Принтер Epson не печатает синий: причины, чистка, ремонт</span><span class="related-bottom-desc">Почему принтер Epson не печатает синий цвет? Разбор причин: засор, воздух, пустой картридж. Пошагова</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

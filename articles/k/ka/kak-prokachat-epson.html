@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как прокачать принтер Epson: прошивка, чипы и чистка — Эпсон Помощь</title>
+    <meta name="description" content="Полное руководство по модернизации Epson: как обновить прошивку, установить чипы, настроить цвет и обойти защиту картриджей для экономии.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-prokachat-epson.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как прокачать принтер Epson: прошивка, чипы и чистка">
+    <meta property="og:description" content="Полное руководство по модернизации Epson: как обновить прошивку, установить чипы, настроить цвет и обойти защиту картриджей для экономии.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/ustranenie-oshibok/">Устранение ошибок</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как прокачать принтер Epson: прошивка, чипы и чистка</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Как прокачать принтер Epson: полное руководство по модернизации</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#введение-в-модернизацию-струйной-техники">Введение в модернизацию струйной техники</a></li><li><a href="#прошивка-и-обновление-микропрограммного-обеспечения">Прошивка и обновление микропрограммного обеспечения</a></li><li><a href="#работа-с-чипами-и-обход-блокировок">Работа с чипами и обход блокировок</a></li><li><a href="#чистка-головок-и-сброс-памперса">Чистка головок и сброс памперса</a></li><li><a href="#настройка-цвета-и-калибровка">Настройка цвета и калибровка</a></li><li><a href="#таблица-совместимости-чипов-и-моделей">Таблица совместимости чипов и моделей</a></li><li><a href="#устранение-ошибок-и-профилактика">Устранение ошибок и профилактика</a></li><li><a href="#итоги-модернизации">Итоги модернизации</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><h2 id="введение-в-модернизацию-струйной-техники">Введение в модернизацию струйной техники</h2>
+<p>Современные принтеры <em>Epson</em> — это сложные устройства, которые часто ограничивают пользователя заводскими настройками. Многие владельцы сталкиваются с необходимостью <strong>обновления прошивки</strong> для поддержки новых чернил или желания <strong>обойти защиту картриджей</strong>. Процесс модернизации, или «прокачки», позволяет значительно продлить жизнь аппарата и снизить стоимость печати.</p>
+<p>Под термином «прокачка» обычно подразумевают комплекс мер: от установки <strong>чипов</strong> на картриджи до программной перенастройки контроллера. Это не всегда связано с поломкой, скорее с желанием получить больше функций без покупки нового устройства. Главное — действовать аккуратно, чтобы не превратить МФУ в «кирпич».</p>
+
+<h2 id="прошивка-и-обновление-микропрограммного-обеспечения">Прошивка и обновление микропрограммного обеспечения</h2>
+<p>Первым шагом к «прокачке» часто становится <strong>обновление прошивки</strong>. Официальные обновления могут как добавить функции, так и заблокировать сторонние расходники. Вам нужно решить, что важнее: стабильность или возможность использовать дешевые аналоги.</p>
+<p>Если вы планируете использовать <strong>СНПЧ</strong> (систему непрерывной подачи чернил), то обновляться нужно только на официальные версии, которые еще не внесли блокировку. В противном случае принтер может перестать видеть картриджи после перезагрузки. Проверьте версию в меню <code>Настройки → Информация о принтере</code>.</p>
+<p>Процедуру обновления лучше проводить через кабель USB, а не по Wi-Fi, чтобы исключить потерю связи в критический момент. Скачивайте ПО только с официального портала <em>Epson</em> или проверенных форумов, где сообщество тестирует файлы перед публикацией.</p>
+<blockquote>⚠️ Внимание: Если принтер находится на гарантии, самостоятельная установка неофициального ПО или чипов может стать основанием для отказа в бесплатном ремонте.</blockquote>
+
+<div class="poll-widget" id="poll-48b425a8"><div class="poll-widget-question">📊 Какой способ печати вы используете чаще всего?</div><div class="poll-widget-option" data-poll="48b425a8" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Оригинальные картриджи</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="48b425a8" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">СНПЧ</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="48b425a8" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Перезаправляемые картриджи</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="48b425a8" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Лазерная печать</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="работа-с-чипами-и-обход-блокировок">Работа с чипами и обход блокировок</h2>
+<p>Самый популярный запрос «как прокачать» касается установки <strong>чипов</strong>. В последних моделях <em>Epson</em> (серии L, WorkForce) стоят сложные чипы, которые не только считают уровень чернил, но и блокируют печать при срабатывании счетчика.</p>
+<p>Для решения этой проблемы существуют два пути: покупка <strong>чипов-обманок</strong> или использование программаторов для сброса счетчика. Чипы-обманки физически заменяют оригинальные, имитируя наличие полного картриджа. Это простое и дешевое решение, но оно может быть заблокировано в будущем.</p>
+<ul>
+<li>🔹 <strong>Чипы-обманки</strong> подходят для моделей со сменными картриджами и дешевы в замене.</li>
+<li>🔹 <strong>Аппаратные сбросчики</strong> нужны для сложных случаев, когда прошивка блокирует запись данных.</li>
+<li>🔹 <strong>Программное решение</strong> требует установки драйверов и подключения принтера к ПК.</li>
+</ul>
+<p>Иногда требуется <strong>перепрошивка чипа</strong> вручную. Это делается с помощью специального устройства — программатора. Вам нужно прижать контакты чипа к ножкам программатора и нажать кнопку сброса. После этого чип «думает», что он новый.</p>
+<div class="checklist-block"><h4>☑️ Подготовка к установке чипов</h4><label class="check-item"><input type="checkbox"><span>Снять оригинальный чип</span></label><label class="check-item"><input type="checkbox"><span>Очистить контакты спиртом</span></label><label class="check-item"><input type="checkbox"><span>Найти совместимый чип</span></label><label class="check-item"><input type="checkbox"><span>Установить новый чип до щелчка</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="чистка-головок-и-сброс-памперса">Чистка головок и сброс памперса</h2>
+<p>Аппаратная часть «прокачки» часто включает <strong>чистку печатающей головки</strong>. Засоренные дюзы приводят к плохому качеству печати, полосам и пропаже цветов. Если программная очистка не помогает, придется прибегнуть к физическому воздействию.</p>
+<p>Существует метод «прокачки» чернил через шприц. Вам нужно аккуратно ввести очиститель прямо в каналы головки, минуя картридж. Это требует <strong>аккуратности</strong> и знания конструкции конкретного устройства. Не давите слишком сильно, чтобы не повредить мембраны.</p>
+<p>Другая критическая проблема — заполнение <strong>памперса</strong> (абсорбирующей прокладки). Когда он переполняется, принтер блокирует печать и требует обращения в сервис. Сброс счетчика памперса — это обязательная процедура «прокачки» для долгой жизни аппарата.</p>
+<p>Сброс можно сделать через утилиту <code>WIC Reset</code> или аналогичные программы. Для этого потребуется <strong>ключ активации</strong>, который покупается отдельно или генерируется (с минимальным риском). Без сброса счетчика принтер просто откажется работать, даже если вы заменили картриджи.</p>
+<blockquote>⚠️ Внимание: Физическая чистка головки шприцем может привести к затеканию жидкости на электронику, что вызовет короткое замыкание. Делайте это только при полной уверенности в своих действиях.</blockquote>
+
+<details class="faq-item"><summary>Что такое памперс и зачем его менять?</summary><div class="faq-answer"><p>Памперс — это набор губчатых прокладок внутри принтера, куда стекают чернила при промывке головки. Со временем он впитывает жидкость и перестает работать. Если его не сбросить программно, принтер заблокируется. В редких случаях требуется физическая замена прокладок, если они размокли или растеклись внутри корпуса.</p></div></details>
+
+<h2 id="настройка-цвета-и-калибровка">Настройка цвета и калибровка</h2>
+<p>«Прокачка» не ограничивается ремонтом. Настройка <strong>цветопередачи</strong> критически важна для качественной печати. Заводские профили часто не учитывают нюансы конкретных типов бумаги или чернил.</p>
+<p>Вы можете использовать встроенные утилиты для создания <strong>цветовых профилей</strong> или программное обеспечение сторонних производителей. Правильно настроенный цвет избавит от проблем с оттенками кожи и неестественными переходами градиентов.</p>
+<p>Для профессиональной работы рекомендуется калибровать монитор и принтер вместе. Используйте тестовые карты и программы вроде <em>ColorTune</em> или встроенные настройки в драйверах <em>Epson</em>. Это позволит добиться максимальной точности при печати фотографий.</p>
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед настройкой цвета обязательно дайте принтеру прогреться 15-20 минут. Холодная головка может искажать результаты калибровки.</p></div>
+
+<h2 id="таблица-совместимости-чипов-и-моделей">Таблица совместимости чипов и моделей</h2>
+<p>Выбор правильного чипа зависит от модели и версии прошивки. Ниже приведена таблица с основными рекомендациями для популярных серий, чтобы вы могли быстро сориентироваться.</p>
+
+<table>
+<thead>
+<tr>
+<th>Серия принтера</th>
+<th>Тип чипа</th>
+<th>Особенности сброса</th>
+<th>Риск блокировки</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Epson L3110 / L3150</td>
+<td>Сменные (чипы-обманки)</td>
+<td>Замена на новый при пустом</td>
+<td>Средний (зависит от версии ПО)</td>
+</tr>
+<tr>
+<td>Epson L805 / L810</td>
+<td>Перезаписываемые</td>
+<td>Прошивка через программатор</td>
+<td>Низкий (при правильном использовании)</td>
+</tr>
+<tr>
+<td>Epson WorkForce WF-2860</td>
+<td>Статические</td>
+<td>Не сбрасываются, только замена</td>
+<td>Высокий (часто требует смены версии ПО)</td>
+</tr>
+<tr>
+<td>Epson EcoTank L1250</td>
+<td>Встроенные в драйвер</td>
+<td>Программный сброс через WIC</td>
+<td>Высокий (строгая проверка)</td>
+</tr>
+</tbody>
+</table>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Правильный выбор чипа зависит не только от модели принтера, но и от текущей версии установленной прошивки, которую нельзя всегда обновить без последствий.</p></div>
+
+<h2 id="устранение-ошибок-и-профилактика">Устранение ошибок и профилактика</h2>
+<p>После любых манипуляций «прокачки» система может выдавать ошибки. Самые частые — «Ошибка чтения чипа», «Памперс заполнен» или «Принтер не может определить картридж». В таких случаях не стоит паниковать и сразу нести устройство в сервис.</p>
+<p>Часто помогает полное <strong>выключение питания</strong> на 5-10 минут. Это перезагружает контроллер и позволяет ему заново прочитать данные с чипов. Если это не помогло, проверьте контакты на самом чипе и на каретке принтера.</p>
+<p>Иногда требуется <strong>перезагрузка драйверов</strong> на компьютере. Удалите устройство из системы, перезагрузите ПК, установите драйвер заново и подключите принтер. Это устраняет программные конфликты, возникшие после обновления.</p>
+<blockquote>⚠️ Внимание: Если ошибка «Принтер не может определить картридж» появляется сразу после установки новых чипов, скорее всего, они несовместимы с текущей версией прошивки вашего устройства.</blockquote>
+
+<h2 id="итоги-модернизации">Итоги модернизации</h2>
+<p>Процесс «прокачки» Epson — это баланс между экономией и риском. Правильно установленные чипы и обновленная прошивка могут снизить стоимость отпечатка в разы. Однако ошибки при процедуре могут привести к аппаратным поломкам.</p>
+<p>Всегда начинайте с малого: обновите драйверы, проверьте чистоту контактов и только потом переходите к сложным манипуляциям с прошивкой и чипами. Используйте официальные инструменты там, где это возможно, и сторонние решения только при необходимости.</p>
+
+<details>
+<summary>Что делать, если принтер перестал видеть чип после обновления прошивки?</summary>
+<p>Это частая ситуация, когда новая прошивка блокирует старые версии чипов-обманок. Решение одно: либо откатить прошивку на более старую версию (что сложно и рискованно), либо приобрести новые чипы, которые были обновлены производителями под эту версию ПО.</p>
+</details>
+
+<details>
+<summary>Можно ли сбрасывать памперс бесплатно?</summary>
+<p>Да, существуют бесплатные утилиты (например, старых версий WIC Reset), которые могут сбросить счетчик, но они часто ограничены по функционалу или требуют поиска ключей. В некоторых случаях (серийные номера) сброс может быть невозможен без покупки официального ключа.</p>
+</details>
+
+<details>
+<summary>Как часто нужно чистить головку принтера?</summary>
+<p>Рекомендуется проводить легкую очистку через драйвер раз в 2-3 месяца, если принтер используется редко. Если печать ведется регулярно, чистка требуется только при появлении полос или пропажи цветов. Частая агрессивная чистка шприцем сокращает ресурс головки.</p>
+</details>
+
+<details>
+<summary>Опасна ли установка чипов для гарантии?</summary>
+<p>Да, вскрытие корпуса, отключение чипов или признаки вмешательства в электронику являются основанием для отказа в гарантийном обслуживании. Производители легко видят следы вмешательства при диагностике.</p>
+</details>
+
+<details>
+<summary>Что лучше: СНПЧ или перезаправляемые картриджи?</summary>
+<p>Для домашнего использования и больших объемов печати лучше подходит СНПЧ (Система Непрерывной Подачи Чернил). Она дешевле в эксплуатации и меньше требует внимания. Картриджи удобнее для редкой печати, так как меньше риск засыхания чернил в трубках.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#введение-в-модернизацию-струйной-техники">Введение в модернизацию струйной техники</a></li><li><a href="#прошивка-и-обновление-микропрограммного-обеспечения">Прошивка и обновление микропрограммного обеспечения</a></li><li><a href="#работа-с-чипами-и-обход-блокировок">Работа с чипами и обход блокировок</a></li><li><a href="#чистка-головок-и-сброс-памперса">Чистка головок и сброс памперса</a></li><li><a href="#настройка-цвета-и-калибровка">Настройка цвета и калибровка</a></li><li><a href="#таблица-совместимости-чипов-и-моделей">Таблица совместимости чипов и моделей</a></li><li><a href="#устранение-ошибок-и-профилактика">Устранение ошибок и профилактика</a></li><li><a href="#итоги-модернизации">Итоги модернизации</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-vytashchit-zazhevannuyu-bumagu-iz-printera-epson-l3101.html" class="related-card">Как вытащить зажеванную бумагу из принтера Epson L3101: Пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-vytashchit-bumagu-kotoraya-zastryala-v-printere-epson.html" class="related-card">Как вытащить бумагу из принтера Epson: пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-ustranit-zamyatie-bumagi-v-printere-epson.html" class="related-card">Как устранить замятие бумаги в принтере Epson: Пошаговая инструкция</a></li><li><a href="/articles/p/pr/printer-vydaet-oshibku-pechati-kak-ustranit-epson.html" class="related-card">Ошибка печати Epson: полный гайд по устранению неполадок</a></li><li><a href="/articles/p/pr/printer-epson-vydaet-oshibku-pechati-kak-ustranit.html" class="related-card">Ошибка печати Epson: как исправить код и вернуть работу</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-vytashchit-zazhevannuyu-bumagu-iz-printera-epson-l3101.html" class="related-bottom-card"><span class="related-bottom-title">Как вытащить зажеванную бумагу из принтера Epson L3101: Пошаговая инструкция</span><span class="related-bottom-desc">Узнайте, как правильно извлечь замятую бумагу из МФУ Epson L3101. Пошаговый алгоритм действий, часты</span></a><a href="/articles/k/ka/kak-vytashchit-bumagu-kotoraya-zastryala-v-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как вытащить бумагу из принтера Epson: пошаговая инструкция</span><span class="related-bottom-desc">Эффективные методы устранения замятия бумаги в принтерах Epson. Пошаговая инструкция, список запреще</span></a><a href="/articles/k/ka/kak-ustranit-zamyatie-bumagi-v-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как устранить замятие бумаги в принтере Epson: Пошаговая инструкция</span><span class="related-bottom-desc">Подробное руководство по удалению замятия бумаги в принтерах Epson. Разбор причин, пошаговая инструк</span></a><a href="/articles/p/pr/printer-vydaet-oshibku-pechati-kak-ustranit-epson.html" class="related-bottom-card"><span class="related-bottom-title">Ошибка печати Epson: полный гайд по устранению неполадок</span><span class="related-bottom-desc">Принтер Epson выдает ошибку? Узнайте, как исправить код ошибки, очистить чернила, сбросить счетчик и</span></a><a href="/articles/p/pr/printer-epson-vydaet-oshibku-pechati-kak-ustranit.html" class="related-bottom-card"><span class="related-bottom-title">Ошибка печати Epson: как исправить код и вернуть работу</span><span class="related-bottom-desc">Полное руководство по устранению ошибок печати на принтерах Epson. Разбор кодов, чистка дюз, сброс п</span></a><a href="/articles/p/pr/printer-epson-pokazyvaet-oshibku-chto-delat.html" class="related-bottom-card"><span class="related-bottom-title">Принтер Epson показывает ошибку: что делать и как исправить</span><span class="related-bottom-desc">Полный гайд по устранению ошибок Epson. Расшифровка мигания ламп, сброс памперса, решение проблем с </span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

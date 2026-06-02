@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Калибровка печатающей головки Epson L805: пошаговая настройка и нюансы — Эпсон Помощь</title>
+    <meta name="description" content="Как сделать калибровку печатающей головки Epson L805. Инструкция по выравниванию дюз, устранению полос и настройке печати фото. Советы экспертов.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/c/ch/chto-takoe-kalibrovka-pechatayushchej-golovki-epson-l805.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Калибровка печатающей головки Epson L805: пошаговая настройка и нюансы">
+    <meta property="og:description" content="Как сделать калибровку печатающей головки Epson L805. Инструкция по выравниванию дюз, устранению полос и настройке печати фото. Советы экспертов.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/drugoe/">Другое</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Калибровка печатающей головки Epson L805: пошаговая настройка и нюансы</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Что такое калибровка печатающей головки Epson L805 и как её выполнить</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#суть-процесса-выравнивания-дюз-в-принтере">Суть процесса выравнивания дюз в принтере</a></li><li><a href="#когда-необходимо-выполнять-выравнивание">Когда необходимо выполнять выравнивание</a></li><li><a href="#пошаговая-настройка-через-драйвер-epson">Пошаговая настройка через драйвер Epson</a></li><li><a href="#анализ-тестовой-страницы-и-выбор-правильного-паттерна">Анализ тестовой страницы и выбор правильного паттерна</a></li><li><a href="#частые-ошибки-и-способы-их-устранения">Частые ошибки и способы их устранения</a></li><li><a href="#профилактика-и-регулярное-обслуживание">Профилактика и регулярное обслуживание</a></li><li><a href="#особенности-работы-на-разных-типах-бумаги">Особенности работы на разных типах бумаги</a></li><li><a href="#когда-стоит-обратиться-в-сервисный-центр">Когда стоит обратиться в сервисный центр</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Владельцы струйных фотопринтеров серии Epson L805 рано или поздно сталкиваются с необходимостью технического обслуживания, которое напрямую влияет на качество получаемых изображений. <strong>Калибровка печатающей головки</strong> — это критически важный процесс, обеспечивающий точное совмещение чернил из разных сопел на бумаге. Без этой процедуры даже новые чернила не дадут ожидаемого результата, и фотографии будут выглядеть размыто или содержать артефакты.</p>
+
+<p>Многие пользователи путают понятия «прочистка» и «калибровка», полагая, что первого достаточно для восстановления качества. <strong>Выравнивание дюз</strong> является самостоятельной процедурой, которая настраивает физическое положение пикселей друг относительно друга. Если этот шаг проигнорирован, при печати градиентов или текста могут появляться видимые полосы и смещения.</p>
+
+<p>В данной статье мы разберем, как правильно выполнить настройку через утилиту Epson Status Monitor или драйвер. Вы узнаете, как отличить проблемы с соплами от ошибок позиционирования и почему регулярная <strong>автоматическая калибровка</strong> продлевает жизнь вашему <em>Epson L805</em>.</p>
+
+<h2 id="суть-процесса-выравнивания-дюз-в-принтере">Суть процесса выравнивания дюз в принтере</h2>
+
+<p>Принцип действия струйной головки <em>Epson L805</em> основан на микроскопическом выбросе капель чернил через сотни сопел. Каждое сопло отвечает за определенный цвет и положение на листе. Со временем из-за механических вибраций или температурных расширений траектория падения капель может незначительно смещаться.</p>
+
+<p>Процесс <strong>калибровки</strong> заключается в том, чтобы принтер сам проанализировал тестовую страницу и скорректировал время подачи чернил. Это позволяет добиться идеального совпадения линий разных цветов. Если вы печатаете портреты, малейшее смещение приведет к появлению цветной каймы вокруг глаз или волос.</p>
+
+<p>Важно понимать, что сама по себе калибровка не удаляет засохшие чернила. Если сопла забиты, выравнивание не поможет, и сначала потребуется процедура <strong>глубокой прочистки</strong>. Только после того как тест дюз покажет непрерывные линии, можно приступать к настройке позиционирования.</p>
+
+<h2 id="когда-необходимо-выполнять-выравнивание">Когда необходимо выполнять выравнивание</h2>
+
+<p>Существует ряд симптомов, которые прямо указывают на то, что <strong>головка Epson L805</strong> требует настройки. Обычно пользователи замечают проблему при печати фотографий высокого разрешения или текстовых документов с мелким шрифтом. Визуально это проявляется в виде «лесенки» на диагональных линиях или размытости границ.</p>
+
+<p>Признаки необходимости процедуры:</p>
+<ul>
+<li>🖨️ Видимые вертикальные полосы на фотографиях, даже после прочистки.</li>
+<li>🖨️ Смещение цветов друг относительно друга (например, красный контур не совпадает с синим).</li>
+<li>🖨️ Нечеткий текст или «двоение» букв при печати документов.</li>
+<li>🖨️ Искажение геометрии на технических чертежах или схемах.</li>
+</ul>
+
+<p>Если вы недавно перемещали принтер или перевозили его, механика могла сбиться, и <strong>калибровка</strong> станет обязательной. Также стоит проверить настройки после замены картриджей или долива чернил, чтобы убедиться, что система корректно распознает объем и положение печатающего узла.</p>
+
+<blockquote>⚠️ <strong>Внимание!</strong> Не проводите калибровку сразу после замены чернил. Подождите минимум 10-15 минут, чтобы система стабилизировала давление в магистралях и чернила полностью заполнили сопла.</blockquote>
+
+<div class="poll-widget" id="poll-b9ba5b8c"><div class="poll-widget-question">📊 Какой тип печати вызывает у вас проблемы?</div><div class="poll-widget-option" data-poll="b9ba5b8c" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Фотографии с полосами</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="b9ba5b8c" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Размытый текст</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="b9ba5b8c" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Смещение цветов</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="b9ba5b8c" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Проблем нет</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="пошаговая-настройка-через-драйвер-epson">Пошаговая настройка через драйвер Epson</h2>
+
+<p>Для выполнения процесса не нужно разбирать принтер или использовать сложный софт. Все необходимые инструменты встроены в стандартный драйвер. Откройте меню <code>Пуск</code>, найдите папку <code>Epson</code> и выберите <code>Панель управления</code> для вашей модели.</p>
+
+<p>В открывшемся окне перейдите на вкладку <code>Обслуживание</code>. Здесь вы увидите несколько кнопок, среди которых нужно найти <code>Выравнивание печатающей головки</code>. Нажмите её, и мастер настройки предложит начать процесс печати тестового листа.</p>
+
+<p>После того как принтер распечатает страницу с шаблонами, внимательно рассмотрите их. Вам нужно будет выбрать вариант, где вертикальные и горизонтальные линии совпадают лучше всего. Обычно это цифры от 0 до 10, где 0 — это базовое положение.</p>
+
+<p>Процесс может занять несколько минут, так как принтер будет печатать новые тесты на основе вашего выбора. Не прерывайте его до тех пор, пока экран не сообщит об успешном завершении. Это гарантирует, что <strong>Epson L805</strong> запомнит новые параметры позиционирования.</p>
+
+<div class="checklist-block"><h4>☑️ Подготовка к калибровке</h4><label class="check-item"><input type="checkbox"><span>Убедиться, что сопла чистые</span></label><label class="check-item"><input type="checkbox"><span>Поставить качественную бумагу</span></label><label class="check-item"><input type="checkbox"><span>Проверить уровень чернил</span></label><label class="check-item"><input type="checkbox"><span>Закрыть лишние программы</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="анализ-тестовой-страницы-и-выбор-правильного-паттерна">Анализ тестовой страницы и выбор правильного паттерна</h2>
+
+<p>Ключевой этап всей процедуры — правильный выбор паттерна на распечатанном листе. Ошибка на этом шаге сведет на нет все предыдущие действия. Вы должны искать тот вариант, где линии выглядят цельными, без видимого смещения влево или вправо.</p>
+
+<p>Если вы не можете точно определить, какой вариант идеален, выберите тот, где смещение минимально. Принтер не допустит критических ошибок, но если вы выберете вариант с явным сдвигом, качество печати только ухудшится. <strong>Точность выбора</strong> напрямую влияет на итоговый результат.</p>
+
+<p>Обратите внимание на цветность линий. В тесте обычно присутствуют черные, голубые, пурпурные и желтые образцы. Убедитесь, что линии всех цветов совпадают. Иногда одна линия может быть четкой, а другая смещена, что говорит о проблеме с конкретным каналом.</p>
+
+<details class="faq-item"><summary>Что делать, если линии не совпадают ни в одном варианте?</summary><div class="faq-answer"><p>Если ни один из вариантов на тестовом листе не выглядит идеально, это может указывать на физическое повреждение головки или сильное загрязнение сопел. В таком случае попробуйте повторить процедуру прочистки, а затем снова выполните калибровку.</p></div></details>
+
+<h2 id="частые-ошибки-и-способы-их-устранения">Частые ошибки и способы их устранения</h2>
+
+<p>Пользователи часто сталкиваются с ситуацией, когда после процедуры качество печати не улучшилось. Это может быть связано с тем, что <strong>калибровка</strong> не работала с чистыми соплами. Всегда начинайте с проверки дюз, чтобы исключить засоры.</p>
+
+<p>Другая распространенная ошибка — использование некачественной бумаги. Тонкая или слишком плотная бумага может застрять или изменить траекторию движения бумаги, что приведет к ложному результату калибровки. Используйте специальную фотобумагу Epson, рекомендованную производителем.</p>
+
+<p>Также стоит проверить настройки драйвера. Иногда пользователи случайно меняют разрешение печати или режим экономии чернил, что влияет на траекторию капель. Сброс настроек до заводских может помочь в решении проблемы.</p>
+
+<table>
+<thead>
+<tr>
+<th>Проблема</th>
+<th>Вероятная причина</th>
+<th>Решение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Линии не совпадают</td>
+<td>Забитые сопла</td>
+<td>Проверка дюз и прочистка</td>
+</tr>
+<tr>
+<td>Текст двоится</td>
+<td>Неверный выбор паттерна</td>
+<td>Повторная калибровка</td>
+</tr>
+<tr>
+<td>Полосы после калибровки</td>
+<td>Плохая бумага</td>
+<td>Замена носителя</td>
+</tr>
+<tr>
+<td>Ошибка в процессе</td>
+<td>Низкий уровень чернил</td>
+<td>Дозаправка картриджей</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>⚠️ <strong>Внимание!</strong> Если после нескольких попыток калибровки проблема не решается, возможно, произошла деградация пьезоэлементов головки. В этом случае требуется профессиональная диагностика.</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед началом калибровки обязательно дайте принтеру прогреться в течение 10-15 минут, если он был выключен длительное время. Это стабилизирует температуру внутри механизма.</p></div>
+
+<h2 id="профилактика-и-регулярное-обслуживание">Профилактика и регулярное обслуживание</h2>
+
+<p>Чтобы избежать необходимости частых настроек, важно соблюдать правила эксплуатации. <strong>Регулярная печать</strong> — лучший способ предотвратить засыхание чернил. Используйте принтер хотя бы раз в неделю, печатая небольшой тестовый рисунок.</p>
+
+<p>Храните чернила в прохладном месте, защищенном от прямых солнечных лучей. Экстремальные температуры могут изменить вязкость чернил, что приведет к нестабильной работе головки. Используйте оригинальные чернила Epson или качественные аналоги, проверенные временем.</p>
+
+<p>Не оставляйте принтер включенным надолго без дела, если он не используется. Режим ожидания потребляет энергию и может привести к перегреву узлов. Выключайте устройство через кнопку питания, когда закончите работу.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярная печать и использование качественных чернил — залог долгой жизни печатающей головки и отсутствия необходимости в сложном ремонте.</p></div>
+
+<blockquote>⚠️ <strong>Внимание!</strong> Следите за тем, чтобы в органайзере не было посторонних предметов, которые могут застрять в механизме подачи бумаги. Это частая причина механических сбоев.</blockquote>
+
+<h2 id="особенности-работы-на-разных-типах-бумаги">Особенности работы на разных типах бумаги</h2>
+
+<p>Разные типы носителей требуют индивидуальной настройки. При печати на глянцевой фотобумаге принтер меняет скорость движения каретки, чтобы чернила успевали высохнуть. Это может повлиять на точность позиционирования.</p>
+
+<p>Если вы переходите с обычной офисной бумаги на фотобумагу, рекомендуется выполнить калибровку заново. <strong>Разная толщина</strong> листа меняет зазор между головкой и бумагой, что может потребовать коррекции параметров.</p>
+
+<p>В настройках драйвера убедитесь, что выбран правильный тип бумаги. Несоответствие настроек физическому носителю может привести к размазыванию чернил или повреждению головки. Всегда проверяйте этот параметр перед запуском работы.</p>
+
+<h2 id="когда-стоит-обратиться-в-сервисный-центр">Когда стоит обратиться в сервисный центр</h2>
+
+<p>Если все вышеперечисленные методы не помогают, и <strong>Epson L805</strong> продолжает печатать с дефектами, возможно, проблема аппаратная. Это может быть износ шагового двигателя или неисправность самой печатающей головки.</p>
+
+<p>Самостоятельный ремонт в этом случае не рекомендуется, так как можно усугубить ситуацию. Обратитесь в авторизованный сервисный центр для диагностики. Специалисты проведут тесты оборудования и дадут точный ответ о состоянии устройства.</p>
+
+<p>Помните, что своевременное вмешательство профессионалов часто дешевле, чем полная замена головки. Не затягивайте с визитом в сервис, если проблема не решается программными методами.</p>
+
+<details>
+<summary>Нужно ли калибровать головку после переноски принтера?</summary>
+<p>Да, после любой транспортировки или перемещения принтера в другое место рекомендуется выполнить калибровку. Вибрации и удары могут сместить механические компоненты.</p>
+</details>
+
+<details>
+<summary>Можно ли калибровать головку, если есть забитые сопла?</summary>
+<p>Нет, сначала необходимо выполнить прочистку и убедиться, что все сопла работают исправно. Калибровка с забитыми соплами даст неверный результат.</p>
+</details>
+
+<details>
+<summary>Как часто нужно делать калибровку?</summary>
+<p>Рекомендуется проводить эту процедуру раз в 3-6 месяцев или при появлении первых признаков смещения линий на печати.</p>
+</details>
+
+<details>
+<summary>Влияет ли тип чернил на калибровку?</summary>
+<p>Да, если вы сменили тип чернил (например, с пигментных на водорастворимые), может потребоваться повторная настройка, так как их физическая плотность отличается.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#суть-процесса-выравнивания-дюз-в-принтере">Суть процесса выравнивания дюз в принтере</a></li><li><a href="#когда-необходимо-выполнять-выравнивание">Когда необходимо выполнять выравнивание</a></li><li><a href="#пошаговая-настройка-через-драйвер-epson">Пошаговая настройка через драйвер Epson</a></li><li><a href="#анализ-тестовой-страницы-и-выбор-правильного-паттерна">Анализ тестовой страницы и выбор правильного паттерна</a></li><li><a href="#частые-ошибки-и-способы-их-устранения">Частые ошибки и способы их устранения</a></li><li><a href="#профилактика-и-регулярное-обслуживание">Профилактика и регулярное обслуживание</a></li><li><a href="#особенности-работы-на-разных-типах-бумаги">Особенности работы на разных типах бумаги</a></li><li><a href="#когда-стоит-обратиться-в-сервисный-центр">Когда стоит обратиться в сервисный центр</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-napechatat-foto-10kh15-na-printere-epson-l222.html" class="related-card">Печать фото 10х15 на Epson L222: пошаговая инструкция и настройки</a></li><li><a href="/articles/k/ka/kak-pechatat-na-samokleyushchejsya-bumage-na-printere-epson.html" class="related-card">Как печатать на самоклейке на принтере Epson: инструкции и советы</a></li><li><a href="/articles/k/ka/kak-obnulit-uroven-chernil-v-epson-l110.html" class="related-card">Как сбросить уровень чернил Epson L110: обнуление счетчика и сброс давления</a></li><li><a href="/articles/k/ka/kak-chistit-golovku-printera-epson.html" class="related-card">Как почистить головку принтера Epson: пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-zapravit-kartridzh-dlya-printera-epson-cx7300.html" class="related-card">Заправка картриджа Epson CX7300: пошаговая инструкция и советы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-napechatat-foto-10kh15-na-printere-epson-l222.html" class="related-bottom-card"><span class="related-bottom-title">Печать фото 10х15 на Epson L222: пошаговая инструкция и настройки</span><span class="related-bottom-desc">Подробное руководство по настройке драйвера и печати фотографий формата 10х15 на МФУ Epson L222. Сов</span></a><a href="/articles/k/ka/kak-pechatat-na-samokleyushchejsya-bumage-na-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как печатать на самоклейке на принтере Epson: инструкции и советы</span><span class="related-bottom-desc">Пошаговая инструкция по печати на самоклеющейся бумаге на принтерах Epson. Настройка драйвера, выбор</span></a><a href="/articles/k/ka/kak-obnulit-uroven-chernil-v-epson-l110.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить уровень чернил Epson L110: обнуление счетчика и сброс давления</span><span class="related-bottom-desc">Пошаговая инструкция по обнулению уровня чернил в Epson L110. Сброс счетчика промывок, очистка систе</span></a><a href="/articles/k/ka/kak-chistit-golovku-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как почистить головку принтера Epson: пошаговая инструкция</span><span class="related-bottom-desc">Эффективные методы очистки печатающей головки Epson. Автоматическая и ручная чистка, устранение засо</span></a><a href="/articles/k/ka/kak-zapravit-kartridzh-dlya-printera-epson-cx7300.html" class="related-bottom-card"><span class="related-bottom-title">Заправка картриджа Epson CX7300: пошаговая инструкция и советы</span><span class="related-bottom-desc">Подробное руководство по заправке картриджей для МФУ Epson Stylus CX7300. Узнайте, как сбросить счет</span></a><a href="/articles/e/ep/epson-l366-series-kak-pochistit-golovku-printera.html" class="related-bottom-card"><span class="related-bottom-title">Как почистить головку принтера Epson L366: пошаговая инструкция</span><span class="related-bottom-desc">Подробное руководство по очистке печатающей головки Epson L366 series: программные и ручные методы, </span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

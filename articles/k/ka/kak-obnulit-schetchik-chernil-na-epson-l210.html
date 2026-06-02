@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как обнулить счетчик чернил на Epson L210: программно и аппаратно — Эпсон Помощь</title>
+    <meta name="description" content="Пошаговая инструкция по сбросу Waste Ink Pad Counter на принтере Epson L210. Разбор программ WIC Reset и аппаратного ключа. Решение ошибки 0x9a и 0xc1.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-obnulit-schetchik-chernil-na-epson-l210.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как обнулить счетчик чернил на Epson L210: программно и аппаратно">
+    <meta property="og:description" content="Пошаговая инструкция по сбросу Waste Ink Pad Counter на принтере Epson L210. Разбор программ WIC Reset и аппаратного ключа. Решение ошибки 0x9a и 0xc1.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/drugoe/">Другое</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как обнулить счетчик чернил на Epson L210: программно и аппаратно</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Полный гид: как обнулить счетчик чернил на принтере Epson L210</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#почему-epson-l210-блокирует-печать-и-что-такое-waste-ink-pad-counter">Почему Epson L210 блокирует печать и что такое Waste Ink Pad Counter</a></li><li><a href="#способ-первый-программный-сброс-через-wic-reset-utility">Способ первый: Программный сброс через WIC Reset Utility</a></li><li><a href="#способ-второй-аппаратный-ключ-и-альтернативные-утилиты">Способ второй: Аппаратный ключ и альтернативные утилиты</a></li><li><a href="#пошаговая-инструкция-сброс-через-adjustment-program">Пошаговая инструкция: сброс через Adjustment Program</a></li><li><a href="#таблица-кодов-ошибок-и-статусов-счетчиков">Таблица кодов ошибок и статусов счетчиков</a></li><li><a href="#физическая-замена-впитывающих-прокладок">Физическая замена впитывающих прокладок</a></li><li><a href="#возможные-ошибки-и-проблемы-при-сбросе">Возможные ошибки и проблемы при сбросе</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Пользователи МФУ <em>Epson L210</em> часто сталкиваются с неприятной ситуацией, когда устройство внезапно отказывается печатать, выдавая мигающие индикаторы или сообщение об ошибке. В большинстве случаев проблема кроется не в поломке механизма, а в срабатывании программной защиты — заполнении счетчика пропитки впитывающих прокладок. Этот параметр, известный как <strong>Waste Ink Pad Counter</strong>, отслеживает объем чернил, попавших в абсорбер при головке и очистке картриджей.</p>
+
+<p>Игнорирование сигнала о полном наполнении приводит к тому, что принтер переходит в <em>Service Mode</em> и блокирует все операции печати. Чтобы вернуть <strong>Epson L210</strong> к жизни, необходимо выполнить процедуру сброса значений счетчика на ноль. Существует два основных пути решения: использование специализированного программного обеспечения или покупка физического ключа активации, который разблокирует функцию сброса.</p>
+
+<p>Процедура требует внимательности, так как некорректные действия могут привести к необходимости перепрошивки <em>EPSON</em> или даже выводу платы управления из строя. В этой статье мы детально разберем оба метода, рассмотрим нюансы работы с утилитами и объясним, почему важно вовремя выполнять техническое обслуживание.</p>
+
+<h2 id="почему-epson-l210-блокирует-печать-и-что-такое-waste-ink-pad-counter">Почему Epson L210 блокирует печать и что такое Waste Ink Pad Counter</h2>
+
+<p>В основе работы струйных принтеров лежит система очистки печатающей головки, которая использует чернила для промывки форсунок. Эта «грязная» жидкость стекает не в канализацию, а во впитывающую прокладку, расположенную внутри корпуса. Производитель устанавливает программный лимит на количество циклов очистки, предполагая, что прокладка физически не может впитать бесконечное количество жидкости.</p>
+
+<p>Когда накопительный счетчик достигает 100%, принтер блокирует печать, чтобы избежать переполнения абсорбера и протекания чернил на стол или внутрь электроники. Однако физический объем прокладки обычно больше, чем заложенный программный лимит. Именно поэтому <strong>сброс счетчика</strong> является безопасной процедурой, если вы предварительно проверили состояние впитывающего блока.</p>
+
+<p>Ошибка может проявляться по-разному: мигают оба индикатора (чернила и бумага), появляется код ошибки <code>0xc1</code> или <code>0x9a</code>, а в режиме диагностики устройство сообщает о <strong>End of Service Life</strong>. Важно понимать, что физическая прокладка может быть еще не полностью насыщена, но программная блокировка не позволит продолжить работу без вмешательства.</p>
+
+<h2 id="способ-первый-программный-сброс-через-wic-reset-utility">Способ первый: Программный сброс через WIC Reset Utility</h2>
+
+<p>Самый популярный метод обнуления — использование утилиты <strong>WIC Reset</strong>, которая является стандартом де-факто для сервисного сброса принтеров Epson. Программа считывает текущие значения счетчиков из энергонезависимой памяти устройства и позволяет изменить их на ноль. Для работы требуется установить драйверы <em>Epson L210</em> и подключить принтер к компьютеру через USB.</p>
+
+<p>После запуска программы вы увидите таблицу со статусом всех счетчиков. Нас интересует параметр <strong>Main waste ink pad counter</strong>. Если он показывает значение 100% или выше, печать будет заблокирована. В интерфейсе программы есть кнопка <code>Reset Counters</code>, но при первом нажатии программа запросит ключ активации, так как бесплатная версия позволяет только прочитать статистику.</p>
+
+<p>Некоторые пользователи пытаются использовать бесплатные <strong>Key Generators</strong> из интернета, но они часто не работают с современными версиями прошивки или содержат вредоносное ПО. Надежнее всего приобрести официальный ключ у разработчика утилиты. После ввода ключа нажмите <code>Reset</code> и перезагрузите принтер, отключив его от сети на 10 секунд.</p>
+
+<blockquote>⚠️ Внимание: Перед сбросом убедитесь, что вы не просто обнуляете счетчик, но и физически освобождаете место для чернил. Если прокладка уже залита до краев, она может протечь на системную плату при следующем цикле очистки.</blockquote>
+
+<div class="poll-widget" id="poll-fcdc1d11"><div class="poll-widget-question">📊 Какой способ сброса вы планируете использовать?</div><div class="poll-widget-option" data-poll="fcdc1d11" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Бесплатная программа (без ключа)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="fcdc1d11" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Покупка ключа WIC Reset</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="fcdc1d11" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Аппаратный ключ</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="fcdc1d11" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Поиск мастера</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="способ-второй-аппаратный-ключ-и-альтернативные-утилиты">Способ второй: Аппаратный ключ и альтернативные утилиты</h2>
+
+<p>Для тех, кто не хочет покупать программные ключи, существует альтернатива — физический <strong>USB-ключ сброса</strong>. Это небольшое устройство, которое подключается в порт USB компьютера и эмулирует наличие лицензии. Утилита распознает аппаратный ключ и позволяет многократно сбрасывать счетчики на разных принтерах одного типа, не требуя повторной оплаты.</p>
+
+<p>Существуют и другие программы для сброса, например, <em>Epson Adjustment Program</em> или <strong>Epson SSC Service Utility</strong>. Они часто бесплатны, но их интерфейс может быть менее понятным, а поддержка новых версий прошивки <em>Epson</em> — не всегда актуальной. В Adjustment Program для модели L210 следует выбрать пункт <code>Particular adjustment mode</code>, затем <code>Waste ink pad counter</code>.</p>
+
+<p>Важно отметить, что в утилите Adjustment Program нужно внимательно выбрать галочками именно те счетчики, которые нужно сбросить (обычно это <strong>Main pad</strong> и иногда <strong>Spout pad</strong>). Ошибка в выборе может привести к сбросу не того параметра, что не решит проблему блокировки. После выбора нажмите <code>Initialise</code> и дождитесь сообщения об успехе.</p>
+
+<div class="checklist-block"><h4>☑️ Подготовка к сбросу через ПО</h4><label class="check-item"><input type="checkbox"><span>Установить драйверы принтера</span></label><label class="check-item"><input type="checkbox"><span>Подключить Л210 к ПК</span></label><label class="check-item"><input type="checkbox"><span>Запустить WIC Reset или Adjustment Program</span></label><label class="check-item"><input type="checkbox"><span>Купить ключ активации</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="пошаговая-инструкция-сброс-через-adjustment-program">Пошаговая инструкция: сброс через Adjustment Program</h2>
+
+<p>Если вы выбрали путь использования <strong>Epson Adjustment Program</strong>, процесс выглядит следующим образом. Сначала скачайте актуальную версию утилиты, совместимую с вашей операционной системой. Запустите программу от имени администратора, чтобы избежать ошибок доступа к портам.</p>
+
+<p>В главном окне выберите вашу модель <em>Epson L210</em> из выпадающего списка и укажите порт подключения (обычно <code>USB001</code> или <code>USB002</code>). Нажмите кнопку <code>Selection</code>, затем найдите в списке сервисных режимов пункт <strong>Waste ink pad counter</strong>. Это критически важный шаг, так как неправильный выбор режима может привести к сбросу часов реального времени или других параметров.</p>
+
+<p>В открывшемся окне вы увидите галочки напротив различных счетчиков. Убедитесь, что отмечен <code>Main waste ink pad counter</code>. Нажмите <code>Check</code>, чтобы увидеть текущее значение, а затем <code>Initialise</code>. После завершения процедуры принтер потребует перезагрузки. Если процесс не удался, проверьте подключение кабеля USB и попробуйте другой порт.</p>
+
+<details class="faq-item"><summary>Что делать, если программа не видит принтер?</summary><div class="faq-answer"><p>Если утилита не определяет устройство, проверьте, установлен ли драйвер принтера. Попробуйте заменить USB-кабель или подключить его напрямую к материнской плате, минуя USB-хабы. Иногда помогает отключение и повторное включение питания принтера при запущенной программе.</p></div></details>
+
+<h2 id="таблица-кодов-ошибок-и-статусов-счетчиков">Таблица кодов ошибок и статусов счетчиков</h2>
+
+<p>Понимание значений, которые выдает система, поможет быстрее диагностировать проблему. Ниже приведена таблица с основными показателями, которые вы можете увидеть в интерфейсе сервисных программ.</p>
+
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Статус</th>
+<th>Значение</th>
+<th>Действие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main Waste Ink</td>
+<td>Normal</td>
+<td>0% - 80%</td>
+<td>Работоспособное состояние</td>
+</tr>
+<tr>
+<td>Main Waste Ink</td>
+<td>Warning</td>
+<td>81% - 99%</td>
+<td>Рекомендуется замена прокладки</td>
+</tr>
+<tr>
+<td>Main Waste Ink</td>
+<td>Blocked</td>
+<td>100%</td>
+<td>Требуется сброс (Reset)</td>
+</tr>
+<tr>
+<td>SP Waste Ink</td>
+<td>Blocked</td>
+<td>100%</td>
+<td>Сбросить отдельно, если есть ошибка</td>
+</tr>
+</tbody>
+</table>
+
+<p>Обратите внимание, что некоторые программы могут показывать дробные значения (например, 102% или 105%). Это не означает физическое переполнение выше 100%, а просто указывает на то, что лимит превышен. Сброс до <strong>0%</strong> является обязательным для возобновления печати.</p>
+
+<blockquote>⚠️ Внимание: После сброса счетчика программно физический абсорбер остается полным. Если вы не планируете его чистить или менять в ближайшее время, возможны протечки при интенсивной печати.</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Программный сброс устраняет блокировку печати, но не решает проблему физического переполнения впитывающей прокладки чернилами.</p></div>
+
+<h2 id="физическая-замена-впитывающих-прокладок">Физическая замена впитывающих прокладок</h2>
+
+<p>Хотя программный сброс решает проблему ошибки, он не отменяет физического износ абсорбера. Для полного технического обслуживания необходимо добраться до <strong>впитывающих прокладок</strong> внутри корпуса. На модели <em>Epson L210</em> они расположены в нижней части, под картриджами и головкой, и скрыты под пластиковым корпусом.</p>
+
+<p>Процесс замены требует разборки корпуса, что может привести к потере гарантии (если она еще действует). Необходимо открутить винты, аккуратно снять крышки и извлечь пропитанные чернилами губки. Их можно либо тщательно промыть дистиллированной водой и высушить, либо заменить на новые, купленные в магазине расходных материалов.</p>
+
+<p>После замены прокладок не забудьте выполнить процедуру сброса счетчика, иначе принтер продолжит считать, что абсорбер заполнен. Для очистки прокладок используйте перчатки и впитывающую салфетку, чтобы чернила не попали на кожу и одежду. Сухая прокладка должна быть мягкой и эластичной.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед разборкой корпуса принтера сфотографируйте расположение всех винтов и шлейфов, чтобы при сборке не возникло путаницы.</p></div>
+
+<h2 id="возможные-ошибки-и-проблемы-при-сбросе">Возможные ошибки и проблемы при сбросе</h2>
+
+<p>Иногда процесс сброса проходит не гладко. Пользователи могут столкнуться с сообщением <code>Error: Port is busy</code> или <code>Cannot initialize counter</code>. Это часто случается, если принтер находится в режиме сна, драйверы не обновлены или фоновые процессы Epson блокируют доступ к порту.</p>
+
+<p>Еще одна частая проблема — <strong>неверный ключ активации</strong>. Если вы купили ключ у ненадежного продавца, утилита может выдать ошибку или сбросить счетчик только частично. В таком случае лучше обратиться к официальным дистрибьюторам WIC Reset или использовать аппаратный ключ, который не зависит от серийных номеров.</p>
+
+<p>Если после сброса индикаторы продолжают мигать, возможно, проблема не в счетчике прокладок, а в другом узле, например, в энкодере или шлейфе печатающей головки. В этом случае поможет только диагностика в сервисном центре. Не пытайтесь сбрасывать счетчик многократно подряд без перерыва, это может привести к сбоям в микросхеме памяти.</p>
+
+<blockquote>⚠️ Внимание: Если ошибка возвращается сразу после перезагрузки, проверьте целостность шлейфа печатающей головки и чистоту энкодера. Возможно, проблема аппаратная, а не программная.</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Повторяющиеся ошибки сброса часто указывают на аппаратные неисправности, такие как повреждение шлейфа или энкодера, а не на проблемы с софтом.</p></div>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+
+<details>
+<summary>Можно ли сбросить счетчик на Epson L210 бесплатно?</summary>
+<p><p>Бесплатно можно только прочитать текущее значение счетчика. Для сброса (обнуления) требуется ключ активации, который покупается в официальном магазине WIC Reset, либо использование аппаратного ключа.</p></p>
+</details>
+
+<details>
+<summary>Что будет, если не обнулить счетчик после замены прокладки?</summary>
+<p><p>Принтер продолжит блокировать печать, так как программный счетчик не знает о физической замене впитывающего материала. Необходимо выполнить процедуру сброса через сервисную программу.</p></p>
+</details>
+
+<details>
+<summary>Влияет ли сброс счетчика на гарантию принтера?</summary>
+<p><p>Да, вскрытие корпуса и использование сервисного программного обеспечения часто аннулирует гарантию производителя, если это будет обнаружено при диагностике.</p></p>
+</details>
+
+<details>
+<summary>Нужно ли менять прокладки при каждом сбросе счетчика?</summary>
+<p><p>Нет, при первом сбросе прокладки можно промыть и высушить. Однако при достижении лимита в 100% второй раз (через некоторое время) замена прокладок становится необходимостью.</p></p>
+</details>
+
+<details>
+<summary>Почему после сброса ошибка возвращается сразу?</summary>
+<p><p>Это может указывать на аппаратную неисправность, такую как поврежденный шлейф, грязный энкодер или неисправность платы управления, а не на проблему с заполнением абсорбера.</p></p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#почему-epson-l210-блокирует-печать-и-что-такое-waste-ink-pad-counter">Почему Epson L210 блокирует печать и что такое Waste Ink Pad Counter</a></li><li><a href="#способ-первый-программный-сброс-через-wic-reset-utility">Способ первый: Программный сброс через WIC Reset Utility</a></li><li><a href="#способ-второй-аппаратный-ключ-и-альтернативные-утилиты">Способ второй: Аппаратный ключ и альтернативные утилиты</a></li><li><a href="#пошаговая-инструкция-сброс-через-adjustment-program">Пошаговая инструкция: сброс через Adjustment Program</a></li><li><a href="#таблица-кодов-ошибок-и-статусов-счетчиков">Таблица кодов ошибок и статусов счетчиков</a></li><li><a href="#физическая-замена-впитывающих-прокладок">Физическая замена впитывающих прокладок</a></li><li><a href="#возможные-ошибки-и-проблемы-при-сбросе">Возможные ошибки и проблемы при сбросе</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-snyat-pechatayushchuyu-golovku-epson-t-50.html" class="related-card">Как снять печатающую головку Epson T50: пошаговая инструкция</a></li><li><a href="/articles/c/ch/chto-delat-esli-obnovil-printer-bez-chipovyj-epson.html" class="related-card">Что делать, если обновил принтер без чиповый Epson: Инструкция по восстановлению</a></li><li><a href="/articles/k/ka/kak-sdelat-glubokuyu-ochistku-printera-epson-l210.html" class="related-card">Глубокая очистка принтера Epson L210: инструкция и советы</a></li><li><a href="/articles/k/ka/kak-pochistit-golovku-printera-epson-l200-video.html" class="related-card">Как почистить головку принтера Epson L200: видео и пошаговая инструкция</a></li><li><a href="/articles/s/sc/scanner-busy-epson-chto-delat.html" class="related-card">Scanner Busy Epson: как устранить ошибку за 10 минут</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-snyat-pechatayushchuyu-golovku-epson-t-50.html" class="related-bottom-card"><span class="related-bottom-title">Как снять печатающую головку Epson T50: пошаговая инструкция</span><span class="related-bottom-desc">Детальное руководство по демонтажу печатающей головки принтера Epson Stylus T50 с советами по безопа</span></a><a href="/articles/c/ch/chto-delat-esli-obnovil-printer-bez-chipovyj-epson.html" class="related-bottom-card"><span class="related-bottom-title">Что делать, если обновил принтер без чиповый Epson: Инструкция по восстановлению</span><span class="related-bottom-desc">Обновили прошивку Epson и принтер перестал видеть СНПЧ? Узнайте, как откатить версию ПО, обойти блок</span></a><a href="/articles/k/ka/kak-sdelat-glubokuyu-ochistku-printera-epson-l210.html" class="related-bottom-card"><span class="related-bottom-title">Глубокая очистка принтера Epson L210: инструкция и советы</span><span class="related-bottom-desc">Пошаговая инструкция как сделать глубокую очистку принтера Epson L210. Сброс памперса, программная о</span></a><a href="/articles/k/ka/kak-pochistit-golovku-printera-epson-l200-video.html" class="related-bottom-card"><span class="related-bottom-title">Как почистить головку принтера Epson L200: видео и пошаговая инструкция</span><span class="related-bottom-desc">Подробное руководство с видео, как самостоятельно промыть головку принтера Epson L200 без разборки. </span></a><a href="/articles/s/sc/scanner-busy-epson-chto-delat.html" class="related-bottom-card"><span class="related-bottom-title">Scanner Busy Epson: как устранить ошибку за 10 минут</span><span class="related-bottom-desc">Почему принтер Epson показывает «Scanner Busy» и как исправить ошибку самостоятельно? Пошаговые инст</span></a><a href="/articles/k/ka/kak-sbrosit-parol-na-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить пароль на принтере Epson: Полная инструкция 2026</span><span class="related-bottom-desc">Узнайте, как сбросить пароль администратора или Wi-Fi на принтерах Epson. Пошаговые методы: кнопка, </span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

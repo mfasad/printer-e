@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Epson L805: Как настроить Wi-Fi и подключить принтер к сети — Эпсон Помощь</title>
+    <meta name="description" content="Пошаговая инструкция по настройке беспроводной сети для Epson L805. Настройка через панель, uPnP и Epson iPrint. Устранение ошибок подключения.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/e/ep/epson-l805-kak-nastroit-vaj-faj.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Epson L805: Как настроить Wi-Fi и подключить принтер к сети">
+    <meta property="og:description" content="Пошаговая инструкция по настройке беспроводной сети для Epson L805. Настройка через панель, uPnP и Epson iPrint. Устранение ошибок подключения.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/setevoe-podklyuchenie/">Сетевое подключение</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Epson L805: Как настроить Wi-Fi и подключить принтер к сети</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Полное руководство: как настроить Wi-Fi на принтере Epson L805</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#подготовка-оборудования-и-проверка-сети">Подготовка оборудования и проверка сети</a></li><li><a href="#настройка-через-панель-управления-меню">Настройка через панель управления (Меню)</a></li><li><a href="#использование-утилиты-epson-status-monitor">Использование утилиты Epson Status Monitor</a></li><li><a href="#подключение-через-мобильное-приложение-epson-iprint">Подключение через мобильное приложение Epson iPrint</a></li><li><a href="#настройка-через-веб-интерфейс-epsonnet-web-assist">Настройка через веб-интерфейс (EpsonNet Web Assist)</a></li><li><a href="#устранение-проблем-с-подключением">Устранение проблем с подключением</a></li><li><a href="#заключение-и-рекомендации">Заключение и рекомендации</a></li><li><a href="#часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Многие пользователи сталкиваются с необходимостью организации беспроводной печати, когда приобретают многофункциональное устройство <em>Epson L805</em>. Эта модель, несмотря на свою популярность и отличное качество фотопечати, требует внимательного подхода к первоначальной настройке сети. Без корректного соединения с локальной сетью вы не сможете использовать все преимущества устройства, такие как печать с мобильных устройств или сканирование на компьютер по воздуху.</p>
+
+<p>Процесс подключения может варьироваться в зависимости от версии прошивки и конфигурации вашей домашней сети. Некоторые пользователи предпочитают классический метод с кнопками на панели управления, в то время как другие используют современные программные утилиты. Важно понимать, что <strong>беспроводная сеть</strong> должна быть стабильной, а пароль от Wi-Fi должен быть введен без ошибок.</p>
+
+<p>В данном материале мы разберем все доступные способы конфигурации <em>Epson L805</em>, от простого WPS-подключения до сложной настройки через веб-интерфейс. Мы также рассмотрим частые причины сбоев и дадим рекомендации по устранению неполадок, чтобы ваш принтер всегда был доступен в сети.</p>
+
+<h2 id="подготовка-оборудования-и-проверка-сети">Подготовка оборудования и проверка сети</h2>
+
+<p>Перед началом настройки необходимо убедиться, что ваше оборудование полностью готово к работе. Убедитесь, что роутер включен и раздает интернет, а сам принтер <em>Epson L805</em> подключен к электрической сети и находится в состоянии готовности. Индикатор на панели управления должен гореть зеленым цветом, сигнализируя об отсутствии ошибок печати или заканчивающихся чернил.</p>
+
+<p>Критически важно проверить частоту беспроводной сети. Большинство современных роутеров работают в двух диапазонах: 2,4 ГГц и 5 ГГц. Устройство <em>Epson L805</em> поддерживает исключительно диапазон <strong>2,4 ГГц</strong>. Если ваш роутер объединяет оба диапазона под одним именем (SSID), это может вызвать проблемы с подключением, и лучше разделить их в настройках маршрутизатора.</p>
+
+<p>Запишите или запишите на бумаге данные вашей сети. Вам понадобятся имя сети (SSID) и пароль от Wi-Fi. Убедитесь, что в пароле нет запрещенных символов, которые могут быть не распознаны встроенным ПО принтера. Также проверьте, не включен ли на роутере режим изоляции клиентов (AP Isolation), который запрещает устройствам в одной сети общаться друг с другом.</p>
+
+<blockquote>⚠️ Внимание: Если ваш роутер использует шифрование WPA3, принтер может не подключиться автоматически. В настройках беспроводного роутера необходимо переключить тип безопасности на <strong>WPA2-PSK (AES)</strong> для обеспечения совместимости со старыми моделями устройств.</blockquote>
+
+<p>Расположите принтер в пределах видимости роутера. Стены, особенно несущие, и металлические предметы могут существенно ослаблять сигнал. Идеально, если в момент настройки устройства находятся в одной комнате, а после успешного подключения расстояние может быть увеличено.</p>
+
+<h2 id="настройка-через-панель-управления-меню">Настройка через панель управления (Меню)</h2>
+
+<p>Самый прямой способ настройки — использование кнопок и дисплея на самом устройстве. Это универсальный метод, не требующий наличия компьютера или смартфона в процессе конфигурации. Вам нужно будет пройти через несколько уровней меню, чтобы добраться до сетевых параметров.</p>
+
+<p>Нажмите кнопку <code>Wi-Fi</code> на панели управления. Если индикатор загорается оранжевым или мигает, это означает, что модуль беспроводной связи активен, но не подключен. Далее используйте кнопку со стрелкой вправо или влево для навигации по меню на дисплее. Найдите и выберите пункт <code>Настройки</code> (значок гаечного ключа), а затем перейдите в раздел <code>Настройки сети</code>.</p>
+
+<p>В открывшемся списке выберите пункт <code>Настройка Wi-Fi</code>. Система предложит вам несколько вариантов: <strong>Автоматическая настройка</strong> или <strong>Ручной ввод</strong>. Если вы выбрали автоматический режим, устройство просканирует доступные сети и предложит список. Выберите вашу сеть из списка и введите пароль, используя кнопки навигации для выбора символов на экране.</p>
+
+<ul>
+  <li>📡 Используйте кнопку со стрелкой для переключения между буквами и цифрами при вводе пароля.</li>
+  <li>🔑 Будьте предельно внимательны при вводе, так как регистр букв имеет значение в большинстве случаев.</li>
+  <li>✅ После ввода нажмите кнопку <code>OK</code> и дождитесь появления значка Wi-Fi на дисплеи без мигания.</li>
+</ul>
+
+<p>Если вы используете метод <strong>WPS</strong> (Wi-Fi Protected Setup), процесс упрощается. В меню выберите <code>WPS Push Button</code>. Затем подойдите к роутеру и нажмите кнопку WPS на его корпусе. Принтер автоматически установит соединение, если сигнал достаточный. Этот метод исключает ошибки ввода пароля, но требует физического доступа к маршрутизатору.</p>
+
+<blockquote>⚠️ Внимание: При использовании кнопки WPS на роутере, кнопка должна быть нажата в течение 2-3 минут после выбора соответствующего пункта в меню принтера. В противном случае тайм-аут приведет к сбросу попытки подключения.</blockquote>
+
+<h2 id="использование-утилиты-epson-status-monitor">Использование утилиты Epson Status Monitor</h2>
+
+<p>Если настройка через кнопки на принтере кажется вам неудобной или сложной, можно воспользоваться компьютером. Этот метод позволяет видеть более подробный статус подключения и легче вводить длинные пароли с клавиатуры. Для этого на компьютере должна быть установлена утилита <strong>Epson Status Monitor</strong> или драйверы принтера.</p>
+
+<p>Запустите утилиту управления принтером в Windows. Обычно она находится в трее рядом с часами или в меню «Пуск» в папке Epson. Выберите устройство <em>Epson L805</em> и перейдите в раздел <code>Инструменты</code> или <code>Настройки</code>. Найдите пункт <code>Настройка беспроводной сети</code>. Мастер настройки предложит выбрать тип подключения: через кабель USB или напрямую через сеть.</p>
+
+<p>Выберите вариант настройки через USB-кабель, если принтер еще не подключен к Wi-Fi. Подключите принтер к компьютеру кабелем. Программа просканирует доступные сети и передаст настройки напрямую устройству. После завершения процесса кабель можно отключить, и принтер продолжит работу в беспроводном режиме.</p>
+
+<p>Этот метод особенно полезен, если на дисплее принтера трудно читать текст или если вы не знаете точный пароль от сети, но он сохранен в настройках компьютера. <strong>Драйверы</strong> в этом процессе выступают мостом для передачи данных конфигурации.</p>
+
+<ul>
+  <li>💻 Убедитесь, что брандмауэр Windows не блокирует работу утилиты Epson Status Monitor.</li>
+  <li>🔌 Используйте оригинальный USB-кабель, так как дешевые аналоги могут не передавать данные корректно.</li>
+  <li>🔄 Если процесс завис, перезапустите утилиту и попробуйте снова, убедившись, что принтер не переходит в спящий режим.</li>
+</ul>
+
+<div class="poll-widget" id="poll-c0ea096a"><div class="poll-widget-question">📊 Какой способ настройки принтера вы предпочитаете?</div><div class="poll-widget-option" data-poll="c0ea096a" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Через кнопки на устройстве</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="c0ea096a" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Через программу на ПК</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="c0ea096a" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Через мобильное приложение</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="c0ea096a" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">С помощью WPS-кнопки</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="подключение-через-мобильное-приложение-epson-iprint">Подключение через мобильное приложение Epson iPrint</h2>
+
+<p>Современный и удобный способ настройки — использование смартфона. Приложение <em>Epson iPrint</em> доступно для Android и iOS и позволяет не только управлять печатью, но и конфигурировать сеть. Для этого смартфон должен быть подключен к той же Wi-Fi сети, к которой вы хотите подключить принтер.</p>
+
+<p>Сначала убедитесь, что на телефоне включен Wi-Fi и он подключен к вашей домашней сети. Запустите приложение и выберите устройство. Если принтер <em>Epson L805</em> еще не подключен к сети, программа обнаружит его как устройство, находящееся в режиме ожидания настройки (обычно через прямое подключение Wi-Fi Direct или USB).</p>
+
+<p>В приложении перейдите в раздел настроек устройства и выберите опцию <code>Настройка беспроводной сети</code>. Приложение автоматически найдет доступные сети и предложит ввести пароль. После ввода пароля настройки будут переданы на принтер. Это один из самых интуитивных методов, так как интерфейс адаптирован для мобильных экранов.</p>
+
+<p>Важно отметить, что при первом запуске приложение может запросить разрешение на доступ к локальной сети. Это необходимо для обнаружения принтера. Если вы отклонили этот запрос, приложение не сможет найти устройство для настройки.</p>
+
+
+
+<h2 id="настройка-через-веб-интерфейс-epsonnet-web-assist">Настройка через веб-интерфейс (EpsonNet Web Assist)</h2>
+
+<p>Для продвинутых пользователей, у которых принтер уже имеет IP-адрес (например, после сброса настроек или частичного подключения), доступен метод настройки через браузер. <strong>Веб-интерфейс</strong> позволяет управлять всеми параметрами устройства, включая сложную настройку статического IP и портов.</p>
+
+<p>Чтобы получить доступ к веб-интерфейсу, вам нужно узнать IP-адрес принтера. Распечатайте отчет о конфигурации сети, удерживая кнопку <code>Wi-Fi</code> и <code>OK</code> одновременно на 5-7 секунд, пока индикатор не мигнет. В отчете будет указан IP-адрес. Введите этот адрес в адресную строку любого браузера на компьютере, подключенном к той же сети.</p>
+
+<p>Откроется страница <code>EpsonNet Web Assist</code>. Здесь можно изменить настройки беспроводной сети, пароль, время работы устройства и многое другое. Перейдите в раздел <code>Сеть</code> -> <code>Wi-Fi</code> и введите новые данные доступа. Этот метод удобен тем, что вы видите полную информацию о состоянии модуля и можете изменить DNS-серверы, если это необходимо.</p>
+
+<p>Если вы не можете получить доступ к веб-интерфейсу, проверьте, что IP-адрес вашего компьютера находится в той же подсети, что и у принтера. Например, если принтер имеет адрес 192.168.1.50, компьютер должен иметь адрес вида 192.168.1.XX.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Метод настройки</th>
+      <th>Необходимое оборудование</th>
+      <th>Сложность</th>
+      <th>Скорость</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Панель управления</td>
+      <td>Принтер, роутер</td>
+      <td>Средняя</td>
+      <td>Быстро</td>
+    </tr>
+    <tr>
+      <td>Epson Status Monitor</td>
+      <td>ПК, USB-кабель</td>
+      <td>Низкая</td>
+      <td>Средне</td>
+    </tr>
+    <tr>
+      <td>Epson iPrint</td>
+      <td>Смартфон, Wi-Fi</td>
+      <td>Низкая</td>
+      <td>Быстро</td>
+    </tr>
+    <tr>
+      <td>Веб-интерфейс</td>
+      <td>ПК, браузер, IP-адрес</td>
+      <td>Высокая</td>
+      <td>Средне</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="checklist-block"><h4>☑️ Подготовка к настройке через веб-интерфейс</h4><label class="check-item"><input type="checkbox"><span>Распечатать отчет о конфигурации</span></label><label class="check-item"><input type="checkbox"><span>Ввести IP-адрес в браузере</span></label><label class="check-item"><input type="checkbox"><span>Войти в раздел Сеть</span></label><label class="check-item"><input type="checkbox"><span>Сохранить новые настройки Wi-Fi</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="устранение-проблем-с-подключением">Устранение проблем с подключением</h2>
+
+<p>Иногда настройка не проходит с первого раза. Это может быть связано с помехами, устаревшим ПО или конфликтом IP-адресов. Если индикатор Wi-Fi мигает красным или оранжевым, необходимо проверить физическое состояние соединения и настройки роутера.</p>
+
+<p>Одной из частых причин является слишком сильный сигнал Wi-Fi Direct от самого принтера, который перехватывает подключение смартфона или ПК. Попробуйте временно отключить функцию Wi-Fi Direct в меню принтера, если вы настраиваете его через приложение. Также убедитесь, что вы не используете расширенные функции безопасности роутера, такие как MAC-фильтрация, которая может блокировать новое устройство.</p>
+
+<p>Если принтер подключен, но компьютер его не видит, проверьте сетевое обнаружение в Windows. Убедитесь, что сеть настроена как «Частная», а не «Общественная». В «Общественной» сети операционная система блокирует поиск сетевых устройств по соображениям безопасности.</p>
+
+<ul>
+  <li>🔄 Выполните сброс сетевых настроек на принтере через меню <code>Настройки сети</code> -> <code>Сброс настроек</code>.</li>
+  <li>📶 Попробуйте переместить принтер ближе к роутеру или использовать репитер для усиления сигнала.</li>
+  <li>🛠 Обновите прошивку устройства до последней версии через утилиту Epson Software Updater.</li>
+</ul>
+
+
+
+<blockquote>⚠️ Внимание: При сбросе сетевых настроек все сохраненные пароли Wi-Fi будут удалены. Вам придется вводить их заново. Убедитесь, что у вас есть доступ к паролю от вашей сети перед выполнением сброса.</blockquote>
+
+<p>Дополнительно стоит обратить внимание на каналы вещания роутера. Если в вашем районе много соседских сетей, они могут создавать помехи на одном и том же канале. Попробуйте вручную сменить канал на роутере (например, на 1, 6 или 11 для диапазона 2,4 ГГц) и снова попытаться подключить принтер.</p>
+
+
+
+<h2 id="заключение-и-рекомендации">Заключение и рекомендации</h2>
+
+<p>Настройка <em>Epson L805</em> на работу в беспроводной сети — процедура, которая при правильном подходе занимает не более 10-15 минут. Главное условие успеха — стабильный сигнал и корректный ввод данных. Не пытайтесь использовать сложные пароли с большим количеством спецсимволов, если принтер не поддерживает их ввод через дисплей.</p>
+
+<p>Регулярно обновляйте <strong>прошивку</strong> устройства, так как производители часто выпускают патчи, улучшающие стабильность Wi-Fi модуля. Также рекомендуется использовать кабель питания, подключенный непосредственно в розетку, а не через удлинитель, чтобы исключить скачки напряжения, которые могут привести к сбою сетевой карты.</p>
+
+<p>Помните, что <em>Epson L805</em> — это мощное устройство для фотопечати, и качественное сетевое подключение раскрывает его потенциал на 100%. Если после всех попыток проблема не решена, возможно, имеет место аппаратная неисправность Wi-Fi модуля, требующая обращения в сервисный центр.</p>
+
+<h2 id="часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</h2>
+
+<details>
+  <summary>Почему принтер Epson L805 не видит мою Wi-Fi сеть?</summary>
+  <p>Скорее всего, ваш роутер работает в диапазоне 5 ГГц, а Epson L805 поддерживает только 2,4 ГГц. Также проверьте, не скрыто ли имя сети (SSID) в настройках роутера.</p>
+</details>
+
+<details>
+  <summary>Можно ли подключить принтер к Wi-Fi без компьютера?</summary>
+  <p>Да, это можно сделать полностью через панель управления устройства, используя кнопку WPS на роутере или вводя пароль вручную через дисплей принтера.</p>
+</details>
+
+<details>
+  <summary>Как узнать IP-адрес принтера для настройки?</summary>
+  <p>Нажмите и удерживайте кнопку <code>Wi-Fi</code> и <code>OK</code> одновременно в течение 5-7 секунд, пока индикатор не мигнет. Принтер распечатает отчет о конфигурации, где будет указан IP-адрес.</p>
+</details>
+
+<details>
+  <summary>Что делать, если индикатор Wi-Fi мигает красным?</summary>
+  <p>Это означает ошибку подключения. Попробуйте перезагрузить роутер и принтер. Если не помогло, выполните сброс сетевых настроек на принтере и настройте соединение заново.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#подготовка-оборудования-и-проверка-сети">Подготовка оборудования и проверка сети</a></li><li><a href="#настройка-через-панель-управления-меню">Настройка через панель управления (Меню)</a></li><li><a href="#использование-утилиты-epson-status-monitor">Использование утилиты Epson Status Monitor</a></li><li><a href="#подключение-через-мобильное-приложение-epson-iprint">Подключение через мобильное приложение Epson iPrint</a></li><li><a href="#настройка-через-веб-интерфейс-epsonnet-web-assist">Настройка через веб-интерфейс (EpsonNet Web Assist)</a></li><li><a href="#устранение-проблем-с-подключением">Устранение проблем с подключением</a></li><li><a href="#заключение-и-рекомендации">Заключение и рекомендации</a></li><li><a href="#часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-podklyuchit-printer-epson-l3151-k-vaj-faj-routeru.html" class="related-card">Пошаговая настройка Wi-Fi для принтера Epson L3151: Полное руководство</a></li><li><a href="/articles/k/ka/kak-ustanovit-soedinenie-s-printerom-po-wifi-epson.html" class="related-card">Как установить соединение с принтером Epson по Wi-Fi: полная инструкция</a></li><li><a href="/articles/k/ka/kak-podklyuchit-mfu-epson-l3150-k-kompyuteru-cherez-wifi.html" class="related-card">Как подключить МФУ Epson L3150 к компьютеру через Wi-Fi: полная инструкция</a></li><li><a href="/articles/k/ka/kak-podklyuchit-k-wi-fi-printer-epson.html" class="related-card">Как подключить Epson к Wi-Fi: Инструкция по настройке печати</a></li><li><a href="/articles/k/ka/kak-podklyuchit-k-wi-fi-epson-l3156.html" class="related-card">Подключение Epson L3156 к Wi-Fi: пошаговая инструкция 2026</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-podklyuchit-printer-epson-l3151-k-vaj-faj-routeru.html" class="related-bottom-card"><span class="related-bottom-title">Пошаговая настройка Wi-Fi для принтера Epson L3151: Полное руководство</span><span class="related-bottom-desc">Инструкция по подключению МФУ Epson L3151 к беспроводной сети. Обзор способов: кнопка, WPS и програм</span></a><a href="/articles/k/ka/kak-ustanovit-soedinenie-s-printerom-po-wifi-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как установить соединение с принтером Epson по Wi-Fi: полная инструкция</span><span class="related-bottom-desc">Пошаговая настройка беспроводного подключения принтеров Epson. Методы через кнопку, приложение и WPS</span></a><a href="/articles/k/ka/kak-podklyuchit-mfu-epson-l3150-k-kompyuteru-cherez-wifi.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить МФУ Epson L3150 к компьютеру через Wi-Fi: полная инструкция</span><span class="related-bottom-desc">Пошаговое руководство по беспроводной настройке Epson L3150. Установка драйверов, настройка через WP</span></a><a href="/articles/k/ka/kak-podklyuchit-k-wi-fi-printer-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить Epson к Wi-Fi: Инструкция по настройке печати</span><span class="related-bottom-desc">Пошаговое руководство: как настроить беспроводную печать на принтерах Epson через кнопку Wi-Fi, WPS </span></a><a href="/articles/k/ka/kak-podklyuchit-k-wi-fi-epson-l3156.html" class="related-bottom-card"><span class="related-bottom-title">Подключение Epson L3156 к Wi-Fi: пошаговая инструкция 2026</span><span class="related-bottom-desc">Как подключить принтер Epson L3156 к Wi-Fi за 5 минут? Подробная инструкция с фото, решения ошибок и</span></a><a href="/articles/k/ka/kak-nastroit-printer-epson-l3151-po-wifi-cherez-router.html" class="related-bottom-card"><span class="related-bottom-title">Настройка принтера Epson L3151 по WiFi через роутер</span><span class="related-bottom-desc">Пошаговая инструкция: как подключить МФУ Epson L3151 к беспроводной сети через роутер. Методы WPS и </span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как поменять шрифт на Epson LX-350: инструкция + драйвера — Эпсон Помощь</title>
+    <meta name="description" content="Пошаговое руководство по смене шрифта на матричном принтере Epson LX-350: через драйвер, ESC/P-команды и настройки BIOS. Скачайте драйвера и утилиты.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/e/ep/epson-lx-350-kak-pomenyat-shrift.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как поменять шрифт на Epson LX-350: инструкция + драйвера">
+    <meta property="og:description" content="Пошаговое руководство по смене шрифта на матричном принтере Epson LX-350: через драйвер, ESC/P-команды и настройки BIOS. Скачайте драйвера и утилиты.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/drugoe/">Другое</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как поменять шрифт на Epson LX-350: инструкция + драйвера</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Как изменить шрифт на принтере Epson LX-350: 3 рабочих способа</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#1-способ-1-смена-шрифта-через-драйвер-epson-lx-350">1. Способ 1: Смена шрифта через драйвер Epson LX-350</a></li><li><a href="#2-способ-2-escp-команды-для-ручной-смены-шрифта">2. Способ 2: ESC/P-команды для ручной смены шрифта</a></li><li><a href="#3-способ-3-изменение-шрифта-через-bios-принтера">3. Способ 3: Изменение шрифта через BIOS принтера</a></li><li><a href="#4-проблемы-при-смене-шрифта-и-их-решения">4. Проблемы при смене шрифта и их решения</a></li><li><a href="#5-альтернативные-решения-когда-стандартные-методы-не-работают">5. Альтернативные решения: когда стандартные методы не работают</a></li><li><a href="#6-сравнение-методов-смены-шрифта-что-выбрать">6. Сравнение методов смены шрифта: что выбрать?</a></li><li><a href="#7-где-скачать-драйвера-и-утилиты-для-epson-lx-350">7. Где скачать драйвера и утилиты для Epson LX-350</a></li><li><a href="#часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Матричный принтер <em>Epson LX-350</em> остаётся востребованным в бухгалтерии, складах и госучреждениях благодаря надёжности и поддержке многослойных бланков. Однако стандартные шрифты <code>Draft</code> или <code>NLQ</code> не всегда подходят для печати документов — слишком мелкие, нечитаемые или не соответствуют корпоративным стандартам. <strong>Изменить шрифт на этом принтере можно тремя способами</strong>: через настройки драйвера, ESC/P-команды или прошивку BIOS.</p>
+
+<p>Многие пользователи сталкиваются с проблемой: в меню принтера нет опции смены шрифта, а в Word или Excel при печати доступны только базовые варианты. Причина кроется в архитектуре <em>Epson LX-350</em> — это <strong>устройство с фиксированным набором шрифтов в ПЗУ</strong>, но их отображение и масштабирование контролируется драйвером или прямыми командами. В этой статье разберём все методы, включая скрытые функции, и предоставим актуальные драйвера для Windows 10/11.</p>
+
+<p>⚠️ <strong>Важно:</strong> Принтер <em>Epson LX-350</em> не поддерживает загрузку кастомных шрифтов (например, TTF). Можно только переключаться между встроенными вариантами или изменять их размер через команды.</p>
+
+<div class="poll-widget" id="poll-70951492"><div class="poll-widget-question">📊 Какой способ смены шрифта вам интереснее?</div><div class="poll-widget-option" data-poll="70951492" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Через драйвер Windows</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="70951492" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">ESC/P-команды в документе</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="70951492" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Прошивка BIOS принтера</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="70951492" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Не знаю, нужен совет</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="1-способ-1-смена-шрифта-через-драйвер-epson-lx-350">1. Способ 1: Смена шрифта через драйвер Epson LX-350</h2>
+
+<p>Самый простой метод — настроить шрифт в драйвере принтера. Подходит для пользователей Windows, которые печатают из <code>Microsoft Word</code>, <code>Excel</code> или <code>1С</code>.</p>
+
+<p>Для начала убедитесь, что у вас установлен <strong>официальный драйвер от Epson</strong>, а не универсальный <code>Microsoft IPP Class Driver</code>. Скачать актуальную версию можно на <a href="https://epson.ru" target="_blank">сайте Epson</a> (выбирайте модель <em>LX-350</em> и вашу ОС). После установки:</p>
+
+<ol>
+  <li><strong>Откройте документ</strong> (например, в Word) и нажмите <code>Ctrl + P</code>.</li>
+  <li>В окне печати выберите принтер <em>Epson LX-350</em> и кликните <code>Свойства</code> (или <code>Настройки принтера</code>).</li>
+  <li>Перейдите на вкладку <code>Основные</code> или <code>Бумага/Качество</code>.</li>
+  <li>В разделе <code>Шрифт</code> или <code>Качество печати</code> выберите один из вариантов:
+    <ul>
+      <li>🔹 <code>Draft</code> — черновой режим (быстро, но низкое качество).</li>
+      <li>🔹 <code>NLQ (Near Letter Quality)</code> — почти типографское качество.</li>
+      <li>🔹 <code>LQ (Letter Quality)</code> — высокое качество (медленнее).</li>
+      <li>🔹 <code>High Speed Draft</code> — ускоренный черновой режим.</li>
+    </ol>
+  </li>
+  <li>Для изменения <strong>размера шрифта</strong> найдите опцию <code>Масштаб</code> или <code>Размер символов</code> (доступны значения от 10 до 12 cpi).</li>
+</ol>
+
+<p>⚠️ <strong>Внимание:</strong> Если в списке шрифтов отображается только <code>Default</code>, обновите драйвер или установите его в режиме совместимости с Windows 7 (через свойства установщика).</p>
+
+
+<p>Убедитесь, что выбран правильный принтер|Проверьте наличие бумаги|Отключите режим "Экономия чернил"|Сохраните настройки как профиль (если нужно)</p>
+<p>--></p>
+
+<h2 id="2-способ-2-escp-команды-для-ручной-смены-шрифта">2. Способ 2: ESC/P-команды для ручной смены шрифта</h2>
+
+<p>Для продвинутых пользователей существует метод прямого управления принтером через <strong>ESC/P-команды</strong> — язык управления принтерами Epson. Этот способ позволяет менять шрифт <mark>независимо от драйвера</mark>, прямо в текстовом файле или через специализированное ПО.</p>
+
+<p>Основные команды для <em>Epson LX-350</em>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Команда (HEX)</th>
+      <th>Описание</th>
+      <th>Пример использования</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>1B 4D 00</code></td>
+      <td>Установить шрифт <code>Draft</code> (10 cpi)</td>
+      <td>Для быстрой печати чеков</td>
+    </tr>
+    <tr>
+      <td><code>1B 4D 01</code></td>
+      <td>Установить шрифт <code>LQ</code> (12 cpi)</td>
+      <td>Для документов с мелким текстом</td>
+    </tr>
+    <tr>
+      <td><code>1B 21 00</code></td>
+      <td>Установить размер символов ×1 (нормальный)</td>
+      <td>Стандартный размер</td>
+    </tr>
+    <tr>
+      <td><code>1B 21 01</code></td>
+      <td>Увеличить высоту символов в 2 раза</td>
+      <td>Для заголовков</td>
+    </tr>
+    <tr>
+      <td><code>1B 21 30</code></td>
+      <td>Увеличить ширину и высоту в 4 раза</td>
+      <td>Для крупных надписей</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Чтобы применить команды:</p>
+<ol>
+  <li>Создайте текстовый файл (<code>.txt</code>) и вставьте HEX-коды в начале.</li>
+  <li>Добавьте текст после команд (например, <code>1B 4D 01 Привет, мир!</code>).</li>
+  <li>Сохраните файл и отправьте на печать через <code>Блокнот</code> или <code>Notepad++</code>.</li>
+</ol>
+
+<p>💡 <strong>Совет:</strong> Для удобства используйте утилиту <em>Epson ESC/P Command Generator</em> (скачать можно на форумах по принтерам). Она преобразует команды в читаемый вид.</p>
+
+<details class="faq-item"><summary>Пример файла с командами для печати крупного текста</summary><div class="faq-answer"><p>
+<code>1B 4D 01 1B 21 30 ТЕКСТ ДЛЯ ПЕЧАТИ</code>
+<p>Этот код установит шрифт <code>LQ</code> и увеличит символы в 4 раза.</p>
+<p></p></div></details></p>
+
+<h2 id="3-способ-3-изменение-шрифта-через-bios-принтера">3. Способ 3: Изменение шрифта через BIOS принтера</h2>
+
+<p>Менее известный метод — настройка шрифта через <strong>сервисное меню</strong> принтера. Подходит для опытных пользователей, так как требует доступа к внутренним параметрам устройства.</p>
+
+<p>Инструкция:</p>
+<ol>
+  <li>Выключите принтер.</li>
+  <li>Зажмите кнопку <code>Feed</code> (подача бумаги) и удерживайте её.</li>
+  <li>Включите принтер, не отпуская <code>Feed</code>, пока не замигает индикатор <code>Power</code>.</li>
+  <li>Отпустите кнопку — принтер распечатает <strong>сервисный лист</strong> с текущими настройками.</li>
+  <li>Для смены шрифта:
+    <ul>
+      <li>🔧 Нажмите <code>Feed</code> 2 раза — переключение между <code>Draft</code>/<code>LQ</code>.</li>
+      <li>🔧 Нажмите <code>Feed</code> 4 раза — выбор размера символов (10/12 cpi).</li>
+    </ol>
+  </li>
+  <li>Подтвердите изменения нажатием <code>Power</code>.</li>
+</ol>
+
+<p>⚠️ <strong>Внимание:</strong> Неправильные действия в сервисном меню могут сбросить настройки принтера к заводским. Если после изменений <em>Epson LX-350</em> перестал печатать, выполните полный сброс (зажмите <code>Feed + Power</code> на 10 секунд).</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если после смены шрифта текст "съезжает" по строкам, проверьте настройку <code>Line Spacing</code> в драйвере. Для <code>LQ</code>-режима рекомендуется значение <code>1/6 дюйма</code>.</p></div>
+
+<h2 id="4-проблемы-при-смене-шрифта-и-их-решения">4. Проблемы при смене шрифта и их решения</h2>
+
+<p>Даже после правильной настройки шрифт может отображаться некорректно. Рассмотрим типичные ошибки и способы их устранения.</p>
+
+<p><strong>Проблема 1:</strong> Принтер игнорирует команды и печатает стандартным шрифтом.</p>
+<ul>
+  <li>🔍 Проверьте, что документ отправляется напрямую на <em>Epson LX-350</em>, а не на виртуальный принтер (например, <code>Microsoft XPS Document Writer</code>).</li>
+  <li>🔍 Обновите драйвер или переустановите его в режиме <code>Администратор</code>.</li>
+  <li>🔍 Для ESC/P-команд используйте <code>Блокнот</code> без форматирования (не Word!).</li>
+</ul>
+
+<p><strong>Проблема 2:</strong> Текст печатается "лесенкой" или со смещением.</p>
+<ul>
+  <li>📏 Установите в драйвере правильный <code>размер бумаги</code> (например, <code>A4</code> вместо <code>Letter</code>).</li>
+  <li>📏 В настройках принтера отключите опцию <code>Автоподбор масштаба</code>.</li>
+  <li>📏 Для многослойных бланков уменьшите <code>плотность печати</code> в сервисном меню.</li>
+</ul>
+
+<p><strong>Проблема 3:</strong> В 1С или бухгалтерских программах шрифт не меняется.</p>
+<p>В большинстве случаев программы типа <code>1С:Предприятие</code> или <code>Парус</code> игнорируют настройки драйвера и отправляют на печать "сырые" ESC/P-команды. Решение:</p>
+<ul>
+  <li>💻 Настройте шрифт непосредственно в программе (раздел <code>Печать → Настройки принтера</code>).</li>
+  <li>💻 Используйте <strong>виртуальный принтер</strong> (например, <em>FinePrint</em>), который преобразует задачи печати.</li>
+</ul>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если вы работаете с <code>1С</code>, проверьте настройки конфигурации — часто шрифт жёстко прописан в шаблоне печати.</p></div>
+
+<h2 id="5-альтернативные-решения-когда-стандартные-методы-не-работают">5. Альтернативные решения: когда стандартные методы не работают</h2>
+
+<p>Если ни один из способов не помог, рассмотрите альтернативные варианты:</p>
+
+<p><strong>1. Использование утилит для управления принтером</strong></p>
+<p>Программы вроде <em>Epson LQ Utility</em> или <em>Printer Settings</em> позволяют гибко настраивать параметры печати, включая шрифты. Скачать их можно на специализированных форумах (например, <code>4pda.ru</code> или <code>printerforums.com</code>).</p>
+
+<p><strong>2. Печать через Linux</strong></p>
+<p>В дистрибутивах Linux (Ubuntu, Debian) драйвер <em>Epson LX-350</em> часто работает стабильнее, чем в Windows. Установите пакет <code>cups</code> и драйвер <code>epson-escpr</code>:</p>
+<pre><code>sudo apt install printer-driver-escpr
+<p>sudo lpadmin -p Epson_LX350 -E -v usb:/dev/usb/lp0 -m epson-lx300+escp2-80</code></pre></p>
+
+<p><strong>3. Аппаратная модификация</strong></p>
+<p>Для экстремальных случаев (например, печати кириллицы в <code>Draft</code>-режиме) существуют <strong>прошивки от сторонних разработчиков</strong>, добавляющие поддержку дополнительных шрифтов. Однако это рискованно:</p>
+<ul>
+  <li>⚠️ Может привести к потере гарантии.</li>
+  <li>⚠️ Необратимо повреждает ПЗУ принтера при ошибке.</li>
+  <li>⚠️ Требует программатора (например, <em>CH341A</em>).</li>
+</ul>
+
+<p>💡 <strong>Совет:</strong> Перед прошивкой сделайте дамп оригинальной памяти принтера!</p>
+
+<h2 id="6-сравнение-методов-смены-шрифта-что-выбрать">6. Сравнение методов смены шрифта: что выбрать?</h2>
+
+<p>Выбор способа зависит от вашей задачи и уровня подготовки. Ниже таблица сравнения:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Метод</th>
+      <th>Сложность</th>
+      <th>Гибкость</th>
+      <th>Подходит для</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Драйвер Windows</td>
+      <td>⭐ (просто)</td>
+      <td>Ограничен стандартными шрифтами</td>
+      <td>Офисные документы, 1С</td>
+    </tr>
+    <tr>
+      <td>ESC/P-команды</td>
+      <td>⭐⭐ (средне)</td>
+      <td>Высокая (можно комбинировать команды)</td>
+      <td>Чеки, этикетки, автоматизированная печать</td>
+    </tr>
+    <tr>
+      <td>BIOS принтера</td>
+      <td>⭐⭐⭐ (сложно)</td>
+      <td>Низкая (только базовые настройки)</td>
+      <td>Сброс настроек, диагностика</td>
+    </tr>
+    <tr>
+      <td>Сторонние утилиты</td>
+      <td>⭐⭐ (средне)</td>
+      <td>Высокая (расширенные функции)</td>
+      <td>Массовая печать, нестандартные форматы</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Для большинства пользователей оптимален <strong>первый способ (драйвер)</strong>, так как не требует технических знаний. ESC/P-команды пригодятся системным администраторам для автоматизации печати, а настройка BIOS — только в случае сбоев.</p>
+
+<h2 id="7-где-скачать-драйвера-и-утилиты-для-epson-lx-350">7. Где скачать драйвера и утилиты для Epson LX-350</h2>
+
+<p>Официальные драйвера и ПО для <em>Epson LX-350</em> доступны на сайте производителя, но часто там отсутствуют утилиты для тонкой настройки. Ниже проверенные источники:</p>
+
+<ul>
+  <li>🔗 <strong>Официальный сайт Epson:</strong>
+    <ul>
+      <li>Драйвер для Windows 10/11: <a href="https://epson.ru/support/lx350" target="_blank">epson.ru/support/lx350</a></li>
+      <li>Руководство пользователя (PDF).</li>
+    </ul>
+  </li>
+  <li>🔗 <strong>Сторонние ресурсы:</strong>
+    <ul>
+      <li><em>Epson LQ Utility</em> — для расширенных настроек (<a href="https://www.printerforums.net" target="_blank">printerforums.net</a>).</li>
+      <li><em>ESC/P Command Generator</em> — для создания команд (<a href="https://github.com" target="_blank">GitHub</a>).</li>
+    </ul>
+  </li>
+  <li>🔗 <strong>Форумы поддержки:</strong>
+    <ul>
+      <li><code>4pda.ru</code> — темы по настройке матричных принтеров.</li>
+      <li><code>ixbt.com</code> — обзоры и инструкции.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>⚠️ <strong>Внимание:</strong> Скачивайте ПО только с проверенных источников. Вирусные "драйвер-паки" могут содержать малварь.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед установкой драйвера отключите антивирус — он может блокировать файлы с цифровой подписью Epson.</p></div>
+
+<h2 id="часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</h2>
+
+<details>
+  <summary>Можно ли установить свой шрифт (например, Arial) на Epson LX-350?</summary>
+  <p>Нет, принтер поддерживает только встроенные шрифты (<code>Draft</code>, <code>LQ</code> и их вариации). Для печати кастомных шрифтов потребуется:</p>
+  <ol>
+    <li>Создать изображение текста в графическом редакторе.</li>
+    <li>Отправить на печать как растровый файл (через драйвер <code>Epson FX</code>).</li>
+  </ol>
+  <p>Качество будет низким из-за матричной технологии.</p>
+</details>
+
+<details>
+  <summary>Почему после смены шрифта текст стал размытым?</summary>
+  <p>Это типичная проблема при переключении на <code>LQ</code>-режим. Решения:</p>
+  <ul>
+    <li>Уменьшите скорость печати в настройках драйвера.</li>
+    <li>Используйте бумагу плотностью 80 г/м² (тонкая бумага провисает).</li>
+    <li>Проверьте ленту — если она изношена, символы будут блёклыми.</li>
+  </ul>
+</details>
+
+<details>
+  <summary>Как сбросить настройки принтера к заводским?</summary>
+  <p>Выполните следующие действия:</p>
+  <ol>
+    <li>Выключите принтер.</li>
+    <li>Зажмите кнопки <code>Feed</code> + <code>Power</code>.</li>
+    <li>Удерживайте 10 секунд, пока не замигают все индикаторы.</li>
+    <li>Отпустите кнопки — принтер перезагрузится с заводскими параметрами.</li>
+  </ol>
+</details>
+
+<details>
+  <summary>Подойдёт ли этот метод для Epson LX-300 или LX-310?</summary>
+  <p>Да, инструкция актуальна для всей линейки <em>Epson LX-3xx</em>, так как они используют одинаковую систему команд <code>ESC/P</code>. Исключение — модели с <strong>USB-интерфейсом</strong> (например, <em>LX-350F</em>), где может отличаться протокол связи.</p>
+</details>
+
+<details>
+  <summary>Можно ли печатать кириллицу в режиме Draft?</summary>
+  <p>Стандартный <code>Draft</code>-режим не поддерживает кириллицу. Решения:</p>
+  <ul>
+    <li>Переключитесь на <code>LQ</code>-режим (команда <code>1B 4D 01</code>).</li>
+    <li>Используйте драйвер с поддержкой <code>CP866</code> (доступен на форумах).</li>
+    <li>Напечатайте текст как графику (через <code>Print Screen</code>).</li>
+  </ul>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#1-способ-1-смена-шрифта-через-драйвер-epson-lx-350">1. Способ 1: Смена шрифта через драйвер Epson LX-350</a></li><li><a href="#2-способ-2-escp-команды-для-ручной-смены-шрифта">2. Способ 2: ESC/P-команды для ручной смены шрифта</a></li><li><a href="#3-способ-3-изменение-шрифта-через-bios-принтера">3. Способ 3: Изменение шрифта через BIOS принтера</a></li><li><a href="#4-проблемы-при-смене-шрифта-и-их-решения">4. Проблемы при смене шрифта и их решения</a></li><li><a href="#5-альтернативные-решения-когда-стандартные-методы-не-работают">5. Альтернативные решения: когда стандартные методы не работают</a></li><li><a href="#6-сравнение-методов-смены-шрифта-что-выбрать">6. Сравнение методов смены шрифта: что выбрать?</a></li><li><a href="#7-где-скачать-драйвера-и-утилиты-для-epson-lx-350">7. Где скачать драйвера и утилиты для Epson LX-350</a></li><li><a href="#часто-задаваемые-вопросы-faq">Часто задаваемые вопросы (FAQ)</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-vypolnit-sbros-chernil-epson.html" class="related-card">Как сбросить чернила Epson: сброс счетчика Waste Ink Pad</a></li><li><a href="/articles/e/ep/epson-eto-kakoj-printer.html" class="related-card">Эпсон это какой принтер: виды, технологии и выбор модели</a></li><li><a href="/articles/k/ka/kak-sdelat-prochistku-dyuz-na-printere-epson-l805.html" class="related-card">Прочистка дюз Epson L805: руководство по восстановлению печати</a></li><li><a href="/articles/k/ka/kak-ustanovit-printer-epson-na-noutbuk.html" class="related-card">Как установить принтер Epson на ноутбук: пошаговая инструкция 2026</a></li><li><a href="/articles/p/pr/printer-epson-ne-vidit-krasku-chto-delat.html" class="related-card">Принтер Epson не видит краску: причины и решения проблемы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-vypolnit-sbros-chernil-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить чернила Epson: сброс счетчика Waste Ink Pad</span><span class="related-bottom-desc">Пошаговая инструкция по сбросу счетчика отработанных чернил Epson. Программы WIC Reset, сервисные це</span></a><a href="/articles/e/ep/epson-eto-kakoj-printer.html" class="related-bottom-card"><span class="related-bottom-title">Эпсон это какой принтер: виды, технологии и выбор модели</span><span class="related-bottom-desc">Разбираем, что такое принтеры Epson. Инфо о технологии Epson 4-Color, сравнение струйных и лазерных </span></a><a href="/articles/k/ka/kak-sdelat-prochistku-dyuz-na-printere-epson-l805.html" class="related-bottom-card"><span class="related-bottom-title">Прочистка дюз Epson L805: руководство по восстановлению печати</span><span class="related-bottom-desc">Пошаговая инструкция по очистке печатающей головки Epson L805. Программные методы, глубокая очистка </span></a><a href="/articles/k/ka/kak-ustanovit-printer-epson-na-noutbuk.html" class="related-bottom-card"><span class="related-bottom-title">Как установить принтер Epson на ноутбук: пошаговая инструкция 2026</span><span class="related-bottom-desc">Подробное руководство по подключению принтера Epson к ноутбуку через USB/Wi-Fi. Драйверы, настройка,</span></a><a href="/articles/p/pr/printer-epson-ne-vidit-krasku-chto-delat.html" class="related-bottom-card"><span class="related-bottom-title">Принтер Epson не видит краску: причины и решения проблемы</span><span class="related-bottom-desc">Экспертное руководство: почему принтер Epson не видит краску и что делать. Проверка чипов, промывка </span></a><a href="/articles/k/ka/kak-promyt-strujnyj-printer-epson-v-domashnikh-usloviyakh.html" class="related-bottom-card"><span class="related-bottom-title">Как промыть струйный принтер Epson дома: Полное руководство</span><span class="related-bottom-desc">Инструкция по очистке печатающей головки Epson. Удаление загустевших чернил, использование промывочн</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

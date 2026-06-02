@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Настройка цвета принтера Epson L805: калибровка и профили ICC — Эпсон Помощь</title>
+    <meta name="description" content="Подробная инструкция по калибровке Epson L805, настройке цветовых профилей и устранению смещений оттенка. Полный гайд для фото-печати.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-nastroit-tsvet-printera-epson-805.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Настройка цвета принтера Epson L805: калибровка и профили ICC">
+    <meta property="og:description" content="Подробная инструкция по калибровке Epson L805, настройке цветовых профилей и устранению смещений оттенка. Полный гайд для фото-печати.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/nastrojka-tsveta/">Настройка цвета</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Настройка цвета принтера Epson L805: калибровка и профили ICC</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Полное руководство по настройке цветопередачи на принтере Epson L805</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#проверка-базовых-условий-перед-калибровкой">Проверка базовых условий перед калибровкой</a></li><li><a href="#базовые-настройки-драйвера-и-управление-цветом">Базовые настройки драйвера и управление цветом</a></li><li><a href="#работа-с-icc-профилями-и-кастомизация">Работа с ICC-профилями и кастомизация</a></li><li><a href="#калибровка-через-утилиту-epson-status-monitor">Калибровка через утилиту Epson Status Monitor</a></li><li><a href="#решение-проблем-с-оттенками-и-несовпадением-цветов">Решение проблем с оттенками и несовпадением цветов</a></li><li><a href="#частые-вопросы-и-ответы">Частые вопросы и ответы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Принтер <em>Epson L805</em> остается одним из самых популярных решений для домашней и полупрофессиональной печати фотографий благодаря системе непрерывной подачи чернил и шестицветной системе. Однако, даже из коробки, устройство может выдавать цвета, отличающиеся от монитора, особенно если вы работаете с требовательными к оттенкам изображениями. Проблема часто кроется не в поломке, а в отсутствии корректной <strong>цветовой калибровки</strong> и неверных настройках драйвера.</p>
+
+<p>Многие пользователи сталкиваются с тем, что отпечатанные снимки кажутся блеклыми или имеют нежелательный оттенок, например, розовый или желтый. Это происходит из-за рассинхронизации между <em>sRGB</em> профилем монитора и <em>ICC-профилем</em> принтера. Чтобы получить идеальный результат на бумаге, необходимо провести серию настроек как в программном обеспечении, так и на самом устройстве, уделяя особое внимание <strong>управлению цветом</strong>.</p>
+
+<h2 id="проверка-базовых-условий-перед-калибровкой">Проверка базовых условий перед калибровкой</h2>
+
+<p>Прежде чем приступать к сложным манипуляциям с профилями, убедитесь, что физическое состояние принтера <em>Epson L805</em> находится в норме. Любое отклонение в работе печатающей головки или наличие засоров приведет к тому, что даже идеальный программный профиль не сможет выдать правильный цвет. Качество печати напрямую зависит от чистоты сопел и свежести чернил.</p>
+
+<p>Вам необходимо проверить уровень чернил во всех шести емкостях. Если какой-либо цвет закончился или его уровень критически низок, смешивание оттенков при печати изменится, и калибровка станет невозможной. Кроме того, настоятельно важно выполнить <strong>продувку дюз</strong> и печать тестовой страницы для выявления пропусков.</p>
+
+<ul>
+<li>🔍 Визуально осмотрите капиллярные трубки на предмет пузырьков воздуха.</li>
+<li>🖨️ Распечатайте тест дюз через <code>Утилиты → Проверка дюз</code> в драйвере.</li>
+<li>🎨 Убедитесь, что все цвета на тесте пропечатываются сплошной линией без разрывов.</li>
+</ul>
+
+<p>Если на тесте есть пропуски, не пытайтесь настроить цветопередачу. Сначала выполните очистку печатающей головки через меню устройства. Обратите внимание, что чрезмерное использование функции очистки может быстро закончить чернила, поэтому делайте перерывы между циклами. Только после того, как все цвета на тесте станут ровными и яркими, можно переходить к программной <strong>настройке параметров</strong>.</p>
+
+<blockquote>⚠️ Внимание: Если вы используете чернила стороннего производства, убедитесь, что их химический состав совместим с головками Epson. Неправильные чернила могут вызвать засоры, которые невозможно устранить стандартными методами, что потребует сложного ремонта.</blockquote>
+
+<h2 id="базовые-настройки-драйвера-и-управление-цветом">Базовые настройки драйвера и управление цветом</h2>
+
+<p>Основная часть работы по коррекции оттенков происходит в окне печати драйвера <em>Epson L805</em>. Именно здесь пользователь часто совершает ошибку, включая функции автоматической коррекции, которые конфликтуют с настройками системы управления цветом. Для профессиональной работы необходимо полностью взять управление цветовым каналом на себя.</p>
+
+<p>При открытии диалогового окна печати в Photoshop или другом редакторе, первым делом перейдите в раздел «Расширенные настройки» (Advanced). Здесь вам нужно найти выпадающий список «Управление цветом» (Color Management) и переключить его с «Управление цветом принтера» на «Управление цветом ОС» (Color Management: Off / No Color Adjustment). Это критически важный шаг, так как он запрещает драйверу принтера вмешиваться в передачу данных цвета.</p>
+
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Рекомендуемое значение</th>
+<th>Эффект</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Управление цветом</td>
+<td>Управление цветом ОС</td>
+<td>Отключает автоматическую коррекцию драйвера</td>
+</tr>
+<tr>
+<td>Цветовой режим</td>
+<td>Adobe RGB (1998) / sRGB</td>
+<td>Зависит от профиля исходного файла</td>
+</tr>
+<tr>
+<td>Тип бумаги</td>
+<td>Точное название бумаги</td>
+<td>Определяет количество подаваемых чернил</td>
+</tr>
+<tr>
+<td>Качество печати</td>
+<td>Высокое / Максимальное</td>
+<td>Обеспечивает плавность градиентов</td>
+</tr>
+</tbody>
+</table>
+
+<p>Выбор типа бумаги в настройках не менее важен, чем управление цветом. Драйвер <em>Epson L805</em> использует разные таблицы инверсии и количества чернил для фотобумаги, матовой бумаги или обычной офисной. Если вы выберете «Фотобумага», а печатаете на матовой, результат будет переувлажнен и цвета станут тусклыми. Всегда используйте <strong>название бумаги</strong>, указанное на упаковке.</p>
+
+<div class="poll-widget" id="poll-48dac722"><div class="poll-widget-question">📊 Какой тип бумаги вы используете чаще всего?</div><div class="poll-widget-option" data-poll="48dac722" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Матовая фотобумага</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="48dac722" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Глянцевая фотобумага</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="48dac722" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Матовая бумага для документов</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="48dac722" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Специальная бумага для принтеров</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<p>После смены настроек управления цветом, нажмите кнопку «Свойства» или «Дополнительно», чтобы проверить, не включены ли функции «Экономия чернил» или «Компенсация сетки». Эти функции могут искусственно снижать плотность цветов, что недопустимо при печати фотографий. Убедитесь, что все ползунки коррекции цвета стоят в нейтральном положении.</p>
+
+<blockquote>⚠️ Внимание: Если интерфейс драйвера показывает, что функция «Управление цветом» выключена, но цвета все равно искажаются, проверьте настройки в самом графическом редакторе. Часто конфликт возникает из-за двойного управления цветом.</blockquote>
+
+<h2 id="работа-с-icc-профилями-и-кастомизация">Работа с ICC-профилями и кастомизация</h2>
+
+<p>Для достижения максимальной точности цветов, особенно при печати коммерческих фото, стандартных настроек драйвера часто недостаточно. Вам потребуются <strong>ICC-профили</strong>, которые описывают поведение конкретной пары «принтер + чернила + бумага». Эти профили можно скачать с сайта производителя бумаги или создать самостоятельно с помощью колориметра.</p>
+
+<p>Процесс установки профиля заключается в помещении файла с расширением.icc в системную папку профилей. В Windows это обычно путь <code>C:\Windows\System32\spool\drivers\color</code>. После установки профиля, в окне драйвера в разделе «Управление цветом» вы сможете выбрать его из списка вместо стандартных настроек. Это позволит принтеру <em>Epson L805</em> точно знать, как смешивать чернила для получения нужного оттенка на конкретном материале.</p>
+
+<p>Если вы используете оригинальные чернила Epson и оригинальную бумагу, производитель уже включает в драйвер необходимые профили. Однако, при использовании сторонних материалов, стандартный профиль может давать ошибку в виде «грязного» черного цвета или неестественных синих теней. В этом случае рекомендуется использовать профиль, сгенерированный производителем чернил, или создать свой.</p>
+
+<details class="faq-item"><summary>Как создать собственный ICC-профиль?</summary><div class="faq-answer"><p>Для создания собственного профиля потребуется спектрофотометр (например, X-Rite i1Studio) и специальное ПО (например, ArgyllCMS или профильные утилиты от производителя колориметра). Процесс включает печать тестового-листа (цветовой мишени), его сканирование прибором и генерацию файла.icc, который затем устанавливается в систему.</p></div></details>
+
+<p>Важно понимать, что один и тот же ICC-профиль не будет работать на разных типах бумаги. Профиль, созданный для глянцевой фотобумаги, даст совершенно неверный результат на матовой. Поэтому при смене типа материалов необходимо всегда пересматривать выбор профиля в настройках печати. Это обеспечит стабильную и предсказуемую <strong>цветопередачу</strong>.</p>
+
+<div class="checklist-block"><h4>☑️ Проверка установки профиля</h4><label class="check-item"><input type="checkbox"><span>Скачать файл.icc с сайта производителя бумаги</span></label><label class="check-item"><input type="checkbox"><span>Поместить файл в папку системных профилей</span></label><label class="check-item"><input type="checkbox"><span>Перезагрузить компьютер или переподключить принтер</span></label><label class="check-item"><input type="checkbox"><span>Выбрать профиль в настройках драйвера при печати</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="калибровка-через-утилиту-epson-status-monitor">Калибровка через утилиту Epson Status Monitor</h2>
+
+<p>Помимо настроек драйвера, в устройстве <em>Epson L805</em> существуют внутренние утилиты, доступные через панель управления или утилиту мониторинга состояния. Эти инструменты позволяют выполнить базовую коррекцию цветов без запуска внешних программ. Это особенно удобно, если вы печатаете документы или простые изображения напрямую из проводника или браузера.</p>
+
+<p>Чтобы вызвать эти настройки, откройте <code>Панель управления → Устройства и принтеры</code>, найдите свой принтер и выберите «Настройка печати» или «Свойства». Перейдите на вкладку «Обслуживание», а затем найдите кнопку «Настройка цвета» или «Color Adjustment». Здесь вы увидите возможность вручную корректировать значения CMYK (Cyan, Magenta, Yellow, Key/Black) и насыщенность.</p>
+
+<p>Если вы заметили, что изображение имеет легкий фиолетовый оттенок, попробуйте немного уменьшить значение пурпура (Magenta) в этом меню. Если цвета слишком бледные, увеличьте насыщенность. Эти изменения сохраняются в памяти принтера и будут применяться ко всем заданиям, отправленным в режиме «Управление цветом принтера».</p>
+
+<ul>
+<li>💡 Используйте минимальные шаги коррекции (не более 2-3 делений за раз).</li>
+<li>📉 Делайте пробную печать после каждого изменения настроек.</li>
+<li>🔄 Сбрасывайте настройки на «По умолчанию», если результат ухудшается.</li>
+</ul>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед началом ручной калибровки в настройках принтера, обязательно убедитесь, что экран монитора также откалиброван. Иначе вы будете корректировать цвет, опираясь на неверные данные с дисплея, что приведет к еще большим ошибкам в печати.</p></div>
+
+<p>Стоит отметить, что ручная коррекция через меню принтера не заменяет полноценный ICC-профиль, но является отличным инструментом для быстрой подстройки, если вы не хотите возиться с драйверами каждый раз. Однако, для критически важных задач, таких как печать портфолио, лучше полагаться на <strong>профессиональные профили</strong>.</p>
+
+<h2 id="решение-проблем-с-оттенками-и-несовпадением-цветов">Решение проблем с оттенками и несовпадением цветов</h2>
+
+<p>Иногда, даже после всех настроек, цвета на отпечатке могут значительно отличаться от изображения на экране. Это может быть вызвано несколькими факторами: типом освещения в комнате, возрастом чернил или особенностями визуального восприятия. Человек привык воспринимать цвета при дневном свете, в то время как экраны светятся, а бумага отражает свет.</p>
+
+<p>Для начала убедитесь, что вы смотрите на отпечаток при правильном освещении. Идеальным считается свет с цветовой температурой около 5000-5500 К (дневной свет). Если вы осматриваете фото при желтом свете лампочки накаливания, любой белый цвет будет казаться желтоватым, а синие оттенки — зелеными. Используйте специальную настольную лампу для оценки качества печати.</p>
+
+<p>Если проблема сохраняется, проверьте, не истек ли срок годности чернил или не изменился ли их химический состав. Старые чернила могут окисляться, что меняет их оптические свойства. Также стоит проверить, не использовался ли режим «Экономия чернил» (Eco Mode) в драйвере, который существенно снижает плотность нанесения пигмента.</p>
+
+<blockquote>⚠️ Внимание: Если вы недавно заменили печатающую головку или проводили глубокую очистку, принтеру может потребоваться время для стабилизации давления в системе. Дайте устройству поработать в холостом режиме или распечатайте несколько тестовых страниц перед началом ответственной работы.</blockquote>
+
+<p>В некоторых случаях помогает отключение функции «Компенсация весов» в меню настроек принтера, если она включена. Эта функция предназначена для компенсации веса бумаги при транспортировке, но иногда может влиять на траекторию подачи чернил. Убедитесь, что все механические параметры устройства настроены верно.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Ключевой момент: Разница между экраном и отпечатком неизбежна, но её можно минимизировать до невидимого глазу уровня, используя правильные ICC-профили и калиброванный монитор.</p></div>
+
+<p>Для диагностики также полезно распечатать цветовой круг или таблицу градиентов. Это поможет визуально оценить плавность переходов и наличие полос. Если на градиентах видны полосы, возможно, проблема не в цвете, а в засорении сопел, что требует повторной <strong>чистки головок</strong>.</p>
+
+<h2 id="частые-вопросы-и-ответы">Частые вопросы и ответы</h2>
+
+<details>
+<summary>Почему при печати на Epson L805 цвета получаются слишком темными?</summary>
+<p>Чаще всего это связано с выбором неверного типа бумаги в настройках драйвера. Если вы выбрали «Матовая бумага», а используете «Глянцевую», принтер подаст слишком много чернил, которые не успевают высохнуть и стекают, создавая эффект «грязи» и затемнения. Также проверьте, не включен ли режим «Высокая плотность» в утилитах обслуживания.</p>
+</details>
+
+<details>
+<summary>Можно ли использовать ICC-профили от других принтеров Epson?</summary>
+<p>Нет, ICC-профили создаются под конкретную модель принтера, тип головок и систему подачи чернил. Использование профиля от, например, <em>Epson L800</em> или <em>L1800</em> на модели <em>L805</em> даст неверный результат, так как физика распыления чернил у этих моделей может отличаться.</p>
+</details>
+
+<details>
+<summary>Как сбросить настройки цвета на заводские?</summary>
+<p>Для сброса настроек цвета в драйвере перейдите в <code>Свойства принтера → Вкладка Цвет → сбросить все настройки</code> (или аналогичную кнопку). В меню самого принтера через панель управления можно выбрать «Сбросить настройки» в разделе «Настройка», но это сбросит и сетевые настройки, поэтому будьте осторожны.</p>
+</details>
+
+<details>
+<summary>Влияет ли марка чернил на цветопередачу?</summary>
+<p>Да, существенно. Даже чернила одного производителя, но разных серий, могут иметь разную интенсивность цвета. Оригинальные чернила Epson имеют наиболее стабильный цветовой охват. Сторонние чернила часто требуют подбора индивидуального ICC-профиля, так как их пигменты могут давать другие оттенки.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#проверка-базовых-условий-перед-калибровкой">Проверка базовых условий перед калибровкой</a></li><li><a href="#базовые-настройки-драйвера-и-управление-цветом">Базовые настройки драйвера и управление цветом</a></li><li><a href="#работа-с-icc-профилями-и-кастомизация">Работа с ICC-профилями и кастомизация</a></li><li><a href="#калибровка-через-утилиту-epson-status-monitor">Калибровка через утилиту Epson Status Monitor</a></li><li><a href="#решение-проблем-с-оттенками-и-несовпадением-цветов">Решение проблем с оттенками и несовпадением цветов</a></li><li><a href="#частые-вопросы-и-ответы">Частые вопросы и ответы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-sbrosit-kalibrovku-printera-epson.html" class="related-card">Как сбросить калибровку принтера Epson: полное руководство</a></li><li><a href="/articles/k/ka/kak-ubrat-polya-pri-pechati-na-printere-epson.html" class="related-card">Как убрать поля при печати на принтере Epson: Полная инструкция</a></li><li><a href="/articles/p/pr/printer-epson-kak-nastroit-tsveta.html" class="related-card">Как настроить цвета на принтере Epson: полное руководство и калибровка</a></li><li><a href="/articles/k/ka/kak-sdelat-kalibrovku-printera-epson-l210.html" class="related-card">Калибровка принтера Epson L210: пошаговая инструкция 2026</a></li><li><a href="/articles/k/ka/kak-vklyuchit-tsvetnuyu-pechat-na-printere-epson.html" class="related-card">Как включить цветную печать на принтере Epson: полные инструкции</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-sbrosit-kalibrovku-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить калибровку принтера Epson: полное руководство</span><span class="related-bottom-desc">Пошаговая инструкция по сбросу калибровки принтеров Epson. Решение проблем с качеством печати, вырав</span></a><a href="/articles/k/ka/kak-ubrat-polya-pri-pechati-na-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как убрать поля при печати на принтере Epson: Полная инструкция</span><span class="related-bottom-desc">Пошаговое руководство: как отключить поля, настроить масштаб и убрать белую рамку при печати на прин</span></a><a href="/articles/p/pr/printer-epson-kak-nastroit-tsveta.html" class="related-bottom-card"><span class="related-bottom-title">Как настроить цвета на принтере Epson: полное руководство и калибровка</span><span class="related-bottom-desc">Узнайте, как настроить цвета на принтере Epson. Пошаговая инструкция: чистка дюз, выравнивание, ручн</span></a><a href="/articles/k/ka/kak-sdelat-kalibrovku-printera-epson-l210.html" class="related-bottom-card"><span class="related-bottom-title">Калибровка принтера Epson L210: пошаговая инструкция 2026</span><span class="related-bottom-desc">Как правильно выполнить калибровку принтера Epson L210: подготовка, настройка головок, выравнивание </span></a><a href="/articles/k/ka/kak-vklyuchit-tsvetnuyu-pechat-na-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как включить цветную печать на принтере Epson: полные инструкции</span><span class="related-bottom-desc">Пошаговая инструкция по включению цветной печати на МФУ и принтерах Epson. Решение проблем с черно-б</span></a><a href="/articles/p/po/pochemu-printer-epson-pechataet-golubym-tsvetom.html" class="related-bottom-card"><span class="related-bottom-title">Почему принтер Epson печатает только голубым: причины и ремонт</span><span class="related-bottom-desc">Принтер Epson печатает голубым цветом? Разбираем основные причины: от засоров дюз до сброса картридж</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

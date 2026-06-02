@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Калибровка печатающей головки Epson: что это и как сделать — Эпсон Помощь</title>
+    <meta name="description" content="Полное руководство по калибровке печатающей головки принтеров Epson. Разбор причин сдвига изображения, пошаговая инструкция и устранение проблем.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kalibrovka-pechatayushchej-golovki-epson-chto-eto-znachit.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Калибровка печатающей головки Epson: что это и как сделать">
+    <meta property="og:description" content="Полное руководство по калибровке печатающей головки принтеров Epson. Разбор причин сдвига изображения, пошаговая инструкция и устранение проблем.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/chistka-golovok/">Чистка головок</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Калибровка печатающей головки Epson: что это и как сделать</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Что означает калибровка печатающей головки Epson и зачем она нужна</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#суть-процесса-калибровки-и-её-отличие-от-прочистки">Суть процесса калибровки и её отличие от прочистки</a></li><li><a href="#основные-причины-сдвига-изображения-и-ошибок-позиционирования">Основные причины сдвига изображения и ошибок позиционирования</a></li><li><a href="#пошаговая-процедура-калибровки-через-меню-устройства">Пошаговая процедура калибровки через меню устройства</a></li><li><a href="#калибровка-через-программное-обеспечение-на-пк">Калибровка через программное обеспечение на ПК</a></li><li><a href="#ручная-очистка-энкодера-как-часть-процесса-настройки">Ручная очистка энкодера как часть процесса настройки</a></li><li><a href="#когда-калибровка-не-помогает-диагностические-признаки">Когда калибровка не помогает: диагностические признаки</a></li><li><a href="#профилактика-сдвига-изображения-и-уход-за-устройством">Профилактика сдвига изображения и уход за устройством</a></li><li><a href="#faq-частые-вопросы-о-калибровке">FAQ: Частые вопросы о калибровке</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Многие пользователи струйной техники сталкиваются с ситуацией, когда четкий документ или яркое фото превращаются в «размытое пятно» с цветными полосами. В 90% случаев проблема кроется не в неисправности устройства, а в потере геометрической точности позиционирования чернил. Именно для решения этой задачи предназначена процедура <strong>калибровки печатающей головки</strong>. Это процесс, при котором принтер синхронизирует физическое положение сопел с программной картой печати, обеспечивая идеальное совпадение слоев краски.</p>
+
+<p>Если вы замечаете, что при печати текст имеет «двойной контур», а цветные блочные области выглядят пиксельными, <em>Epson</em> требует немедленной настройки. Игнорирование этой проблемы приведет не только к браку на бумаге, но и к перерасходу дорогостоящих чернил, так как устройство будет пытаться компенсировать сдвиг, удваивая подачу пигмента на одни и те же участки листа.</p>
+
+<h2 id="суть-процесса-калибровки-и-её-отличие-от-прочистки">Суть процесса калибровки и её отличие от прочистки</h2>
+
+<p>Пользователи часто путают две фундаментально разные процедуры: прочистку дюз и калибровку. <strong>Прочистка</strong> направлена на удаление засохших чернил из сопел, если они забиты и не печатают вовсе. <strong>Калибровка</strong> же решает проблему механического смещения. Представьте, что у вас есть два пистолета, стреляющие черными и голубыми каплями. Даже если оба исправны, если один стоит чуть левее другого, линия получится не черной, а размытой серо-голубой. Калибровка — это команда «выровняться в одну линию» для всех цветовых модулей.</p>
+
+<p>В современных моделях <em>Epson WorkForce</em> и <em>Stylus</em> этот процесс автоматизирован, но он требует участия оператора для проверки результата. Система прогоняет принудительные тестовые паттерны, считывает их с помощью оптического датчика (в продвинутых моделях) или просит пользователя визуально оценить совпадение линий на специальном листе. Ошибки в этом этапе могут привести к тому, что изображение станет еще хуже, чем было изначально.</p>
+
+<p>Важно понимать, что калибровка не восстанавливает физический износ механизмов. Если каретка имеет люфт или шестерни привода изношены, программная настройка даст лишь временный эффект. <strong>Механическая точность</strong> должна быть обеспечена аппаратно, прежде чем вы начнете настраивать софт. </p>
+
+<blockquote>
+<p>⚠️ Внимание: Если после повторной калибровки полосы и сдвиги не исчезают в течение трех циклов, проблема, скорее всего, аппаратная (смещение каретки, грязные энкодеры или износ шестерен), и дальнейшие попытки настройки могут лишь перегрузить систему управления.</p>
+</blockquote>
+
+<blockquote>
+<p>⚠️ Важно: Характеристики датчиков и алгоритмы калибровки могут отличаться в зависимости от серии устройства. Всегда сверяйтесь с инструкцией именно для вашей модели в разделе «Техническое обслуживание».</p>
+</blockquote>
+
+<div class="poll-widget" id="poll-cb724f51"><div class="poll-widget-question">📊 Заметили ли вы сдвиг цветов при печати?</div><div class="poll-widget-option" data-poll="cb724f51" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Да, текст раздваивается</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="cb724f51" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Да, цветные рамки смещены</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="cb724f51" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Печать четкая, всё ок</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="cb724f51" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Не знаю, как проверить</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="основные-причины-сдвига-изображения-и-ошибок-позиционирования">Основные причины сдвига изображения и ошибок позиционирования</h2>
+
+<p>Почему принтер <em>Epson</em> вдруг начинает ошибаться в координатах? Одна из самых частых причин — использование некачественного или неподходящего носителя. Когда бумага слишком толстая или, наоборот, слишком тонкая, она может сминаться или проскальзывать при подаче, что сбивает расчетное положение каретки. Также на точность влияет <strong>направление подачи бумаги</strong>. Если вы пытаетесь печатать на плотной фотобумаге в режиме «обычной бумаги», механизм захвата не справится с точным позиционированием.</p>
+
+<p>Вторая группа причин связана с физическим состоянием устройства. Пыль, грязь и засохшие чернила на <strong>энкодерной полосе</strong> (прозрачной ленте с метками) являются главным врагом калибровки. Энкодер сообщает системе, где именно находится каретка в данный момент. Если на нем есть отпечатки пальцев или брызги чернил, принтер «слепнет» и начинает гадать позицию, что приводит к ужасным артефактам печати. <code>Полоса энкодера</code> требует регулярной деликатной очистки.</p>
+
+<p>Третья причина — температурный режим. Струйные головки Epson чувствительны к холоду. Если устройство находится в неотапливаемом помещении, детали корпуса и каретки могут незначительно деформироваться от перепадов температур. В этом случае калибровка, выполненная в холодном состоянии, может дать сбой при прогреве принтера. <strong>Термическая стабильность</strong> — залог качественной печати.</p>
+
+<ul>
+<li>❌ Использование бумаги с влажностью выше нормы, вызывающее её деформацию в процессе печати.</li>
+<li>❌ Грязь на энкодерной ленте, нарушающая считывание координат кареткой.</li>
+<li>❌ Небрежное перемещение устройства, приводящее к сбитым механическим упорам.</li>
+</ul>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед началом любых работ по настройке убедитесь, что принтер стоит на идеально ровной поверхности. Малейший наклон в 2-3 градуса может привести к неравномерной подаче бумаги и ошибке калибровки.</p></div>
+
+<h2 id="пошаговая-процедура-калибровки-через-меню-устройства">Пошаговая процедура калибровки через меню устройства</h2>
+
+<p>Большинство моделей <em>Epson</em> имеют встроенную функцию настройки, доступную прямо с панели управления. Это самый быстрый способ, не требующий подключения к компьютеру. Процесс начинается с загрузки чистого листа бумаги формата А4 в лоток. Убедитесь, что в режиме подачи выбран правильный тип бумаги, иначе механизм может зажевать лист или выдать ошибку.</p>
+
+<p>Перейдите в главное меню принтера. Обычно путь выглядит так: нажмите кнопку <code>Menu</code> (Меню), затем выберите раздел <code>Настройки</code> (Setup) или <code>Поддерживающие функции</code> (Maintenance). В списке опций ищите пункт <code>Калибровка печатающей головки</code> (Head Alignment) или <code>Выравнивание головок</code>. Важно не перепутать его с «Прочисткой дюз», так как это разные процессы.</p>
+
+<p>После выбора опции принтер распечатает тестовый лист с набором вертикальных линий и цифр. На этом этапе от вас требуется внимательность. Вам нужно найти группы линий, где вертикальные полосы идеально совпадают по вертикали, и записать их номера. Если линии расходятся, нужно выбрать тот номер, где сдвиг наименьший. </p>
+
+<div class="checklist-block"><h4>☑️ Этапы калибровки</h4><label class="check-item"><input type="checkbox"><span>Загрузить чистую бумагу А4</span></label><label class="check-item"><input type="checkbox"><span>Выбрать меню «Обслуживание»</span></label><label class="check-item"><input type="checkbox"><span>Запустить «Выравнивание головок»</span></label><label class="check-item"><input type="checkbox"><span>Заполнить тестовый лист номерами</span></label><label class="check-item"><input type="checkbox"><span>Подтвердить новый результат</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 5</div></div>
+
+<p>Ввод данных осуществляется кнопками на панели или через сенсорный экран. После подтверждения принтер выполнит финальную запись координат в энергонезависимую память. Если результат вас не устроил, процедуру можно повторить, но не стоит делать это более двух раз подряд без перерыва, чтобы избежать перегрева печатающей головки.</p>
+
+<details class="faq-item"><summary>Что делать, если принтер не печатает тестовый лист?</summary><div class="faq-answer"><p>Если на экране появляется ошибка «Нет бумаги» при наличии листа, проверьте датчики подачи. Возможно, они загрязнены или бумага вставлена криво. Попробуйте перегрузить лист, перевернув его другой стороной.</p></div></details>
+
+<h2 id="калибровка-через-программное-обеспечение-на-пк">Калибровка через программное обеспечение на ПК</h2>
+
+<p>Если панель управления принтера неудобна или не отображает полные результаты теста, лучше использовать драйвер на компьютере. Подключите устройство по USB или сети и откройте <strong>Свойства принтера</strong> в панели управления Windows. Перейдите на вкладку «Сервис» или «Обслуживание». Здесь интерфейс часто более информативен, позволяя увидеть, какие именно цвета дают сдвиг.</p>
+
+<p>Запустите мастер выравнивания. Процесс аналогичен тому, что происходит на самом устройстве: печать тестовой страницы, визуальная оценка и ввод данных. Однако в некоторых драйверах <em>Epson</em> есть автоматический режим, когда принтер сам сканирует тестовый лист (если у него есть сканер) и корректирует параметры без вашего участия. Это называется <strong>автоматической калибровкой</strong> и дает высокую точность.</p>
+
+<p>Важно отметить, что при работе через ПК вы можете выбрать режим «Двусторонняя печать» или «Односторонняя печать». Если вы планируете печатать в дуплексе, обязательно проведите калибровку именно в режиме двусторонней печати. Сдвиги при печати на обратной стороне листа часто отличаются от односторонних из-за особенностей прохода бумаги через узлы захвата.</p>
+
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Значение «Норма»</th>
+<th>Значение «Ошибка»</th>
+<th>Последствие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Сдвиг по вертикали</strong></td>
+<td>0 мкм (совпадение линий)</td>
+<td>Более 0.5 мм</td>
+<td>Размытый текст, «призрачные» контуры</td>
+</tr>
+<tr>
+<td><strong>Сдвиг по горизонтали</strong></td>
+<td>0 мкм</td>
+<td>Более 1 мм</td>
+<td>Искажение геометрии рисунков</td>
+</tr>
+<tr>
+<td><strong>Синхронность цветов</strong></td>
+<td>Идеальное совпадение</td>
+<td>Растяжение слоев</td>
+<td>Цветной ореол вокруг объектов</td>
+</tr>
+<tr>
+<td><strong>Состояние энкодера</strong></td>
+<td>Чистая прозрачная лента</td>
+<td>Пятна, пыль, отпечатки</td>
+<td>Полный сбой позиционирования</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="ручная-очистка-энкодера-как-часть-процесса-настройки">Ручная очистка энкодера как часть процесса настройки</h2>
+
+<p>Если автоматическая калибровка не дает результата, проблема часто кроется не в софте, а в физическом датчике. <strong>Энкодерная полоса</strong> — это тонкая прозрачная лента с черной шкалой, натянутая между стенками принтера. Именно она является «глазами» каретки. Со временем на неё попадают брызги чернил, смазка или пыль, из-за чего принтер теряет ориентацию в пространстве.</p>
+
+<p>Для очистки необходимо выключить принтер и открыть доступ к каретке. Аккуратно отодвиньте каретку в сторону (если мотор заблокирован, не применяйте силу, лучше перемотать шлейф вручную, но очень осторожно). Возьмите мягкую безворсовую салфетку, слегка смоченную дистиллированной водой или специальным чистящим средством для оптики. Протрите ленту <code>энкодера</code> мягкими движениями вдоль её длины, не надавливая слишком сильно, чтобы не порвать.</p>
+
+<p>Следите за тем, чтобы на ленте не осталось ворса. После очистки дайте ей полностью высохнуть в течение 10-15 минут. Только после этого можно снова включать устройство и пытаться провести калибровку. Это действие часто решает проблему «плавающих» полос, которые невозможно исправить программно.</p>
+
+<blockquote>
+<p>⚠️ Внимание: Никогда не используйте спирт или агрессивные растворители для очистки энкодера, если производитель не указал это в инструкции. Это может помутнить пластик или растворить красящее покрытие шкалы, что приведет к полной поломке системы позиционирования.</p>
+</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Чистка энкодерной ленты — это обязательный шаг перед повторной попыткой калибровки, если автоматические методы не приносят успеха. Грязь на датчике делает программную настройку бессмысленной.</p></div>
+
+<h2 id="когда-калибровка-не-помогает-диагностические-признаки">Когда калибровка не помогает: диагностические признаки</h2>
+
+<p>Иногда пользователи тратят часы на повторение процедур выравнивания, но результат не меняется. Это сигнал о более серьезных неисправностях. Если после очистки энкодера и нескольких циклов настройки линии все равно расходятся, возможно, <strong>шестерни привода каретки</strong> имеют износ. Металлические или пластиковые зубья могут сточиться, создавая люфт, при котором каретка «проскакивает» нужную точку.</p>
+
+<p>Также стоит проверить состояние ленточного кабеля каретки. Если коннектор окислился или провод перетерся, сигнал от датчиков энкодера может поступать с задержкой или искажениями. В таких случаях требуется профессиональная диагностика и замена компонентов. <em>Ремонт головки</em> или замена шлейфа — это уже уровень сервисного центра.</p>
+
+<p>Еще один признак — критический износ электроники. Если плата управления перегревается или имеет дефекты, она может выдавать неверные команды на двигатель. В этом случае принтер печатает нормально в одном направлении, но ошибается при возврате. Это требует замены платы или чипов управления.</p>
+
+<ul>
+<li>🔍 Износ резиновых роликов подачи бумаги, вызывающий проскальзывание листа.</li>
+<li>🔍 Деформация корпуса принтера из-за механических ударов или падения.</li>
+<li>🔍 Поломка шагового двигателя каретки, приводящая к нестабильному вращению.</li>
+</ul>
+
+<details class="faq-item"><summary>Можно ли починить энкодер самостоятельно?</summary><div class="faq-answer"><p>В большинстве случаев да, но если на ленте есть трещины или физические повреждения, её придется менять. Это несложная процедура для опытного пользователя, но требует аккуратности при демонтаже.</p></div></details>
+
+<h2 id="профилактика-сдвига-изображения-и-уход-за-устройством">Профилактика сдвига изображения и уход за устройством</h2>
+
+<p>Чтобы не доводить до необходимости сложной калибровки, важно соблюдать правила эксплуатации. Регулярная печать — залог здоровья струйной техники. Если принтер простаивает более двух недель, чернила в соплах подсыхают, а смазка на направляющих застывает. Рекомендуется делать тестовую печать раз в неделю, даже если нет срочной необходимости.</p>
+
+<p>Используйте только качественные чернила. Дешевые аналоги часто имеют неправильную вязкость или содержат крупные частицы, которые забивают сопла и загрязняют энкодер. <strong>Оригинальные картриджи</strong> или сертифицированные системы непрерывной подачи чернил (СНПЧ) обеспечивают стабильную работу механизмов.</p>
+
+<p>Следите за чистотой рабочего места. Пыль — главный враг оптики. Если ваш принтер стоит на полке, где часто работают с бумагой (которая пылит), накрывайте его крышкой или отодвигайте подальше от зоны активного пылеобразования. Чистота внутри корпуса — это 50% успеха в поддержании <strong>геометрической точности</strong> печати.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Храните бумагу в оригинальной упаковке до момента использования. Открытые пачки быстро впитывают влагу из воздуха, что меняет их физические свойства и приводит к замятиям и сдвигам при печати.</p></div>
+
+<h2 id="faq-частые-вопросы-о-калибровке">FAQ: Частые вопросы о калибровке</h2>
+
+<details>
+<summary>Как часто нужно проводить калибровку печатающей головки?</summary>
+<p>В норме процедура требуется только при возникновении видимых дефектов печати (сдвиг цветов, размытость). Если ошибок нет, искусственно запускать калибровку каждый месяц не нужно, так как это расходует чернила и ресурс печатающей головки. Однако после восстановления заводских настроек или замены картриджей рекомендуется проверить точность.</p>
+</details>
+
+<details>
+<summary>Можно ли калибровать принтер, если он печатает с пробелами?</summary>
+<p>Нет. Сначала необходимо выполнить прочистку дюз и убедиться, что все сопла работают исправно. Калибровка на неработающей головке бессмысленна, так как она настраивает положение активных слоев, а не восстанавливает их подачу.</p>
+</details>
+
+<details>
+<summary>Что делать, если принтер не может считать тестовый лист автоматически?</summary>
+<p>Если автоматическое сканирование не сработало, используйте ручной режим. Распечатайте тест, внимательно посмотрите на линии и введите номера лучших совпадений вручную через меню или драйвер. Убедитесь, что лист лежал ровно и не помялся в процессе сканирования.</p>
+</details>
+
+<details>
+<summary>Почему калибровка не помогает, если я только что купил новый принтер?</summary>
+<p>Иногда новые устройства требуют первичной настройки после распаковки. Если проблема сохраняется, возможно, устройство имеет производственный брак или было повреждено при транспортировке. В этом случае обратитесь в сервисный центр по гарантии.</p>
+</details>
+
+<details>
+<summary>Влияет ли тип бумаги на результаты калибровки?</summary>
+<p>Да, существенно. Толстая бумага меняет траекторию прохождения через принтер, что может потребовать отдельной калибровки для режима «Плотная бумага» или «Фотобумага». Для обычной бумаги используйте стандартные настройки.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#суть-процесса-калибровки-и-её-отличие-от-прочистки">Суть процесса калибровки и её отличие от прочистки</a></li><li><a href="#основные-причины-сдвига-изображения-и-ошибок-позиционирования">Основные причины сдвига изображения и ошибок позиционирования</a></li><li><a href="#пошаговая-процедура-калибровки-через-меню-устройства">Пошаговая процедура калибровки через меню устройства</a></li><li><a href="#калибровка-через-программное-обеспечение-на-пк">Калибровка через программное обеспечение на ПК</a></li><li><a href="#ручная-очистка-энкодера-как-часть-процесса-настройки">Ручная очистка энкодера как часть процесса настройки</a></li><li><a href="#когда-калибровка-не-помогает-диагностические-признаки">Когда калибровка не помогает: диагностические признаки</a></li><li><a href="#профилактика-сдвига-изображения-и-уход-за-устройством">Профилактика сдвига изображения и уход за устройством</a></li><li><a href="#faq-частые-вопросы-о-калибровке">FAQ: Частые вопросы о калибровке</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/e/ep/epson-l100-kak-prochistit.html" class="related-card">Как прочистить принтер Epson L100: ручная и программная чистка</a></li><li><a href="/articles/p/po/pochemu-tsvetnoj-printer-polosit-epson.html" class="related-card">Почему цветной принтер Epson полосит: причины и способы устранения</a></li><li><a href="/articles/p/pr/printer-epson-l222-pechataet-s-polosami-chto-delat.html" class="related-card">Принтер Epson L222 печатает с полосами: пошаговая инструкция по ремонту</a></li><li><a href="/articles/k/ka/kak-pochistit-golovku-na-printere-epson-l3100.html" class="related-card">Как почистить головку на принтере Epson L3100: 3 способа устранения засоров</a></li><li><a href="/articles/p/pr/printer-epson-l132-pechataet-s-polosami-chto-delat.html" class="related-card">Принтер Epson L132 печатает с полосами: причины и способы устранения</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/e/ep/epson-l100-kak-prochistit.html" class="related-bottom-card"><span class="related-bottom-title">Как прочистить принтер Epson L100: ручная и программная чистка</span><span class="related-bottom-desc">Пошаговая инструкция: как прочистить печатающую головку Epson L100 программно и вручную. Решение про</span></a><a href="/articles/p/po/pochemu-tsvetnoj-printer-polosit-epson.html" class="related-bottom-card"><span class="related-bottom-title">Почему цветной принтер Epson полосит: причины и способы устранения</span><span class="related-bottom-desc">Разбираем основные причины полос на печати Epson. От засорения дюз до проблем с головкой. Эффективны</span></a><a href="/articles/p/pr/printer-epson-l222-pechataet-s-polosami-chto-delat.html" class="related-bottom-card"><span class="related-bottom-title">Принтер Epson L222 печатает с полосами: пошаговая инструкция по ремонту</span><span class="related-bottom-desc">Полосы на принтере Epson L222? Узнайте как прочистить дюз, выровнять сопла и устранить засоры самост</span></a><a href="/articles/k/ka/kak-pochistit-golovku-na-printere-epson-l3100.html" class="related-bottom-card"><span class="related-bottom-title">Как почистить головку на принтере Epson L3100: 3 способа устранения засоров</span><span class="related-bottom-desc">Пошаговая инструкция: как почистить головку на принтере Epson L3100. Автоматическая промывка, ручная</span></a><a href="/articles/p/pr/printer-epson-l132-pechataet-s-polosami-chto-delat.html" class="related-bottom-card"><span class="related-bottom-title">Принтер Epson L132 печатает с полосами: причины и способы устранения</span><span class="related-bottom-desc">Полные инструкции по удалению полос на принтере Epson L132. Чистка дюз, проверка картриджей, обслужи</span></a><a href="/articles/k/ka/kak-prokachat-chernyj-tsvet-na-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как прокачать черный цвет на принтере Epson: Полное руководство</span><span class="related-bottom-desc">Инструкция по восстановлению плотности черного цвета на Epson. Очистка дюз, прокачка чернил, сброс с</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

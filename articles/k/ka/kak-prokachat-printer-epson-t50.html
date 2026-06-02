@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Прокачка Epson T50: прошивка, чипы и СБПЧ для идеальной печати — Эпсон Помощь</title>
+    <meta name="description" content="Полное руководство по модернизации Epson T50. Инструкция по установке чипов, СБПЧ, сбросу памперса и тонкой настройке качества печати.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-prokachat-printer-epson-t50.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Прокачка Epson T50: прошивка, чипы и СБПЧ для идеальной печати">
+    <meta property="og:description" content="Полное руководство по модернизации Epson T50. Инструкция по установке чипов, СБПЧ, сбросу памперса и тонкой настройке качества печати.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/zapravka-chernil/">Заправка чернил</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Прокачка Epson T50: прошивка, чипы и СБПЧ для идеальной печати</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Как прокачать принтер Epson T50: от чипов до СБПЧ</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#введение-в-модернизацию-легендарной-модели">Введение в модернизацию легендарной модели</a></li><li><a href="#установка-системы-непрерывной-подачи-чернил">Установка системы непрерывной подачи чернил</a></li><li><a href="#работа-с-чипами-и-обход-блокировок">Работа с чипами и обход блокировок</a></li><li><a href="#прошивка-и-сброс-памперса">Прошивка и сброс памперса</a></li><li><a href="#тонкая-настройка-качества-печати">Тонкая настройка качества печати</a></li><li><a href="#выбор-чернил-и-профилактика-засоров">Выбор чернил и профилактика засоров</a></li><li><a href="#возможные-сложности-и-их-решение">Возможные сложности и их решение</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><h2 id="введение-в-модернизацию-легендарной-модели">Введение в модернизацию легендарной модели</h2>
+<p>Epson <em>T50</em> по праву считается одной из самых успешных моделей струйных принтеров последнего десятилетия, обеспечивая невероятное качество печати фотографий для своего ценового сегмента. Однако стандартная заводская конфигурация часто ограничивает пользователя в возможностях, требуя дорогостоящих картриджей и вынуждая постоянно перезаправлять их вручную.</p>
+
+<em>Прокачка принтера</em> подразумевает комплекс мер, направленных на освобождение от привязки к штатным картриджам и снижение себестоимости одного отпечатка в разы. Грамотная модернизация превращает устройство из обычной печатной машины в профессиональный инструмент для фотопечати, способный работать годами без затраты на дорогие расходники.
+
+<p>Вам предстоит выполнить несколько последовательных операций: от установки системы непрерывной подачи чернил до программирования чипов, управляющих уровнем жидкости. Если все сделать правильно, вы забудете о необходимости покупки фирменных картриджей и сможете использовать любые совместимые чернила.</p>
+
+<p><strong>Модернизация принтера</strong> требует аккуратности и понимания принципов работы печатающей головки. Ошибки на этапе сборки могут привести к засорению дюз или выходу из строя электронного контроллера, поэтому важно соблюдать последовательность действий и использовать качественные комплектующие.</p>
+
+<h2 id="установка-системы-непрерывной-подачи-чернил">Установка системы непрерывной подачи чернил</h2>
+<p>Самый первый и критически важный этап — это монтаж <strong>СБПЧ</strong> (системы непрерывной подачи чернил). Именно она обеспечивает постоянный поток краски к головке, исключая необходимость частой остановки работы для дозаправки. Стандартный набор из баллонов и трубок должен быть установлен так, чтобы не мешать движению каретки и не задевать другие узлы механизма.</p>
+
+<p>Важно правильно расположить внешние резервуары: они должны находиться на уровне чуть ниже головки принтера или на том же уровне, но ни в коем случае не выше, чтобы избежать самопроизвольного затекания чернил внутрь механизма. Трубки подачи должны иметь оптимальную длину и изгибы, не создающие излишнего натяжения или петлей, которые могут перекрыть поток.</p>
+
+<p>Подключение трубок к штатным картриджам требует внимательности: убедитесь, что каждый цвет соответствует своему каналу, иначе вы получите грязную смесь на бумаге. Используйте специальные заглушки, идущие в комплекте, чтобы избежать попадания воздуха в систему при первой заправке.</p>
+
+<div class="checklist-block"><h4>☑️ Монтаж СБПЧ</h4><label class="check-item"><input type="checkbox"><span>Очистить место под баллоны</span></label><label class="check-item"><input type="checkbox"><span>Продеть трубки через люк каретки</span></label><label class="check-item"><input type="checkbox"><span>Подключить к модулям</span></label><label class="check-item"><input type="checkbox"><span>Зафиксировать баллоны на подставке</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>После физического монтажа необходимо проверить герметичность системы. Запустите процедуру прочистки через драйвер и наблюдайте, как чернила заполняют трубки. Если в магистралях видны пузыри воздуха, потребуется повторная прокачка или использование шприца для удаления воздуха из шлангов.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед первым запуском СБПЧ обязательно проверьте, не пережаты ли трубки в местах прохода через корпус принтера, это частая причина неравномерной подачи чернил.</p></div>
+
+<blockquote>⚠️ Внимание! Если вы используете дешевые некачественные трубки, они могут со временем деформироваться или потерять прозрачность, что затруднит контроль уровня чернил и может привести к засору.</blockquote>
+
+<h2 id="работа-с-чипами-и-обход-блокировок">Работа с чипами и обход блокировок</h2>
+<p>Принтеры Epson <em>T50</em> оснащены штатными чипами на картриджах, которые отслеживают уровень чернил и блокируют печать, когда индикатор достигает нуля. Для того чтобы использовать перешитые или перезаправляемые картриджи, необходимо приобрести специальные <strong>чипы-обманки</strong> (reset chips) или программируемые чипы.</p>
+
+<p>Установка чипа осуществляется просто: снимите старый заводской чип с картриджа (он держится на клее или защелках) и приклейте новый в то же самое место, соблюдая полярность контактов. Новое поколение чипов часто имеет встроенный светодиод, который мигает при печати, показывая статус работы.</p>
+
+<details class="faq-item"><summary>Как работает чип-обманка?Чип имитирует полный картридж, постоянно отправляя сигнал принтеру о том, что чернила есть. Если уровень чернил реально упадет, вы просто не успеете это заметить, так как принтер не предупредит об ошибке.-->
+
+<p>Выбирая чипы, обратите внимание на их версию</summary><div class="faq-answer"><p> они должны быть совместимы с вашим регионом поставки устройства и версией прошивки. Некоторые чипы требуют ручного сброса нажатием на кнопку, другие — сбрасываются автоматически при извлечении картриджа из принтера.</p>
+
+<blockquote>⚠️ Внимание! Никогда не используйте чипы с поврежденными контактами или окисленными площадками — это может привести к короткому замыканию в шлейфе картриджа и выходу из строя платы управления.</blockquote>
+
+<p>После установки всех чипов проверьте, увидел ли их принтер. На дисплее (если есть) или в статус-мониторе драйвера должны отображаться все цвета с полным запасом чернил. Если какой-то цвет не определяется, попробуйте переподключить картридж или почистить контакты.</p>
+
+
+
+<h2 id="прошивка-и-сброс-памперса">Прошивка и сброс памперса</h2>
+<p>После установки СБПЧ и чипов неизбежно возникает вопрос с <strong>памперсом</strong> (впитывающей подушкой), который собирает чернила при прочистках и включении принтера. Со временем система счетчика помечает эту подушку как переполненную и блокирует печать, требуя обслуживания.</p>
+
+<p>Одна из лучших сторон <em>Epson T50</em> — это возможность программно сбросить счетчик памперса для продления срока службы устройства без замены физических подушек. Для этого используются специальные утилиты, такие как <code>WIC Reset</code> или <code>SSC Service Utility</code>. Процесс включает в себя ввод специального ключа активации (reset key) для разблокировки счетчика.</p>
+
+<p>Важно понимать, что программный сброс не очищает физические подушки, а лишь обнуляет счетчик. Если вы печатаете очень много, чернила могут переполнить подушки и вытечь наружу, испачкав стол. В таких случаях рекомендуется заменить впитывающие элементы на более емкие или установить внешний контейнер.</p>
+
+<p>Для сброса выполните следующие действия в утилите: выберите модель устройства, перейдите в раздел <code>Particular adjustment mode</code> и активируйте функцию <code>Waste ink pad counter</code>. Введите ключ и нажмите OK, затем перезагрузите принтер.</p>
+
+
+
+<p>Некоторые пользователи предпочитают сразу перенаправлять отработанные чернила во внешнюю бутылку через трубку, что делает сброс счетчика менее критичным, но не отменяет необходимости контролировать уровень жидкости в самом устройстве.</p>
+
+<table border="1">
+<thead>
+<tr>
+<th>Метод сброса</th>
+<th>Стоимость</th>
+<th>Сложность</th>
+<th>Риски</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Бесплатные утилиты</td>
+<td>0 руб.</td>
+<td>Высокая</td>
+<td>Высокая (ошибки версий)</td>
+</tr>
+<tr>
+<td>Платный ключ WIC</td>
+<td>~500-800 руб.</td>
+<td>Низкая</td>
+<td>Минимальные</td>
+</tr>
+<tr>
+<td>Сервисный центр</td>
+<td>~1000-2000 руб.</td>
+<td>Нулевая</td>
+<td>Отсутствуют</td>
+</tr>
+<tr>
+<td>Физическая замена</td>
+<td>Дорого</td>
+<td>Очень высокая</td>
+<td>Риск повреждения узла</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="тонкая-настройка-качества-печати">Тонкая настройка качества печати</h2>
+<p>После аппаратной модернизации необходимо настроить программную часть для достижения идеального качества. Стандартные драйверы часто не раскрывают весь потенциал <em>Epson T50</em>, особенно при работе с профессиональными фотобумагами.</p>
+
+<p>В настройках драйвера перейдите в раздел <code>Дополнительно</code> и выберите режим <strong>Управление цветом</strong>. Если вы используете чернила других производителей (не Epson), обязательно отключите автоматическую коррекцию цвета, так как профили могут конфликтовать с химическим составом жидкостей.</p>
+
+<p>Для фотопечати установите тип бумаги <code>Специальная фотобумага</code> и качество <strong>Высокое</strong> или <code>Максимальное</code>. Это увеличит время печати, но значительно улучшит детализацию и насыщенность цветов благодаря более плотному нанесению краски.</p>
+
+<p>Важно регулярно выполнять калибровку сопел и выравнивание головок. Засорение даже одного дюза может испортить весь отпечаток, поэтому используйте функцию <code>Проверка дюз</code> перед каждым важным проектом. Если дюза забита, проведите 1-2 цикла прочистки, но не более, чтобы не залить головку.</p>
+
+<h2 id="выбор-чернил-и-профилактика-засоров">Выбор чернил и профилактика засоров</h2>
+<p>Качество конечного результата на 90% зависит от выбранных <strong>чернил</strong>. Для <em>Epson T50</em> чаще всего используются пигментные или водорастворимые чернила. Пигментные более устойчивы к выцветанию и воде, но могут быстрее засорять головку, если качество состава низкое.</p>
+
+<p>Водорастворимые чернила обеспечивают более яркие и сочные цвета, идеально подходят для глянцевой бумаги, но требуют более бережного хранения и регулярного использования. Никогда не смешивайте чернила разных производителей в одном картридже — химическая реакция может привести к выпадению осадка и полной поломке печатающей головки.</p>
+
+<p>Следите за тем, чтобы головка не высыхала, если принтер простаивает более 3-4 дней. При длительном простое рекомендуется закрывать головку специальными заглушками или выполнять тестовую печать раз в неделю. Хранение устройства в пыльном помещении также губительно для дюз.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Использование качественного фирменного или проверенного совместимого раствора чернил — это гарантия долгой жизни печатающей головки без дорогостоящего ремонта.</p></div>
+
+<blockquote>⚠️ Внимание! Не используйте чернила, предназначенные для лазерных принтеров или плоттеров, в струйной системе <em>Epson T50</em> — это гарантированно уничтожит головку за одну печать.</blockquote>
+
+<h2 id="возможные-сложности-и-их-решение">Возможные сложности и их решение</h2>
+<p>В процессе эксплуатации прокачанного устройства вы можете столкнуться с рядом специфических проблем. Самая частая ошибка — это появление полос на печати из-за того, что трубки СБПЧ перекрутились или застряли в механизме.</p>
+
+<p>Если принтер перестал определять картриджи, проверьте чипы: возможно, они отошли или окислились. Аккуратно протрите контакты ластиком или спиртовой салфеткой. Иногда помогает перепрошивка самого принтера через сервисное меню, но это крайняя мера.</p>
+
+<p>При появлении ошибок "Service Required" или "Maintenance Box Full" не спешите нести устройство в сервис. В большинстве случаев проблема решается стандартным сбросом памперса, как описано выше, если вы имеете доступ к технической утилите.</p>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+
+<details>
+<summary>Можно ли печатать на матовой бумаге после установки СБПЧ?</summary>
+<p>Да, установка СБПЧ никак не влияет на тип используемой бумаги. Вы можете использовать матовую, глянцевую или фотобумагу любой плотности до 300 г/м², главное — правильно выбрать настройки в драйвере.</p>
+</details>
+
+<details>
+<summary>Как долго служат чипы на картриджах?</summary>
+<p>Качественные чипы служат практически вечно, так как они рассчитаны на тысячи циклов перезаписи. Они не изнашиваются физически, если их не повредить механически или не залить чернилами.</p>
+</details>
+
+<details>
+<summary>Нужно ли менять головку после установки СБПЧ?</summary>
+<p>Нет, головка остается штатной. СБПЧ лишь обеспечивает подачу чернил. Однако, если вы использовали дешевые чернила, головку придется менять чаще из-за засоров.</p>
+</details>
+
+<details>
+<summary>Что делать, если чернила не идут в трубки?</summary>
+<p>Проверьте, закрыты ли вентиляционные отверстия на внешних баллонах. Также убедитесь, что трубки не изогнуты под углом более 90 градусов, и попробуйте аккуратно подуть в трубку или использовать шприц для прокачки.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#введение-в-модернизацию-легендарной-модели">Введение в модернизацию легендарной модели</a></li><li><a href="#установка-системы-непрерывной-подачи-чернил">Установка системы непрерывной подачи чернил</a></li><li><a href="#работа-с-чипами-и-обход-блокировок">Работа с чипами и обход блокировок</a></li><li><a href="#прошивка-и-сброс-памперса">Прошивка и сброс памперса</a></li><li><a href="#тонкая-настройка-качества-печати">Тонкая настройка качества печати</a></li><li><a href="#выбор-чернил-и-профилактика-засоров">Выбор чернил и профилактика засоров</a></li><li><a href="#возможные-сложности-и-их-решение">Возможные сложности и их решение</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-zapravit-printer-epson-l3101-chernilami.html" class="related-card">Как заправить принтер Epson L3101 чернилами: пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-zapravlyat-printer-epson-l3210.html" class="related-card">Заправка принтера Epson L3210: пошаговая инструкция и советы</a></li><li><a href="/articles/k/ka/kak-zapravit-printer-epson-l386-pri-povtornoj-zapravke.html" class="related-card">Повторная заправка Epson L386: пошаговая инструкция и нюансы</a></li><li><a href="/articles/k/ka/kak-vstavit-kartridzh-v-printer-epson-cx4300.html" class="related-card">Как вставить картридж в Epson CX4300: пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-zalit-chernila-v-printer-epson-l355.html" class="related-card">Как заправить чернила в принтер Epson L355: пошаговая инструкция</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-zapravit-printer-epson-l3101-chernilami.html" class="related-bottom-card"><span class="related-bottom-title">Как заправить принтер Epson L3101 чернилами: пошаговая инструкция</span><span class="related-bottom-desc">Подробный разбор заправки Epson L3101. Инструкция по использованию системы СНПЧ, сбросу счетчика чер</span></a><a href="/articles/k/ka/kak-zapravlyat-printer-epson-l3210.html" class="related-bottom-card"><span class="related-bottom-title">Заправка принтера Epson L3210: пошаговая инструкция и советы</span><span class="related-bottom-desc">Как правильно заправить картриджи Epson L3210 в домашних условиях: выбор чернил, подготовка, процесс</span></a><a href="/articles/k/ka/kak-zapravit-printer-epson-l386-pri-povtornoj-zapravke.html" class="related-bottom-card"><span class="related-bottom-title">Повторная заправка Epson L386: пошаговая инструкция и нюансы</span><span class="related-bottom-desc">Подробный гид по повторной заправке чернил в Epson L386. Учимся открывать лючки, доливать состав и с</span></a><a href="/articles/k/ka/kak-vstavit-kartridzh-v-printer-epson-cx4300.html" class="related-bottom-card"><span class="related-bottom-title">Как вставить картридж в Epson CX4300: пошаговая инструкция</span><span class="related-bottom-desc">Подробная инструкция по замене картриджей в МФУ Epson Stylus CX4300. Узнайте, как правильно установи</span></a><a href="/articles/k/ka/kak-zalit-chernila-v-printer-epson-l355.html" class="related-bottom-card"><span class="related-bottom-title">Как заправить чернила в принтер Epson L355: пошаговая инструкция</span><span class="related-bottom-desc">Подробное руководство по заправке чернил в Epson L355. Пошаговая инструкция, проверка чипов, устране</span></a><a href="/articles/k/ka/kak-zapravit-printer-epson-snpch.html" class="related-bottom-card"><span class="related-bottom-title">Заправка СНПЧ принтеров Epson: пошаговая инструкция 2026</span><span class="related-bottom-desc">Полное руководство по заправке системы непрерывной подачи чернил Epson. Разбор типов картриджей, про</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

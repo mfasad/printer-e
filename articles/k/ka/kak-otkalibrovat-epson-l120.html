@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Калибровка Epson L120: пошаговая инструкция, утилита и тонкости — Эпсон Помощь</title>
+    <meta name="description" content="Как откалибровать Epson L120 для идеальной печати. Пошаговая настройка выравнивания, цветов и дюз через утилиту Epson Status Monitor.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-otkalibrovat-epson-l120.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Калибровка Epson L120: пошаговая инструкция, утилита и тонкости">
+    <meta property="og:description" content="Как откалибровать Epson L120 для идеальной печати. Пошаговая настройка выравнивания, цветов и дюз через утилиту Epson Status Monitor.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/nastrojka-tsveta/">Настройка цвета</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Калибровка Epson L120: пошаговая инструкция, утилита и тонкости</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Полное руководство по калибровке принтера Epson L120</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#подготовка-принтера-epson-l120-к-процедуре-настройки">Подготовка принтера Epson L120 к процедуре настройки</a></li><li><a href="#проверка-и-прочистка-дюз-через-утилиту-epson">Проверка и прочистка дюз через утилиту Epson</a></li><li><a href="#выравнивание-печатающей-головки-print-head-alignment">Выравнивание печатающей головки (Print Head Alignment)</a></li><li><a href="#настройка-цветопередачи-и-управление-цветом">Настройка цветопередачи и управление цветом</a></li><li><a href="#таблица-распространенных-проблем-и-их-устранение">Таблица распространенных проблем и их устранение</a></li><li><a href="#очистка-энкодера-и-механические-нюансы">Очистка энкодера и механические нюансы</a></li><li><a href="#частые-вопросы-и-ответы-по-обслуживанию">Частые вопросы и ответы по обслуживанию</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Принтеры серии Epson L120 славятся своей экономичностью, но со временем качество печати может ухудшиться: появляются полосы, цвета смещаются или изображения теряют резкость. Это не всегда означает поломку оборудования, часто достаточно провести процедуру <strong>калибровки</strong> и обслуживания печатающей головки. Регулярная настройка позволяет восстановить заводские характеристики цвета и геометрии печати без визита в сервисный центр.</p>
+<p>Процесс настройки требует внимания к деталям и последовательности действий. Не стоит пытаться исправить дефекты печати только сменой картриджей или чернил, если проблема кроется в программном сдвиге сопел или загрязнении матрицы. Правильная <em>калибровка</em> включает в себя не только выравнивание, но и проверку состояния дюз, что является фундаментом для четкой картинки.</p>
+
+<h2 id="подготовка-принтера-epson-l120-к-процедуре-настройки">Подготовка принтера Epson L120 к процедуре настройки</h2>
+<p>Прежде чем запускать любые утилиты или нажимать кнопки на панели управления, необходимо убедиться, что устройство находится в исправном состоянии. Принтер должен быть подключен к компьютеру через <strong>USB-кабель</strong>, а драйверы — установлены корректно. Если принтер работает в сети, убедитесь, что соединение стабильно, но для первоначальной глубокой настройки лучше использовать прямое проводное подключение.</p>
+<p>Важно проверить уровень чернил в емкостях. Процедура выравнивания и прочистки расходует определенное количество жидкости, поэтому низкий уровень может прервать процесс. Загрузите в лоток лист качественной бумаги формата А4. Используйте обычную офисную бумагу, так как глянцевая или фотобумага в процессе тестовой печати может замяться, если настройки подачи будут некорректными.</p>
+<p>Визуально осмотрите карту дюз, если вы делаете это вручную. Если на печать выходят явные пробелы, система потребуется более агрессивная прочистка перед тонкой настройкой. Убедитесь, что печатающая головка <em>Epson</em> не имеет видимых механических повреждений и находится в парковочном положении перед началом работы.</p>
+
+<h2 id="проверка-и-прочистка-дюз-через-утилиту-epson">Проверка и прочистка дюз через утилиту Epson</h2>
+<p>Первым шагом в процессе настройки является диагностика состояния сопел. Для этого используется встроенная утилита, которая позволяет выводить тестовые узоры на экран и на бумагу. Откройте панель управления принтера в системе и найдите раздел <code>Обслуживание</code> (Maintenance). Именно здесь находятся все инструменты для настройки качества печати.</p>
+<p>Запустите команду <code>Проверка дюз</code> (Nozzle Check). Принтер распечатает шаблон с цветными полосками и сеткой. Внимательно изучите результат: если линии прерываются, прерываются или имеют размытые края, это сигнал к тому, что сопла загрязнены. Не пытайтесь сразу выравнивать изображение, если есть пробелы — сначала нужно восстановить целостность струи.</p>
+<p>Если тест показал дефекты, выполните <strong>прочистку головки</strong> (Head Cleaning). Это процедура, при которой помпа создает вакуум, выталкивая загустевшие чернила. После одной прочистки снова запечатайте тест. Если результат не улучшился, можно повторить процедуру еще 1-2 раза, но не более, чтобы не перерасходовать чернила и не залить механизм.</p>
+<blockquote>⚠️ Внимание: Если после трехкратной прочистки результат не улучшился, дайте принтеру отдохнуть на 6-8 часов. Чернильная система должна стабилизироваться, иначе вы рискуете забить сопла окончательно.</blockquote>
+
+<div class="checklist-block"><h4>☑️ Подготовка к калибровке</h4><label class="check-item"><input type="checkbox"><span>Проверить уровень чернил</span></label><label class="check-item"><input type="checkbox"><span>Загрузить чистую бумагу А4</span></label><label class="check-item"><input type="checkbox"><span>Подключить принтер к ПК</span></label><label class="check-item"><input type="checkbox"><span>Запустить проверку дюз</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="выравнивание-печатающей-головки-print-head-alignment">Выравнивание печатающей головки (Print Head Alignment)</h2>
+<p>Когда картина на тестовом листе стала четкой, можно переходить к геометрической калибровке. Эта процедура необходима, если вертикальные линии выглядят двойными или смещенными, что часто случается при изменении температуры в помещении или после транспортировки <em>Epson L120</em>. Выравнивание корректирует момент вылета чернил из сопел для каждого прохода каретки.</p>
+<p>В меню <code>Обслуживание</code> выберите пункт <code>Выравнивание печатающей головки</code>. На экране монитора появится ряд тестовых полей с вертикальными линиями. Вам нужно будет оценить их аккуратность и выбрать номер поля, где линии наиболее ровные и соединены без смещения. Обычно поле выбирается для каждого цвета отдельно или для черно-белого режима.</p>
+<p>Процесс выполняется поэтапно. Сначала настраивается черно-белая печать, затем цветная. Следуйте инструкциям на экране: принтер распечатает тестовый лист, вы его оцениваете, вводите номер в программе, и принтер переходит к следующему этапу. Уделите этому время, так как от точности выбора зависит резкость текста и фотографий.</p>
+<blockquote>⚠️ Внимание: Не выбирайте поле с линиями, которые кажутся вам "самыми яркими". Ваша задача — найти поле, где вертикальные линии прямые и не имеют горизонтальных сдвигов друг относительно друга.</blockquote>
+
+<div class="poll-widget" id="poll-221041c1"><div class="poll-widget-question">📊 Какая проблема с печатью чаще всего возникает?</div><div class="poll-widget-option" data-poll="221041c1" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Полосы на печати</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="221041c1" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Размытые края</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="221041c1" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Смещение цветов</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="221041c1" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Отсутствие одного цвета</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="настройка-цветопередачи-и-управление-цветом">Настройка цветопередачи и управление цветом</h2>
+<p>После выравнивания геометрии наступает черед настройки цветов. Иногда даже исправная головка выдает цвета, которые отличаются от эталона на экране монитора. Это связано с различиями в профилях цвета между RGB (монитор) и CMYK (печать). Для коррекции используется функция управления цветом в драйвере.</p>
+<p>В окне печати откройте вкладку <code>Основные</code> или <code>Дополнительно</code> и найдите раздел <strong>Управление цветом</strong>. По умолчанию стоит режим <code>Цветовой баланс</code> (Color Management), где драйвер сам подбирает оттенки. Для профессиональной печати лучше выбрать режим <code>Без коррекции цвета</code> (No Color Adjustment), если у вас есть внешний ICC-профиль, или настроить вручную.</p>
+<p>Исправление оттенков можно сделать через вкладку <code>Настройка цвета</code> (Color Correction). Здесь доступны ползунки яркости, насыщенности и контраста. Если, например, фото выходят слишком желтыми, уменьшите насыщенность желтого канала или добавьте немного синего. Экспериментируйте с малыми значениями, делая пробные отпечатки.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Для точной настройки цвета используйте специальные тестовые изображения с градиентами и эталонными цветами, которые можно бесплатно скачать в сети, чтобы сравнивать их с реальным отпечатком.</p></div>
+
+<h2 id="таблица-распространенных-проблем-и-их-устранение">Таблица распространенных проблем и их устранение</h2>
+<p>Иногда стандартные методы не дают быстрого результата, и приходится искать причину в специфических параметрах. Ниже приведена таблица, описывающая частые дефекты, их вероятные причины и способы решения при калибровке.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Дефект печати</th>
+      <th>Вероятная причина</th>
+      <th>Решение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Поперечные полосы</td>
+      <td>Засорение сопел или неустановка скорости печати</td>
+      <td>Прочистка головки, выбор режима "Высокое качество"</td>
+    </tr>
+    <tr>
+      <td>Двойные вертикальные линии</td>
+      <td>Смещение печатающей головки</td>
+      <td>Выравнивание головки (Print Head Alignment)</td>
+    </tr>
+    <tr>
+      <td>Текст размытый</td>
+      <td>Неправильный тип бумаги в настройках</td>
+      <td>Выбор правильного типа бумаги (Обычная/Фотобумага)</td>
+    </tr>
+    <tr>
+      <td>Смещение цветов (хроматическая аберрация)</td>
+      <td>Загрязнение энкодера или сбой калибровки</td>
+      <td>Протирка энкодера спиртом, повторная калибровка</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="очистка-энкодера-и-механические-нюансы">Очистка энкодера и механические нюансы</h2>
+<p>Если программная калибровка не помогает и линии все равно смещаются, проблема может быть в механической части. Внутри принтера <em>Epson</em> есть прозрачная полоска — <strong>энкодер</strong>, по которой каретка определяет свое положение. Со временем на нее попадают чернила или смазка, что сбивает датчики. Это частая причина, когда принтер "не понимает", где находится головка.</p>
+<p>Для очистки энкодера необходимо аккуратно приподнять крышку и найти прозрачную полоску с делениями. Смочите ватную палочку или безворсовую салфетку дистиллированной водой или слабым спиртовым раствором. Протрите полоску с обеих сторон, пока на ней не останется следов. Делайте это очень бережно, чтобы не порвать полосу.</p>
+<p>После очистки обязательно дайте детали высохнуть в течение 10-15 минут перед включением принтера. Если игнорировать этот шаг, влага может попасть на контакты и вызвать короткое замыкание. После высыхания перезапустите принтер и снова выполните выравнивание головки.</p>
+<blockquote>⚠️ Внимание: Никогда не используйте агрессивные растворители, ацетон или бензин для очистки энкодера и внутренних деталей — это может разрушить пластик и оптические свойства полоски.</blockquote>
+
+<details class="faq-item"><summary>Что такое энкодер? энкодер — это оптический датчик, представляющий собой прозрачную полоску с нанесенными штрихами. Лазерный луч проходит через штрихи и фиксируется фотодатчиком, что позволяет каретке знать свое точное положение в миллиметрах.-->
+
+<h2 id="частые-вопросы-и-ответы-по-обслуживанию">Частые вопросы и ответы по обслуживанию</h2>
+<p>Владельцы <em>Epson L120</em> часто задают вопросы о периодичности обслуживания и нюансах работы с чернилами. Мы собрали ответы на самые популярные из них, чтобы вы могли быстрее решить возникшие проблемы.</p>
+<p>Можно ли калибровать принтер, если он не подключен к компьютеру? Да, базовое выравнивание и проверку дюз можно выполнить, нажимая кнопки на самом корпусе устройства. Однако для тонкой настройки цвета и выбора сложных режимов подключения ПК необходимо.</p>
+<p>Как часто нужно проводить прочистку? Это зависит от интенсивности использования. Если вы печатаете каждый день, проверка дюз раз в неделю будет достаточной. При редкой печати (раз в месяц) рекомендуется делать тестовый лист перед началом работы, так как чернила могут загустеть.</p>
+
+<!--WIDGET</summary><div class="faq-answer"><p>keypoint:Регулярная проверка дюз и своевременная очистка энкодера — это дешевле и проще, чем замена печатающей головки в сервисном центре.</p></div></details>
+
+<details>
+<summary>Почему цвета на печати отличаются от картинки на экране?</summary>
+<p>Это нормальное явление, так как экран использует аддитивную модель (RGB), а принтер — субтрактивную (CMYK). Для минимизации разницы используйте настройки "Профиль цвета" в драйвере и качественные чернила.</p>
+</details>
+
+<details>
+<summary>Можно ли использовать чернила других фирм для калибровки?</summary>
+<p>Технически можно, но это может повлиять на результат. Разные чернила имеют разную вязкость и пигментацию. Лучше всего калибровать принтер на тех чернилах, которые вы планируете использовать постоянно, или выполнить полную промывку при смене бренда.</p>
+</details>
+
+<details>
+<summary>Что делать, если принтер не печатает тестовую страницу?</summary>
+<p>Проверьте подключение кабеля, убедитесь, что в очереди печати нет зависших заданий и что принтер выбран устройством по умолчанию. Также проверьте уровень чернил — если система считает их пустыми, она может блокировать печать.</p>
+</details>
+
+<details>
+<summary>Как сбросить настройки принтера до заводских?</summary>
+<p>В меню драйвера есть функция "Сброс настроек" или "Восстановление по умолчанию". Также можно отключить принтер от сети, зажать кнопку "Стоп" (треугольник в круге) и включить питание, удерживая кнопку до начала мигания индикаторов.</p>
+</details>
+
+<blockquote>⚠️ Внимание: Информация о конкретных сочетаниях кнопок для сброса может отличаться в зависимости от ревизии firmware (прошивки) вашего устройства. Всегда сверяйтесь с официальной инструкцией или руководством пользователя для вашей конкретной версии модели.</blockquote></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#подготовка-принтера-epson-l120-к-процедуре-настройки">Подготовка принтера Epson L120 к процедуре настройки</a></li><li><a href="#проверка-и-прочистка-дюз-через-утилиту-epson">Проверка и прочистка дюз через утилиту Epson</a></li><li><a href="#выравнивание-печатающей-головки-print-head-alignment">Выравнивание печатающей головки (Print Head Alignment)</a></li><li><a href="#настройка-цветопередачи-и-управление-цветом">Настройка цветопередачи и управление цветом</a></li><li><a href="#таблица-распространенных-проблем-и-их-устранение">Таблица распространенных проблем и их устранение</a></li><li><a href="#очистка-энкодера-и-механические-нюансы">Очистка энкодера и механические нюансы</a></li><li><a href="#частые-вопросы-и-ответы-по-обслуживанию">Частые вопросы и ответы по обслуживанию</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-nastroit-tsvetnuyu-pechat-na-printere-epson.html" class="related-card">Как настроить цветную печать на принтере Epson: полное руководство</a></li><li><a href="/articles/k/ka/kak-nastroit-tsvetoperedachu-printera-epson-l3151.html" class="related-card">Настройка цветопередачи Epson L3151: калибровка и профиль</a></li><li><a href="/articles/k/ka/kak-nastroit-epson-l132-dlya-sublimatsionnoj-pechati.html" class="related-card">Epson L132 для сублимации: настройка принтера за 5 шагов</a></li><li><a href="/articles/k/ka/kak-perevernut-ekran-na-proektore-epson-eb-x500.html" class="related-card">Как перевернуть экран на проекторе Epson EB-X500: Полная инструкция по настройке</a></li><li><a href="/articles/r/ra/razreshit-prilozheniyam-soglasovanie-tsvetov-icm-epson-chto-eto.html" class="related-card">Настройка ICM в Epson: Разрешить согласование цветов приложению</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-nastroit-tsvetnuyu-pechat-na-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как настроить цветную печать на принтере Epson: полное руководство</span><span class="related-bottom-desc">Пошаговая инструкция по настройке цветной печати на принтерах Epson. Решение проблем с черными черни</span></a><a href="/articles/k/ka/kak-nastroit-tsvetoperedachu-printera-epson-l3151.html" class="related-bottom-card"><span class="related-bottom-title">Настройка цветопередачи Epson L3151: калибровка и профиль</span><span class="related-bottom-desc">Как исправить цвета на Epson L3151: пошаговая калибровка, смена профилей и ручной ремонт изображения</span></a><a href="/articles/k/ka/kak-nastroit-epson-l132-dlya-sublimatsionnoj-pechati.html" class="related-bottom-card"><span class="related-bottom-title">Epson L132 для сублимации: настройка принтера за 5 шагов</span><span class="related-bottom-desc">Пошаговая инструкция по перепрошивке и настройке Epson L132 для сублимационной печати: выбор чернил,</span></a><a href="/articles/k/ka/kak-perevernut-ekran-na-proektore-epson-eb-x500.html" class="related-bottom-card"><span class="related-bottom-title">Как перевернуть экран на проекторе Epson EB-X500: Полная инструкция по настройке</span><span class="related-bottom-desc">Пошаговое руководство по перевороту изображения на проекторе Epson EB-X500. Настройка подвесного мон</span></a><a href="/articles/r/ra/razreshit-prilozheniyam-soglasovanie-tsvetov-icm-epson-chto-eto.html" class="related-bottom-card"><span class="related-bottom-title">Настройка ICM в Epson: Разрешить согласование цветов приложению</span><span class="related-bottom-desc">Разбираем, что такое синхронизация цветов ICM в Epson. Инструкция по включению управления цветом в д</span></a><a href="/articles/k/ka/kak-nastroit-krasku-v-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как настроить краску в принтере Epson: калибровка и профили цвета</span><span class="related-bottom-desc">Подробная инструкция по настройке цвета в принтерах Epson. Калибровка, профили ICC, устранение полос</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

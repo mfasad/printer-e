@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как напечатать принтер с конца: настройка очереди печати Epson — Эпсон Помощь</title>
+    <meta name="description" content="Инструкция по печати страниц с конца в принтерах Epson. Настройка драйвера, параметры очереди и использование утилиты Status Monitor.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-sdelat-chtoby-printer-pechatal-s-kontsa-dokumenta-epson.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как напечатать принтер с конца: настройка очереди печати Epson">
+    <meta property="og:description" content="Инструкция по печати страниц с конца в принтерах Epson. Настройка драйвера, параметры очереди и использование утилиты Status Monitor.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/nastrojka-tsveta/">Настройка цвета</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как напечатать принтер с конца: настройка очереди печати Epson</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Как настроить печать с конца документа в принтерах Epson</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#стандартные-настройки-драйвера-epson-для-реверса">Стандартные настройки драйвера Epson для реверса</a></li><li><a href="#использование-утилиты-status-monitor-и-менеджер-очереди">Использование утилиты Status Monitor и менеджер очереди</a></li><li><a href="#обходные-пути-реверс-через-pdf-и-текстовые-редакторы">Обходные пути: реверс через PDF и текстовые редакторы</a></li><li><a href="#таблица-расположение-настроек-в-разных-версиях-драйверов">Таблица: расположение настроек в разных версиях драйверов</a></li><li><a href="#решение-проблем-с-очередью-печати-и-зависанием">Решение проблем с очередью печати и зависанием</a></li><li><a href="#альтернативные-методы-управления-печатью">Альтернативные методы управления печатью</a></li><li><a href="#частые-ошибки-и-их-устранение">Частые ошибки и их устранение</a></li><li><a href="#итоги-и-рекомендации-по-настройке">Итоги и рекомендации по настройке</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Пользователи устройств печати <em>Epson</em> часто сталкиваются с ситуацией, когда необходимо получить распечатку документа в обратном порядке. Стандартные драйверы не всегда предоставляют эту опцию на видном месте, что вызывает путаницу при попытке перепланировать страницы в <code>Adobe Reader</code> или <code>MS Word</code>. Функция печати с конца необходима при создании брошюр, когда требуется ручное переплетение листов, или при работе с большими отчетами, чтобы проверить первые страницы раньше остальных.</p>
+
+<p>В отличие от некоторых конкурентов, в интерфейсе <em>Epson</em> эта настройка может быть спрятана в дополнительных вкладках драйвера или вовсе отсутствовать в базовом режиме. Понимание того, как управлять очередью печати, позволяет сэкономить время на перекладывании стопки бумаги вручную. Мы разберем несколько сценариев: от стандартных настроек драйвера до использования системных инструментов управления печатью.</p>
+
+<h2 id="стандартные-настройки-драйвера-epson-для-реверса">Стандартные настройки драйвера Epson для реверса</h2>
+
+<p>Большинство современных моделей <em>Epson</em> серии <strong>L-series</strong> или <strong>EcoTank</strong> имеют встроенную опцию обратного порядка, но она часто отключена по умолчанию. Чтобы активировать её, нужно зайти в свойства принтера через контекстное меню файла. Найдите вкладку <code>Главная</code> или <code>Макет</code> и внимательно изучите выпадающие списки параметров.</p>
+
+<p>В некоторых версиях ПО опция называется <strong>Порядок печати</strong> и имеет два значения: “Сначала 1-я” и “Сначала последняя”. Если вы видите этот переключатель, просто выберите второй вариант и нажмите <code>ОК</code>. В других случаях, особенно на старых моделях, эта функция может быть скрыта во вкладке <code>Дополнительно</code> или <code>Дополнительные настройки</code>.</p>
+
+<p>Если вы используете стандартный драйвер от Windows, а не фирменную утилиту, интерфейс может отличаться. Попробуйте изменить параметры в разделе <code>Настройка страницы</code>. Важно проверить, не заблокирована ли функция режимом экономии чернил, так как некоторые упрощенные профили печати отключают расширенные возможности управления очередью.</p>
+
+<blockquote>⚠️ Внимание: В некоторых драйверах опция реверса печати недоступна при выбранном режиме экономии чернил. Переключитесь на режим <strong>Стандартный</strong> или <strong>Высокое качество</strong>, чтобы увидеть дополнительные настройки.</blockquote>
+
+<h2 id="использование-утилиты-status-monitor-и-менеджер-очереди">Использование утилиты Status Monitor и менеджер очереди</h2>
+
+<p>Если встроенный драйвер не предоставляет нужной кнопки, на помощь приходят системные инструменты управления печатью Windows. Уникальная особенность принтеров <em>Epson</em> заключается в том, что они часто устанавливают собственную утилиту <strong>EPSON Status Monitor 3</strong>. Через неё можно управлять очередью заданий более гибко, чем через стандартное окно печати.</p>
+
+<p>Попав в окно очереди печати, вы увидите список всех отправленных документов. К сожалению, стандартный интерфейс Windows не позволяет менять порядок уже отправленных на печать задач без пересылки. Однако, если задача еще не началась, её можно удалить, изменить настройки свойств документа и отправить заново с правильными параметрами.</p>
+
+<p>Для принтеров <strong>L1110</strong>, <strong>L3150</strong> и подобных моделей критично иметь актуальную версию драйвера, так как в устаревших версиях функция реверса может отсутствовать или работать некорректно. Проверьте официальный сайт производителя, чтобы убедиться в совместимости ПО с вашей операционной системой.</p>
+
+<div class="poll-widget" id="poll-ce47776f"><div class="poll-widget-question">📊 В какой программе вы чаще всего сталкиваетесь с проблемой печати с конца?</div><div class="poll-widget-option" data-poll="ce47776f" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Word</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="ce47776f" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">PDF-файлы</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="ce47776f" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Таблицы Excel</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="ce47776f" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Просто текст</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="обходные-пути-реверс-через-pdf-и-текстовые-редакторы">Обходные пути: реверс через PDF и текстовые редакторы</h2>
+
+<p>Часто проблема решается не на уровне принтера, а на уровне программного обеспечения, создающего документ. Если вы работаете с файлами <strong>PDF</strong>, программа для просмотра (например, <em>Adobe Acrobat Reader</em>) имеет встроенную функцию обратного порядка. Она называется <strong>Печатать с конца</strong> или <em>Reverse pages</em>.</p>
+
+<p>В диалоговом окне печати найдите раздел <code>Страницы</code> или <code>Опции</code>. Там должен быть чекбокс с соответствующим названием. Если вы используете <em>Microsoft Word</em>, ситуация сложнее: стандартная функция печати всегда идет с начала. В этом случае придется менять порядок страниц вручную через панель навигации или сохранять документ как PDF, чтобы использовать функции реверса.</p>
+
+<p>Для таблиц <strong>Microsoft Excel</strong> порядок печати зависит от настроек разрывов страниц. Вы можете настроить <code>Разрывы</code> вручную, расположив их так, чтобы принтер начал с нижнего угла листа. Это неудобно для больших отчетов, поэтому конвертация в PDF остается самым надежным способом контролировать порядок выхода страниц.</p>
+
+<div class="checklist-block"><h4>☑️ Проверка настроек перед печатью</h4><label class="check-item"><input type="checkbox"><span>Открыть файл в браузере или PDF-ридере</span></label><label class="check-item"><input type="checkbox"><span>Найти галочку "Печатать с конца"</span></label><label class="check-item"><input type="checkbox"><span>Проверить настройки драйвера Epson</span></label><label class="check-item"><input type="checkbox"><span>Убедиться, что бумага загружена правильно</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="таблица-расположение-настроек-в-разных-версиях-драйверов">Таблица: расположение настроек в разных версиях драйверов</h2>
+
+<p>Интерфейс настроек печати может кардинально отличаться в зависимости от версии драйвера и модели принтера. Ниже приведена сводная таблица, которая поможет быстро найти нужный параметр в вашем случае. Обратите внимание, что названия вкладок могут варьироваться.</p>
+
+<table>
+<thead>
+<tr>
+<th>Модель / Версия ПО</th>
+<th>Расположение настройки</th>
+<th>Название параметра</th>
+<th>Доступность</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EPSON L3150 (Драйвер v2.0+)</td>
+<td>Вкладка <code>Главная</code></td>
+<td><strong>Порядок печати</strong></td>
+<td>Всегда доступно</td>
+</tr>
+<tr>
+<td>EPSON L805 (Старые драйверы)</td>
+<td>Вкладка <code>Дополнительно</code></td>
+<td><strong>Реверс страниц</strong></td>
+<td>Только в режиме "Фото"</td>
+</tr>
+<tr>
+<td>Windows 10/11 (Стандартный драйвер)</td>
+<td><code>Настройки</code> -> <code>Печать</code></td>
+<td><strong>Сначала последняя</strong></td>
+<td>В зависимости от версии</td>
+</tr>
+<tr>
+<td>EPSON WF-2850 (Wi-Fi)</td>
+<td>Утилита <code>Status Monitor</code></td>
+<td><strong>Очередь заданий</strong></td>
+<td>Через веб-интерфейс</td>
+</tr>
+</tbody>
+</table>
+
+<p>Если вы не видите нужного параметра в таблице, возможно, у вас установлена упрощенная версия драйвера, которая не поддерживает расширенные функции. В таком случае рекомендуется скачать полный пакет драйверов с официального сайта <em>Epson</em>, выбрав свою модель и операционную систему.</p>
+
+<blockquote>⚠️ Внимание: На некоторых веб-интерфейсах принтеров (Epson Connect) функция реверса печати полностью отсутствует. В этом случае придется менять порядок страниц в исходном файле.</blockquote>
+
+<h2 id="решение-проблем-с-очередью-печати-и-зависанием">Решение проблем с очередью печати и зависанием</h2>
+
+<p>Иногда пользователи сталкиваются с тем, что принтер начинает печатать с конца, но затем зависает или выдает ошибку. Это может быть связано с переполнением буфера памяти <strong>Epson</strong>. Большие документы с обратным порядком печати требуют больше оперативной памяти для обработки, так как драйверу нужно загрузить в буфер все страницы одновременно.</p>
+
+<p>Если печать прерывается, попробуйте разбить документ на несколько частей. Отправьте на печать сначала последние страницы, затем средние, и в конце первые. Это позволит избежать перегрузки памяти и обеспечит стабильную работу устройства. Также проверьте, не перегревается ли принтер, если печать идет непрерывно.</p>
+
+<p>Еще одной причиной сбоя может быть конфликт версий драйвера и операционной системы. После обновления Windows настройки могут сброситься, и опция реверса пропадет. В таких случаях помогает очистка очереди печати через <code>services.msc</code> (папка Службы, служба Spooler) и повторная установка драйвера.</p>
+
+<details class="faq-item"><summary>Что делать, если принтер сразу печатает последнюю страницу?</summary><div class="faq-answer"><p>Если принтер начинает с последней страницы без вашей команды, проверьте настройки <code>Порядок печати</code> в свойствах принтера. Иногда сбой в драйвере запоминает последнее использованное состояние. Попробуйте удалить принтер из системы и добавить его заново.</p></div></details>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед печатью большого документа с реверсом сделайте тестовый лист. Это поможет убедиться, что принтер корректно понимает команду "с конца" и не перепутает ориентацию листов.</p></div>
+
+<h2 id="альтернативные-методы-управления-печатью">Альтернативные методы управления печатью</h2>
+
+<p>Если ни один из стандартных способов не сработал, можно использовать сторонние утилиты для управления печатью. Существуют программы, которые перехватывают задание и позволяют переставлять страницы в любой последовательности перед отправкой в <strong>Epson</strong>. Такие инструменты полезны для офисных задач, где требуется сложная сортировка.</p>
+
+<p>Другой вариант — использование встроенных возможностей операционной системы. В некоторых версиях Linux или macOS настройка обратного порядка печати осуществляется через <code>CUPS</code> (Common Unix Printing System). Это требует наличия прав администратора и понимания работы сетевых протоколов печати.</p>
+
+<p>Для мобильных устройств (Android/iOS) приложение <em>Epson iPrint</em> также имеет функцию реверса, но она доступна не во всех версиях. В мобильной версии приложения настройка часто скрыта в разделе <code>Дополнительно</code> или <code>Параметры страницы</code>. Убедитесь, что ваш смартфон и принтер находятся в одной сети Wi-Fi для корректной передачи данных.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Самый надежный способ печати с конца — использовать функцию "Печатать с конца" в программе просмотра PDF, так как это обрабатывается программно до отправки на принтер.</p></div>
+
+<h2 id="частые-ошибки-и-их-устранение">Частые ошибки и их устранение</h2>
+
+<p>Одной из самых распространенных ошибок является неправильная ориентация листов. Когда вы печатаете с конца, принтер может выдавать листы вверх-ногами или в зеркальном отражении. Это зависит от того, как бумага загружена в лоток. Вам нужно изменить <strong>направление подачи бумаги</strong> в настройках драйвера.</p>
+
+<p>Если вы печатаете двусторонние документы, настройка реверса становится критически важной. Неправильный порядок приведет к тому, что страницы на обороте будут идти вразнобой. В этом случае используйте функцию <code>Двусторонняя печать</code> с опцией <strong>Переплет по короткому краю</strong> или <strong>по длинному краю</strong> в зависимости от типа документа.</p>
+
+<p>Иногда проблема кроется в самом файле. Если документ создан в старой версии Word или имеет нестандартную кодировку, драйвер <em>Epson</em> может интерпретировать команды некорректно. Сохраните файл в формате PDF перед печатью — это универсальный формат, который гарантирует предсказуемое поведение принтера.</p>
+
+<blockquote>⚠️ Внимание: При печати двусторонних документов с реверсом обязательно проверьте направление переворота страницы. Ошибка в выборе "переплет по короткому краю" сделает документ нечитаемым.</blockquote>
+
+<h2 id="итоги-и-рекомендации-по-настройке">Итоги и рекомендации по настройке</h2>
+
+<p>Настройка печати с конца в принтерах <strong>Epson</strong> — задача решаемая, но требующая внимательности к деталям интерфейса. Главное правило — изучить настройки именно вашей версии драйвера, так как они могут отличаться от стандартных. Если функция отсутствует в драйвере, используйте возможности PDF-просмотрщика.</p>
+
+<p>Помните, что неправильные настройки могут привести к перерасходу чернил и бумаги. Всегда делайте пробный лист перед запуском большой партии документов. Это сэкономит время и материалы. Регулярно обновляйте драйверы, чтобы иметь доступ ко всем функциям вашего устройства.</p>
+
+<details class="faq-item"><summary>Как отключить принудительный реверс?</summary><div class="faq-answer"><p>Если принтер начал печатать с конца сам по себе, проверьте настройки в <code>Свойства принтера</code> -> <code>Дополнительно</code>. Сбросьте настройки на "По умолчанию" или выберите "Сначала первая страница".</p></div></details>
+
+<details>
+<summary>Почему в драйвере Epson нет опции печати с конца?</summary>
+<p>В некоторых версиях драйверов, особенно для бюджетных моделей, функция реверса печати может быть скрыта или удалена производителем. В таком случае используйте сторонние программы для PDF или конвертируйте документ в формат, поддерживающий эту опцию в стандартных просмотрщиках.</p>
+</details>
+
+<details>
+<summary>Как настроить печать с конца в Word?</summary>
+<p>В Microsoft Word нет прямой кнопки "Печатать с конца". Вам нужно либо сохранить документ как PDF и использовать опцию в Adobe Reader, либо вручную изменить порядок страниц в панели навигации перед печатью, перетащив их в нужном порядке.</p>
+</details>
+
+<details>
+<summary>Влияет ли реверс печати на качество отпечатка?</summary>
+<p>Нет, порядок печати страниц не влияет на качество изображения. Однако, если вы печатаете двусторонние документы, неправильная настройка ориентации может привести к тому, что текст на обороте будет перевернут или смещен.</p>
+</details>
+
+<details>
+<summary>Можно ли печатать с конца через мобильное приложение?</summary>
+<p>Да, в приложении Epson iPrint на Android и iOS есть функция изменения порядка страниц. Она находится в разделе настроек печати, но доступна не во всех версиях приложения и зависит от модели принтера.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#стандартные-настройки-драйвера-epson-для-реверса">Стандартные настройки драйвера Epson для реверса</a></li><li><a href="#использование-утилиты-status-monitor-и-менеджер-очереди">Использование утилиты Status Monitor и менеджер очереди</a></li><li><a href="#обходные-пути-реверс-через-pdf-и-текстовые-редакторы">Обходные пути: реверс через PDF и текстовые редакторы</a></li><li><a href="#таблица-расположение-настроек-в-разных-версиях-драйверов">Таблица: расположение настроек в разных версиях драйверов</a></li><li><a href="#решение-проблем-с-очередью-печати-и-зависанием">Решение проблем с очередью печати и зависанием</a></li><li><a href="#альтернативные-методы-управления-печатью">Альтернативные методы управления печатью</a></li><li><a href="#частые-ошибки-и-их-устранение">Частые ошибки и их устранение</a></li><li><a href="#итоги-и-рекомендации-по-настройке">Итоги и рекомендации по настройке</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-otkalibrovat-pechatayushchuyu-golovku-epson.html" class="related-card">Как калибровать печатающую головку Epson: пошаговая инструкция</a></li><li><a href="/articles/p/pr/printery-epson-chto-vybrat.html" class="related-card">Какой принтер Epson выбрать: Сравнение серий, технологий и моделей</a></li><li><a href="/articles/k/ka/kak-otregulirovat-printer-dlya-kachestvennoj-pechati-epson.html" class="related-card">Как отрегулировать принтер Epson для идеальной печати: полное руководство</a></li><li><a href="/articles/k/ka/kak-vypolnit-kalibrovku-printera-epson.html" class="related-card">Инструкция: как выполнить калибровку принтера Epson для идеальной печати</a></li><li><a href="/articles/e/ep/epson-proektor-kak-umenshit-izobrazhenie.html" class="related-card">Как уменьшить изображение на проекторах Epson: Полное руководство</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-otkalibrovat-pechatayushchuyu-golovku-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как калибровать печатающую головку Epson: пошаговая инструкция</span><span class="related-bottom-desc">Узнайте, как правильно откалибровать печатающую головку принтеров Epson. Пошаговое руководство по вы</span></a><a href="/articles/p/pr/printery-epson-chto-vybrat.html" class="related-bottom-card"><span class="related-bottom-title">Какой принтер Epson выбрать: Сравнение серий, технологий и моделей</span><span class="related-bottom-desc">Полный гид по выбору принтера Epson. Разбор систем непрерывной подачи чернил, лазерных технологий и </span></a><a href="/articles/k/ka/kak-otregulirovat-printer-dlya-kachestvennoj-pechati-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как отрегулировать принтер Epson для идеальной печати: полное руководство</span><span class="related-bottom-desc">Пошаговая инструкция по калибровке Epson. Устранение полос, настройка цвета и выравнивание головок. </span></a><a href="/articles/k/ka/kak-vypolnit-kalibrovku-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Инструкция: как выполнить калибровку принтера Epson для идеальной печати</span><span class="related-bottom-desc">Полное руководство по калибровке Epson. Настройка сопел, выравнивание головок и устранение смещения </span></a><a href="/articles/e/ep/epson-proektor-kak-umenshit-izobrazhenie.html" class="related-bottom-card"><span class="related-bottom-title">Как уменьшить изображение на проекторах Epson: Полное руководство</span><span class="related-bottom-desc">Инструкция по уменьшению проекции Epson: меню, оптический зум, коррекция трапеции и настройки масшта</span></a><a href="/articles/k/ka/kak-otkalibrovat-printer-epson-po-tsvetu.html" class="related-bottom-card"><span class="related-bottom-title">Как откалибровать принтер Epson по цвету: инструкция для точной печати</span><span class="related-bottom-desc">Пошаговое руководство по калибровке цветов на принтерах Epson. Настройка драйвера, использование ути</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

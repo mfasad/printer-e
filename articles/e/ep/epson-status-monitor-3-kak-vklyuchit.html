@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Epson Status Monitor 3: как включить и настроить мониторинг — Эпсон Помощь</title>
+    <meta name="description" content="Пошаговая инструкция: как активировать Epson Status Monitor 3, включить уведомления о чернилах и исправить ошибки отсутствия ответа от принтера.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/e/ep/epson-status-monitor-3-kak-vklyuchit.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Epson Status Monitor 3: как включить и настроить мониторинг">
+    <meta property="og:description" content="Пошаговая инструкция: как активировать Epson Status Monitor 3, включить уведомления о чернилах и исправить ошибки отсутствия ответа от принтера.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/ustanovka-drajverov/">Установка драйверов</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Epson Status Monitor 3: как включить и настроить мониторинг</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Как включить Epson Status Monitor 3: полное руководство по настройке</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#введение-в-мониторинг-состояния-принтера">Введение в мониторинг состояния принтера</a></li><li><a href="#активация-через-настройки-драйвера">Активация через настройки драйвера</a></li><li><a href="#настройка-отображения-уведомлений">Настройка отображения уведомлений</a></li><li><a href="#проблемы-с-системным-трейом-и-антивирусами">Проблемы с системным трейом и антивирусами</a></li><li><a href="#диагностика-через-системные-службы">Диагностика через системные службы</a></li><li><a href="#таблица-кодов-ошибок-и-их-значение">Таблица кодов ошибок и их значение</a></li><li><a href="#устранение-конфликтов-версий-драйверов">Устранение конфликтов версий драйверов</a></li><li><a href="#заключение">Заключение</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><h2 id="введение-в-мониторинг-состояния-принтера">Введение в мониторинг состояния принтера</h2>
+<p>Современные устройства печати требуют постоянного внимания к уровню чернил и статусу работы механизмов. Именно для этих целей программное обеспечение <em>Epson</em> предусматривает утилиту <code>Epson Status Monitor 3</code>, которая отображает текущее состояние вашей техники прямо в системном трее.</p>
+<p>Многие пользователи сталкиваются с проблемой, когда эта программа отключается автоматически или перестает показывать данные о чернилах. Это часто происходит после установки обновлений Windows или при переходе на режим энергосбережения. Восстановление работы утилиты требует проверки драйверов и настроек самой службы мониторинга.</p>
+<p>В данном материале мы разберем, как принудительно активировать <strong>экранный монитор</strong>, настроить оповещения и устранить распространенные сбои, мешающие корректной работе принтера.</p>
+
+<h2 id="активация-через-настройки-драйвера">Активация через настройки драйвера</h2>
+<p>Самый надежный способ включить функцию — зайти в свойства принтера через панель управления. Это базовый метод, который работает для большинства моделей серий <em>WorkForce</em>, <em>L-Series</em> и <em>Stylus</em>.</p>
+<p>Вам необходимо открыть <code>Панель управления</code> и перейти в раздел <code>Устройства и принтеры</code>. Найдите в списке ваш принтер, нажмите на него правой кнопкой мыши и выберите пункт <code>Настройка печати</code> или <code>Свойства принтера</code>. В открывшемся окне ищите вкладку с названием <code>Обслуживание</code> или <code>Сервис</code>.</p>
+<p>На этой вкладке должна находиться кнопка <code>Параметры монитора статуса</code> (Status Monitor Settings). Нажмите на неё, и вы увидите окно, где можно активировать или деактивировать мониторинг.</p>
+<p><strong>Важно:</strong> Убедитесь, что в выпадающем списке выбрано значение <code>Включить мониторинг состояния</code>. Если этот пункт уже выбран, попробуйте снять галочку, применить настройки и поставить её снова для принудительной перезагрузки службы.</p>
+<p><blockquote>⚠️ Внимание: Если кнопка настройки неактивна или серая, значит, драйвер принтера установлен некорректно или поврежден. В этом случае необходимо переустановить программное обеспечение с официального сайта производителя.</blockquote></p>
+
+<div class="checklist-block"><h4>☑️ Проверка доступности настроек</h4><label class="check-item"><input type="checkbox"><span>Открыть свойства принтера</span></label><label class="check-item"><input type="checkbox"><span>Перейти на вкладку Обслуживание</span></label><label class="check-item"><input type="checkbox"><span>Найти кнопку Параметры монитора</span></label><label class="check-item"><input type="checkbox"><span>Проверить статус галочки</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="настройка-отображения-уведомлений">Настройка отображения уведомлений</h2>
+<p>После включения основной функции утилиты, стоит настроить то, как именно вы будете получать информацию. Программа позволяет выбрать уровень детализации уведомлений, что удобно для разных сценариев использования.</p>
+<p>В окне настроек вы можете выбрать, при каких событиях утилита будет прерывать вашу работу и показывать всплывающее окно. Обычно это критические ошибки, такие как <strong>закончились чернила</strong>, <em>открыта крышка</em> или произошла замятие бумаги.</p>
+<p>Рекомендуется оставить включенным режим <code>Показывать уведомления</code>, чтобы не пропустить момент, когда картридж <em>Epson</em> подходит к концу. Это предотвратит печать пустых страниц и возможную порчу печатающей головки из-за работы "всухую".</p>
+<p><strong>Опция "Мониторинг в фоновом режиме"</strong> позволяет собирать статистику расхода чернил без постоянного показа окон, что полезно для офисной техники. В этом случае вы сможете просмотреть отчеты по запросу, не отвлекаясь на лишние сообщения.</p>
+
+<h2 id="проблемы-с-системным-трейом-и-антивирусами">Проблемы с системным трейом и антивирусами</h2>
+<p>Часто бывает так, что настройки установлены верно, но иконка отсутствует в области уведомлений. В этом случае проблема может крыться в настройках самого Windows или вмешательстве стороннего ПО.</p>
+<p>Система может скрывать неактивные значки. Нажмите на стрелочку вверх в правом нижнем углу экрана, чтобы открыть скрытую область. Если иконка <em>Epson Status Monitor 3</em> там появилась, перетащите её на панель задач.</p>
+<p>Антивирусные программы и брандмауэры иногда блокируют локальный сетевой доступ, который необходим для связи утилиты с принтером. Попробуйте временно отключить защиту и проверить, появится ли значок.</p>
+<p><mark>Если значок не появляется даже после отключения антивируса, это верный признак того, что служба печати Windows (Spooler) конфликтует с драйверами Epson.</mark></p>
+<p>Для исправления ситуации перезапустите службу диспетчера печати в <code>Службы</code>. Найдите строку <code>Диспетчер печати</code>, нажмите правой кнопкой, выберите <code>Перезапустить</code> и подождите окончания процесса.</p>
+
+<div class="poll-widget" id="poll-5bf396a9"><div class="poll-widget-question">📊 Как часто вы сталкиваетесь с проблемами Epson?</div><div class="poll-widget-option" data-poll="5bf396a9" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Никогда</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="5bf396a9" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Редко (раз в полгода)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="5bf396a9" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Часто (каждый месяц)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="5bf396a9" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Постоянно</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="диагностика-через-системные-службы">Диагностика через системные службы</h2>
+<p>Для глубокой проверки работоспособности мониторинга необходимо обратиться к системным службам Windows. Это позволит понять, запущен ли процесс, отвечающий за передачу данных от принтера на компьютер.</p>
+<p>Нажмите комбинацию клавиш <code>Win + R</code>, введите команду <code>services.msc</code> и нажмите Enter. В списке служб найдите <code>Epson Status Monitor 3</code> или <code>Epson Printer Status</code>.</p>
+<p>Состояние службы должно быть <strong>Выполняется</strong>. Если статус "Остановлена", нажмите правой кнопкой мыши и выберите <code>Запустить</code>. Также проверьте параметр <code>Тип запуска</code> — он должен быть установлен в <code>Автоматически</code>.</p>
+<p>Иногда помогает изменение параметра "Восстановление" для этой службы. Установите "Первый сбой" на "Перезапуск службы". Это обеспечит автоматическое восстановление мониторинга при случайных сбоях.</p>
+<p><blockquote>⚠️ Внимание: Изменение системных служб требует осторожности. Не отключайте службы, которые не относятся к принтеру, чтобы не нарушить работу системы.</blockquote></p>
+
+<details class="faq-item"><summary>Что делать, если служба не запускается?</summary><div class="faq-answer"><p>Попробуйте удалить драйвер полностью через панель управления "Удаление программ", затем перезагрузите компьютер и установите свежую версию драйвера с сайта Epson.</p></div></details>
+
+<h2 id="таблица-кодов-ошибок-и-их-значение">Таблица кодов ошибок и их значение</h2>
+<p>При работе мониторинга вы можете видеть различные сообщения об ошибках. Понимание этих кодов поможет быстрее устранить проблему без обращения в сервисный центр.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Код/Сообщение</th>
+      <th>Значение</th>
+      <th>Рекомендуемое действие</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Чернила закончились</td>
+      <td>Уровень чернил в картридже критически низок</td>
+      <td>Замените картридж или проведите процедуру сброса (для СНПЧ)</td>
+    </tr>
+    <tr>
+      <td>Открыта передняя крышка</td>
+      <td>Датчик крышки принтера размыкнут</td>
+      <td>Плотно закройте все люки и доступы к картриджам</td>
+    </tr>
+    <tr>
+      <td>Закончилась бумага</td>
+      <td>В лотке нет носителя для печати</td>
+      <td>Добавьте листы бумаги и выровняйте ограничитель</td>
+    </tr>
+    <tr>
+      <td>Ошибка принтера</td>
+      <td>Неопознанная аппаратная неисправность</td>
+      <td>Перезагрузите принтер и проверьте кабели подключения</td>
+    </tr>
+    <tr>
+      <td>Связь не установлена</td>
+      <td>Компьютер не видит принтер</td>
+      <td>Проверьте подключение USB или настройки Wi-Fi сети</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Если вы видите сообщение <strong>Связь не установлена</strong>, проверьте сетевой кабель. Для сетевых принтеров убедитесь, что устройство подключено к той же подсети, что и компьютер. <em>Epson</em> использует локальный протокол для опроса статуса, и при смене IP-адреса связь может прерваться.</p>
+
+<h2 id="устранение-конфликтов-версий-драйверов">Устранение конфликтов версий драйверов</h2>
+<p>Частой причиной неработающего мониторинга является установка версии драйвера, несовместимой с версией ОС. Например, установка драйвера для Windows 7 на Windows 10 или 11.</p>
+<p>Вам нужно зайти на официальный сайт <em>Epson</em>, ввести точную модель вашего устройства и скачать последний пакет драйверов. В названии файла часто указывается версия ОС, например, <code>Win10_64</code>.</p>
+<p>Перед установкой нового пакета обязательно удалите старую версию через <code>Панель управления → Программы и компоненты</code>. Удалите также папки <code>C:\Program Files\Epson</code>, если они остались.</p>
+<p>После чистого удаления перезагрузите ПК и запустите установщик нового драйвера. В процессе инсталляции утилита сама предложит включить <strong>мониторинг состояния</strong>. Согласитесь с этим предложением.</p>
+<p><blockquote>⚠️ Внимание: При использовании СНПЧ (системы непрерывной подачи чернил) некоторые пользователи отключают мониторинг, так как он показывает "пустые" картриджи. Для корректной работы с внешними банками чернил используйте программное обеспечение сторонних производителей или сброс счетчиков.</blockquote></p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если вы используете СНПЧ, настройте мониторинг на оповещение только о критических ошибках (замятие, защита), а проверку уровня чернил проводите визуально по банкам.</p></div>
+
+<h2 id="заключение">Заключение</h2>
+<p>Активация <code>Epson Status Monitor 3</code> — это важный шаг для комфортной работы принтера. Своевременное оповещение о проблемах экономит время и предотвращает порчу дорогостоящей печатающей головки.</p>
+<p>Следуя описанным выше шагам, вы сможете самостоятельно разобраться в причинах отсутствия уведомлений. Регулярная проверка настроек службы и актуальность драйверов гарантируют стабильную работу устройства.</p>
+<p>Если проблема сохраняется после всех манипуляций, возможно, имеет место аппаратный сбой контроллера принтера. В этом случае стоит обратиться в специализированный сервисный центр.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярное обновление драйверов и проверка статуса службы Spooler — залог стабильной работы мониторинга Epson.</p></div>
+
+<details>
+  <summary>Почему не отображается значок Epson Status Monitor 3 в трее?</summary>
+  <p>Иконка может быть скрыта в области развернутых значков Windows. Нажмите на стрелку вверх в правом нижнем углу экрана. Если значка там нет, проверьте настройки драйвера в свойствах принтера и убедитесь, что мониторинг включен.</p>
+</details>
+
+<details>
+  <summary>Можно ли отключить мониторинг, если у меня СНПЧ?</summary>
+  <p>Да, при использовании СНПЧ часто рекомендуется отключать стандартный мониторинг Epson, так как он может выдавать ложные сообщения о пустых картриджах. Это делается через настройки принтера, сняв галочку "Включить мониторинг состояния".</p>
+</details>
+
+<details>
+  <summary>Что делать, если мониторинг пишет "Связь не установлена" при работающем принтере?</summary>
+  <p>Проверьте подключение кабеля или настройки Wi-Fi. Убедитесь, что принтер не перешел в режим энергосбережения, который отключает порт USB или сетевой интерфейс. Попробуйте отправить тестовую страницу печати.</p>
+</details>
+
+<details>
+  <summary>Как сбросить настройки мониторинга на заводские?</summary>
+  <p>Полного сброса настроек только мониторинга не существует. Для возврата к заводским настройкам необходимо удалить драйвер полностью и установить его заново, приняв все настройки по умолчанию в мастере установки.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#введение-в-мониторинг-состояния-принтера">Введение в мониторинг состояния принтера</a></li><li><a href="#активация-через-настройки-драйвера">Активация через настройки драйвера</a></li><li><a href="#настройка-отображения-уведомлений">Настройка отображения уведомлений</a></li><li><a href="#проблемы-с-системным-трейом-и-антивирусами">Проблемы с системным трейом и антивирусами</a></li><li><a href="#диагностика-через-системные-службы">Диагностика через системные службы</a></li><li><a href="#таблица-кодов-ошибок-и-их-значение">Таблица кодов ошибок и их значение</a></li><li><a href="#устранение-конфликтов-версий-драйверов">Устранение конфликтов версий драйверов</a></li><li><a href="#заключение">Заключение</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kakuyu-programmu-skachat-dlya-printera-epson.html" class="related-card">Какую программу скачать для принтера Epson: драйвера, утилиты, ПО</a></li><li><a href="/articles/k/ka/kak-ustanovit-na-kompyuter-printer-epson-l222.html" class="related-card">Установка драйверов и настройка Epson L222: полная инструкция</a></li><li><a href="/articles/k/ka/kak-obnovit-proshivku-printera-epson.html" class="related-card">Как обновить прошивку принтера Epson: пошаговая инструкция 2026</a></li><li><a href="/articles/k/ka/kak-nastroit-printer-na-pechat-s-kompyutera-epson.html" class="related-card">Настройка принтера Epson для печати с ПК: пошаговое руководство</a></li><li><a href="/articles/g/gd/gde-nakhoditsya-stranitsa-ustanovka-dlya-printera-epson.html" class="related-card">Где найти настройки принтера Epson: драйверы, утилита установки и панели управления</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kakuyu-programmu-skachat-dlya-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Какую программу скачать для принтера Epson: драйвера, утилиты, ПО</span><span class="related-bottom-desc">Подробный гайд по выбору официального и стороннего ПО для принтеров Epson: драйвера, утилиты для печ</span></a><a href="/articles/k/ka/kak-ustanovit-na-kompyuter-printer-epson-l222.html" class="related-bottom-card"><span class="related-bottom-title">Установка драйверов и настройка Epson L222: полная инструкция</span><span class="related-bottom-desc">Подробное руководство по подключению и настройке МФУ Epson L222 на Windows. Установка драйверов, нас</span></a><a href="/articles/k/ka/kak-obnovit-proshivku-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как обновить прошивку принтера Epson: пошаговая инструкция 2026</span><span class="related-bottom-desc">Пошаговое руководство по обновлению прошивки принтеров Epson. Методы через USB и Wi-Fi, исправление </span></a><a href="/articles/k/ka/kak-nastroit-printer-na-pechat-s-kompyutera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Настройка принтера Epson для печати с ПК: пошаговое руководство</span><span class="related-bottom-desc">Как подключить принтер Epson к компьютеру и настроить печать: драйвера, Wi-Fi, USB, устранение ошибо</span></a><a href="/articles/g/gd/gde-nakhoditsya-stranitsa-ustanovka-dlya-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Где найти настройки принтера Epson: драйверы, утилита установки и панели управления</span><span class="related-bottom-desc">Полное руководство: где находится страница установки для принтера Epson. Пошаговая инструкция по пои</span></a><a href="/articles/k/ka/kak-vklyuchit-epson-l132.html" class="related-bottom-card"><span class="related-bottom-title">Как включить принтер Epson L132: пошаговая настройка и запуск</span><span class="related-bottom-desc">Подробная инструкция, как включить Epson L132, выполнить первое включение, проверить индикаторы и ус</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

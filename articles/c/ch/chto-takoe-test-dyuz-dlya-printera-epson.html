@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Тест дюз Epson: диагностика половинок, интерпретация и устранение засоров — Эпсон Помощь</title>
+    <meta name="description" content="Подробный разбор теста дюз для принтеров Epson. Как читать результаты, отличать засор от смещения и правильно выполнять очистку головок без риска.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/c/ch/chto-takoe-test-dyuz-dlya-printera-epson.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Тест дюз Epson: диагностика половинок, интерпретация и устранение засоров">
+    <meta property="og:description" content="Подробный разбор теста дюз для принтеров Epson. Как читать результаты, отличать засор от смещения и правильно выполнять очистку головок без риска.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/chistka-golovok/">Чистка головок</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Тест дюз Epson: диагностика половинок, интерпретация и устранение засоров</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Тест дюз для принтеров Epson: полная диагностика и расшифровка результатов</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#что-представляет-собой-тест-дюз-и-зачем-он-нужен">Что представляет собой тест дюз и зачем он нужен</a></li><li><a href="#как-интерпретировать-результаты-теста-и-читать-карту-дюз">Как интерпретировать результаты теста и читать карту дюз</a></li><li><a href="#автоматическая-и-ручная-очистка-когда-и-как-применять">Автоматическая и ручная очистка: когда и как применять</a></li><li><a href="#продвинутые-методы-прочистки-для-сложных-случаев">Продвинутые методы прочистки для сложных случаев</a></li><li><a href="#сравнение-методов-устранения-засоров">Сравнение методов устранения засоров</a></li><li><a href="#профилактика-и-правильное-обслуживание-принтера">Профилактика и правильное обслуживание принтера</a></li><li><a href="#типичные-ошибки-при-диагностике-и-как-их-избежать">Типичные ошибки при диагностике и как их избежать</a></li><li><a href="#faq-ответы-на-частые-вопросы">FAQ: Ответы на частые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><h2 id="что-представляет-собой-тест-дюз-и-зачем-он-нужен">Что представляет собой тест дюз и зачем он нужен</h2>
+<p>Тест дюз — это фундаментальная диагностическая процедура, встроенная в прошивку любого струйного принтера <em>Epson</em>. Она позволяет визуально оценить состояние печатающей головки, проверив прохождение чернил через каждый отдельный микроскопический канал. Без этой операции невозможно понять, почему на отпечатке появляются белые полосы или исчезают цвета, так как проблема может крыться как в механическом засоре, так и в сбое электроники.</p>
+<p>Когда вы запускаете <code>Тест дюз</code> через меню обслуживания, принтер выводит на бумагу специальную сетку, состоящую из горизонтальных и вертикальных линий. Каждый цвет (циан, пурпурный, желтый, черный) имеет свой уникальный паттерн. Если линия прерывается или отсутствует вовсе, это прямой сигнал о том, что конкретная дюза (сопло) не работает. <strong>Своевременная диагностика</strong> экономит чернила и предотвращает необходимость дорогостоящего ремонта головки.</p>
+<p>Многие пользователи совершают ошибку, пытаясь сразу отключать питание при обнаружении дефекта. На самом деле, именно анализ этого теста дает понимание, нужно ли выполнять очистку или проблема решается выравниванием вектора печати. Понимание структуры теста позволяет вам действовать целенаправленно, а не гадать на кофейной гуще.</p>
+
+<h2 id="как-интерпретировать-результаты-теста-и-читать-карту-дюз">Как интерпретировать результаты теста и читать карту дюз</h2>
+<p>Результат теста дюз выглядит как набор из четырех вертикальных полос, разделенных по цветам. В идеале каждая полоса должна быть сплошной, без разрывов и точек. Однако на практике вы часто увидите, что некоторые линии прерываются, а на месте черных или цветных пикселей остаются белые пробелы. Это и есть визуализация неработающих сопел. Важно различать единичные пропуски и массовые засоры, так как тактика действий в этих случаях кардинально отличается.</p>
+<p>Если вы видите, что линия прерывается только в верхней части изображения, это может указывать на то, что чернила не доходят до сопел из-за отсутствия давления в системе. <strong>Интерпретация результатов</strong> требует внимательности: иногда разрыв линии выглядит как «ступенька», что говорит о смещении печатающей каретки, а не о засоре. В таких случаях запуск процедуры очистки может даже навредить, переполнив систему чернилами.</p>
+<p>Обратите внимание на цвета, которые отсутствуют полностью. Если, например, желтый цвет на тесте выглядит как набор точек, а не сплошная линия, это критический признак <em>масштабного засора</em>. В отличие от единичного сбоя, когда не работает одна дюза, массовый отказ целого цвета требует более агрессивных мер или применения специальных растворителей.</p>
+<blockquote>⚠️ Внимание: Интенсивность подачи чернил может варьироваться в зависимости от типа используемой бумаги. При тестировании на глянцевых фотобумагах линии могут казаться более тонкими, чем на обычной офисной бумаге 80 г/м². Всегда проводите первичную диагностику на стандартной бумаге для корректного сравнения.</blockquote>
+
+<h2 id="автоматическая-и-ручная-очистка-когда-и-как-применять">Автоматическая и ручная очистка: когда и как применять</h2>
+<p>Самый простой способ устранить мелкие засоры — запустить автоматическую очистку через меню драйвера или панель управления принтера. Принтер <em>Epson</em> выполнит серию промывок, проталкивая чернила через сопла под давлением. Этот процесс занимает несколько минут и потребляет значительное количество чернил, так как они сливаются в абсорбер (памперс). Не стоит злоупотреблять этой функцией, если тест показывает только единичные пропуски.</p>
+<p>Если автоматическая очистка не дала результата после двух-трех циклов, необходимо переходить к более продвинутым методам. Вручную можно попробовать выполнить очистку через инженерное меню, если ваша модель <em>Epson</em> это поддерживает. Также стоит проверить, не закончились ли чернила в картриджах или СНПЧ, так как засос воздуха часто имитирует засор дюз.</p>
+<p>Иногда проблема решается не очисткой, а выравниванием головки. Если линии на тесте дюз смещены относительно друг друга или идут под углом, это верный признак сбоя калибровки. В таком случае запуск очистки только усугубит ситуацию, создав лужи чернил внутри печатающей головки.</p>
+<div class="poll-widget" id="poll-d6966f2e"><div class="poll-widget-question">📊 Что чаще всего вызывает засор дюз?</div><div class="poll-widget-option" data-poll="d6966f2e" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Длительный простой</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="d6966f2e" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Некачественные чернила</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="d6966f2e" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Неисправность СНПЧ</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="d6966f2e" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Перегрев каретки</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="d6966f2e" data-idx="4" onclick="pbPollVote(this)"><span class="poll-widget-label">Выход из строя насоса</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="продвинутые-методы-прочистки-для-сложных-случаев">Продвинутые методы прочистки для сложных случаев</h2>
+<p>Когда стандартные средства бессильны, приходится прибегать к ручному вмешательству. Это может быть как использование жидкости для очистки головок, так и демонтаж печатающей головки для замачивания. <strong>Удаление засоров</strong> в домашних условиях требует аккуратности, так как можно повредить хрупкие электронные контакты или резиновые уплотнители.</p>
+<p>Один из эффективных методов — создание «ванночки». Необходимо аккуратно залить небольшое количество спецжидкости на нижнюю часть головки (сопла) и оставить принтер в покое на несколько часов, а лучше на ночь. За это время растворитель размягчит засохшие чернила, и они смогут выйти при следующем запуске очистки. Важно, чтобы жидкость не попала на электронные контакты.</p>
+<p>В сложных случаях, когда засор находится глубоко внутри канала, может потребоваться использование шприца с мягкой трубкой для подачи раствора под давлением. Это требует определенных навыков и инструментов, так как избыточное давление может разорвать внутренние мембраны головки. Если вы не уверены в своих силах, лучше доверить работу профессионалам.</p>
+<p>Не стоит игнорировать риск попадания воздуха в систему. Если при промывке вы заметили пузырьки, вышедшие из сопел, это хороший знак — воздух вышел. Однако если после процедуры тест дюз показывает те же проблемы, возможно, проблема не в засоре, а в неисправности пьезоэлементов.</p>
+<div class="checklist-block"><h4>☑️ Подготовка к ручной очистке</h4><label class="check-item"><input type="checkbox"><span>Подготовить шприц и трубку</span></label><label class="check-item"><input type="checkbox"><span>Купить спецжидкость для очистки</span></label><label class="check-item"><input type="checkbox"><span>Отключить принтер от сети</span></label><label class="check-item"><input type="checkbox"><span>Защитить контакты от попадания жидкости</span></label><label class="check-item"><input type="checkbox"><span>Проверить уровень чернил в СНПЧ</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 5</div></div>
+
+<h2 id="сравнение-методов-устранения-засоров">Сравнение методов устранения засоров</h2>
+<p>Чтобы понять, какой метод выбрать, полезно сравнить их эффективность и риски. Автоматическая очистка безопасна, но малоэффективна при старых засорах. Ручная промывка мощнее, но требует времени. Демонтаж головки — самый радикальный метод, который может привести к поломке техники при ошибке.</p>
+<table>
+<thead>
+<tr>
+<th>Метод очистки</th>
+<th>Сложность выполнения</th>
+<th>Риск повреждения</th>
+<th>Эффективность при старом засоре</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Автоматическая промывка</td>
+<td>Низкая</td>
+<td>Минимальный</td>
+<td>Средняя (1-2 цикла)</td>
+</tr>
+<tr>
+<td>Промывка спецжидкостью</td>
+<td>Средняя</td>
+<td>Средний</td>
+<td>Высокая</td>
+</tr>
+<tr>
+<td>Демонтаж и замачивание</td>
+<td>Высокая</td>
+<td>Высокий</td>
+<td>Максимальная</td>
+</tr>
+<tr>
+<td>Ультразвуковая ванна</td>
+<td>Очень высокая</td>
+<td>Критический</td>
+<td>Только для сложных случаев</td>
+</tr>
+</tbody>
+</table>
+<p>Выбор метода зависит от того, как давно возникла проблема. Если принтер стоял без дела неделю, достаточно автоматической очистки. Если же он простаивал месяцами с открытой СНПЧ, придется использовать химические растворители и, возможно, разбирать устройство.</p>
+<details class="faq-item"><summary>Что такое «сухой» засор?</summary><div class="faq-answer"><p>Долгое время принтер не использовался, и чернила внутри каналов высохли, образовав плотную пробку, которую невозможно сдвинуть стандартным давлением насоса.</p></div></details>
+
+<h2 id="профилактика-и-правильное-обслуживание-принтера">Профилактика и правильное обслуживание принтера</h2>
+<p>Лучший способ борьбы с засорами — это профилактика. Регулярная печать даже пары страниц в неделю помогает поддерживать каналы в рабочем состоянии. <strong>Профилактика засоров</strong> включает в себя проверку уровней чернил и своевременную замену картриджей или заправку СНПЧ. Никогда не оставляйте принтер без чернил, так как это гарантирует засасывание воздуха в головку.</p>
+<p>Используйте только качественные чернила, рекомендованные производителем. Дешевые аналоги часто имеют неправильную вязкость или химический состав, что приводит к быстрому оседанию пигмента и образованию пробок. Контрактные чернила <em>Epson</em> или сертифицированные аналоги (например, для пигментных принтеров) обеспечивают стабильную работу на протяжении длительного времени.</p>
+<p>Важно также обеспечить правильный температурный режим. Экстремально низкие температуры могут привести к загустеванию чернил, а перегрев — к их окислению. Храните принтер в помещении с умеренной влажностью и температурой, чтобы избежать конденсата и высыхания.</p>
+<p>Если вы долго не планируете пользоваться принтером, лучше сделать полную очистку головки перед выключением. Это создаст защитный слой свежих чернил в каналах, который замедлит процесс высыхания. Некоторые модели <em>Epson</em> имеют функцию «Консервации», которую стоит использовать перед длительным простоем.</p>
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед длительным простоем (более 2-3 недель) обязательно сделайте тест дюз и, при необходимости, очистку головок, чтобы чернила не успели засохнуть внутри каналов.</p></div>
+<blockquote>⚠️ Внимание: Если вы используете СНПЧ, регулярно проверяйте высоту бачков относительно печатающей головки. Слишком высокое положение может создать избыточное давление и вызвать подтекание, а слишком низкое — спровоцировать засос воздуха и засор.</blockquote>
+
+<h2 id="типичные-ошибки-при-диагностике-и-как-их-избежать">Типичные ошибки при диагностике и как их избежать</h2>
+<p>Одной из самых частых ошибок является игнорирование теста дюз перед началом работы. Пользователи часто начинают печатать большой объем документов, а потом удивляются, почему печать идет с полосами. Регулярная проверка состояния дюз позволяет выявить проблему на ранней стадии, когда она решается парой кликов. <strong>Игнорирование сигналов</strong> принтера часто приводит к тому, что простой засор превращается в неисправность, требующую замены головки.</p>
+<p>Другая ошибка — чрезмерная вера в «чудо-жидкости». Некоторые пользователи пытаются залить в принтер агрессивные растворители, которые могут разъесть пластиковые детали или резиновые прокладки. Всегда используйте только специализированные средства, предназначенные для струйных принтеров. Неправильные химические реакции могут разрушить структуру головки навсегда.</p>
+<p>Также стоит отметить ошибку, связанную с попыткой очистки при низком уровне чернил. Если в СНПЧ или картридже нет чернил, насос просто прогоняет воздух, не промывая сопла. Это приводит к тому, что засор только усиливается, а пьезоэлементы работают вхолостую, перегреваясь.</p>
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Главная причина засоров — длительный простой без профилактической печати. Регулярный запуск 1-2 страниц в неделю снижает риск засоров на 90%.</p></div>
+
+<h2 id="faq-ответы-на-частые-вопросы">FAQ: Ответы на частые вопросы</h2>
+<details>
+<summary>Почему тест дюз показывает пустые линии, хотя чернила есть?</summary>
+<p>Это может означать, что в системе засосался воздух, либо образовался плотный засор, который не пропускает чернила. Попробуйте выполнить 2-3 цикла автоматической очистки. Если не помогло, потребуется ручная промывка или проверка уровней чернил в СНПЧ.</p>
+</details>
+<details>
+<summary>Как часто нужно делать тест дюз для принтера Epson?</summary>
+<p>Рекомендуется проводить тест после каждого длительного простоя (более 3-5 дней) и перед началом важных задач печати. Если вы печатае постоянно, достаточно проверять состояние раз в неделю.</p>
+</details>
+<details>
+<summary>Можно ли использовать водку или спирт для очистки головок Epson?</summary>
+<p>Категорически не рекомендуется. Спирт может повредить резиновые уплотнители и внутреннюю структуру пьезоэлементов. Используйте только специальные жидкости для очистки головок, которые имеют оптимальный химический состав.</p>
+</details>
+<details>
+<summary>Что делать, если после очистки тест дюз стал еще хуже?</summary>
+<p>Прекратите попытки очистки и дайте принтеру постоять несколько часов. Возможно, вы переполнили систему чернилами или размазали засор по каналам. Если ситуация не улучшилась через сутки, обратитесь в сервисный центр.</p>
+</details>
+<details>
+<summary>Можно ли печатать, если тест дюз показывает 1-2 пробела?</summary>
+<p>Да, печатать можно, но качество печати будет снижено. Единичные неработающие дюзы обычно незаметны на фотографиях, но могут быть видны на сплошных цветовых полях или тексте. Лучше устранить проблему до начала большой работы.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#что-представляет-собой-тест-дюз-и-зачем-он-нужен">Что представляет собой тест дюз и зачем он нужен</a></li><li><a href="#как-интерпретировать-результаты-теста-и-читать-карту-дюз">Как интерпретировать результаты теста и читать карту дюз</a></li><li><a href="#автоматическая-и-ручная-очистка-когда-и-как-применять">Автоматическая и ручная очистка: когда и как применять</a></li><li><a href="#продвинутые-методы-прочистки-для-сложных-случаев">Продвинутые методы прочистки для сложных случаев</a></li><li><a href="#сравнение-методов-устранения-засоров">Сравнение методов устранения засоров</a></li><li><a href="#профилактика-и-правильное-обслуживание-принтера">Профилактика и правильное обслуживание принтера</a></li><li><a href="#типичные-ошибки-при-диагностике-и-как-их-избежать">Типичные ошибки при диагностике и как их избежать</a></li><li><a href="#faq-ответы-на-частые-вопросы">FAQ: Ответы на частые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/p/po/pochemu-printer-epson-pechataet-bledno-pri-polnom-kartridzhe.html" class="related-card">Принтер Epson печатает бледно при полном картридже: причины и решение</a></li><li><a href="/articles/t/te/tekhnologicheskaya-prochistka-chernil-epson-l120-chto-eto.html" class="related-card">Технологическая прочистка чернил Epson L120: что это и как сделать</a></li><li><a href="/articles/k/ka/kak-raspechatat-testovuyu-stranitsu-na-printere-epson-l800.html" class="related-card">Как распечатать тестовую страницу на принтере Epson L800: пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-produt-printer-epson-l-3100.html" class="related-card">Как продуть принтер Epson L3150: полная инструкция по прочистке</a></li><li><a href="/articles/t/te/tekhnologicheskaya-prochistka-chernil-epson-l1300-chto-eto.html" class="related-card">Технологическая прочистка Epson L1300: что это и как делать</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/p/po/pochemu-printer-epson-pechataet-bledno-pri-polnom-kartridzhe.html" class="related-bottom-card"><span class="related-bottom-title">Принтер Epson печатает бледно при полном картридже: причины и решение</span><span class="related-bottom-desc">Почему Epson печатает бледно, если чернила есть? Решаем проблему засохших дюз, воздушных пробок и сб</span></a><a href="/articles/t/te/tekhnologicheskaya-prochistka-chernil-epson-l120-chto-eto.html" class="related-bottom-card"><span class="related-bottom-title">Технологическая прочистка чернил Epson L120: что это и как сделать</span><span class="related-bottom-desc">Подробный разбор процедуры технологической прочистки для Epson L120. Когда она нужна, как выполнить </span></a><a href="/articles/k/ka/kak-raspechatat-testovuyu-stranitsu-na-printere-epson-l800.html" class="related-bottom-card"><span class="related-bottom-title">Как распечатать тестовую страницу на принтере Epson L800: пошаговая инструкция</span><span class="related-bottom-desc">Руководство по запуску тестовой печати на Epson L800 через драйвер и панель управления. Проверка соп</span></a><a href="/articles/k/ka/kak-produt-printer-epson-l-3100.html" class="related-bottom-card"><span class="related-bottom-title">Как продуть принтер Epson L3150: полная инструкция по прочистке</span><span class="related-bottom-desc">Пошаговое руководство как продуть засорившуюся головку принтера Epson L3150. Методы промывки, сброс </span></a><a href="/articles/t/te/tekhnologicheskaya-prochistka-chernil-epson-l1300-chto-eto.html" class="related-bottom-card"><span class="related-bottom-title">Технологическая прочистка Epson L1300: что это и как делать</span><span class="related-bottom-desc">Разбираем технологическую прочистку чернил Epson L1300: отличие от обычной чистки, когда применять и</span></a><a href="/articles/k/ka/kak-prochistit-zasokhshie-dyuzy-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как прочистить засохшие дюзы Epson: 5 рабочих методов</span><span class="related-bottom-desc">Полная инструкция по восстановлению печатающей головки Epson. От программной чистки до влажного мето</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

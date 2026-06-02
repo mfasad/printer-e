@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как посмотреть историю печати на принтерах Epson: пошаговая инструкция — Эпсон Помощь</title>
+    <meta name="description" content="Узнайте, как проверить журнал печати на Epson через ПО принтера, командную строку Windows или веб-интерфейс. Подробные методы для офисных и домашних устройств.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-posmotret-istoriyu-pechati-printera-epson.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как посмотреть историю печати на принтерах Epson: пошаговая инструкция">
+    <meta property="og:description" content="Узнайте, как проверить журнал печати на Epson через ПО принтера, командную строку Windows или веб-интерфейс. Подробные методы для офисных и домашних устройств.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/setevoe-podklyuchenie/">Сетевое подключение</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как посмотреть историю печати на принтерах Epson: пошаговая инструкция</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Как посмотреть историю печати принтера Epson: полные методы доступа к журналу</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#просмотр-истории-через-утилиту-epson-status-monitor">Просмотр истории через утилиту Epson Status Monitor</a></li><li><a href="#использование-событий-windows-для-детального-аудита">Использование событий Windows для детального аудита</a></li><li><a href="#анализ-истории-через-веб-интерфейс-сетевых-моделей">Анализ истории через веб-интерфейс сетевых моделей</a></li><li><a href="#использование-командной-строки-для-получения-логов">Использование командной строки для получения логов</a></li><li><a href="#проверка-локальных-папок-и-кэша-принтера">Проверка локальных папок и кэша принтера</a></li><li><a href="#регистрация-и-удаление-истории-печати">Регистрация и удаление истории печати</a></li><li><a href="#частые-проблемы-и-способы-их-решения">Частые проблемы и способы их решения</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Прямой функции просмотра полного отчета о выполненных заданиях на самом корпусе принтера <strong>Epson</strong> часто недостаточно, что вынуждает пользователей искать логи в системе или специальном ПО для анализа причин зависания <strong>очереди задач</strong> и подтверждения завершений печати. <strong>Журнал печати</strong>, содержащий даты, имена файлов и количество страниц, становится ключевым инструментом не только для контроля расходов в офисе, но и для отсечения ненужных действий в домашней сети, однако его структура зависит от драйвера и версии утилиты управления.</p>
+
+<p>Существует несколько способов получить доступ к этим данным: от встроенных утилит <strong>EPSON Status Monitor</strong> до системных средств операционной системы Windows и даже веб-интерфейса сетевых моделей. Каждый метод имеет свои ограничения и преимущества, зависящие от конкретной серии устройства, версии драйверов и настроек безопасности сети.</p>
+
+<p>Важно понимать, что <strong>история печати</strong> может быть удалена автоматически после перезагрузки системы или очистки очереди, поэтому своевременный мониторинг повышает шансы на получение точных данных. В следующих разделах мы подробно разберем наиболее эффективные алгоритмы действий для разных ситуаций.</p>
+
+<h2 id="просмотр-истории-через-утилиту-epson-status-monitor">Просмотр истории через утилиту Epson Status Monitor</h2>
+
+<p>Большинство устройств <em>Epson</em> поставляются с предустановленным программным обеспечением, которое включает в себя <strong>монитор состояния</strong>. Это базовый инструмент, позволяющий видеть текущий статус и, в некоторых случаях, последние выполненные операции. Утилита <code>Epson Status Monitor 3</code> или более современные версии интегрируются в панель задач и часто отображают всплывающие уведомления.</p>
+
+<p>Чтобы увидеть детали, необходимо открыть <code>Пуск → Все программы → EPSON → EPSON Status Monitor 3 → Настройки</code>. В окне настроек часто можно найти вкладку <code>Журнал событий</code> или <code>История печати</code>, где отображается список последних нескольких заданий. Однако этот список обычно ограничен по объему и не хранит данные за длительный период.</p>
+
+<p>Если интерфейс программы не показывает нужную информацию, стоит проверить, активирован ли мониторинг печати. В свойствах утилиты может быть галочка <code>Включить мониторинг печати</code>, которая по умолчанию может быть снята для экономии ресурсов системы.</p>
+
+<blockquote>
+<p>⚠️ <strong>Внимание:</strong> Утилита Epson Status Monitor может не отображать историю печати, если драйвер был установлен в режиме "Базовая печать" или без дополнительных компонентов управления.</p>
+</blockquote>
+
+<p>Для более глубокого анализа в профессиональных сериях <em>WorkForce</em> или <em>Stylus Pro</em> может потребоваться запуск административной консоли, доступ к которой осуществляется через меню <code>Свойства принтера</code> в панели управления Windows.</p>
+
+<div class="poll-widget" id="poll-cd95444b"><div class="poll-widget-question">📊 Какой способ просмотра истории печати вы использовали ранее?</div><div class="poll-widget-option" data-poll="cd95444b" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Через утилиту Epson</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="cd95444b" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Через журнал Windows</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="cd95444b" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Через веб-интерфейс</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="cd95444b" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Никогда не проверял</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="использование-событий-windows-для-детального-аудита">Использование событий Windows для детального аудита</h2>
+
+<p>Операционная система Windows имеет встроенный механизм логирования, который фиксирует все взаимодействия с устройствами вывода, включая <strong>принтеры Epson</strong>. Этот метод является наиболее надежным, так как он не зависит от наличия специфического ПО производителя и работает на уровне ядра системы. Данные хранятся в <strong>Журнале событий</strong>, к которому можно получить доступ через стандартные инструменты администратора.</p>
+
+<p>Для запуска анализа откройте <code>Панель управления → Администрирование → Просмотр событий</code>. В левой панели выберите ветку <code>Журналы приложений и служб → Microsoft → Windows → PrintService</code>. Здесь находятся ключи <code>Operational</code> и <code>Administrative</code>, где регистрируются все попытки печати.</p>
+
+<p>Наиболее информативным является событие с кодом <code>307</code> (документ отправлен на печать) и <code>308</code> (документ успешно напечатан). Кликнув на событие, вы увидите подробную информацию в нижнем окне: имя пользователя, имя файла, количество копий, размер документа и точное время выполнения. Это позволяет восстановить полную картину деятельности за любой период, пока журнал не был очищен.</p>
+
+<table>
+<thead>
+<tr>
+<th>Код события</th>
+<th>Описание действия</th>
+<th>Доступные данные</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>300</td>
+<td>Создание очереди печати</td>
+<td>Имя принтера, путь к очереди</td>
+</tr>
+<tr>
+<td>307</td>
+<td>Запуск задания печати</td>
+<td>Имя файла, пользователь, размер</td>
+</tr>
+<tr>
+<td>308</td>
+<td>Успешное завершение</td>
+<td>Статус, количество страниц</td>
+</tr>
+<tr>
+<td>316</td>
+<td>Ошибка печати</td>
+<td>Код ошибки, причина сбоя</td>
+</tr>
+</tbody>
+</table>
+
+<p>Важно отметить, что по умолчанию логирование может быть отключено или иметь ограниченный размер файла журнала. Чтобы убедиться, что данные записываются, проверьте свойства журнала <code>PrintService</code> и увеличьте максимальный размер хранилища, если планируете длительный мониторинг.</p>
+
+<div class="checklist-block"><h4>☑️ Проверка настройки аудита печати</h4><label class="check-item"><input type="checkbox"><span>Открыть «Просмотр событий»</span></label><label class="check-item"><input type="checkbox"><span>Перейти в PrintService -> Operational</span></label><label class="check-item"><input type="checkbox"><span>Включить логирование в свойствах</span></label><label class="check-item"><input type="checkbox"><span>Найти код события 307</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="анализ-истории-через-веб-интерфейс-сетевых-моделей">Анализ истории через веб-интерфейс сетевых моделей</h2>
+
+<p>Современные сетевые принтеры <em>Epson</em>, такие как серии <code>WorkForce Enterprise</code> или <code>WorkForce Pro</code>, оснащены встроенным веб-сервером. Это мощный инструмент, позволяющий управлять устройством и просматривать статистику прямо из браузера без установки дополнительного ПО на каждый компьютер в сети.</p>
+
+<p>Чтобы получить доступ, необходимо узнать <strong>IP-адрес</strong> принтера, который можно найти в меню самого устройства (раздел <code>Настройки сети</code>) или распечатав отчет о конфигурации. Введя адрес в строку браузера (например, <code>http://192.168.1.50</code>), вы попадете в панель управления.</p>
+
+<p>Навигация по меню может отличаться в зависимости от прошивки, но обычно раздел с историей находится в категориях <code>Настройки</code>, <code>Отчеты</code> или <code>Мониторинг</code>. Ищите раздел <code>Журнал печати</code> (Print Log) или <code>История заданий</code> (Job History). Здесь часто доступна возможность экспорта данных в формате CSV или XML для дальнейшего анализа.</p>
+
+<p>В некоторых моделях требуется авторизация администратора для просмотра полного отчета. Стандартный логин часто совпадает с именем устройства, а пароль может быть задан при первичной настройке или быть пустым по умолчанию.</p>
+
+<blockquote>
+<p>⚠️ <strong>Внимание:</strong> Доступ к веб-интерфейсу возможен только в том случае, если принтер подключен к той же локальной сети, что и компьютер, с которого вы пытаетесь войти.</p>
+</blockquote>
+
+<p>Веб-интерфейс также позволяет фильтровать отчеты по дате, пользователю или типу документа, что значительно упрощает поиск конкретной информации среди тысяч записей.</p>
+
+<h2 id="использование-командной-строки-для-получения-логов">Использование командной строки для получения логов</h2>
+
+<p>Для опытных пользователей или системных администраторов, которым необходимо быстро получить данные без графического интерфейса, существует возможность использования <strong>командной строки</strong>. Этот метод позволяет извлечь информацию из системных логов или скриптов, если на устройстве включен соответствующий режим.</p>
+
+<p>В Windows можно использовать утилиту <code>wevtutil</code> для фильтрации событий печати. Откройте командную строку с правами администратора и введите следующую команду для получения последних 20 событий печати:</p>
+
+<pre><code>wevtutil qe Microsoft-Windows-PrintService/Operational /c:20 /rd:true /f:text</code></pre>
+
+<p>Эта команда выведет на экран текстовый отчет, содержащий детали о каждом задании. Если требуется сохранить результат в файл, используйте перенаправление вывода: <code>wevtutil qe ... > print_log.txt</code>.</p>
+
+<p>Важно понимать, что этот метод требует базовых знаний работы с консолью и понимания структуры событий Windows. Ошибки в параметрах команды могут привести к отсутствию данных или отображению некорректной информации.</p>
+
+<details class="faq-item"><summary>Что делать, если события не отображаются?</summary><div class="faq-answer"><p>Если вы не видите событий 307 или 308 в журнале, возможно, логирование печати отключено в системных политиках. Зайдите в «Локальная политика безопасности» -> «Политика аудита» и включите «Аудит событий службы печати».</spoiler</p></div></details>
+
+<h2 id="проверка-локальных-папок-и-кэша-принтера">Проверка локальных папок и кэша принтера</h2>
+
+<p>Иногда история печати может быть сохранена в локальных файлах кэша драйвера, особенно если используются <strong>виртуальные принтеры</strong> или PDF-конвертеры. Эти файлы могут содержать временные копии документов, отправленных на печать, что косвенно подтверждает факт отправки задания.</p>
+
+<p>Путь к папке кэша часто находится в <code>C:\Windows\System32\spool\PRINTERS</code>. Однако большинство современных систем очищают эту папку после завершения печати или перезагрузки. Тем не менее, в некоторых случаях здесь могут оставаться временные файлы с расширением .SPL или .SHD, которые можно проанализировать.</p>
+
+<p>Анализ имен файлов в кэше может дать подсказку о том, какие документы были обработаны, но не всегда показывает статус их завершения. Это косвенный метод, который стоит использовать только в сочетании с другими способами проверки.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед очисткой временных файлов в папке PRINTERS сделайте резервную копию содержимого, если планируете анализировать данные позже.</tip</p></div>
+
+<p>Также стоит проверить папки временных файлов пользователя: <code>%TEMP%</code>. Иногда драйверы оставляют здесь логи конфигурации или отчеты о состоянии, которые могут содержать информацию о последних операциях.</p>
+
+<h2 id="регистрация-и-удаление-истории-печати">Регистрация и удаление истории печати</h2>
+
+<p>Пользователи часто интересуются не только просмотром, но и возможностью управления историей печати. В Windows журнал событий можно очищать вручную, но это требует прав администратора. В утилитах <em>Epson</em> опция очистки истории обычно отсутствует, так как это системный журнал.</p>
+
+<p>Для системных администраторов важно настроить политики хранения логов. Если журнал событий переполнится, старые записи будут автоматически удаляться, что может привести к потере данных за длительный период. Рекомендуется установить размер журнала на несколько гигабайт для долгосрочного хранения.</p>
+
+<p>В корпоративной среде часто используются сторонние решения для аудита печати, которые перехватывают задания до отправки на принтер и ведут собственную базу данных. Такие системы позволяют не только просматривать историю, но и блокировать печать конфиденциальных документов.</p>
+
+<blockquote>
+<p>⚠️ <strong>Внимание:</strong> Полное отключение логирования печати в Windows может нарушать требования внутренней безопасности компании и законодательства о защите данных.</p>
+</blockquote>
+
+<p>Если вы используете <em>Epson</em> в домашней сети, регулярная очистка истории не обязательна, но может быть полезна для освобождения места на диске, если журнал событий настроен на автоперезапись без ограничения размера.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Самый надежный способ увидеть полную историю печати — это анализ системного журнала событий Windows через код события 307.</keypoint</p></div>
+
+<h2 id="частые-проблемы-и-способы-их-решения">Частые проблемы и способы их решения</h2>
+
+<p>При попытке просмотра истории пользователи могут столкнуться с рядом проблем: пустой журнал, отсутствие прав доступа или некорректное отображение имен файлов. Чаще всего это связано с тем, что логирование печати не было активировано на момент отправки задания.</p>
+
+<p>Если вы видите только последние записи, проверьте, не был ли перезаписан журнал событий. В свойствах журнала можно изменить политику переполнения с "Запись поверх старых событий" на "Запретить запись новых событий", чтобы сохранить исторические данные.</p>
+
+<p>Иногда имена файлов в логах отображаются как непонятные коды или временные имена. Это происходит, если документ был отправлен через приложение, которое не передает метаданные корректно. В таких случаях поможет анализ размера файла и времени отправки для идентификации документа.</p>
+
+<p>Для принтеров с поддержкой <strong>AirPrint</strong> или <code>Mopria</code> история печати в системе Windows может не отображаться полностью, так как печать идет через специальные протоколы. В этом случае стоит проверять логи на самом устройстве через веб-интерфейс, если такая функция поддерживается.</p>
+
+<details>
+<summary>Как включить логирование печати в Windows 10/11?</summary>
+<p>Откройте командную строку от имени администратора и выполните команду: <code>wevtutil sl Microsoft-Windows-PrintService/Operational /e:true</code>. После этого все новые события печати будут записываться в журнал.</p>
+</details>
+
+<details>
+<summary>Где найти пароль для входа в веб-интерфейс Epson?</summary>
+<p>По умолчанию логин часто пустой, а пароль — имя модели или "admin". Если пароль был изменен, его можно сбросить через меню настроек принтера, выбрав опцию сброса сетевых настроек или пароля администратора.</p>
+</details>
+
+<details>
+<summary>Можно ли восстановить удаленную историю печати?</summary>
+<p>Восстановление удаленных записей из журнала событий Windows возможно только с помощью специализированного ПО для восстановления данных, если файл журнала не был перезаписан. В большинстве случаев это невозможно без резервной копии.</p>
+</details>
+
+<details>
+<summary>Почему в журнале нет имен файлов?</summary>
+<p>Это может происходить, если драйвер принтера не передает метаданные документа в системный лог. Попробуйте обновить драйвер до последней версии с официального сайта Epson или проверьте настройки приложения, из которого вы печатали.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#просмотр-истории-через-утилиту-epson-status-monitor">Просмотр истории через утилиту Epson Status Monitor</a></li><li><a href="#использование-событий-windows-для-детального-аудита">Использование событий Windows для детального аудита</a></li><li><a href="#анализ-истории-через-веб-интерфейс-сетевых-моделей">Анализ истории через веб-интерфейс сетевых моделей</a></li><li><a href="#использование-командной-строки-для-получения-логов">Использование командной строки для получения логов</a></li><li><a href="#проверка-локальных-папок-и-кэша-принтера">Проверка локальных папок и кэша принтера</a></li><li><a href="#регистрация-и-удаление-истории-печати">Регистрация и удаление истории печати</a></li><li><a href="#частые-проблемы-и-способы-их-решения">Частые проблемы и способы их решения</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-podklyuchit-printer-epson-l805-k-telefonu.html" class="related-card">Как подключить принтер Epson L805 к телефону: полное руководство</a></li><li><a href="/articles/i/ip/ip-adres-printera-kak-uznat-epson-l210.html" class="related-card">Как узнать IP-адрес принтера Epson L210: 3 рабочих способа</a></li><li><a href="/articles/k/ka/kak-skanirovat-cherez-vaj-faj-epson.html" class="related-card">Как сканировать через Wi-Fi Epson: инструкции для всех моделей</a></li><li><a href="/articles/k/ka/kak-sdelat-printer-epson-l3110-setevym.html" class="related-card">Как сделать принтер Epson L3110 сетевым: WiFi и кабель</a></li><li><a href="/articles/k/ka/kak-pechatat-s-iphone-na-epson.html" class="related-card">Как печатать с iPhone на принтер Epson: полное руководство по AirPrint и приложению</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-podklyuchit-printer-epson-l805-k-telefonu.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить принтер Epson L805 к телефону: полное руководство</span><span class="related-bottom-desc">Пошаговая инструкция по подключению Epson L805 к смартфону и планшету. Настройка Wi-Fi, AirPrint и и</span></a><a href="/articles/i/ip/ip-adres-printera-kak-uznat-epson-l210.html" class="related-bottom-card"><span class="related-bottom-title">Как узнать IP-адрес принтера Epson L210: 3 рабочих способа</span><span class="related-bottom-desc">Инструкция по поиску IP-адреса на МФУ Epson L210. Узнайте, где посмотреть настройки сети, как распеч</span></a><a href="/articles/k/ka/kak-skanirovat-cherez-vaj-faj-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как сканировать через Wi-Fi Epson: инструкции для всех моделей</span><span class="related-bottom-desc">Полное руководство: настройка Wi-Fi на принтере Epson, установка драйверов и сканирование в PDF или </span></a><a href="/articles/k/ka/kak-sdelat-printer-epson-l3110-setevym.html" class="related-bottom-card"><span class="related-bottom-title">Как сделать принтер Epson L3110 сетевым: WiFi и кабель</span><span class="related-bottom-desc">Подробная инструкция по переводу МФУ Epson L3110 в режим сетевого подключения. Настройка WiFi, L3110</span></a><a href="/articles/k/ka/kak-pechatat-s-iphone-na-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как печатать с iPhone на принтер Epson: полное руководство по AirPrint и приложению</span><span class="related-bottom-desc">Пошаговая инструкция: как настроить печать с iPhone на принтеры Epson через AirPrint и приложение Ep</span></a><a href="/articles/k/ka/kak-pomenyat-set-vaj-faj-na-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как сменить Wi-Fi сеть на принтере Epson: 3 проверенных способа</span><span class="related-bottom-desc">Полная инструкция по переподключению принтера Epson к новой Wi-Fi сети. Способы через кнопку, прилож</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

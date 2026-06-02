@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Epson Status Monitor в автозагрузке: что это и стоит ли удалять? — Эпсон Помощь</title>
+    <meta name="description" content="Разбираем службу Epson Status Monitor в автозагрузке Windows. Зачем она нужна, как влияет на скорость запуска и инструкции по безопасному отключению.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/e/ep/epson-status-monitor-chto-eto-v-avtozagruzke.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Epson Status Monitor в автозагрузке: что это и стоит ли удалять?">
+    <meta property="og:description" content="Разбираем службу Epson Status Monitor в автозагрузке Windows. Зачем она нужна, как влияет на скорость запуска и инструкции по безопасному отключению.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/ustanovka-drajverov/">Установка драйверов</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Epson Status Monitor в автозагрузке: что это и стоит ли удалять?</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Epson Status Monitor в автозагрузке: назначение и способы управления</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#основное-назначение-службы-мониторинга">Основное назначение службы мониторинга</a></li><li><a href="#влияние-на-производительность-системы">Влияние на производительность системы</a></li><li><a href="#способы-безопасного-отключения-из-автозагрузки">Способы безопасного отключения из автозагрузки</a></li><li><a href="#особенности-работы-с-разными-версиями-драйверов">Особенности работы с разными версиями драйверов</a></li><li><a href="#таблица-сравнение-состояния-принтера-с-и-без-мониторинга">Таблица: Сравнение состояния принтера с и без мониторинга</a></li><li><a href="#когда-стоит-удалять-компонент-полностью">Когда стоит удалять компонент полностью?</a></li><li><a href="#альтернативные-способы-контроля-состояния">Альтернативные способы контроля состояния</a></li><li><a href="#резюме-и-итоги">Резюме и итоги</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Многие пользователи, проверяя список программ, запускающихся при старте Windows, сталкиваются с записью <em>Epson Status Monitor</em>. Это системный компонент, который часто вызывает вопросы: является ли он вредоносным ПО или критически важной частью драйвера принтера? Понимание функции этого инструмента поможет вам оптимизировать работу компьютера без риска потери функциональности вашего устройства печати.</p>
+
+<p>По своей сути, <strong>Epson Status Monitor</strong> — это утилита мониторинга состояния, которая постоянно отслеживает уровень чернил, наличие бумаги и возможные ошибки в работе принтера <em>Epson</em>. Без активного запуска этой службы в фоновом режиме вы рискуете обнаружить проблему с печатью только после того, как документ уже отправлен в очередь и застрянет.</p>
+
+<h2 id="основное-назначение-службы-мониторинга">Основное назначение службы мониторинга</h2>
+
+<p>Главная задача, которую выполняет <strong>Epson Status Monitor 3</strong>, заключается в визуализации текущего статуса принтера. Вместо того чтобы открывать панель управления и вручную проверять устройство, вы видите всплывающее окно или значок в трее, показывающий, сколько осталось чернил в картриджах или закончилась ли бумага.</p>
+
+<p>Этот инструмент особенно важен для владельцев струйных принтеров серии <em>EcoTank</em>, где мониторинг уровня чернил в баках осуществляется программно. Если вы пользуетесь лазерными устройствами, функция может показаться менее значимой, но она всё равно обеспечивает своевременное уведомление о завершении печати или замятии листов.</p>
+
+<p>Кроме того, компонент отвечает за передачу данных о состоянии в центр обновлений производителя. Это позволяет системе автоматически предлагать замену картриджей или предупреждать о необходимости обслуживания печатающей головки, если вы используете сложные модели вроде <em>Epson WorkForce</em>.</p>
+
+<blockquote>⚠️ <strong>Внимание</strong>: Отключение этой службы может привести к тому, что вы не получите предупреждение о низком уровне чернил, что в итоге вызовет остановку печати в самый неподходящий момент.</blockquote>
+
+<h2 id="влияние-на-производительность-системы">Влияние на производительность системы</h2>
+
+<p>Часто пользователи ищут способ ускорить загрузку Windows и начинают отключать всё подряд в автозагрузке. <strong>Epson Status Monitor</strong> действительно потребляет ресурсы оперативной памяти и процессора, но, как правило, этот объем невелик и не критичен для современных компьютеров.</p>
+
+<p>Однако, если у вас установлен старый компьютер с <code>4 ГБ</code> оперативной памяти или медленный жесткий диск, наличие сразу нескольких служб мониторинга от разных производителей может давать ощутимую задержку при старте. В таких случаях отключение лишних элементов автозагрузки оправдано для повышения отзывчивости системы.</p>
+
+<p>Стоит отметить, что даже если вы отключите утилиту из автозагрузки, она может запускаться вручную при открытии приложения "Принтеры и сканеры". Это означает, что полное удаление драйвера не всегда необходимо для решения проблем с производительностью.</p>
+
+<div class="poll-widget" id="poll-4235c9d2"><div class="poll-widget-question">📊 Влияет ли ваш принтер на скорость загрузки Windows?</div><div class="poll-widget-option" data-poll="4235c9d2" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Да, значительно</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="4235c9d2" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Нет, не влияет</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="4235c9d2" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Не заметил разницы</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="4235c9d2" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">У меня нет принтера</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="способы-безопасного-отключения-из-автозагрузки">Способы безопасного отключения из автозагрузки</h2>
+
+<p>Если вы решили, что мониторинг вам не нужен, его можно отключить без удаления самого драйвера. Самый простой способ — использовать стандартные средства Windows. Откройте <code>Диспетчер задач</code> (нажмите <code>Ctrl + Shift + Esc</code>) и перейдите на вкладку <strong>Автозагрузка</strong>.</p>
+
+<p>Найдите в списке строку <em>Epson Status Monitor 3</em> или похожую. Нажмите на неё правой кнопкой мыши и выберите <strong>Отключить</strong>. Это действие остановит автоматический запуск утилиты при включении компьютера, но не удалит её файлы с диска.</p>
+
+<p>Второй метод подразумевает использование внутренней настройки самого принтера. В панели управления перейдите в <code>Устройства и принтеры</code>, кликните правой кнопкой по вашему <em>Epson</em> и выберите <strong>Настройка печати</strong> (или Свойства).</p>
+
+<p>В открывшемся окне найдите вкладку <strong>Служба мониторинга принтера</strong> (Printer Monitor Service) и снимите галочку <code>Включить мониторинг принтера</code>. Этот способ более корректен, так как он отключает именно функцию мониторинга, а не просто блокирует запуск процесса.</p>
+
+<div class="checklist-block"><h4>☑️ Проверка перед отключением</h4><label class="check-item"><input type="checkbox"><span>Убедиться, что принтер работает стабильно</span></label><label class="check-item"><input type="checkbox"><span>Открыть Диспетчер задач</span></label><label class="check-item"><input type="checkbox"><span>Найти службу Epson</span></label><label class="check-item"><input type="checkbox"><span>Отключить автоматический запуск</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="особенности-работы-с-разными-версиями-драйверов">Особенности работы с разными версиями драйверов</h2>
+
+<p>Поведение утилиты может отличаться в зависимости от версии драйвера. В старых версиях для <em>Epson Stylus</em> мониторинг был менее навязчивым, тогда как в современных драйверах серии <em>Epson Smart Panel</em> акцент смещен на мобильные приложения, но десктопный монитор всё еще присутствует.</p>
+
+<p>В некоторых сборках, особенно после обновлений Windows 10 и 11, служба может вылетать или конфликтовать с антивирусным ПО. Если вы заметили постоянные ошибки в <code>Просмотре событий</code> именно по этой службе, отключение через автозагрузку станет временным решением до обновления драйвера.</p>
+
+<blockquote>⚠️ <strong>Внимание</strong>: После отключения мониторинга функция "Печать" может работать нормально, но вы потеряете возможность видеть статус "Ожидание" или "Остановлено" в реальном времени без открытия панели управления.</blockquote>
+
+<h2 id="таблица-сравнение-состояния-принтера-с-и-без-мониторинга">Таблица: Сравнение состояния принтера с и без мониторинга</h2>
+
+<table>
+<thead>
+<tr>
+<th>Функция</th>
+<th>С Epson Status Monitor</th>
+<th>Без Epson Status Monitor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Уведомление о чернилах</td>
+<td><strong>Мгновенное</strong> всплывающее окно</td>
+<td>Требуется ручная проверка</td>
+</tr>
+<tr>
+<td>Отслеживание замятия</td>
+<td>Автоматический сигнал ошибки</td>
+<td>Сообщение только при попытке печати</td>
+</tr>
+<tr>
+<td>Затраты ресурсов (МБ ОЗУ)</td>
+<td>~15-25 МБ</td>
+<td>0 МБ</td>
+</tr>
+<tr>
+<td>Скорость запуска Windows</td>
+<td>Незначительное влияние</td>
+<td>Слегка быстрее</td>
+</tr>
+<tr>
+<td>Совместимость с <em>EcoTank</em></td>
+<td>Полная (уровень баков)</td>
+<td>Ограниченная (только статус "ОК/Ошибка")</td>
+</tr>
+</tbody>
+</table>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Если вы отключили мониторинг, но забыли проверить чернила, используйте встроенную утилиту "Настройка принтера Epson" из меню Пуск для разовой проверки уровня расходных материалов.</p></div>
+
+<h2 id="когда-стоит-удалять-компонент-полностью">Когда стоит удалять компонент полностью?</h2>
+
+<p>Полное удаление <strong>Epson Status Monitor</strong> — крайняя мера, к которой стоит прибегать только в случае серьезных конфликтов. Если утилита вызывает "синий экран смерти" (BSOD) или постоянно зависает, блокируя работу принтера, лучше удалить драйвер целиком и установить заново, выбрав опцию <code>Только драйвер</code> без дополнительного ПО.</p>
+
+<p>Также удаление оправдано, если вы используете принтер в режиме "сетевой принтер" в корпоративной сети, где настройки принтера администрируются сервером, и локальный мониторинг создает дублирующую нагрузку на сеть.</p>
+
+<p>Для большинства домашних пользователей оптимальным решением является именно отключение автозагрузки через настройки принтера, а не удаление файлов. Это сохраняет целостность системы и позволяет при необходимости быстро вернуть функционал.</p>
+
+<details class="faq-item"><summary>Что делать, если после отключения принтер не печатает?</summary><div class="faq-answer"><p>Это редко связано с мониторингом. Чаще проблема в очереди печати. Попробуйте очистить очередь через "Службу печати", перезагрузив службу "Диспетчер печати" в services.msc.</p></div></details>
+
+<h2 id="альтернативные-способы-контроля-состояния">Альтернативные способы контроля состояния</h2>
+
+<p>Если вы отключили монитор, но вам всё же нужно иногда проверять состояние устройства, используйте веб-интерфейс. Многие современные модели <em>Epson</em> поддерживают печать с IP-адреса. Введите IP-адрес принтера в браузере, чтобы увидеть детальный отчет о состоянии без лишних программ.</p>
+
+<p>Также можно использовать функцию <strong>Прямой печати</strong> из панели управления. Это не даст вам постоянного мониторинга, но позволит визуально оценить статус устройства перед отправкой важного документа, не запуская фоновые процессы.</p>
+
+<p>Для продвинутых пользователей существует возможность создания скриптов, которые будут выводить краткий статус принтера в системном трее без использования тяжелых утилит производителя, хотя это требует навыков программирования.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Баланс между производительностью и функциональностью: отключение автозагрузки — лучший компромисс, если вы не печатаете каждый день.</p></div>
+
+<h2 id="резюме-и-итоги">Резюме и итоги</h2>
+
+<p>Компонент <strong>Epson Status Monitor</strong> в автозагрузке не является вирусом, но может быть излишним для пользователей, не требующих постоянного контроля за уровнем чернил. Его отключение безопасно для системы и может незначительно ускорить запуск ОС.</p>
+
+<p>Главное — не путать отключение автозагрузки с удалением драйвера. Если вы хотите просто сэкономить ресурсы, используйте настройки внутри утилиты принтера или диспетчер задач Windows.</p>
+
+<p>Помните, что <mark>при отключении мониторинга вы теряете возможность видеть уровень чернил в реальном времени без дополнительных действий</mark>. Поэтому перед принятием решения оцените, насколько часто вы сталкиваетесь с проблемой внезапной остановки печати из-за пустых картриджей.</p>
+
+<details>
+<summary>Безопасно ли удалять Epson Status Monitor из реестра?</summary>
+<p>Нет, не рекомендуется чистить реестр вручную. Это может нарушить работу других компонентов драйвера и привести к некорректной работе принтера. Используйте стандартные средства отключения в настройках устройства.</p>
+</details>
+
+<details>
+<summary>Влияет ли отключение на скорость печати?</summary>
+<p>Нет, скорость печати зависит от интерфейса подключения (USB или Wi-Fi) и мощности принтера. Мониторинг работает в фоне и не обрабатывает данные потока печати напрямую.</p>
+</details>
+
+<details>
+<summary>Как вернуть службу обратно в автозагрузку?</summary>
+<p>Воспользуйтесь Диспетчером задач и включите службу, либо зайдите в настройки принтера и поставьте галочку "Включить мониторинг принтера".</p>
+</details>
+
+<details>
+<summary>Можно ли использовать монитор только для одного принтера из списка?</summary>
+<p>Да, в настройках службы мониторинга можно выбрать конкретное устройство, для которого будет работать отображение статуса, игнорируя остальные.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#основное-назначение-службы-мониторинга">Основное назначение службы мониторинга</a></li><li><a href="#влияние-на-производительность-системы">Влияние на производительность системы</a></li><li><a href="#способы-безопасного-отключения-из-автозагрузки">Способы безопасного отключения из автозагрузки</a></li><li><a href="#особенности-работы-с-разными-версиями-драйверов">Особенности работы с разными версиями драйверов</a></li><li><a href="#таблица-сравнение-состояния-принтера-с-и-без-мониторинга">Таблица: Сравнение состояния принтера с и без мониторинга</a></li><li><a href="#когда-стоит-удалять-компонент-полностью">Когда стоит удалять компонент полностью?</a></li><li><a href="#альтернативные-способы-контроля-состояния">Альтернативные способы контроля состояния</a></li><li><a href="#резюме-и-итоги">Резюме и итоги</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-otklyuchit-status-monitora-printera-epson.html" class="related-card">Как отключить статус монитора принтера Epson: полное руководство</a></li><li><a href="/articles/e/ep/epson-l200-kak-pechatat.html" class="related-card">Epson L200: как печатать с компьютера и телефона — пошаговая инструкция</a></li><li><a href="/articles/p/pr/printer-epson-kak-podklyuchit-k-kompu.html" class="related-card">Как подключить принтер Epson к компьютеру: Полная инструкция по USB и Wi-Fi</a></li><li><a href="/articles/k/ka/kak-udalit-printer-epson.html" class="related-card">Как удалить принтер Epson: Полная инструкция по удалению драйверов и очереди печати</a></li><li><a href="/articles/k/ka/kak-ustanovit-epson-l-132-k-kompyuteru.html" class="related-card">Как установить Epson L132 к компьютеру: драйверы и настройка</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-otklyuchit-status-monitora-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как отключить статус монитора принтера Epson: полное руководство</span><span class="related-bottom-desc">Подробная инструкция по отключению утилиты Epson Status Monitor. Убираем всплывающие окна, настраива</span></a><a href="/articles/e/ep/epson-l200-kak-pechatat.html" class="related-bottom-card"><span class="related-bottom-title">Epson L200: как печатать с компьютера и телефона — пошаговая инструкция</span><span class="related-bottom-desc">Подробное руководство по печати на Epson L200: установка драйверов, настройка подключения, решение о</span></a><a href="/articles/p/pr/printer-epson-kak-podklyuchit-k-kompu.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить принтер Epson к компьютеру: Полная инструкция по USB и Wi-Fi</span><span class="related-bottom-desc">Узнайте, как быстро подключить принтер Epson к ПК по USB или сети. Пошаговая установка драйверов, на</span></a><a href="/articles/k/ka/kak-udalit-printer-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как удалить принтер Epson: Полная инструкция по удалению драйверов и очереди печати</span><span class="related-bottom-desc">Пошаговое руководство: как удалить принтер Epson из системы Windows и macOS, очистить очередь печати</span></a><a href="/articles/k/ka/kak-ustanovit-epson-l-132-k-kompyuteru.html" class="related-bottom-card"><span class="related-bottom-title">Как установить Epson L132 к компьютеру: драйверы и настройка</span><span class="related-bottom-desc">Пошаговая инструкция по подключению принтера Epson L132. Установка драйверов, настройка печати и реш</span></a><a href="/articles/k/ka/kak-ustanovit-printer-epson-l120.html" class="related-bottom-card"><span class="related-bottom-title">Как установить принтер Epson L120: драйверы, настройка и подключение</span><span class="related-bottom-desc">Пошаговая инструкция по установке принтера Epson L120. Скачивание драйверов, настройка USB и Wi-Fi, </span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

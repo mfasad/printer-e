@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как прошить Epson L222: сброс памперса и обновление прошивки — Эпсон Помощь</title>
+    <meta name="description" content="Пошаговая инструкция по прошивке МФУ Epson L222. Сброс счетчика промывки (WIC), установка драйверов и устранение ошибок W48/W90 без обращения в сервис.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-proshit-epson-l222.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как прошить Epson L222: сброс памперса и обновление прошивки">
+    <meta property="og:description" content="Пошаговая инструкция по прошивке МФУ Epson L222. Сброс счетчика промывки (WIC), установка драйверов и устранение ошибок W48/W90 без обращения в сервис.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/sbros-pampersa/">Сброс памперса</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как прошить Epson L222: сброс памперса и обновление прошивки</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Полный гайд: как прошить и обновить Epson L222</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#введение-в-процедуру-прошивки-epson-l222">Введение в процедуру прошивки Epson L222</a></li><li><a href="#подготовка-оборудования-и-выбор-программного-обеспечения">Подготовка оборудования и выбор программного обеспечения</a></li><li><a href="#процедура-сброса-счетчика-промывки-памперса">Процедура сброса счетчика промывки (Памперса)</a></li><li><a href="#обновление-встроенного-микрокода-и-драйверов">Обновление встроенного микрокода и драйверов</a></li><li><a href="#диагностика-и-таблицы-совместимости-по">Диагностика и таблицы совместимости ПО</a></li><li><a href="#устранение-критических-ошибок-и-блокировок">Устранение критических ошибок и блокировок</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><h2 id="введение-в-процедуру-прошивки-epson-l222">Введение в процедуру прошивки Epson L222</h2>
+<p>Многие владельцы струйных МФУ <em>Epson L222</em> сталкиваются с необходимостью вмешательства в программное обеспечение устройства, когда стандартные методы обслуживания перестают помогать. Понятие «прошивка» в контексте этой модели часто объединяет в себе две разные, но критически важные процедуры: обновление встроенного микрокода принтера и сброс программного счетчика отработанных чернил, известного как «памперс».</p>
+<p>В отличие от компьютерной техники, где прошивка обновляет функционал, в случае с <em>Epson L222</em> чаще всего требуется именно программный сброс ошибок, возникающих после превышения лимита на абсорбцию чернил. Если вы видите мигающие индикаторы «чернил» и «бумаги», значит, система защиты заблокировала работу устройства.</p>
+<p>Неправильное выполнение манипуляций может привести к полной неработоспособности платы управления, поэтому к процессу нужно подходить с максимальной внимательностью. Ниже мы разберем все нюансы, инструменты и шаги, необходимые для восстановления работоспособности вашего МФУ, чтобы вы могли избежать дорогостоящего ремонта в сервисном центре.</p>
+
+<h2 id="подготовка-оборудования-и-выбор-программного-обеспечения">Подготовка оборудования и выбор программного обеспечения</h2>
+<p>Перед началом любых манипуляций необходимо собрать правильный набор утилит, так как стандартные драйверы с диска не решают проблему программного сброса. Для успешной прошивки или сброса памперса на модели <em>Epson L222</em> вам потребуется специализированное программное обеспечение от сторонних разработчиков, так как <strong>Epson Adjustment Program</strong> (сервисная утилита) закрыта для свободного доступа.</p>
+<p>Наиболее популярным и проверенным решением является связка из программы WIC Reset Utility и ключа активации, либо использование специализированных версий <strong>SSC Service Utility</strong>. Важно убедиться, что скачанные файлы соответствуют именно модели L222, так как программное обеспечение для серии L3xx может не поддерживать протоколы связи L222, что приведет к ошибке соединения.</p>
+<ul>
+ <li>🛠️ Скачайте последнюю версию <strong>WIC Reset</strong> или <strong>Epson Adjustment Program</strong> с проверенного ресурса.</li>
+ <li>🔌 Подготовьте надежный USB-кабель длиной не более 1.5 метра для стабильного соединения с ПК.</li>
+ <li>📄 Отключите антивирусное ПО, так как оно часто блокирует работу сервисных утилит, принимая их за вредоносные скрипты.</li>
+</ul>
+<p>Кабель должен быть качественным, так как перебои в передаче данных во время процесса прошивки могут привести к «окирпичиванию» платы управления. Если у вас есть возможность, используйте USB-порт, расположенный непосредственно на материнской плате компьютера, а не через удлинитель или хаб.</p>
+<blockquote>⚠️ Внимание: Убедитесь, что на вашем компьютере установлены актуальные драйверы <em>Epson L222</em> перед запуском сервисных утилит, иначе программа может не увидеть подключенное устройство.</blockquote>
+
+<div class="poll-widget" id="poll-c415acb3"><div class="poll-widget-question">📊 Какая у вас проблема с принтером?</div><div class="poll-widget-option" data-poll="c415acb3" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Мигают лампочки (памперс)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="c415acb3" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Ошибка W48/W90</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="c415acb3" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Принтер не печатает</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="c415acb3" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Нужно обновить драйвер</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="процедура-сброса-счетчика-промывки-памперса">Процедура сброса счетчика промывки (Памперса)</h2>
+<p>Самой частой причиной обращения к теме прошивки является срабатывание счетчика промывки, который фиксирует объем поглощенных чернил. Когда этот лимит исчерпан, принтер переходит в режим защиты, и печать становится невозможной. Для решения этой проблемы используется сервисная утилита, которая позволяет программно обнулить значение счетчика, имитируя установку новой прокладки памперса.</p>
+<p>Запустите программу <strong>WIC Reset</strong> или аналогичный инструмент и выберите ваше устройство из списка. Если устройство не определяется, проверьте подключение и убедитесь, что принтер включен. После обнаружения перейдите во вкладку <code>Counter Read</code>, чтобы увидеть текущие значения счетчиков. Обратите внимание на параметр <strong>Main Waste Ink Pad Counter</strong>, именно его значение приближается к 100%.</p>
+<div class="checklist-block"><h4>☑️ Подготовка к сбросу памперса</h4><label class="check-item"><input type="checkbox"><span>Подключить принтер USB</span></label><label class="check-item"><input type="checkbox"><span>Запустить WIC Reset</span></label><label class="check-item"><input type="checkbox"><span>Выбрать модель L222</span></label><label class="check-item"><input type="checkbox"><span>Проверить значение счетчика</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+<p>Если значение счетчика достигает критической отметки, вам необходимо нажать кнопку <code>Reset Waste Ink Pad</code>. В некоторых случаях программа потребует ввести <strong>Reset Key</strong>, который является платным, но существуют и бесплатные альтернативы для разового сброса. Процесс сброса занимает несколько секунд, после чего система предложит перезагрузить устройство.</p>
+<p>После перезагрузки <em>Epson L222</em> индикаторы перестанут мигать, и принтер вернется в нормальный режим работы. </p>
+<blockquote>⚠️ Внимание: Программный сброс не очищает физический поддон под принтером. Если абсорбент переполнен, чернила могут вытечь на стол, поэтому периодически проверяйте поддон.</blockquote>
+
+<h2 id="обновление-встроенного-микрокода-и-драйверов">Обновление встроенного микрокода и драйверов</h2>
+<p>Второй аспект прошивки касается обновления микрокода прошивки устройства, который отвечает за логику работы печатающей головки и позиционирование каретки. Обновление может потребоваться, если вы сталкиваетесь с программными сбоями, некорректным определением картриджей или ошибками в работе <strong>Epson Status Monitor</strong>.</p>
+<p>Официальный способ обновления осуществляется через сайт производителя или с помощью утилиты <em>Epson Software Updater</em>. Однако для <em>Epson L222</em> часто требуется ручная установка драйверов, если автоматический поиск не находит актуальные версии. Скачайте пакет драйверов с официального ресурса, распакуйте архив и запустите файл установки с правами администратора.</p>
+<p>Во время установки следуйте инструкциям мастера настройки: подключите кабель только после того, как программа попросит об этом. Неправильная последовательность действий может привести к тому, что драйвер установится некорректно, и принтер будет определяться как «Неизвестное устройство» в диспетчере устройств.</p>
+<ul>
+ <li>🔄 Удалите старые версии драйверов через <code>Панель управления → Удаление программ</code> перед установкой новых.</li>
+ <li>🌐 Проверьте наличие обновлений в разделе <code>Дополнительные компоненты</code> при установке пакета.</li>
+ <li>⚙️ После установки запустите диагностику печати, чтобы убедиться в корректной работе всех модулей.</li>
+</ul>
+<blockquote>⚠️ Внимание: Обновление микрокода через неофициальные утилиты может привести к блокировке устройства. Используйте только проверенные версии ПО.</blockquote>
+
+<details class="faq-item"><summary>Риски при неофициальной прошивке</summary><div class="faq-answer"><p>Если использовать взломанные версии Adjustment Program, есть риск получить ошибку «Service Required», которую невозможно исправить без замены микросхемы памяти на плате.</p></div></details>
+
+<h2 id="диагностика-и-таблицы-совместимости-по">Диагностика и таблицы совместимости ПО</h2>
+<p>Для корректной работы с <em>Epson L222</em> важно понимать, какое программное обеспечение поддерживает конкретную ревизию платы. Ниже приведена таблица совместимости популярных утилит с данной моделью, чтобы вы не тратили время на неработающие инструменты.</p>
+<table>
+ <thead>
+  <tr>
+   <th>Название утилиты</th>
+   <th>Версия ПО</th>
+   <th>Функционал для L222</th>
+   <th>Статус поддержки</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>WIC Reset Utility</td>
+   <td>5.0+</td>
+   <td>Сброс памперса, чтение ошибок</td>
+   <td>Активно</td>
+  </tr>
+  <tr>
+   <td>SSC Service Utility</td>
+   <td>4.35</td>
+   <td>Сброс памперса, тесты дюз</td>
+   <td>Частично</td>
+  </tr>
+  <tr>
+   <td>Epson Adjustment Program</td>
+   <td>3.00</td>
+   <td>Полный доступ (Reset, Calibration)</td>
+   <td>Требует ключа</td>
+  </tr>
+  <tr>
+   <td>Epson Status Monitor 3</td>
+   <td>1.0+</td>
+   <td>Мониторинг уровня чернил</td>
+   <td>Официально</td>
+  </tr>
+ </tbody>
+</table>
+<p>Обратите внимание, что утилита <strong>SSC Service Utility</strong> может работать нестабильно на новых версиях Windows 10 и 11, поэтому WIC Reset является предпочтительным выбором для современных систем. Если вы видите ошибку подключения в программе, попробуйте запустить её от имени администратора.</p>
+<p>В некоторых случаях помогает отключение USB-порта в диспетчере устройств с последующим повторным включением, что перезапускает шину данных и позволяет утилите перехватить управление устройством.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед сбросом памперса распечатайте тестовую страницу, чтобы зафиксировать текущее состояние печатной головки и сравнить результат после сброса.</p></div>
+
+<h2 id="устранение-критических-ошибок-и-блокировок">Устранение критических ошибок и блокировок</h2>
+<p>Иногда после попытки прошивки или сброса возникают ошибки, которые не исчезают после перезагрузки. Если вы видите ошибку <code>W-48</code> или <code>W-90</code>, это может указывать на аппаратную проблему с датчиками или микросхемой памяти. В таких случаях простая перепрошивка программного счетчика не поможет.</p>
+<p>Необходимо проверить физическое состояние оптических датчиков, которые отслеживают положение каретки. Загрязнение линз датчика чернилами может вызывать ложные срабатывания защиты. Очистите датчики ватной палочкой, смоченной в изопропиловом спирте, и повторите процесс прошивки.</p>
+<p>Если ошибка сохраняется, возможно, потребуется замена микросхемы памяти (EEPROM) на плате управления. Это уже уровень сложного ремонта, который требует паяльных навыков и специального оборудования. <mark>Замена EEPROM — это крайняя мера, когда программные методы сброса исчерпаны и принтер полностью заблокирован.</mark></p>
+<p>Важно отметить, что самостоятельное вмешательство в плату управления аннулирует гарантийные обязательства, если устройство еще на гарантии. В таком случае лучше обратиться в авторизованный сервисный центр <em>Epson</em>.</p>
+<blockquote>⚠️ Внимание: Неправильная пайка микросхемы памяти может повредить дорожки на плате, сделав восстановление невозможным без полной замены материнской платы.</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Успешный сброс памперса возвращает принтер к жизни, но не отменяет необходимости контролировать физическое наполнение поддона для предотвращения протечек.</p></div>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+<details>
+ <summary>Можно ли сбросить памперс бесплатно?</summary>
+ <p>Да, существуют бесплатные версии утилит WIC Reset, которые позволяют сбросить счетчик один раз. Однако для регулярного использования или сброса на нескольких устройствах часто требуется покупка ключа активации.</p>
+</details>
+<details>
+ <summary>Что делать, если программа не видит принтер?</summary>
+ <p>Проверьте подключение USB-кабеля, попробуйте другой порт. Убедитесь, что драйверы установлены корректно. Запустите утилиту от имени администратора и отключите антивирус.</p>
+</details>
+<details>
+ <summary>Нужно ли выключать принтер во время сброса?</summary>
+ <p>Нет, принтер должен быть включен и находиться в состоянии ожидания (не в режиме промывки) во время процесса сброса через сервисную утилиту.</p>
+</details>
+<details>
+ <summary>Как узнать, что сброс прошел успешно?</summary>
+ <p>После перезагрузки принтера индикаторы «чернил» и «бумаги» перестанут мигать. В утилите значение счетчика промывки должно сброситься до 0%.</p>
+</details>
+<details>
+ <summary>Можно ли использовать эту инструкцию для Epson L320?</summary>
+ <p>Нет, модели L222 и L320 имеют разные аппаратные ревизии и протоколы связи. Используйте софт, предназначенный строго для вашей модели.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#введение-в-процедуру-прошивки-epson-l222">Введение в процедуру прошивки Epson L222</a></li><li><a href="#подготовка-оборудования-и-выбор-программного-обеспечения">Подготовка оборудования и выбор программного обеспечения</a></li><li><a href="#процедура-сброса-счетчика-промывки-памперса">Процедура сброса счетчика промывки (Памперса)</a></li><li><a href="#обновление-встроенного-микрокода-и-драйверов">Обновление встроенного микрокода и драйверов</a></li><li><a href="#диагностика-и-таблицы-совместимости-по">Диагностика и таблицы совместимости ПО</a></li><li><a href="#устранение-критических-ошибок-и-блокировок">Устранение критических ошибок и блокировок</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-pomenyat-vpityvayushchuyu-prokladku-na-printere-epson-l3101.html" class="related-card">Замена впитывающей прокладки Epson L3101: полный разбор</a></li><li><a href="/articles/k/ka/kak-sbrosit-nastrojki-kraski-printera-epson.html" class="related-card">Как сбросить настройки краски принтера Epson: 3 рабочих метода</a></li><li><a href="/articles/e/ep/epson-l120-kak-sbrosit-pampers.html" class="related-card">Как сбросить памперс на Epson L120: Полная инструкция по обнулению</a></li><li><a href="/articles/k/ka/kak-obnulit-nastrojki-printera-epson.html" class="related-card">Как обнулить настройки принтера Epson: полный сброс и сервисный режим</a></li><li><a href="/articles/k/ka/kak-sbrosit-oshibku-pampersa-na-printere-epson-l222.html" class="related-card">Как сбросить ошибку памперса на Epson L222: инструкция по сервисному режиму</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-pomenyat-vpityvayushchuyu-prokladku-na-printere-epson-l3101.html" class="related-bottom-card"><span class="related-bottom-title">Замена впитывающей прокладки Epson L3101: полный разбор</span><span class="related-bottom-desc">Инструкция по замене абсорбера на Epson L3101. Разборка корпуса, очистка контуров, выбор материалов </span></a><a href="/articles/k/ka/kak-sbrosit-nastrojki-kraski-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить настройки краски принтера Epson: 3 рабочих метода</span><span class="related-bottom-desc">Пошаговая инструкция по сбросу счетчика чернил и калибровке цвета Epson. Официальная программа WIC R</span></a><a href="/articles/e/ep/epson-l120-kak-sbrosit-pampers.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить памперс на Epson L120: Полная инструкция по обнулению</span><span class="related-bottom-desc">Пошаговая инструкция: как обнулить счетчик абсорбера Epson L120 программно и физически. Решение ошиб</span></a><a href="/articles/k/ka/kak-obnulit-nastrojki-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как обнулить настройки принтера Epson: полный сброс и сервисный режим</span><span class="related-bottom-desc">Пошаговая инструкция по сбросу настроек принтера Epson до заводских. Обнуление чипов, очистка счетчи</span></a><a href="/articles/k/ka/kak-sbrosit-oshibku-pampersa-na-printere-epson-l222.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить ошибку памперса на Epson L222: инструкция по сервисному режиму</span><span class="related-bottom-desc">Пошаговое руководство по обнулению счетчика абсорбента принтера Epson L222. Устранение ошибки End of</span></a><a href="/articles/p/pr/printer-epson-kak-obnulit.html" class="related-bottom-card"><span class="related-bottom-title">Как обнулить счетчик памперса принтера Epson: полные инструкции</span><span class="related-bottom-desc">Подробное руководство по сбросу счетчика отработки (памперса) на принтерах Epson. Программные и аппа</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

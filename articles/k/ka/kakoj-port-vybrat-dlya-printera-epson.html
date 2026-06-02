@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как выбрать правильный порт для принтера Epson: USB, TCP/IP или WSD — Эпсон Помощь</title>
+    <meta name="description" content="Полное руководство по настройке портов принтеров Epson. Сравнение USB, LPR и WSD. Инструкция по устранению ошибок подключения в Windows и macOS.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kakoj-port-vybrat-dlya-printera-epson.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как выбрать правильный порт для принтера Epson: USB, TCP/IP или WSD">
+    <meta property="og:description" content="Полное руководство по настройке портов принтеров Epson. Сравнение USB, LPR и WSD. Инструкция по устранению ошибок подключения в Windows и macOS.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/setevoe-podklyuchenie/">Сетевое подключение</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как выбрать правильный порт для принтера Epson: USB, TCP/IP или WSD</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Выбор оптимального порта для подключения принтеров Epson</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#почему-выбор-порта-критически-важен-для-работы-epson">Почему выбор порта критически важен для работы Epson</a></li><li><a href="#кабельное-подключение-стандарт-usb-и-его-особенности">Кабельное подключение: стандарт USB и его особенности</a></li><li><a href="#сетевое-подключение-lpr-и-standard-tcpip">Сетевое подключение: LPR и Standard TCP/IP</a></li><li><a href="#почему-стоит-избегать-порта-wsd-в-windows">Почему стоит избегать порта WSD в Windows</a></li><li><a href="#сравнительная-таблица-типов-портов-для-epson">Сравнительная таблица типов портов для Epson</a></li><li><a href="#пошаговая-инструкция-по-смене-порта">Пошаговая инструкция по смене порта</a></li><li><a href="#устранение-частых-ошибок-конфигурации">Устранение частых ошибок конфигурации</a></li><li><a href="#специфика-для-macos-и-мобильных-устройств">Специфика для macOS и мобильных устройств</a></li><li><a href="#faq-частые-вопросы-о-портах-принтеров-epson">FAQ: Частые вопросы о портах принтеров Epson</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Подключение современного устройства печати — это не просто соединение кабелями, а правильный выбор канала передачи данных. Многие пользователи сталкиваются с ситуацией, когда принтер <em>Epson</em> обнаружен, но команды на печать не выполняются или приходят с огромной задержкой. Причина кроется в некорректно настроенном <strong>порте</strong>. Выбор между стандартными протоколами и специализированными драйверами напрямую влияет на скорость отправки документов.</p>
+
+<p>Неправильная конфигурация приводит к появлению статусов «Очередь печати» или «Печать остановлена». В зависимости от модели <em>Epson L-series</em> или <em>WorkForce</em>, а также от способа подключения (провод или Wi-Fi), оптимальное решение будет кардинально отличаться. Разберем, какой именно тип порта обеспечит стабильную работу вашего оборудования.</p>
+
+<h2 id="почему-выбор-порта-критически-важен-для-работы-epson">Почему выбор порта критически важен для работы Epson</h2>
+
+<p>Порт в контексте принтеров — это логический канал в операционной системе, через который компьютер «общается» с устройством. Если вы выберете неверный протокол, система может отправлять данные в «пустоту», даже если физическая связь (кабель или сеть) исправна. Для устройств <em>Epson</em> это особенно актуально, так как они поддерживают широкий спектр сетевых стандартов, от устаревших до новейших.</p>
+
+<p>Нестандартные настройки могут привести к потере функциональности двухсторонней печати или сканирования по сети. Например, использование порта <strong>WSD</strong> (Web Services for Devices) часто упрощает первоначальную установку, но в профессиональных средах он становится причиной нестабильности. Драйверы Epson требуют четкого указания адреса или физического интерфейса для корректной обработки <strong>джобов печати</strong>.</p>
+
+<p>Важно понимать, что автоматический поиск портов в Windows не всегда находит оптимальный вариант. Система может создать виртуальный порт, который будет работать медленно. Поэтому ручная корректировка настроек в <code>Порты принтера</code> часто является единственным способом вернуть устройству полную производительность.</p>
+
+<h2 id="кабельное-подключение-стандарт-usb-и-его-особенности">Кабельное подключение: стандарт USB и его особенности</h2>
+
+<p>При использовании кабеля USB выбор порта, как правило, происходит автоматически. В системе создается устройство <code>USB001</code>, <code>USB002</code> и так далее. Однако и здесь могут возникнуть проблемы, если при переподключении кабеля в другой разъем порт был привязан к старому адресу.</p>
+
+<p>Если вы видите статус «Готово», но печать не идет, проверьте, не изменилось ли название порта после замены кабеля или переустановки драйверов. Для моделей <em>Epson EcoTank</em> важно, чтобы порт был активным и не конфликтовал с другими USB-устройствами в системе.</p>
+
+<p>Иногда система создает дубликаты портов, например, <code>USB003</code> и <code>USB004</code>, при этом активным остается только один. Это приводит к тому, что драйвер отправляет данные по «мертвому» адресу. Решение простое: удалите старые порты в настройках принтера и переназначьте актуальный.</p>
+
+<blockquote>
+<p>⚠️ <strong>Внимание:</em> Не используйте USB-хабы (разветвители) для подключения принтеров Epson, если это не требуется специально. Прямое подключение к материнской плате обеспечивает стабильность питания, необходимую для работы печатающей головки.</p>
+</blockquote>
+
+<div class="poll-widget" id="poll-67d2d440"><div class="poll-widget-question">📊 Какой способ подключения вы используете чаще всего?</div><div class="poll-widget-option" data-poll="67d2d440" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Проводной USB</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="67d2d440" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Wi-Fi сеть</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="67d2d440" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Ethernet кабель</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="67d2d440" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Портативный режим</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="сетевое-подключение-lpr-и-standard-tcpip">Сетевое подключение: LPR и Standard TCP/IP</h2>
+
+<p>Для сетевых принтеров <em>Epson</strong>, подключенных через роутер или коммутатор, существует два основных типа портов: <strong>Standard TCP/IP</strong> и <strong>LPR</em>. Стандартный TCP/IP является наиболее универсальным и надежным решением для современных операционных систем. Он использует IP-адрес устройства для прямой отправки данных.</p>
+
+<p>LPR (Line Printer Remote) — более старый протокол, который иногда требуется в специфических корпоративных средах или для старых версий драйверов. Однако в большинстве домашних и офисных сценариев он уступает TCP/IP по скорости отклика. Если вы настраиваете <em>Epson WorkForce</em> в офисе, лучше отдать предпочтение протоколу <strong>Standard TCP/IP Port</strong>.</p>
+
+<p>При настройке TCP/IP критически важно зафиксировать <strong>статический IP-адрес</strong> для принтера. Если адрес будет меняться при перезагрузке роутера, порт перестанет «видеть» устройство, и печать остановится. Настройка статического IP делается в меню самого принтера или через интерфейс роутера.</p>
+
+<div class="checklist-block"><h4>☑️ Настройка сетевого порта LPR/TCP/IP</h4><label class="check-item"><input type="checkbox"><span>Узнать IP-адрес принтера</span></label><label class="check-item"><input type="checkbox"><span>Открыть свойства принтера</span></label><label class="check-item"><input type="checkbox"><span>Выбрать тип порта TCP/IP</span></label><label class="check-item"><input type="checkbox"><span>Ввести IP-адрес вручную</span></label><label class="check-item"><input type="checkbox"><span>Проверить статус подключения</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 5</div></div>
+
+<h2 id="почему-стоит-избегать-порта-wsd-в-windows">Почему стоит избегать порта WSD в Windows</h2>
+
+<p>Порт <strong>WSD</strong> (Web Services for Devices) часто предлагается системой по умолчанию при автоматическом поиске. Несмотря на то, что он позволяет быстро подключить устройство без ввода IP-адреса, он имеет существенные недостатки. Основной из них — высокая нагрузка на систему и возможные задержки при передаче больших объемов данных.</p>
+
+<p>Для плотных графиков печати, когда нужно выводить сотни страниц в день, использование WSD может привести к зависанию очереди. Кроме того, этот протокол не всегда корректно передает информацию о статусе картриджей или уровне чернил в реальном времени. Если вы используете <em>Epson</em> для коммерческой печати, переход на <strong>Standard TCP/IP</strong> обязателен.</p>
+
+<p>Многие пользователи замечают, что при смене WSD на TCP/IP скорость печати возрастает, а ошибки «Принтер не отвечает» исчезают. Это связано с тем, что WSD работает через более сложный сервисный слой, который может конфликтовать с брандмауэром Windows.</p>
+
+<blockquote>
+<p>⚠️ <strong>Внимание:</strong> Если принтер не отображается в списке доступных портов при ручной настройке, убедитесь, что функция «Обнаружение сетевых устройств» включена в настройках Windows, иначе система не найдет устройство по IP-адресу.</p>
+</blockquote>
+
+<h2 id="сравнительная-таблица-типов-портов-для-epson">Сравнительная таблица типов портов для Epson</h2>
+
+<p>Чтобы окончательно понять, какой вариант подходит именно вашей ситуации, рассмотрим основные характеристики каждого типа подключения в сводной таблице. Это поможет избежать ошибок при первоначальной настройке или переконфигурации системы.</p>
+
+<table>
+<thead>
+<tr>
+<th>Тип порта</th>
+<th>Скорость работы</th>
+<th>Стабильность</th>
+<th>Рекомендуемое применение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>USB00x</strong></td>
+<td>Высокая</td>
+<td>Максимальная</td>
+<td>Личные компьютеры, ноутбуки без сети</td>
+</tr>
+<tr>
+<td><strong>Standard TCP/IP</strong></td>
+<td>Очень высокая</td>
+<td>Высокая</td>
+<td>Офисы, Wi-Fi сети, стационарные ПК</td>
+</tr>
+<tr>
+<td><strong>LPR</strong></td>
+<td>Средняя</td>
+<td>Средняя</td>
+<td>Старые серверы печати, специфические сети</td>
+</tr>
+<tr>
+<td><strong>WSD</strong></td>
+<td>Низкая/Переменная</td>
+<td>Низкая</td>
+<td>Временное подключение, домашние сети</td>
+</tr>
+<tr>
+<td><strong>Bluetooth</strong></td>
+<td>Низкая</td>
+<td>Низкая</td>
+<td>Мобильные устройства, старые модели</td>
+</tr>
+</tbody>
+</table>
+
+<details class="faq-item"><summary>Почему WSD так популярен в Windows 10/11?</summary><div class="faq-answer"><p>Порт WSD (Web Services for Devices) стал стандартом по умолчанию, потому что он позволяет автоматически настраивать принтеры без ручного ввода IP-адресов и портов. Система сама находит устройство в локальной сети и создает порт. Это удобно для обычных пользователей, но для профессиональной печати это не лучший выбор из-за возможной нестабильности и медленного ответа устройства на запросы о статусе.</p></div></details>
+
+<h2 id="пошаговая-инструкция-по-смене-порта">Пошаговая инструкция по смене порта</h2>
+
+<p>Процесс замены порта на более подходящий не требует специальных знаний, но требует внимательности. Начните с открытия панели управления и перехода в раздел «Устройства и принтеры». Нажмите правой кнопкой мыши на ваш <em>Epson</em> и выберите «Свойства принтера» (не путать со свойствами устройства).</p>
+
+<p>Перейдите на вкладку «Порты». Здесь вы увидите список доступных каналов. Если вы хотите сменить WSD на TCP/IP, нажмите кнопку «Добавить порт» и выберите «Standard TCP/IP Port». В открывшемся окне введите точный IP-адрес вашего принтера.</p>
+
+<p>После ввода адреса система проверит соединение. Если драйверы установлены корректно, статус изменится на «Активен». <strong>Важно:</strong> не меняйте порт на лету, если текущая печать еще не завершена, так как это может привести к зависанию очереди.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед сменой порта сделайте скриншот текущих настроек, чтобы в случае ошибки можно было быстро вернуть исходное состояние системы без переустановки драйверов.</p></div>
+
+<h2 id="устранение-частых-ошибок-конфигурации">Устранение частых ошибок конфигурации</h2>
+
+<p>Даже при правильном выборе типа порта пользователи сталкиваются с ошибками. Самая частая проблема — несоответствие IP-адреса. Если вы изменили настройки роутера, IP-адрес принтера мог измениться, а порт в Windows остался старым. В этом случае печать будет висеть в статусе «Ожидание» бесконечно.</p>
+
+<p>Решение состоит в том, чтобы установить <strong>фиксированный IP</strong> в настройках самого принтера через его меню. Это гарантирует, что порт всегда будет указывать на правильный адрес. Для моделей <em>Epson</em> это делается в меню «Сеть» -> «Настройки TCP/IP».</p>
+
+<p>Иногда проблема кроется в брандмауэре Windows, который блокирует порты печати. Если вы используете сторонние антивирусы, проверьте их настройки. Они могут блокировать доступ к локальной сети, что делает любой порт, кроме USB, неработоспособным.</p>
+
+<blockquote>
+<p>⚠️ <strong>Внимание:</strong> Если после смены порта статус принтера остается «Оффлайн», проверьте, не включен ли режим энергосбережения на сетевой карте компьютера, который может отключать сетевое соединение при простое.</p>
+</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Использование Standard TCP/IP с фиксированным IP-адресом — это золотой стандарт для сетевых принтеров Epson, обеспечивающий максимальную стабильность и скорость работы.</p></div>
+
+<h2 id="специфика-для-macos-и-мобильных-устройств">Специфика для macOS и мобильных устройств</h2>
+
+<p>В операционной системе macOS логика выбора порта немного иная. При добавлении устройства система часто автоматически определяет протокол <strong>AirPrint</strong> или <strong>IPP</strong>. Это аналог TCP/IP, оптимизированный под среду Apple. Если принтер <em>Epson</em> не определяется автоматически, попробуйте выбрать протокол «IP» в меню добавления.</p>
+
+<p>Для мобильных устройств (iOS и Android) выбор порта как таковой отсутствует — соединение происходит через драйвер Epson iPrint или системные службы печати. Однако, если вы настраиваете печать через сервер, важно убедиться, что в настройках роутера не заблокированы порты 9100 и 515, используемые для передачи данных.</p>
+
+<p>Особенность macOS заключается в том, что она может «запоминать» старый порт, даже если устройство было удалено и добавлено заново. В таких случаях рекомендуется сбросить систему печати через меню «Службы печати» и добавить устройство заново, выбрав правильный протокол.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>На macOS для сетевых принтеров Epson всегда выбирайте протокол AirPrint или IPP, если не требуется специфическая настройка драйверов для корпоративной среды.</p></div>
+
+<h2 id="faq-частые-вопросы-о-портах-принтеров-epson">FAQ: Частые вопросы о портах принтеров Epson</h2>
+
+<details>
+<summary>Какой порт лучше выбрать: USB или Wi-Fi?</summary>
+<p>USB-порт обеспечивает максимальную стабильность и скорость, так как исключает влияние радиопомех и задержек сети. Однако Wi-Fi порт (TCP/IP) дает свободу перемещения устройства и возможность печати с нескольких компьютеров одновременно. Выбор зависит от ваших задач: для личного использования дома кабелю нет равных по надежности, а для офиса с несколькими пользователями предпочтителен Wi-Fi.</p>
+</details>
+
+<details>
+<summary>Что делать, если принтер Epson не видит порт TCP/IP?</summary>
+<p>Чаще всего проблема в том, что IP-адрес устройства изменился. Зайдите в веб-интерфейс принтера (введя его IP в браузере) или распечатайте отчет о статусе сети, чтобы узнать актуальный адрес. Затем удалите старый порт в свойствах принтера на ПК и добавьте новый, указав свежий IP.</p>
+</details>
+
+<details>
+<summary>Можно ли использовать порт LPR вместо TCP/IP?</summary>
+<p>Технически можно, но это не рекомендуется. LPR — устаревший протокол, который работает медленнее и менее стабилен в современных сетях. Стандартный TCP/IP (порт 9100) является предпочтительным выбором для всех моделей Epson, выпускаемых в последние 10 лет.</p>
+</details>
+
+<details>
+<summary>Как проверить, какой порт используется в данный момент?</summary>
+<p>Откройте «Службы печати» (или «Устройства и принтеры»), выберите свой Epson, перейдите в «Свойства принтера» и откройте вкладку «Порты». Там будет стоять галочка напротив используемого порта. Если галочка стоит на порте с неверным IP-адресом, это и есть причина проблем.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#почему-выбор-порта-критически-важен-для-работы-epson">Почему выбор порта критически важен для работы Epson</a></li><li><a href="#кабельное-подключение-стандарт-usb-и-его-особенности">Кабельное подключение: стандарт USB и его особенности</a></li><li><a href="#сетевое-подключение-lpr-и-standard-tcpip">Сетевое подключение: LPR и Standard TCP/IP</a></li><li><a href="#почему-стоит-избегать-порта-wsd-в-windows">Почему стоит избегать порта WSD в Windows</a></li><li><a href="#сравнительная-таблица-типов-портов-для-epson">Сравнительная таблица типов портов для Epson</a></li><li><a href="#пошаговая-инструкция-по-смене-порта">Пошаговая инструкция по смене порта</a></li><li><a href="#устранение-частых-ошибок-конфигурации">Устранение частых ошибок конфигурации</a></li><li><a href="#специфика-для-macos-и-мобильных-устройств">Специфика для macOS и мобильных устройств</a></li><li><a href="#faq-частые-вопросы-о-портах-принтеров-epson">FAQ: Частые вопросы о портах принтеров Epson</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/m/mf/mfu-strujnoe-epson-l3250-kak-podklyuchit.html" class="related-card">Как подключить МФУ Epson L3250 к компьютеру и Wi-Fi: инструкция</a></li><li><a href="/articles/k/ka/kak-podklyuchit-telefon-k-epson-proektoru.html" class="related-card">Как подключить телефон к Epson проектору: Wi-Fi и кабель HDMI</a></li><li><a href="/articles/k/ka/kak-uznat-parol-ot-vaj-faj-na-printere-epson-l3150.html" class="related-card">Как узнать пароль Wi-Fi на принтере Epson L3150: 5 способов</a></li><li><a href="/articles/k/ka/kak-podklyuchit-printer-epson-l210-k-noutbuku-cherez-wifi.html" class="related-card">Подключение принтера Epson L210 к ноутбуку через Wi-Fi: пошаговая инструкция</a></li><li><a href="/articles/p/pr/printer-epson-exceed-your-vision-kak-podklyuchit-k-kompyuteru.html" class="related-card">Как подключить принтер Epson: полное руководство по настройке</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/m/mf/mfu-strujnoe-epson-l3250-kak-podklyuchit.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить МФУ Epson L3250 к компьютеру и Wi-Fi: инструкция</span><span class="related-bottom-desc">Пошаговая настройка Epson L3250: подключение к ПК через Wi-Fi Direct и USB, установка драйверов Epso</span></a><a href="/articles/k/ka/kak-podklyuchit-telefon-k-epson-proektoru.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить телефон к Epson проектору: Wi-Fi и кабель HDMI</span><span class="related-bottom-desc">Пошаговая инструкция по подключению смартфона к проектору Epson. Настройка Wi-Fi Direct, экрана Mira</span></a><a href="/articles/k/ka/kak-uznat-parol-ot-vaj-faj-na-printere-epson-l3150.html" class="related-bottom-card"><span class="related-bottom-title">Как узнать пароль Wi-Fi на принтере Epson L3150: 5 способов</span><span class="related-bottom-desc">Пошаговая инструкция, как посмотреть или сбросить пароль от вайфая на МФУ Epson L3150. Способы через</span></a><a href="/articles/k/ka/kak-podklyuchit-printer-epson-l210-k-noutbuku-cherez-wifi.html" class="related-bottom-card"><span class="related-bottom-title">Подключение принтера Epson L210 к ноутбуку через Wi-Fi: пошаговая инструкция</span><span class="related-bottom-desc">Узнайте, как настроить беспроводную печать для Epson L210. Пошаговое руководство по подключению чере</span></a><a href="/articles/p/pr/printer-epson-exceed-your-vision-kak-podklyuchit-k-kompyuteru.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить принтер Epson: полное руководство по настройке</span><span class="related-bottom-desc">Пошаговая инструкция по подключению принтеров Epson к ПК через USB и Wi-Fi. Установка драйверов, нас</span></a><a href="/articles/k/ka/kak-podklyuchit-printer-epson-l3150-k-telefonu-cherez-vaj-faj.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить принтер Epson L3150 к телефону по Wi-Fi: Полная инструкция</span><span class="related-bottom-desc">Пошаговое руководство по настройке беспроводной печати с Epson L3150 на смартфоне. Методы через Epso</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как сканировать документы с Epson на ПК: Полное руководство — Эпсон Помощь</title>
+    <meta name="description" content="Подробная инструкция по сканированию с принтеров Epson через EpsonScan2, WIA и TWAIN. Решаем проблемы драйверов и настраиваем качество изображений.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-otskanirovat-s-printera-epson-na-kompyuter.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как сканировать документы с Epson на ПК: Полное руководство">
+    <meta property="og:description" content="Подробная инструкция по сканированию с принтеров Epson через EpsonScan2, WIA и TWAIN. Решаем проблемы драйверов и настраиваем качество изображений.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/skanirovanie-i-kopirovanie/">Сканирование и копирование</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как сканировать документы с Epson на ПК: Полное руководство</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Как отсканировать с принтера Epson на компьютер: Полное руководство</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#подготовка-оборудования-и-проверка-драйверов">Подготовка оборудования и проверка драйверов</a></li><li><a href="#использование-утилиты-epson-scan-2">Использование утилиты Epson Scan 2</a></li><li><a href="#стандартные-средства-windows-и-macos">Стандартные средства Windows и macOS</a></li><li><a href="#настройка-параметров-качества-и-формата">Настройка параметров качества и формата</a></li><li><a href="#решение-частых-проблем-и-ошибок">Решение частых проблем и ошибок</a></li><li><a href="#сравнение-методов-подключения">Сравнение методов подключения</a></li><li><a href="#продвинутые-настройки-для-профессионалов">Продвинутые настройки для профессионалов</a></li><li><a href="#альтернативные-способы-и-мобильные-приложения">Альтернативные способы и мобильные приложения</a></li><li><a href="#faq-ответы-на-частые-вопросы">FAQ: Ответы на частые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Процесс перевода бумажного документа в цифровой формат на <em>Epson</em> кажется простым, но пользователи часто сталкиваются с неожиданными сложностями при отсутствии реакции нажатой кнопки на корпусе МФУ. Современные модели, такие как <em>Epson WorkForce</em> или <em>Expression</em>, требуют корректной настройки программной среды, иначе устройство просто не увидит компьютер.</p>
+<p>Большинство проблем возникает из-за конфликта драйверов или выбора неподходящего программного обеспечения для конкретной операционной системы <code>Windows 10/11</code> или <code>macOS</code>. В этой статье мы разберем все рабочие методы, от использования нативных утилит до стандартных средств системы.</p>
+<p>Правильная настройка позволяет не только получить четкое изображение, но и автоматизировать процесс, сохраняя файлы сразу в нужную папку или отправляя их в облачное хранилище. Мы пройдем путь от базовой установки до продвинутых настроек разрешения и формата.</p>
+
+<h2 id="подготовка-оборудования-и-проверка-драйверов">Подготовка оборудования и проверка драйверов</h2>
+<p>Перед началом работы необходимо убедиться, что устройство физически подключено к ПК и находится в активном состоянии. Кабель <code>USB</code> должен быть надежно вставлен в порт, а сетевой шнур — в розетку. Если используется беспроводное соединение, проверьте, что принтер и компьютер находятся в одной сети.</p>
+<p>Критически важным этапом является проверка наличия актуальных драйверов. Без них операционная система может определить устройство как «Неизвестное устройство» или использовать базовый <strong>драйвер WIA</strong>, который имеет урезанный функционал. Зайдите в «Диспетчер устройств» и посмотрите раздел «Визуальные устройства» или «Сканеры».</p>
+<p>Если вы видите желтый восклицательный знак, необходимо переустановить программное обеспечение. Скачайте официальный пакет с сайта производителя, подобрав точную модель, например, <em>Epson L805</em> или <em>Epson L3150</em>. Не полагайтесь на автоматические установщики Windows, они часто не подгружают специфические модули сканирования.</p>
+<blockquote>⚠️ Внимание: Устаревшие версии драйверов могут вызывать конфликты с последними обновлениями <code>Windows 11</code>, приводя к зависанию процесса сканирования на этапе инициализации. Всегда проверяйте совместимость версии ПО с вашей ОС перед установкой.</blockquote>
+
+<h2 id="использование-утилиты-epson-scan-2">Использование утилиты Epson Scan 2</h2>
+<p>Современные модели <em>Epson</em> поставляются с утилитой <strong>Epson Scan 2</strong>, которая пришла на смену классической программе. Интерфейс стал более минималистичным и адаптивным, поддерживая темную тему и работу с сенсорными экранами. Это основной инструмент для получения высококачественных изображений с расширенными настройками.</p>
+<p>Для запуска программы найдите её в меню «Пуск» или на рабочем столе. При первом запуске утилита автоматически определит подключенное устройство. Если принтеров несколько, выберите нужное из выпадающего списка <code>Источник</code>. Режим сканирования можно выбрать автоматически или вручную в зависимости от типа документа.</p>
+<p>В окне настроек доступны параметры, определяющие качество итогового файла. Важно настроить <strong>разрешение (DPI)</strong>, которое влияет на детализацию и размер файла. Для обычных текстовых документов достаточно 300 точек на дюйм, тогда как для фотографий с плотностью 600 DPI и выше потребуется значительно больше места на диске.</p>
+<ul>
+<li>📄 <strong>Режим Цветной</strong> — подходит для фотографий и цветных документов.</li>
+<li>⚫ <strong>Режим Черно-белый</strong> — экономит место, идеален для текста.</li>
+<li>🌫️ <strong>Режим Оттенки серого</strong> — для старых фотографий или документов с плавными переходами.</li>
+</ul>
+
+<h2 id="стандартные-средства-windows-и-macos">Стандартные средства Windows и macOS</h2>
+<p>Если установка дополнительного ПО невозможна, можно воспользоваться встроенными возможностями операционной системы. В <code>Windows</code> это приложение «Факсы и сканирование» или новое приложение «Сканер». Они работают на базе стандарта <strong>WIA</strong>, который обеспечивает базовую функциональность без лишних настроек.</p>
+<p>Чтобы открыть стандартный сканер в Windows 10/11, нажмите <code>Win + S</code> и введите «Сканер». Выберите устройство из списка и нажмите кнопку «Новое сканирование». Интерфейс упрощен, но позволяет быстро отсканировать документ в формате <code>JPEG</code> или <code>PDF</code>.</p>
+<p>В среде <em>macOS</em> используется программа <strong>Image Capture</strong> («Захват изображений»). Она интегрирована в систему и позволяет быстро получать файлы без установки драйверов Epson, если устройство поддерживает стандартный протокол AirScan. Однако без родных драйверов могут быть недоступны функции автосканирования с лотка.</p>
+
+<div class="poll-widget" id="poll-459a69e7"><div class="poll-widget-question">📊 В каком режиме вы обычно сканируете?</div><div class="poll-widget-option" data-poll="459a69e7" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">PDF (документы)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="459a69e7" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">JPEG (фото)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="459a69e7" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Текст (OCR)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="459a69e7" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">В облако</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="настройка-параметров-качества-и-формата">Настройка параметров качества и формата</h2>
+<p>Качество итогового файла напрямую зависит от выбранных параметров в программе сканирования. Ошибка новичка — ставить максимальное разрешение для простого текста, что создает огромные файлы и замедляет работу системы. Настройте <strong>тип документа</strong> соответствующим образом.</p>
+<p>Для документов с мелким шрифтом или чертежами увеличьте значение <strong>плотности (DPI)</strong> до 600. Это позволит сохранить четкость линий. Для цветных фотографий используйте настройку «Высокое качество» и проверьте, отключена ли опция автоматической коррекции цвета, если она искажает исходные оттенки.</p>
+<p>Формат сохранения также играет роль. <code>PDF</code> идеален для многостраничных документов, так как позволяет объединить несколько листов в один файл. Формат <code>JPEG</code> подходит для изображений, которые нужно быстро отправить по почте или загрузить на веб-сайт.</p>
+<p>Важно помнить о функции <strong>OCR</strong> (оптическое распознавание символов). Если вам нужен редактируемый текст, включите эту опцию в настройках программы. Это превратит картинку с текстом в редактируемый документ, хотя качество распознавания зависит от четкости исходного изображения.</p>
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед сканированием больших объемов документов настройте автоматическое именование файлов, чтобы не потеряться в папке с «Снимок 001», «Снимок 002». Используйте шаблон «Дата_Имя_Тип» в настройках сохранения.</p></div>
+
+<h2 id="решение-частых-проблем-и-ошибок">Решение частых проблем и ошибок</h2>
+<p>Самая распространенная ошибка — сообщение «Сканер не найден» или «Ошибка 0xE0000102». Это часто указывает на то, что служба сканирования Windows не запущена. Проверьте службу <code>Windows Image Acquisition (WIA)</code> в «Службах» и убедитесь, что она работает.</p>
+<p>Если программа сканирует, но файл получается пустым или с черными полосами, проверьте стекло сканера. Даже небольшое пятно от корректора может быть воспринято как дефект. Протрите стекло мягкой безворсовой тканью и убедитесь, что крышка плотно прижата к документу.</p>
+<p>Иногда проблема кроется в правах доступа. Убедитесь, что ваша учетная запись имеет права администратора для доступа к оборудованию. Если вы используете антивирус, проверьте его настройки, так как некоторые программы защиты могут блокировать доступ к USB-устройствам.</p>
+<blockquote>⚠️ Внимание: Ошибка соединения часто возникает при попытке использовать Wi-Fi напрямую, если роутер находится слишком далеко. Попробуйте подключить устройство через кабель USB для первичной настройки сети.</blockquote>
+
+<h2 id="сравнение-методов-подключения">Сравнение методов подключения</h2>
+<p>Выбор способа подключения влияет на скорость и удобство работы. <strong>USB-подключение</strong> обеспечивает стабильность и максимальную скорость передачи данных, что критично для больших объемов сканирования. Однако кабель ограничивает мобильность устройства.</p>
+<p><strong>Сетевое подключение (Wi-Fi/Ethernet)</strong> позволяет сканировать с любого устройства в сети, включая ноутбуки и планшеты. Это удобно для офисной работы, но может быть чувствительно к качеству сигнала. Скорость передачи больших файлов может быть ниже, чем по кабелю.</p>
+<p>Для бытового использования часто достаточно базового USB-соединения, тогда как в офисе сетевое подключение становится стандартом. Сравнительная таблица поможет выбрать оптимальный вариант для ваших задач.</p>
+<table>
+<thead>
+<tr>
+<th>Критерий</th>
+<th>USB-кабель</th>
+<th>Wi-Fi сеть</th>
+<th>Прямое соединение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Скорость</td>
+<td>Высокая</td>
+<td>Средняя</td>
+<td>Низкая</td>
+</tr>
+<tr>
+<td>Стабильность</td>
+<td>Максимальная</td>
+<td>Зависит от роутера</td>
+<td>Зависит от устройства</td>
+</tr>
+<tr>
+<td>Дальность</td>
+<td>До 3 метров</td>
+<td>В пределах сети</td>
+<td>Линия видимости</td>
+</tr>
+<tr>
+<td>Удобство</td>
+<td>Требует провода</td>
+<td>Полная свобода</td>
+<td>Настройка телефона</td>
+</tr>
+</tbody>
+</table>
+<details class="faq-item"><summary>Как включить Wi-Fi Direct на Epson</summary><div class="faq-answer"><p>Зайдите в меню принтера, выберите «Настройки» → «Настройка Wi-Fi» → «Wi-Fi Direct». Активируйте функцию и посмотрите пароль на экране. Подключите компьютер к этой сети вручную.</p></div></details>
+
+<h2 id="продвинутые-настройки-для-профессионалов">Продвинутые настройки для профессионалов</h2>
+<p>Для тех, кто работает с графикой или архивами, стандартных настроек недостаточно. В <em>Epson Scan 2</em> доступен режим «Профессиональный», который дает полный контроль над <strong>гаммой</strong>, <strong>цветовым балансом</strong> и <strong>кривыми</strong>. Это позволяет корректировать изображение еще на этапе захвата.</p>
+<p>Особое внимание уделите функции <strong>двустороннего сканирования</strong> (если поддерживается устройством). Она автоматически переворачивает документ и сканирует вторую сторону за один проход. Это экономит время при оцифровке толстых книг или журналов.</p>
+<p>Также можно настроить автоматическое удаление пустых страниц и выравнивание текста. Эти функции особенно полезны при работе со старыми документами, где листы могут быть неровными или помятыми. Программа сама сгладит изображение и обрежет лишние поля.</p>
+<p>Не забывайте о регулярной очистке сканера от пыли, так как микрочастицы на стекле могут стать видимыми при высоком разрешении. Используйте специальную жидкость для оптики и мягкие салфетки, чтобы не поцарапать поверхность.</p>
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Профессиональный режим сканирования позволяет получить изображение студийного качества, но требует глубоких знаний настройки цветовых профилей и калибровки монитора.</p></div>
+
+<div class="checklist-block"><h4>☑️ Контроль качества перед сканированием</h4><label class="check-item"><input type="checkbox"><span>Очистить стекло от пыли</span></label><label class="check-item"><input type="checkbox"><span>Проверить плотность прилегания крышки</span></label><label class="check-item"><input type="checkbox"><span>Выбрать правильный формат файла</span></label><label class="check-item"><input type="checkbox"><span>Настроить разрешение DPI</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="альтернативные-способы-и-мобильные-приложения">Альтернативные способы и мобильные приложения</h2>
+<p>Если компьютер недоступен, можно воспользоваться мобильным приложением <strong>Epson iPrint</strong>. Оно позволяет сканировать документы прямо с телефона или планшета по Wi-Fi. Файл сохраняется в памяти устройства или сразу отправляется в облако.</p>
+<p>Приложение поддерживает распознавание текста (OCR) на лету, что превращает ваш смартфон в полноценный сканер документов. Вы можете делать снимки страниц и сразу конвертировать их в поисковый PDF. Это удобно для экспресс-задач в дороге.</p>
+<p>Существуют также сторонние программы, такие как <em>NAPS2</em> (Not Another PDF Scanner 2), которые работают с любыми сканерами через драйверы TWAIN. Они бесплатны и легки, что делает их отличным выбором для старых моделей <em>Epson</em>, у которых нет официальной поддержки новых ОС.</p>
+
+<h2 id="faq-ответы-на-частые-вопросы">FAQ: Ответы на частые вопросы</h2>
+<details>
+<summary>Почему принтер Epson не видит компьютер при подключении через USB?</summary>
+<p>Частая причина — неисправный кабель или отсутствие драйверов. Попробуйте заменить кабель и убедитесь, что в диспетчере устройств нет ошибок. Также проверьте, что служба WIA запущена в Windows.</p>
+</details>
+<details>
+<summary>Как сканировать документ в PDF, если программа не предлагает этот формат?</summary>
+<p>В большинстве случаев нужно выбрать режим «Документ» и в настройках сохранения выбрать формат PDF. Если такой опции нет, попробуйте установить драйвер TWAIN или использовать стороннее ПО, например, NAPS2.</p>
+</details>
+<details>
+<summary>Можно ли сканировать без драйверов Epson Scan?</summary>
+<p>Да, можно использовать стандартный сканер Windows или приложение «Захват изображений» в macOS. Они работают через базовый драйвер WIA, но функционал будет ограничен.</p>
+</details>
+<details>
+<summary>Что делать, если сканирование прерывается с ошибкой?</summary>
+<p>Попробуйте перезагрузить принтер и компьютер. Проверьте, не перегревается ли устройство. Если ошибка повторяется, переустановите драйверы, выбрав режим «Полная установка» вместо «Базовой».</p>
+</details>
+<details>
+<summary>Как настроить сканирование по расписанию?</summary>
+<p>Стандартные утилиты Epson не поддерживают планировщик задач. Для этого можно использовать «Планировщик заданий» Windows, который будет запускать скрипт или утилиту командной строки в заданное время.</p>
+</details>
+<blockquote>⚠️ Внимание: Функции и названия меню могут отличаться в зависимости от модели устройства и версии прошивки. Всегда сверяйтесь с официальной инструкцией для вашей модели, если описанное меню не совпадает с вашим.</blockquote></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#подготовка-оборудования-и-проверка-драйверов">Подготовка оборудования и проверка драйверов</a></li><li><a href="#использование-утилиты-epson-scan-2">Использование утилиты Epson Scan 2</a></li><li><a href="#стандартные-средства-windows-и-macos">Стандартные средства Windows и macOS</a></li><li><a href="#настройка-параметров-качества-и-формата">Настройка параметров качества и формата</a></li><li><a href="#решение-частых-проблем-и-ошибок">Решение частых проблем и ошибок</a></li><li><a href="#сравнение-методов-подключения">Сравнение методов подключения</a></li><li><a href="#продвинутые-настройки-для-профессионалов">Продвинутые настройки для профессионалов</a></li><li><a href="#альтернативные-способы-и-мобильные-приложения">Альтернативные способы и мобильные приложения</a></li><li><a href="#faq-ответы-на-частые-вопросы">FAQ: Ответы на частые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-zapustit-skanirovanie-na-printere-epson.html" class="related-card">Как запустить сканирование на принтере Epson: Полное руководство</a></li><li><a href="/articles/k/ka/kak-skanirovat-s-epsona-na-kompyuter.html" class="related-card">Сканирование с Epson на ПК: пошаговая инструкция 2026</a></li><li><a href="/articles/k/ka/kak-kopirovat-bumagu-na-printere-epson.html" class="related-card">Как скопировать документ на принтере Epson: пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-skanirovat-na-epson-l3060.html" class="related-card">Как сканировать документы с Epson L3060: пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-skanirovat-na-epson-l3156.html" class="related-card">Как сканировать на принтере Epson L3156: полное руководство</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-zapustit-skanirovanie-na-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как запустить сканирование на принтере Epson: Полное руководство</span><span class="related-bottom-desc">Пошаговая инструкция: сканирование через панель управления, программу Epson Scan 2 и мобильное прило</span></a><a href="/articles/k/ka/kak-skanirovat-s-epsona-na-kompyuter.html" class="related-bottom-card"><span class="related-bottom-title">Сканирование с Epson на ПК: пошаговая инструкция 2026</span><span class="related-bottom-desc">Как настроить сканирование с принтера Epson на компьютер: драйвера, программы, настройки качества. П</span></a><a href="/articles/k/ka/kak-kopirovat-bumagu-na-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как скопировать документ на принтере Epson: пошаговая инструкция</span><span class="related-bottom-desc">Узнайте, как быстро сделать копию на МФУ Epson. Инструкция для моделей с сенсорным экраном и кнопкам</span></a><a href="/articles/k/ka/kak-skanirovat-na-epson-l3060.html" class="related-bottom-card"><span class="related-bottom-title">Как сканировать документы с Epson L3060: пошаговая инструкция</span><span class="related-bottom-desc">Полное руководство по сканированию с Epson L3060 через EPIA, Epson Scan и Windows. Решение частых пр</span></a><a href="/articles/k/ka/kak-skanirovat-na-epson-l3156.html" class="related-bottom-card"><span class="related-bottom-title">Как сканировать на принтере Epson L3156: полное руководство</span><span class="related-bottom-desc">Пошаговая инструкция по сканированию документов на Epson L3156 через программу Epson Scan 2, приложе</span></a><a href="/articles/k/ka/kak-otskanirovat-dokument-na-printere-epson-l366.html" class="related-bottom-card"><span class="related-bottom-title">Как отсканировать документ на принтере Epson L366: Полная инструкция</span><span class="related-bottom-desc">Подробное руководство по сканированию документов и фото на МФУ Epson L366. Узнайте, как настроить ра</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

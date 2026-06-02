@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как сбросить счетчик «Капля» (Service Tool) на Epson L355: Полная инструкция — Эпсон Помощь</title>
+    <meta name="description" content="Пошаговая инструкция по сбросу счетчика отработанных чернил (памперса) для принтера Epson L355. Разбор ошибок, прошивка и настройка Service Tool.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-sbrosit-kaplyu-na-epson-l355.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как сбросить счетчик «Капля» (Service Tool) на Epson L355: Полная инструкция">
+    <meta property="og:description" content="Пошаговая инструкция по сбросу счетчика отработанных чернил (памперса) для принтера Epson L355. Разбор ошибок, прошивка и настройка Service Tool.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/sbros-pampersa/">Сброс памперса</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как сбросить счетчик «Капля» (Service Tool) на Epson L355: Полная инструкция</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Полное руководство по сбросу счетчика «Капля» на Epson L355</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#понимание-системы-защиты-и-счетчика-отработанных-чернил">Понимание системы защиты и счетчика отработанных чернил</a></li><li><a href="#подготовка-и-выбор-необходимого-программного-обеспечения">Подготовка и выбор необходимого программного обеспечения</a></li><li><a href="#пошаговая-инструкция-по-сбросу-через-service-tool">Пошаговая инструкция по сбросу через Service Tool</a></li><li><a href="#альтернативные-методы-и-утилита-wic-reset">Альтернативные методы и утилита WIC Reset</a></li><li><a href="#таблица-совместимости-версий-service-tool">Таблица совместимости версий Service Tool</a></li><li><a href="#частые-ошибки-и-способы-их-устранения">Частые ошибки и способы их устранения</a></li><li><a href="#физическое-обслуживание-после-сброса">Физическое обслуживание после сброса</a></li><li><a href="#когда-сброс-невозможен-и-требуется-замена-платы">Когда сброс невозможен и требуется замена платы</a></li><li><a href="#профилактика-переполнения-памперса">Профилактика переполнения памперса</a></li><li><a href="#заключение-по-процедуре-обслуживания">Заключение по процедуре обслуживания</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Принтеры серии <em>Epson L355</em> заслужили популярность благодаря своей надежности и экономичности, однако в процессе эксплуатации пользователи неизбежно сталкиваются с программной блокировкой. Это связано с тем, что устройство имеет встроенный счетчик отработанных чернил, который называется «Капля» или «Pads counter». Когда этот счетчик достигает предельного значения, принтер перестает печатать и выводит ошибку «Service Required» или «Parts inside printer reached the end of their service life».</p>
+<p>Многие владельцы пытаются обойти эту проблему, выключая и снова включая устройство, но это лишь временная мера. Система <em>Epson</em> блокирует работу до тех пор, пока значение счетчика не будет сброшено программно. Для выполнения этой процедуры необходим специальный сервисный софт, так как стандартные драйверы не предоставляют доступа к этим настройкам.</p>
+<p>В данной статье мы подробно разберем, как правильно сбросить значение «Капля» на <em>Epson L355</em>, используя утилиту <strong>WIC Reset</strong> или бесплатную альтернативу <strong>Service Tool</strong>. Вы узнаете, какие файлы нужны, как избежать ошибок при прошивке и что делать, если программа не видит принтер.</p>
+
+<h2 id="понимание-системы-защиты-и-счетчика-отработанных-чернил">Понимание системы защиты и счетчика отработанных чернил</h2>
+<p>Внутри принтера <em>Epson L355</em> находится специальная губка, которая впитывает чернила при очистке печатающих головок и при каждом включении устройства. Микроконтроллер принтера ведет подсчет количества пропущенных капель. Когда губка наполняется, система полагает, что дальнейшая эксплуатация может привести к протечке чернил на стол или внутрь электроники.</p>
+<p>После достижения лимита (обычно около 50000-60000 отработанных капель) принтер переходит в аварийный режим. В этом состоянии <strong>Service Tool</strong> становится единственным инструментом, способным вернуть устройство к жизни. Важно понимать, что сброс счетчика не очищает физическую губку, а лишь обнуляет программный счетчик, давая вам время на выполнение обслуживания.</p>
+<p>Некоторые пользователи игнорируют предупреждения и продолжают печать, что может привести к потекшим чернилам. Поэтому, если загорелась красная лампа, нужно немедленно выполнить сброс. Для этого вам потребуется <strong>Service Tool</strong> версии, совместимой с вашей ревизией платы.</p>
+
+<h2 id="подготовка-и-выбор-необходимого-программного-обеспечения">Подготовка и выбор необходимого программного обеспечения</h2>
+<p>Для успешного сброса вам понадобятся утилиты, часто называемые «сервисными программами». Существует два основных пути: покупка ключа в утилите <strong>WIC Reset</strong> или использование бесплатной версии <em>Service Tool</em>. Бесплатная версия часто требует наличия файла <code>adjprog.exe</code> и конфигурационного файла <code>Adj.ini</code>, который привязан к конкретной версии прошивки.</p>
+<p>Скачивание софта должно происходить с проверенных источников, так как поврежденные файлы могут привести к «окирпичиванию» устройства. Убедитесь, что версия программы соответствует модели <em>Epson L355</em> и её ревизии (Rev A, Rev B и т.д.). Неправильная версия программы — самая частая причина ошибки <strong>Can't find printer</strong>.</p>
+<p>Вам также понадобится оригинальный USB-кабель. Не используйте удлинители или хабы, так как потеря сигнала может прервать процесс записи в память микросхемы. Подключение должно быть прямым к порту USB на материнской плате компьютера.</p>
+
+<div class="checklist-block"><h4>☑️ Подготовка к сбросу памперса</h4><label class="check-item"><input type="checkbox"><span>Epson L355 подключен к ПК USB-кабелем</span></label><label class="check-item"><input type="checkbox"><span>Драйверы принтера установлены и не конфликтуют</span></label><label class="check-item"><input type="checkbox"><span>Скачан Service Tool нужной версии</span></label><label class="check-item"><input type="checkbox"><span>Временно отключен антивирус</span></label><label class="check-item"><input type="checkbox"><span>Скачан ключ активации (если используется платный софт)</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 5</div></div>
+
+<h2 id="пошаговая-инструкция-по-сбросу-через-service-tool">Пошаговая инструкция по сбросу через Service Tool</h2>
+<p>Первым шагом является запуск утилиты <code>Adjprog.exe</code>. Обычно это файл с иконкой, напоминающей инструмент или шестеренку. При запуске программа автоматически сканирует порты USB. Если принтер <em>Epson L355</em> включен и подключен, в списке «Select Model» должен появиться ваш принтер.</p>
+<p>Если принтер не определяется, проверьте диспетчер устройств Windows. Иногда необходимо переустановить драйверы или попробовать другой USB-порт. После выбора модели нажмите кнопку <strong>Particular adjustment mode</strong>. Это откроет меню сервисных настроек.</p>
+<p>Найдите в списке пункт <code>Waste ink pad counter</code>. Именно этот пункт отвечает за сброс счетчика отработанных чернил. Выберите его и нажмите <strong>Check</strong>, чтобы увидеть текущий уровень заполнения памперса. Обычно это значение составляет 98-100%.</p>
+<p>Далее нажмите кнопку <strong>Main pad counter</strong> (или <strong>Check</strong> в зависимости от версии) и поставьте галочку <strong>Initialize</strong>. Нажмите <strong>Ok</strong>. Программа начнет процесс записи нового значения (0%) в память принтера. Это займет несколько секунд.</p>
+<p>После завершения процесса появится сообщение об успехе. Теперь необходимо полностью обесточить принтер: выключите его кнопкой, а затем выдерните шнур из розетки. Подождите 30 секунд и включите снова. Ошибка должна исчезнуть.</p>
+
+<details class="faq-item"><summary>Что делать, если Service Tool выдает ошибку?Если программа выдает ошибку "Can't find printer", проверьте, не занят ли порт другим ПО. Попробуйте запустить утилиту от имени администратора. Также убедитесь, что у вас установлена правильная версия драйвера (не взломанная), так как некоторые драйверы блокируют доступ сервисных утилит.-->
+
+<h2 id="альтернативные-методы-и-утилита-wic-reset">Альтернативные методы и утилита WIC Reset</h2>
+<p>Если бесплатная версия программы выдает ошибку или не подходит по версии прошивки, можно воспользоваться утилитой <strong>WIC Reset Utility</strong>. Это коммерческий софт, который работает стабильнее, но требует покупку ключа сброса (Reset Key). Стоимость ключа для <em>Epson L355</em> обычно невелика и доступна в интернете.</p>
+<p>Процесс сброса через <strong>WIC Reset</strong> более автоматизирован. После подключения принтера программа покажет текущий уровень памперса. Нажмите кнопку <strong>Reset Waste Ink Counters</strong>, вставьте купленный ключ и подтвердите действие.</p>
+<p>Преимуществом этого метода является то, что он работает с любыми ревизиями плат и часто не требует поиска специфических версий <code>Adjprog.exe</code>. Однако, если вы не хотите тратить деньги, поиск бесплатной версии <strong>Service Tool</strong> остается актуальным.</p>
+
+<!--WIDGET</summary><div class="faq-answer"><p>poll:Какой метод сброса вы предпочитаете?:Бесплатный Service Tool (поиск файла)|Платный WIC Reset (покупка ключа)|Обращение в сервисный центр|Не пробовал еще</p></div></details>
+
+<h2 id="таблица-совместимости-версий-service-tool">Таблица совместимости версий Service Tool</h2>
+<p>Правильный выбор версии утилиты критически важен. Ниже приведена таблица, которая поможет сориентироваться в версиях ПО для различных ревизий <em>Epson L355</em>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Версия прошивки принтера</th>
+<th>Версия Service Tool</th>
+<th>Файл конфигурации</th>
+<th>Статус совместимости</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L355 Rev A</td>
+<td>2.0.0</td>
+<td>l355.ini</td>
+<td>Совместима</td>
+</tr>
+<tr>
+<td>L355 Rev B</td>
+<td>3.0.0</td>
+<td>l355_revb.ini</td>
+<td>Совместима</td>
+</tr>
+<tr>
+<td>L355 Rev C (новые)</td>
+<td>3.1.0</td>
+<td>l355_rev_c.ini</td>
+<td>Требует проверки</td>
+</tr>
+<tr>
+<td>Общие требования</td>
+<td>Windows 7/10/11</td>
+<td>x64 или x86</td>
+<td>Зависит от ОС</td>
+</tr>
+</tbody>
+</table>
+
+<p>Обратите внимание, что производители принтеров периодически обновляют прошивки, блокируя старые методы сброса. Если вы приобрели новый принтер, возможно, потребуется скачать последнюю версию утилиты с форума или профильного ресурса.</p>
+<p>Иногда версия прошивки не совпадает с версией установленного драйвера. В таких случаях рекомендуется обновить прошивку принтера до последней версии перед попыткой сброса памперса, используя официальную утилиту <strong>Firmware Updater</strong>.</p>
+<p>Если вы видите ошибку при запуске утилиты, попробуйте запустить её в режиме совместимости с Windows 7. Это часто решает проблемы с правами доступа к USB-портам на современных системах.</p>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Сброс счетчика не очищает физическую губку. Если вы сбросили программу, но не заменили или не высушили памперс, чернила могут начать вытекать наружу, испортив стол и пол. Рекомендуется проводить физическое обслуживание после 2-3 программных сбросов.</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед началом работы с сервисной утилитой создайте точку восстановления системы в Windows. Это позволит быстро откатить изменения, если драйверы или утилита вызовут конфликты в системе.</p></div>
+
+<h2 id="частые-ошибки-и-способы-их-устранения">Частые ошибки и способы их устранения</h2>
+<p>Одной из самых распространенных проблем является сообщение <strong>Can't find printer</strong>. Это означает, что программа не видит устройство. Проверьте, установлен ли драйвер принтера в системе. Попробуйте отключить антивирус, так как он может блокировать доступ сервиса к порту.</p>
+<p>Другая частая ошибка — <strong>Initialization failed</strong>. Это говорит о том, что процесс записи прерван или данные не записались. Возможно, кабель USB был задет, или в принтере произошел сбой питания. В этом случае выключите принтер, подождите минуту и попробуйте снова.</p>
+<p>Иногда программа показывает, что счетчик сброшен, но ошибка на дисплее принтера остается. Это значит, что процесс сброса прошел не до конца. Нужно снова зайти в <code>Particular adjustment mode</code>, выбрать <strong>Waste ink pad counter</strong>, снять галочку <strong>Initialize</strong>, нажать <strong>Ok</strong>, а затем снова поставить галочку и нажать <strong>Ok</strong>.</p>
+
+<h2 id="физическое-обслуживание-после-сброса">Физическое обслуживание после сброса</h2>
+<p>Программный сброс — это лишь временное решение. Губка внутри принтера <em>Epson L355</em> со временем перестает впитывать влагу. Чтобы избежать протечек, необходимо открыть крышку и вынуть лоток для бумаг, а затем демонтировать нижние крышки.</p>
+<p>Доступ к памперсам часто осуществляется через боковые отверстия или путем снятия нижней панели. Губки можно вынуть и тщательно просушить, либо заменить на новые. Некоторые мастера просто кладут под принтер дополнительные прокладки для впитывания чернил.</p>
+<p>Если вы не уверены в своих силах, лучше доверить физическую часть работы специалисту. Неправильная разборка может привести к повреждению шлейфов печатающей головки, что будет стоить гораздо дороже, чем новый принтер.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Программный сброс обнуляет счетчик, но не устраняет физическое переполнение губки. Обязательно контролируйте уровень чернил в памперсе после сброса, чтобы избежать протечек.</p></div>
+
+<h2 id="когда-сброс-невозможен-и-требуется-замена-платы">Когда сброс невозможен и требуется замена платы</h2>
+<p>В редких случаях, особенно на очень старых или перепрошитых принтерах, сброс может быть заблокирован на уровне микросхемы памяти (EEPROM). Если программа выдает ошибку доступа к памяти или принтер не реагирует на команды сброса, возможно, потребуется замена платы логики.</p>
+<p>Иногда проблема кроется в повреждении самого чипа памяти. В таких ситуациях ремонт целесообразен только если стоимость замены платы не превышает 50% от стоимости нового устройства. Для <em>Epson L355</em> это часто экономически нецелесообразно.</p>
+<p>Также стоит учитывать, что если принтер находится на гарантии, самостоятельный сброс и использование сервисного софта могут привести к потере гарантийных обязательств. Производители видят следы вмешательства в системные регистры.</p>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Использование неофициального софта для сброса счетчиков может привести к необратимым повреждениям электроники. Делайте это на свой страх и риск и только если устройство не находится на гарантии.</blockquote>
+
+<h2 id="профилактика-переполнения-памперса">Профилактика переполнения памперса</h2>
+<p>Чтобы реже прибегать к сбросу, можно изменить настройки принтера. В свойствах устройства в Windows или через панель управления принтера отключите автоматическую очистку головок, если она не критична. Чистите головки только когда это действительно необходимо.</p>
+<p>Уменьшите количество печатаемых страниц с высокой плотностью чернил, если это возможно. Также старайтесь не оставлять принтер включенным на длительное время без дела, так как цикл очистки при включении расходует чернила.</p>
+<p>Регулярное использование устройства (раз в 1-2 дня) предотвращает высыхание чернил в головках, что в свою очередь снижает необходимость в частых циклах глубокой очистки, потребляющих много чернил.</p>
+
+
+
+<h2 id="заключение-по-процедуре-обслуживания">Заключение по процедуре обслуживания</h2>
+<p>Сброс счетчика «Капля» на <em>Epson L355</em> — стандартная процедура, с которой сталкиваются многие владельцы струйных МФУ. Главное — соблюдать осторожность при выборе софта и не забывать о физической очистке губок после программного сброса.</p>
+<p>Правильное использование утилиты <strong>Service Tool</strong> или <strong>WIC Reset</strong> позволяет продлить жизнь принтера на годы. Не бойтесь экспериментировать с настройками, но всегда делайте резервные копии данных и создавайте точки восстановления системы.</p>
+<p>Если вы столкнулись с трудностями, которые не описаны в этой статье, попробуйте найти форумы пользователей <em>Epson</em>, где энтузиасты делятся актуальными версиями программ и решениями для новых ревизий плат.</p>
+
+<blockquote>⚠️ <strong>Внимание:</strong> Инструкции могут меняться в зависимости от версии прошивки принтера и операционной системы. Всегда сверяйте названия пунктов меню с вашей версией утилиты, так как интерфейс может отличаться.</blockquote>
+
+<details>
+<summary>Что делать, если принтер не включается после сброса?</summary>
+<p>Если после сброса счетчика принтер не включается, попробуйте вынуть шнур питания и подождать 5-10 минут. Затем подключите его снова. Если это не помогло, возможно, произошел сбой прошивки. В этом случае потребуется перепрошивка устройства через режим восстановления (Force Recovery Mode), что требует более сложного оборудования.</p>
+</details>
+
+<details>
+<summary>Можно ли сбросить счетчик без компьютера?</summary>
+<p>Нет, для сброса счетчика «Капля» на <em>Epson L355</em> обязательно требуется подключение к компьютеру и использование специальной утилиты (Service Tool или WIC Reset). Простое нажатие кнопок на корпусе не позволяет изменить значения в EEPROM памяти.</p>
+</details>
+
+<details>
+<summary>Нужно ли покупать ключ для сброса?</summary>
+<p>Необязательно. Существуют бесплатные версии утилит <strong>Service Tool</strong>, которые не требуют ключа активации. Однако они требуют поиска конкретной версии под вашу ревизию платы. Платные версии (WIC Reset) более стабильны и работают с любой ревизией, но требуют покупки ключа.</p>
+</details>
+
+<details>
+<summary>Как часто нужно сбрасывать счетчик?</summary>
+<p>Сброс следует выполнять только тогда, когда принтер выдает ошибку переполнения памперса. Обычно это происходит раз в 1-2 года при активном использовании. Однако, если вы печатаете много фото, это может происходить чаще. </p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#понимание-системы-защиты-и-счетчика-отработанных-чернил">Понимание системы защиты и счетчика отработанных чернил</a></li><li><a href="#подготовка-и-выбор-необходимого-программного-обеспечения">Подготовка и выбор необходимого программного обеспечения</a></li><li><a href="#пошаговая-инструкция-по-сбросу-через-service-tool">Пошаговая инструкция по сбросу через Service Tool</a></li><li><a href="#альтернативные-методы-и-утилита-wic-reset">Альтернативные методы и утилита WIC Reset</a></li><li><a href="#таблица-совместимости-версий-service-tool">Таблица совместимости версий Service Tool</a></li><li><a href="#частые-ошибки-и-способы-их-устранения">Частые ошибки и способы их устранения</a></li><li><a href="#физическое-обслуживание-после-сброса">Физическое обслуживание после сброса</a></li><li><a href="#когда-сброс-невозможен-и-требуется-замена-платы">Когда сброс невозможен и требуется замена платы</a></li><li><a href="#профилактика-переполнения-памперса">Профилактика переполнения памперса</a></li><li><a href="#заключение-по-процедуре-обслуживания">Заключение по процедуре обслуживания</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/e/ep/epson-l355-migayut-vse-indikatory-odnovremenno-chto-delat.html" class="related-card">Epson L355 мигают все индикаторы: причины и способы сброса ошибок</a></li><li><a href="/articles/t/tr/trebuetsya-zamenit-chernilnuyu-prokladku-epson-xp-335-chto-delat.html" class="related-card">Чернильная прокладка Epson XP-335: замена, сброс счетчика и ремонт</a></li><li><a href="/articles/k/ka/kak-smenit-pampers-na-printere-epson-l110.html" class="related-card">Как сбросить счетчик памперса Epson L110: Инструкция по очистке</a></li><li><a href="/articles/k/ka/kak-sbrosit-schetchik-epson-1410.html" class="related-card">Как сбросить счетчик EPSON 1410: обнуление лимита памперса</a></li><li><a href="/articles/k/ka/kak-vyvesti-pampers-epson-l1800.html" class="related-card">Как сбросить памперс Epson L1800: пошаговый гайд 2026</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/e/ep/epson-l355-migayut-vse-indikatory-odnovremenno-chto-delat.html" class="related-bottom-card"><span class="related-bottom-title">Epson L355 мигают все индикаторы: причины и способы сброса ошибок</span><span class="related-bottom-desc">Все лампочки на Epson L355 мигают одновременно? Узнайте, как диагностировать засорение памперса, про</span></a><a href="/articles/t/tr/trebuetsya-zamenit-chernilnuyu-prokladku-epson-xp-335-chto-delat.html" class="related-bottom-card"><span class="related-bottom-title">Чернильная прокладка Epson XP-335: замена, сброс счетчика и ремонт</span><span class="related-bottom-desc">Требуется заменить чернильную прокладку на Epson XP-335? Узнайте, как сбросить счетчик, где купить п</span></a><a href="/articles/k/ka/kak-smenit-pampers-na-printere-epson-l110.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить счетчик памперса Epson L110: Инструкция по очистке</span><span class="related-bottom-desc">Пошаговая замена экранных и физических фильтров Epson L110. Сброс счетчика отработанных чернил, очис</span></a><a href="/articles/k/ka/kak-sbrosit-schetchik-epson-1410.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить счетчик EPSON 1410: обнуление лимита памперса</span><span class="related-bottom-desc">Инструкция по обнулению счетчика отработанных чернил EPSON Stylus Photo 1410. Программные методы, на</span></a><a href="/articles/k/ka/kak-vyvesti-pampers-epson-l1800.html" class="related-bottom-card"><span class="related-bottom-title">Как сбросить памперс Epson L1800: пошаговый гайд 2026</span><span class="related-bottom-desc">Подробная инструкция по обнулению счётчика отходов чернил в Epson L1800: программы, ручные методы, р</span></a><a href="/articles/k/ka/kak-obnulit-schetchik-pampersa-epson-l300.html" class="related-bottom-card"><span class="related-bottom-title">Как обнулить счетчик памперса Epson L300: полное руководство</span><span class="related-bottom-desc">Пошаговая инструкция по сбросу счетчика отработанных чернил на Epson L300. Программный и аппаратный </span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

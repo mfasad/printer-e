@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как работает СНПЧ Epson: принцип действия и настройка — Эпсон Помощь</title>
+    <meta name="description" content="Узнайте, как функционирует система непрерывной подачи чернил в принтерах Epson. Разбор конструкции, физика процесса и советы по обслуживанию.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-rabotaet-snpch-epson.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как работает СНПЧ Epson: принцип действия и настройка">
+    <meta property="og:description" content="Узнайте, как функционирует система непрерывной подачи чернил в принтерах Epson. Разбор конструкции, физика процесса и советы по обслуживанию.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/raskhodnye-materialy/">Расходные материалы</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как работает СНПЧ Epson: принцип действия и настройка</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Механизм работы СНПЧ в принтерах Epson: от физики до настройки</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#физические-основы-работы-системы">Физические основы работы системы</a></li><li><a href="#конструктивные-особенности-и-типы-снпч">Конструктивные особенности и типы СНПЧ</a></li><li><a href="#роль-чипов-и-программный-контроль">Роль чипов и программный контроль</a></li><li><a href="#процесс-прокачки-и-первичная-настройка">Процесс прокачки и первичная настройка</a></li><li><a href="#типичные-ошибки-и-способы-их-устранения">Типичные ошибки и способы их устранения</a></li><li><a href="#долгосрочное-обслуживание-системы">Долгосрочное обслуживание системы</a></li><li><a href="#часто-задаваемые-вопросы">Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Система непрерывной подачи чернил, известная как <strong>СНПЧ</strong>, стала настоящим спасением для владельцев офисов и домашних пользователей, которые печатают большие объемы документов. В отличие от традиционных картриджей, этот механизм позволяет экономить до 90% бюджета на расходных материалах, обеспечивая бесперебойную работу устройства на протяжении месяцев.</p>
+
+<p>Принцип действия устройства базируется на простых законах физики, но требует точной настройки при установке. Понимание того, как именно чернила перемещаются из внешней емкости к головке печати, поможет избежать распространенных ошибок при эксплуатации и продлить срок службы дорогостоящего оборудования <em>Epson</em>.</p>
+
+<h2 id="физические-основы-работы-системы">Физические основы работы системы</h2>
+
+<p>В основе функционирования любой <strong>системы непрерывной подачи чернил</strong> лежит уравнение гидростатического давления. Жидкость стремится переместиться из области с более высоким давлением в область с более низким давлением, и в данном случае роль «сосуда» играют внешние флаконы, установленные на уровне или чуть выше принтера.</p>
+
+<p>Когда чернила попадают в головку печати, они создают необходимый <strong>столб жидкости</strong>, который компенсирует атмосферное давление. Это позволяет избежать образования вакуума внутри трубок, который мог бы остановить поток. Ключевым фактором здесь является правильный уровень заполнения емкостей, который должен поддерживаться постоянно.</p>
+
+<p>Если уровень чернил упадет слишком низко, воздух может проникнуть в систему, что приведет к образованию «воздушной пробки». Такая ситуация требует сложной процедуры прокачки и может негативно сказаться на работе <em>piezo-элементов</em>, отвечающих за формирование капли. Поэтому мониторинг остатка жидкости является обязательным условием стабильной работы.</p>
+
+<blockquote>⚠️ Внимание: Никогда не опускайте внешние контейнеры ниже уровня принтера во время печати. Это нарушит гидростатическое равновесие и приведет к вытеканию чернил через головку на печатную плату.</blockquote>
+
+<h2 id="конструктивные-особенности-и-типы-снпч">Конструктивные особенности и типы СНПЧ</h2>
+
+<p>Современные модели принтеров <em>Epson</em> часто оснащаются встроенной системой, которая интегрирована в корпус устройства с завода. В таких моделях, как серия <em>EcoTank</em>, производители используют специальные датчики уровня и герметичные клапаны для предотвращения протечек при транспортировке.</p>
+
+<p>Отдельно стоит выделить внешние системы, которые устанавливаются на старые модели. Они состоят из гибких трубок, резервуаров с заглушками и системы выравнивания давления. В отличие от встроенных решений, такие комплекты требуют более внимательного отношения к расположению флаконов и проверке герметичности соединений.</p>
+
+<p>Критически важным элементом конструкции являются <strong>воздушные фильтры</strong> в крышках резервуаров. Они пропускают воздух внутрь контейнера по мере расходования чернил, не давая пыли и грязи попадать в систему. Забитый фильтр может создать вакуум и остановить подачу жидкости, даже если в емкости еще много краски.</p>
+
+<ul>
+<li>🖨️ <strong>Встроенная СНПЧ</strong> — надежна, компактна, но требует оригинальных чернил для сохранения гарантии.</li>
+<li>🔧 <strong>Внешняя СНПЧ</strong> — дешевле в установке, позволяет использовать сторонние расходные материалы любой марки.</li>
+<li>💧 <strong>Система выравнивания</strong> — специальные камеры, предотвращающие перелив чернил при движении принтера.</li>
+</ul>
+
+<h2 id="роль-чипов-и-программный-контроль">Роль чипов и программный контроль</h2>
+
+<p>Одной из уникальных особенностей техники <em>Epson</em> является использование чипов на картриджах или модулях СНПЧ. Эти микросхемы служат для отслеживания уровня чернил и передачи данных на основной процессор принтера. Без правильного считывания информации устройство может отказаться печатать, даже если чернил физически достаточно.</p>
+
+<p>Процесс работы чипа заключается в передаче сигнала о «нулевом уровне», когда резервуар опустошается. Принтер интерпретирует этот сигнал как необходимость замены картриджа. Однако для СНПЧ эта логика часто обходится с помощью <strong>сброса чипа</strong> или использования универсальных чипов-эмуляторов, которые имитируют наличие полного объема краски.</p>
+
+<p>Некоторые современные модели требуют постоянного подключения к интернету для активации картриджей или проверки их подлинности через серверы производителя. Это создает сложности для пользователей, которые предпочитают использовать совместимые чернила, так как принтер может заблокировать печать при обнаружении несоответствия.</p>
+
+<div class="poll-widget" id="poll-3a6cca96"><div class="poll-widget-question">📊 Какой тип СНПЧ вы используете?</div><div class="poll-widget-option" data-poll="3a6cca96" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Встроенная (EcoTank)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="3a6cca96" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Внешняя заводская</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="3a6cca96" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Самодельная (DIY)</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="3a6cca96" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Пока не использую</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="процесс-прокачки-и-первичная-настройка">Процесс прокачки и первичная настройка</h2>
+
+<p>Перед началом работы с системой необходимо выполнить процедуру прокачки, которая удаляет воздух из трубок и головки. Это критический этап, так как даже микроскопические пузырьки могут нарушить формирование капли и привести к дефектам печати. Встроенные системы часто делают это автоматически при первой активации.</p>
+
+<p>Для внешних систем процесс может быть ручным или полуавтоматическим. Необходимо открыть вентиляционные отверстия на флаконах, убедиться, что трубки заполнены жидкостью, и запустить принудительную прокачку через сервисное меню. Важно следить за тем, чтобы чернила достигли самой головки, не переполняя её.</p>
+
+<p>Если в трубках видны воздушные пробки, потребуется повторная процедура. Используйте функцию «Прочистка головки» в <code>Настройки принтера</code>, но делайте это не более 2-3 раз подряд, чтобы не переполнить <strong>промывочную станцию</strong> и не вызвать ошибку памперса.</p>
+
+<div class="checklist-block"><h4>☑️ Подготовка СНПЧ к печати</h4><label class="check-item"><input type="checkbox"><span>Заполнить флаконы чернилами</span></label><label class="check-item"><input type="checkbox"><span>Открыть вентиляционные отверстия</span></label><label class="check-item"><input type="checkbox"><span>Пропустить трубки через фиксаторы</span></label><label class="check-item"><input type="checkbox"><span>Запустить процедуру прокачки</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<details class="faq-item"><summary>Что делать, если чернила не идут?</summary><div class="faq-answer"><p>Проверьте, не перекручены ли трубки. Убедитесь, что вентиляционные отверстия на крышках флаконов открыты. Если проблема не решена, попробуйте отсоединить трубку от головки и слегка вытянуть чернила шприцем (осторожно!).</p></div></details>
+
+<h2 id="типичные-ошибки-и-способы-их-устранения">Типичные ошибки и способы их устранения</h2>
+
+<p>Самой частой проблемой является перелив чернил в промывочную станцию. Это происходит, если уровень в резервуарах слишком высок относительно головки принтера. Жидкость под собственным весом начинает течь в трубки и выливается в ванночку, вызывая окисление контактов.</p>
+
+<p>Другая распространенная ошибка — игнорирование загрязнения воздушных фильтров. Пыль забивает микропоры, создавая вакуум, из-за которого чернила просто не могут вытечь из флакона. В результате печатающая головка начинает «хватать» воздух, и на печати появляются полосы.</p>
+
+<p>Иногда проблема кроется в несовместимости чернил. Использование красок с разными химическими составами может привести к образованию осадка, который закупоривает дюзы. Никогда не смешивайте чернила разных производителей без тщательной промывки системы.</p>
+
+<table>
+<thead>
+<tr>
+<th>Проблема</th>
+<th>Причина</th>
+<th>Решение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Пустые полосы</strong></td>
+<td>Воздушная пробка</td>
+<td>Запустить глубокую очистку</td>
+</tr>
+<tr>
+<td><strong>Перелив чернил</strong></td>
+<td>Неправильный уровень флаконов</td>
+<td>Опустить флаконы ниже уровня головки</td>
+</tr>
+<tr>
+<td><strong>Ошибка чипа</strong></td>
+<td>Сбой микросхемы</td>
+<td>Сбросить чип или заменить его</td>
+</tr>
+<tr>
+<td><strong>Засыхание</strong></td>
+<td>Длительный простой</td>
+<td>Прокачка + промывочный раствор</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>⚠️ Внимание: Если вы заметили подтеки чернил на столе или корпусе принтера, немедленно остановите работу. Это признак критического нарушения гидростатического баланса, которое может привести к короткому замыканию электроники.</blockquote>
+
+<h2 id="долгосрочное-обслуживание-системы">Долгосрочное обслуживание системы</h2>
+
+<p>Для поддержания работоспособности <strong>СНПЧ Epson</strong> необходимо регулярно проверять состояние трубок и фильтров. Гибкие шланги со временем могут затвердеть или потрескаться, что приведет к подтеканию или попаданию воздуха. Осматривайте их хотя бы раз в полгода.</p>
+
+<p>Важно также следить за уровнем чернил и не допускать полного опустошения резервуаров. Когда уровень опускается ниже критической отметки, в систему попадает воздух, и процесс восстановления может занять много времени. Лучше доливать чернила заранее.</p>
+
+<p>Если вы планируете долго не использовать принтер (более двух недель), рекомендуется вывести трубки в отдельную баночку с дистиллированной водой или промывочным раствором, чтобы предотвратить высыхание дюз. Это простой, но эффективный способ сохранить качество печати.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>При перемещении принтера всегда закрывайте вентиляционные отверстия на флаконах СНПЧ, чтобы предотвратить случайное вытекание чернил под действием инерции и гравитации.</p></div>
+
+<p>Правильная эксплуатация системы непрерывной подачи чернил позволяет наслаждаться качественной печатью без частых затрат на картриджи. Понимание физических принципов и соблюдение простых правил обслуживания обеспечат долгую жизнь вашему устройству.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Система СНПЧ работает за счет разницы гидростатического давления, поэтому правильное расположение резервуаров относительно головки критически важно для предотвращения аварий.</p></div>
+
+<h2 id="часто-задаваемые-вопросы">Часто задаваемые вопросы</h2>
+
+<details>
+<summary>Можно ли использовать любые чернила в СНПЧ Epson?</summary>
+<p>Технически можно, но производитель рекомендует использовать чернила, рекомендованные для конкретной серии. Неподходящие чернила могут вызвать химическую реакцию, засорение дюз или повреждение прокладок головки.</p>
+</details>
+
+<details>
+<summary>Что делать, если принтер пишет «Картридж пуст», хотя чернила есть?</summary>
+<p>Это означает, что чип на модуле СНПЧ не был сброшен или требует замены. Используйте специальную перезаписывающую палку или программный сброс, чтобы «обмануть» принтер и обновить показания уровня.</p>
+</details>
+
+<details>
+<summary>Как часто нужно менять фильтры в СНПЧ?</summary>
+<p>Фильтры не требуют частой замены, но их нужно чистить от пыли. Если вы заметили, что чернила перестали поступать, проверьте проходимость фильтров и при необходимости замените их на новые.</p>
+</details>
+
+<details>
+<summary>Влияет ли температура в комнате на работу системы?</summary>
+<p>Да, при низких температурах чернила густеют, что затрудняет их подачу и может привести к образованию пузырьков. Оптимальная температура для работы составляет от +18°C до +25°C.</p>
+</details>
+
+<blockquote>⚠️ Внимание: Характеристики совместимости чернил могут меняться в зависимости от партии и обновления прошивки принтера. Всегда проверяйте актуальные списки совместимости на сайте производителя или у поставщика расходных материалов.</blockquote></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#физические-основы-работы-системы">Физические основы работы системы</a></li><li><a href="#конструктивные-особенности-и-типы-снпч">Конструктивные особенности и типы СНПЧ</a></li><li><a href="#роль-чипов-и-программный-контроль">Роль чипов и программный контроль</a></li><li><a href="#процесс-прокачки-и-первичная-настройка">Процесс прокачки и первичная настройка</a></li><li><a href="#типичные-ошибки-и-способы-их-устранения">Типичные ошибки и способы их устранения</a></li><li><a href="#долгосрочное-обслуживание-системы">Долгосрочное обслуживание системы</a></li><li><a href="#часто-задаваемые-вопросы">Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-vytashchit-kartridzh-iz-printera-epson-tx210.html" class="related-card">Как вытащить картридж из принтера Epson TX210: пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-uznat-chto-zakonchilas-kraska-v-printere-epson.html" class="related-card">Как узнать, что закончилась краска в принтере Epson: 5 способов проверки</a></li><li><a href="/articles/k/ka/kakie-kartridzhi-podkhodyat-dlya-printera-epson-cx4300.html" class="related-card">Какие картриджи подходят для принтера Epson CX4300: полный гид по выбору</a></li><li><a href="/articles/k/ka/kak-uznat-probeg-printera-epson.html" class="related-card">Как проверить пробег принтера Epson: 5 способов для точного учета</a></li><li><a href="/articles/k/ka/kak-dostat-kartridzh-iz-printera-epson-stylus-sx130.html" class="related-card">Как извлечь картридж из Epson Stylus SX130: Пошаговая инструкция</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-vytashchit-kartridzh-iz-printera-epson-tx210.html" class="related-bottom-card"><span class="related-bottom-title">Как вытащить картридж из принтера Epson TX210: пошаговая инструкция</span><span class="related-bottom-desc">Подробный разбор процедуры извлечения картриджей из МФУ Epson Stylus TX210. Инструкция по замене, оч</span></a><a href="/articles/k/ka/kak-uznat-chto-zakonchilas-kraska-v-printere-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как узнать, что закончилась краска в принтере Epson: 5 способов проверки</span><span class="related-bottom-desc">Узнайте, как определить низкий уровень чернил в принтерах Epson. Программный мониторинг, индикаторы,</span></a><a href="/articles/k/ka/kakie-kartridzhi-podkhodyat-dlya-printera-epson-cx4300.html" class="related-bottom-card"><span class="related-bottom-title">Какие картриджи подходят для принтера Epson CX4300: полный гид по выбору</span><span class="related-bottom-desc">Узнайте, какие чернила и картриджи совместимы с МФУ Epson Stylus CX4300. Сравнение оригинальных черн</span></a><a href="/articles/k/ka/kak-uznat-probeg-printera-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как проверить пробег принтера Epson: 5 способов для точного учета</span><span class="related-bottom-desc">Узнайте, как посмотреть пробег принтера Epson через программное обеспечение, счетчики и сервисные ме</span></a><a href="/articles/k/ka/kak-dostat-kartridzh-iz-printera-epson-stylus-sx130.html" class="related-bottom-card"><span class="related-bottom-title">Как извлечь картридж из Epson Stylus SX130: Пошаговая инструкция</span><span class="related-bottom-desc">Подробный гайд по замене картриджей в Epson Stylus SX130. Узнайте, как открыть крышку, дождаться уст</span></a><a href="/articles/e/ep/epson-tx200-kak-zamenit-kartridzh.html" class="related-bottom-card"><span class="related-bottom-title">Как заменить картридж в Epson TX200: пошаговая инструкция</span><span class="related-bottom-desc">Подробный гайд по замене чернильных картриджей в МФУ Epson TX200. Учимся менять картриджи, сбрасыват</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

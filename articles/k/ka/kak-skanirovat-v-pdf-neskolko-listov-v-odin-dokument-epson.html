@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как сканировать в PDF несколько листов в один файл на Epson — Эпсон Помощь</title>
+    <meta name="description" content="Пошаговая инструкция: создание многостраничного PDF с принтеров Epson. Настройка драйвера, использование Epson Scan и Epson Smart Panel для объединения страниц.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/k/ka/kak-skanirovat-v-pdf-neskolko-listov-v-odin-dokument-epson.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как сканировать в PDF несколько листов в один файл на Epson">
+    <meta property="og:description" content="Пошаговая инструкция: создание многостраничного PDF с принтеров Epson. Настройка драйвера, использование Epson Scan и Epson Smart Panel для объединения страниц.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/skanirovanie-i-kopirovanie/">Сканирование и копирование</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как сканировать в PDF несколько листов в один файл на Epson</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Инструкция: как сканировать несколько листов в один PDF на Epson</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#подготовка-оборудования-и-выбор-программы">Подготовка оборудования и выбор программы</a></li><li><a href="#настройка-драйвера-epson-scan-для-объединения-страниц">Настройка драйвера Epson Scan для объединения страниц</a></li><li><a href="#процесс-сканирования-пошаговая-инструкция">Процесс сканирования: пошаговая инструкция</a></li><li><a href="#использование-автоматического-подавателя-документов-adf">Использование автоматического подавателя документов (ADF)</a></li><li><a href="#сканирование-через-мобильное-приложение-epson-smart-panel">Сканирование через мобильное приложение Epson Smart Panel</a></li><li><a href="#решение-распространенных-проблем-при-объединении">Решение распространенных проблем при объединении</a></li><li><a href="#настройка-качества-и-размера-итогового-файла">Настройка качества и размера итогового файла</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><p>Работа с документацией часто требует объединения множества отдельных страниц в единый файл. Для владельцев устройств <em>Epson</em> эта задача решается быстро, если знать правильные настройки программного обеспечения. Большинство пользователей совершают одну и ту же ошибку: они сканируют каждый лист отдельно, получая десяток файлов вместо одного.</p>
+<p>Современные программные комплексы от <em>Epson</em> позволяют автоматически накапливать изображения и формировать итоговый документ формата <strong>PDF</strong>. В зависимости от вашей модели — будь то офисный <em>Epson WorkForce</em> или домашний <em>Epson L-series</em> — интерфейс может незначительно отличаться, но логика процесса остается неизменной. Мы рассмотрим самые эффективные способы достижения результата.</p>
+<p>Главная цель — избежать ручной склейки файлов в сторонних редакторах. При правильной настройке драйвера или мобильного приложения вы получите готовый <strong>многостраничный документ</strong> сразу после завершения работы с последним листом. Это экономит время и упрощает отправку документов по электронной почте.</p>
+
+<h2 id="подготовка-оборудования-и-выбор-программы">Подготовка оборудования и выбор программы</h2>
+<p>Перед началом работы убедитесь, что ваш <em>Epson</em> подключен к компьютеру через USB или сеть. Если вы используете мобильное приложение, проверьте, что устройство находится в той же Wi-Fi сети. Для настольных ПК наиболее удобным инструментом является штатная утилита <strong>Epson Scan</strong>, которая устанавливается вместе с драйверами.</p>
+<p>На старых моделях может использоваться программа <em>Epson Scan 2</em> или <em>Smart Panel</em>. Важно не путать режимы <strong>Home Mode</strong> (Домашний) и <strong>Professional Mode</strong> (Профессиональный), так как доступные функции в них различаются. Для наших целей лучше подходит Профессиональный режим, где есть больше настроек формата файла.</p>
+<p>Убедитесь, что в папке назначения достаточно места на диске, так как качественные сканы занимают много памяти. Если вы планируете работать с цветными документами высокого разрешения, объем итогового <strong>PDF-файла</strong> может быть значительным.</p>
+
+<blockquote>
+<p>⚠️ Внимание: Если вы используете macOS, убедитесь, что у вас установлена последняя версия драйвера, так как старые версии могут некорректно обрабатывать функцию объединения страниц в macOS Ventura и новее.</p>
+</blockquote>
+
+<h2 id="настройка-драйвера-epson-scan-для-объединения-страниц">Настройка драйвера Epson Scan для объединения страниц</h2>
+<p>Запустите программу <strong>Epson Scan</strong> на вашем компьютере. В главном окне переключите режим сканирования в <code>Professional Mode</code> (Профессиональный режим) с помощью выпадающего списка в правом верхнем углу. Это откроет расширенные настройки, необходимые для нашего сценария.</p>
+<p>В разделе <code>Document Type</code> (Тип документа) выберите <strong>Text and Photo</strong> или <strong>Color Document</strong> в зависимости от содержимого ваших листов. Не выбирайте <em>Photo</em>, если сканируете только текст, так как это увеличит размер файла без необходимости. В поле <code>Destination</code> (Назначение) обязательно укажите <strong>PDF</strong>.</p>
+<p>Самый важный параметр находится в разделе <code>File Format Options</code> (Параметры формата файла). Найдите галочку или выпадающий список <strong>Append to Existing File</strong> (Добавить к существующему) или <strong>Multi-page PDF</strong> (Многостраничный PDF). Именно эта функция позволяет добавлять новые страницы к уже созданному файлу.</p>
+<p>Если вы нашли опцию <strong>Scan Multiple Pages</strong>, активируйте её. В этом случае программа будет ждать следующего листа после завершения сканирования текущего. Вам не нужно будет каждый раз нажимать кнопку "Создать файл", достаточно просто класть новые листы на стекло или в автоматический подаватель.</p>
+
+<div class="checklist-block"><h4>☑️ Настройка программы Epson</h4><label class="check-item"><input type="checkbox"><span>Выбрать режим Professional Mode</span></label><label class="check-item"><input type="checkbox"><span>Установить формат PDF</span></label><label class="check-item"><input type="checkbox"><span>Включить опцию Multi-page PDF</span></label><label class="check-item"><input type="checkbox"><span>Настроить разрешение до 300 DPI</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="процесс-сканирования-пошаговая-инструкция">Процесс сканирования: пошаговая инструкция</h2>
+<p>Положите первый лист документа на стекло сканера или загрузите стопку в <strong>ADF</strong> (автоматический подаватель документов). Убедитесь, что бумага ровная и не имеет заломов, иначе скан может застрять. Нажмите кнопку <code>Scan</code> на панели управления программы.</p>
+<p>После завершения сканирования первого листа программа покажет предварительный просмотр. Не закрывайте окно и не нажимайте кнопку "Сохранить" или "Finish" сразу. Вместо этого положите следующий лист на стекло или в лоток <strong>ADF</strong>.</p>
+<p>Нажмите кнопку <code>Scan</code> снова. Вы увидите, что во время предпросмотра рядом с первой страницей появилась вторая. Программа автоматически <strong>добавляет страницу</strong> в очередь на сохранение. Повторяйте этот процесс для всех листов вашего документа.</p>
+<p>Когда все страницы будут отсканированы, нажмите кнопку <strong>Save</strong> (Сохранить). Откроется стандартное окно выбора пути. Введите имя файла и нажмите <code>OK</code>. Готовый многостраничный <strong>документ</strong> появится в указанной папке.</p>
+
+<blockquote>
+<p>⚠️ Внимание: При использовании автоматического подавателя (ADF) не пытайтесь добавлять листы вручную во время работы механизма, это может привести к замятию бумаги и поломке роликов захвата.</p>
+</blockquote>
+
+<details class="faq-item"><summary>Что делать, если пропал сканер?</summary><div class="faq-answer"><p>Если программа не видит устройство, попробуйте физически отключить USB-кабель на 5 секунд и подключить обратно. Затем перезапустите приложение Epson Scan.</p></div></details>
+
+<h2 id="использование-автоматического-подавателя-документов-adf">Использование автоматического подавателя документов (ADF)</h2>
+<p>Если у вас модель с <em>Automatic Document Feeder</em>, процесс становится еще быстрее. Загрузите всю стопку бумаги в верхний лоток. В настройках программы выберите режим <strong>ADF</strong> вместо <strong>Flatbed</strong> (Стекло). Это критически важно, так как алгоритмы сканирования для этих режимов разные.</p>
+<p>В окне настроек укажите количество страниц, если эта опция доступна в вашей версии ПО. Если вы сканируете наугад, оставьте настройку по умолчанию — программа будет сканировать, пока в лотке есть бумага. Убедитесь, что выбран режим <strong>Double-sided</strong> (Двустороннее), если документ печатан с обеих сторон.</p>
+<p>При двустороннем сканировании устройство само перевернет лист. Это позволяет создать полноценный <strong>двусторонний PDF</strong> без ручного переворачивания стопки. Проверьте направление подачи бумаги, чтобы страницы в итоговом файле не оказались перевернутыми вверх ногами.</p>
+<p>Скорость работы через <strong>ADF</strong> значительно выше, чем через стекло. Для больших объемов документов (более 10 страниц) использование подавателя является единственным разумным выбором, так как экономит до 80% времени процесса.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Параметр</th>
+      <th>Рекомендуемое значение</th>
+      <th>Эффект на результат</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Resolution (Разрешение)</code></td>
+      <td>300 DPI</td>
+      <td>Оптимально для текста и штрих-кодов</td>
+    </tr>
+    <tr>
+      <td><code>Color Mode (Цвет)</code></td>
+      <td>Color (Цветной)</td>
+      <td>Сохранение цветных элементов и печатей</td>
+    </tr>
+    <tr>
+      <td><code>File Type (Тип)</code></td>
+      <td>PDF (Searchable)</td>
+      <td>Возможность поиска текста внутри PDF</td>
+    </tr>
+    <tr>
+      <td><code>Image Format (Формат)</code></td>
+      <td>TIFF (внутри PDF)</td>
+      <td>Высокое качество печати, большой размер</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="poll-widget" id="poll-115fcf03"><div class="poll-widget-question">📊 Как часто вы сканируете документы?</div><div class="poll-widget-option" data-poll="115fcf03" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Раз в год</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="115fcf03" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Раз в месяц</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="115fcf03" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Раз в неделю</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="115fcf03" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Ежедневно</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="сканирование-через-мобильное-приложение-epson-smart-panel">Сканирование через мобильное приложение Epson Smart Panel</h2>
+<p>Для пользователей смартфонов и планшетов разработчики предлагают приложение <em>Epson Smart Panel</em>. Это отличный способ сканировать документы без компьютера. Скачайте приложение из App Store или Google Play и подключите его к вашему <em>Epson</em> по Wi-Fi.</p>
+<p>В главном меню приложения выберите режим <strong>Scan</strong> (Сканировать). Нажмите кнопку <code>+</code> или выберите опцию <strong>Multi-page</strong> (Многостраничный) перед началом работы. Это позволит приложению накапливать изображения в один файл.</p>
+<p>Наведите камеру на документ или используйте встроенный сканер принтера, если он поддерживается через Wi-Fi. После захвата первого изображения нажмите <strong>Add Page</strong> (Добавить страницу) и сфотографируйте следующий лист или запустите сканирование через принтер.</p>
+<p>Когда работа завершена, нажмите кнопку <strong>Save</strong> или <strong>Share</strong>. Вы можете выбрать формат <strong>PDF</strong> и сразу отправить файл в облако, почту или мессенджер. Мобильное приложение автоматически оптимизирует размер файла для быстрой отправки.</p>
+
+<blockquote>
+<p>⚠️ Внимание: В мобильном приложении качество сканирования через камеру смартфона ниже, чем через датчик принтера. Используйте камеру только для черновиков или быстрых заметок, а для официальных документов используйте сам сканер.</p>
+</blockquote>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Перед сканированием длинного документа убедитесь, что на экране смартфона достаточно заряда батареи, так как процесс обработки изображений сильно расходует энергию.</p></div>
+
+<h2 id="решение-распространенных-проблем-при-объединении">Решение распространенных проблем при объединении</h2>
+<p>Иногда пользователи сталкиваются с ситуацией, когда файл открывается как набор отдельных страниц, а не единый документ. Это часто происходит, если в настройках не была активирована опция <strong>Multi-page PDF</strong> или если вы нажали "Сохранить" после каждого листа.</p>
+<p>Другая частая проблема — отсутствие вкладки с настройками формата файла. В этом случае проверьте, что вы работаете в режиме <code>Professional</code> или <code>Home</code>, а не в режиме "Быстрое сканирование" (Quick Scan). В простом режиме функции объединения обычно отключены программно.</p>
+<p>Если сбой происходит при сканировании с ADF, проверьте чистоту роликов подачи. Грязные ролики могут пропускать листы, из-за чего программа считает, что сканирование завершено, и сохраняет файл преждевременно. Протрите ролики влажной безворсовой салфеткой.</p>
+<p>Иногда драйвер может некорректно определять количество страниц при двустороннем сканировании. В таких случаях лучше сканировать вручную, переворачивая стопку, и использовать режим добавления страниц, чтобы исключить ошибки подсчета.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Главная особенность работы с Epson Scan — это необходимость явного указания режима Multi-page PDF перед началом процесса, иначе каждая страница будет сохранена как отдельный файл.</p></div>
+
+<h2 id="настройка-качества-и-размера-итогового-файла">Настройка качества и размера итогового файла</h2>
+<p>После того как вы создали многостраничный документ, важно обратить внимание на его конечный размер. Если вы планируете отправлять файл по почте, размер может превысить лимиты почтовых серверов (обычно 25 Мб). В настройках драйвера <em>Epson</em> можно выбрать режим <strong>Optimize for File Size</strong> (Оптимизация для размера файла).</p>
+<p>Для текстовых документов достаточно разрешения <code>300 DPI</code>. Если сканируете текст, попробуйте включить режим <strong>Black and White</strong> (Черно-белый) или <strong>Grayscale</strong> (Оттенки серого). Это радикально уменьшит размер файла без потери читаемости текста.</p>
+<p>Для документов с графиками, фотографиями или цветными подписями лучше оставить режим <strong>Color</strong> и разрешение <code>300 DPI</code> или выше. Помните, что слишком высокое разрешение (600-1200 DPI) избыточно для экранного просмотра и лишь раздувает объем <strong>PDF</strong>.</p>
+<p>Если вам нужно изменить параметры уже созданного файла, используйте встроенные инструменты просмотра PDF или онлайн-сервисы сжатия. Однако правильная настройка на этапе сканирования всегда дает лучший результат, чем последующее сжатие готового документа.</p>
+
+<details class="faq-item"><summary>Как проверить качество скана?</summary><div class="faq-answer"><p>Откройте итоговый PDF-файл, увеличьте масштаб до 200% и проверьте четкость границ текста и отсутствие артефактов на краях страницы.</p></div></details>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+<details>
+  <summary>Почему моя программа Epson Scan не видит опцию добавления страниц?</summary>
+  <p>Возможно, вы используете режим "Easy Scan" или "Home". Переключитесь в режим "Professional Mode" в правом верхнем углу окна программы, там становятся доступны все настройки формата файла, включая создание многостраничных PDF.</p>
+</details>
+<details>
+  <summary>Можно ли сканировать двусторонний документ в один файл на Epson?</summary>
+  <p>Да, если ваш принтер оснащен автоматическим двусторонним сканированием (Duplex ADF). В настройках выберите режим "Double-sided" и "Multi-page PDF", устройство само перевернет листы и сохранит их в правильном порядке в один файл.</p>
+</details>
+<details>
+  <summary>Как изменить порядок страниц после сканирования?</summary>
+  <p>В стандартном драйвере Epson Scan изменить порядок страниц после завершения сканирования нельзя. Вам нужно будет использовать сторонний PDF-редактор или онлайн-сервисы для перестановки страниц в уже готовом файле.</p>
+</details>
+<details>
+  <summary>Нужно ли выключать принтер после сканирования?</summary>
+  <p>Нет, принтер перейдет в режим энергосбережения автоматически. Выключать его вручную не обязательно, современные модели Epson быстро просыпаются при следующем запросе на печать или сканирование.</p>
+</details>
+<details>
+  <summary>Почему файл получается слишком большим?</summary>
+  <p>Скорее всего, вы выбрали высокое разрешение (выше 600 DPI) или режим "Цветной" для черно-белого текста. Уменьшите разрешение до 300 DPI и выберите режим "Черно-белый" в настройках драйвера перед повторным сканированием.</p>
+</details></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#подготовка-оборудования-и-выбор-программы">Подготовка оборудования и выбор программы</a></li><li><a href="#настройка-драйвера-epson-scan-для-объединения-страниц">Настройка драйвера Epson Scan для объединения страниц</a></li><li><a href="#процесс-сканирования-пошаговая-инструкция">Процесс сканирования: пошаговая инструкция</a></li><li><a href="#использование-автоматического-подавателя-документов-adf">Использование автоматического подавателя документов (ADF)</a></li><li><a href="#сканирование-через-мобильное-приложение-epson-smart-panel">Сканирование через мобильное приложение Epson Smart Panel</a></li><li><a href="#решение-распространенных-проблем-при-объединении">Решение распространенных проблем при объединении</a></li><li><a href="#настройка-качества-и-размера-итогового-файла">Настройка качества и размера итогового файла</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-skanirovat-na-epson-l355.html" class="related-card">Как сканировать документы на МФУ Epson L355: полное руководство</a></li><li><a href="/articles/p/pr/printer-epson-l-222-kak-skanirovat.html" class="related-card">Как сканировать документы на МФУ Epson L222: полные инструкции</a></li><li><a href="/articles/k/ka/kak-sdelat-kserokopiyu-na-printere-epson-sx130.html" class="related-card">Как сделать ксерокопию на принтере Epson SX130: Пошаговая инструкция</a></li><li><a href="/articles/e/ep/epson-kak-otskanirovat-dokument-na-kompyuter-s-printera.html" class="related-card">Как отсканировать документ с принтера Epson на компьютер: Полная инструкция</a></li><li><a href="/articles/e/ep/epson-wf-7610-kak-skanirovat.html" class="related-card">Как сканировать на Epson WF-7610: пошаговая инструкция 2026</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-skanirovat-na-epson-l355.html" class="related-bottom-card"><span class="related-bottom-title">Как сканировать документы на МФУ Epson L355: полное руководство</span><span class="related-bottom-desc">Подробная инструкция по сканированию документов и фото на Epson L355 через компьютер и программное о</span></a><a href="/articles/p/pr/printer-epson-l-222-kak-skanirovat.html" class="related-bottom-card"><span class="related-bottom-title">Как сканировать документы на МФУ Epson L222: полные инструкции</span><span class="related-bottom-desc">Подробная инструкция: как сканировать с Epson L222 через программу Epson Scan, Windows Fax и Fax или</span></a><a href="/articles/k/ka/kak-sdelat-kserokopiyu-na-printere-epson-sx130.html" class="related-bottom-card"><span class="related-bottom-title">Как сделать ксерокопию на принтере Epson SX130: Пошаговая инструкция</span><span class="related-bottom-desc">Подробное руководство по созданию копий на МФУ Epson SX130. Настройка качества, работы с цветными ор</span></a><a href="/articles/e/ep/epson-kak-otskanirovat-dokument-na-kompyuter-s-printera.html" class="related-bottom-card"><span class="related-bottom-title">Как отсканировать документ с принтера Epson на компьютер: Полная инструкция</span><span class="related-bottom-desc">Пошаговая инструкция: как отсканировать документ с принтера Epson на компьютер. Методы через Epson S</span></a><a href="/articles/e/ep/epson-wf-7610-kak-skanirovat.html" class="related-bottom-card"><span class="related-bottom-title">Как сканировать на Epson WF-7610: пошаговая инструкция 2026</span><span class="related-bottom-desc">Подробное руководство по сканированию с МФУ Epson WorkForce WF-7610: через ПК, USB, Wi-Fi и облако. </span></a><a href="/articles/k/ka/kak-sdelat-kopiyu-na-epson-3100.html" class="related-bottom-card"><span class="related-bottom-title">Копирование на Epson L3100: пошаговая инструкция с фото</span><span class="related-bottom-desc">Как сделать копию на принтере Epson L3100: настройки качества, масштабирование, двустороннее копиров</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

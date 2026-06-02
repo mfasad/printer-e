@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>SSC Service Utility для Epson: полное руководство по сбросу и сбросу — Эпсон Помощь</title>
+    <meta name="description" content="Пошаговая инструкция использования SSC Service Utility для Epson Stylus. Сброс памперса, обнуление счетчиков, диагностика и решение ошибок эксплуатации.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/s/ss/ssc-service-utility-for-epson-stylus-printers-kak-polzovatsya.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="SSC Service Utility для Epson: полное руководство по сбросу и сбросу">
+    <meta property="og:description" content="Пошаговая инструкция использования SSC Service Utility для Epson Stylus. Сброс памперса, обнуление счетчиков, диагностика и решение ошибок эксплуатации.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/sbros-pampersa/">Сброс памперса</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">SSC Service Utility для Epson: полное руководство по сбросу и сбросу</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Руководство по использованию утилиты SSC Service Utility для принтеров Epson Stylus</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#подготовка-оборудования-и-установка-утилиты">Подготовка оборудования и установка утилиты</a></li><li><a href="#первый-запуск-и-настройка-параметров">Первый запуск и настройка параметров</a></li><li><a href="#процедура-сброса-счетчика-отработанных-чернил">Процедура сброса счетчика отработанных чернил</a></li><li><a href="#диагностика-и-калибровка-печатающей-головки">Диагностика и калибровка печатающей головки</a></li><li><a href="#продвинутые-функции-и-управление-подачей-чернил">Продвинутые функции и управление подачей чернил</a></li><li><a href="#решение-типичных-проблем-при-работе-с-сервисом">Решение типичных проблем при работе с сервисом</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body">
+
+<p>Система обслуживания принтеров Epson, известная как <em>SSC Service Utility</em>, представляет собой мощный программный инструмент, созданный для глубокой диагностики и обслуживания струйных устройств серии <strong>Epson Stylus</strong>. Многие пользователи сталкиваются с необходимостью использования данного ПО, когда стандартные драйверы перестают справляться с критическими ошибками, такими как переполнение абсорбирующей прокладки или блокировка печати из-за срабатывания датчиков.</p>
+
+<p>Программа позволяет получить доступ к скрытым сервисным функциям, которые недоступны через обычный интерфейс операционной системы. Это включает в себя сброс внутреннего счетчика отходов, калибровку печатающей головки, тестирование дюз и принудительную подачу чернил. Правильное применение <code>SSC Service Utility</code> может значительно продлить срок службы вашего принтера без необходимости обращения в авторизованный сервисный центр.</p>
+
+<h2 id="подготовка-оборудования-и-установка-утилиты">Подготовка оборудования и установка утилиты</h2>
+
+<p>Прежде чем запускать процесс обслуживания, необходимо убедиться в корректности подключения принтера к компьютеру. Убедитесь, что устройство включено и находится в рабочем состоянии, а кабели подключены плотно. В идеале следует использовать прямое USB-подключение, избегая хаба или удлинителей, которые могут вызвать потерю связи при передаче сервисных команд.</p>
+
+<p>Установка <em>SSC Service Utility</em> происходит стандартным образом через установочный файл. После распаковки архива и запуска исполняемого кода программа инициирует поиск подключенных устройств Epson. Если принтер не обнаруживается автоматически, необходимо проверить настройки управления устройствами Windows и убедиться, что драйверы установлены корректно.</p>
+
+<p>Критически важно выбрать правильную модель принтера в выпадающем списке программы. Ошибка в выборе модели может привести к некорректной работе сервисных функций или, в худшем случае, к программному сбою контроллера. Убедитесь, что выбрана именно ваша модификация, например, <code>Epson Stylus Color 680</code> или <code>Epson Stylus Photo 1270</code>.</p>
+
+<blockquote>⚠️ Внимание: Если программа не видит принтер, попробуйте отключить и снова подключить кабель USB, перезапустив при этом само приложение <em>SSC Service Utility</em> от имени администратора.</blockquote>
+
+<div class="poll-widget" id="poll-9d83bb83"><div class="poll-widget-question">📊 Какая модель вашего принтера Epson?</div><div class="poll-widget-option" data-poll="9d83bb83" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Stylus Color 800/850</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="9d83bb83" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Stylus Photo 1270/1290</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="9d83bb83" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Stylus Pro 4800</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="9d83bb83" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Другая модель</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="первый-запуск-и-настройка-параметров">Первый запуск и настройка параметров</h2>
+
+<p>При запуске утилиты перед вами откроется главное меню с набором доступных функций. Интерфейс программы выполнен в строгом функциональном стиле, что делает навигацию интуитивно понятной даже для неопытных пользователей. В левом верхнем углу расположен блок выбора принтера, а ниже — панель инструментов с основными командами управления.</p>
+
+<p>Для начала работы необходимо нажать кнопку <code>Service</code> (Сервис), чтобы убедиться, что связь с принтером установлена стабильно. Программа покажет текущее состояние счетчиков и наличие ошибок в системах подачи чернил. На этом этапе стоит прочитать логи ошибок, чтобы понять, с какой именно проблемой предстоит бороться в первую очередь.</p>
+
+<p>Непосредственно перед выполнением любых операций сброса рекомендуется сохранить текущие настройки прошивки, если такая функция доступна в вашей версии утилиты. Это позволит в случае неудачного сброса вернуть устройство в исходное состояние. Всегда имейте под рукой официальную документацию к вашему устройству для сверки кодов ошибок.</p>
+
+<blockquote>⚠️ Внимание: Утилита может вести себя нестабильно на современных операционных системах Windows 10/11. Если возникают ошибки подключения, попробуйте запустить программу в режиме совместимости с Windows XP.</blockquote>
+
+<h2 id="процедура-сброса-счетчика-отработанных-чернил">Процедура сброса счетчика отработанных чернил</h2>
+
+<p>Самая востребованная функция утилиты — это сброс счетчика абсорбирующей прокладки (Waste Ink Pad Counter). Когда этот счетчик достигает 100%, принтер блокирует печать, выдавая ошибку, часто сопровождающуюся миганием индикаторов. Это стандартная защита производителя, но она легко обходится с помощью <strong>SSC Service Utility</strong>.</p>
+
+<p>Для выполнения сброса перейдите в раздел <code>Special Adjustment</code> (Специальная настройка) и выберите пункт <code>Waste Ink Pad Counter</code>. В открывшемся окне вы увидите текущее значение заполненности в процентах. Вам нужно установить галочку напротив <code>Main pad counter</code> и нажать кнопку <code>Reset</code>.</p>
+
+<p>После нажатия кнопки сброса программа отправит команду на контроллер принтера, обнуляя значение счетчика. Процесс занимает несколько секунд и сопровождается звуковым сигналом от устройства. После успешного сброса необходимо полностью выключить и включить принтер, чтобы изменения вступили в силу и система перестала выдавать ошибку.</p>
+
+<div class="checklist-block"><h4>☑️ Подготовка к сбросу памперса</h4><label class="check-item"><input type="checkbox"><span>Подключить принтер к ПК</span></label><label class="check-item"><input type="checkbox"><span>Запустить утилиту от администратора</span></label><label class="check-item"><input type="checkbox"><span>Выбрать точную модель устройства</span></label><label class="check-item"><input type="checkbox"><span>Выполнить сброс в интерфейсе программы</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<p>Иногда процедура сброса требует повторного выполнения или проверки состояния датчиков. Если индикаторы продолжают мигать, проблема может быть не только в программном счетчике, но и в физическом переполнении прокладки. В таком случае потребуется физическая чистка или замена абсорбирующего элемента внутри корпуса.</p>
+
+<details class="faq-item"><summary>Что делать, если сброс не помогает?</summary><div class="faq-answer"><p>Если после сброса счетчика ошибка не исчезла, возможно, сработал аппаратный датчик уровня чернил в прокладке или произошел сбой прошивки. В этом случае попробуйте физически вынуть и почистить абсорбер, либо перепрошить контроллер.</p></div></details>
+
+<h2 id="диагностика-и-калибровка-печатающей-головки">Диагностика и калибровка печатающей головки</h2>
+
+<p>Помимо сброса счетчиков, <em>SSC Service Utility</em> предлагает расширенный инструментарий для диагностики печатающей головки. Это критически важно для пользователей, которые заметили полосы на печати, отсутствие цветов или засорение дюз. Программное обеспечение позволяет запустить цикл промывки головки без использования стандартного расходного количества чернил, что экономит ресурсы.</p>
+
+<p>Для проверки дюз перейдите в меню <code>Maintenance</code> (Обслуживание) и выберите опцию <code>Nozzle Check</code>. Программа отправит тестовый паттерн на печать, который поможет визуально оценить состояние каждого цвета. Если на тестовом листе видны разрывы линий, необходимо запустить процедуру очистки <code>Head Cleaning</code>.</p>
+
+<p>Важно соблюдать баланс между очисткой и расходом чернил. Чрезмерное использование функции очистки может привести к быстрому переполнению прокладки, которую вы только что обнулили. Рекомендуется выполнять очистку не более двух раз подряд, делая перерывы для естественного растворения засохших чернил.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Регулярная проверка дюз и своевременная очистка головки значительно экономят чернила и продлевают жизнь печатающей головке, предотвращая её необратимое засыхание.</p></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Функция утилиты</th>
+      <th>Назначение</th>
+      <th>Рекомендуемая частота</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Waste Ink Reset</code></td>
+      <td>Сброс счетчика отработанных чернил</td>
+      <td>При достижении 100%</td>
+    </tr>
+    <tr>
+      <td><code>Nozzle Check</code></td>
+      <td>Проверка состояния дюз</td>
+      <td>Перед началом важных работ</td>
+    </tr>
+    <tr>
+      <td><code>Head Cleaning</code></td>
+      <td>Промывка печатающей головки</td>
+      <td>При обнаружении дефектов печати</td>
+    </tr>
+    <tr>
+      <td><code>Power Purge</code></td>
+      <td>Принудительная подача чернил</td>
+      <td>Только при сильных засорах</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="продвинутые-функции-и-управление-подачей-чернил">Продвинутые функции и управление подачей чернил</h2>
+
+<p>Для опытных пользователей утилита предоставляет доступ к функции <code>Power Purge</code> (Принудительная очистка). Эта операция используется в случаях, когда обычная промывка не дает результата, и головка полностью забита. Процесс происходит интенсивнее, прокачивая большое количество чернил через систему, что позволяет вытолкнуть застывшие комки.</p>
+
+<p>Использование <strong>Power Purge</strong> требует осторожности, так как оно потребляет значительный объем чернил и может быстро переполнить абсорбирующую продку. Убедитесь, что вы готовы к последующему физическому обслуживанию устройства после применения этой функции. Рекомендуется предварительно проверить состояние прокладки.</p>
+
+<p>Также в расширенном меню доступны настройки скорости вращения роликов подачи бумаги и калибровка позиционирования. Эти параметры позволяют настроить принтер под конкретный тип бумаги или исправить проблемы с подачей, когда листы захватываются криво или смяты. Изменение этих значений должно производиться только при наличии опыта работы с техникой Epson.</p>
+
+<p>Если вы столкнулись с тем, что принтер перестал печатать черным цветом, проверьте режим работы черной головки в разделе <code>Printer Status</code>. Иногда проблема кроется в некорректном выборе типа черной головки (Dye или Pigment), что может быть изменено через сервисное меню.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>При выполнении Power Purge подложите под выходное отверстие чернил ватные диски, чтобы избежать разбрызгивания красящего вещества на стол или одежду.</p></div>
+
+<h2 id="решение-типичных-проблем-при-работе-с-сервисом">Решение типичных проблем при работе с сервисом</h2>
+
+<p>При работе с утилитой пользователи могут столкнуться с различными ошибками, от "Device not found" до "Command timeout". Причина "Device not found" чаще всего кроется в драйверах или порте USB. Попробуйте сменить порт на материнской плате или переустановить драйвер принтера в режиме совместимости.</p>
+
+<p>Ошибка "Command timeout" обычно указывает на то, что принтер не успел ответить на команду в отведенное время. Это может происходить, если устройство находится в режиме глубокого сна или если напряжение питания нестабильно. В таком случае перезагрузите принтер и повторите попытку, убедившись, что он полностью инициализирован.</p>
+
+<p>Иногда утилита может зависнуть после выполнения операции сброса. Не выключайте принтер принудительно из розетки. Дождитесь завершения процесса, который может длиться до 2-3 минут, так как контроллер записывает новые значения в энергонезависимую память. Если зависание не проходит более 5 минут, можно безопасно перезагрузить устройство.</p>
+
+<blockquote>⚠️ Внимание: Не используйте утилиту для сброса счетчиков, если вы не уверены в физической исправности прокладки. Программный сброс на физически переполненный абсорбер приведет к течению чернил на стол.</blockquote>
+
+<p>Важно также отметить, что некоторые новые модели Epson могут требовать использования обновленных версий утилит или специфических драйверов для корректной работы сервисных функций. Всегда проверяйте совместимость версии программы с вашей моделью перед началом работы. Устаревшие версии могут не поддерживать новые протоколы связи.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Стабильность работы утилиты напрямую зависит от качества подключения и совместимости драйверов, поэтому всегда используйте оригинальные или проверенные версии ПО.</p></div>
+
+<h2 id="faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</h2>
+
+<details>
+  <summary>Можно ли использовать SSC Service Utility для моделей, отличных от Epson Stylus?</summary>
+  <p>Нет, утилита разработана строго для принтеров Epson на базе чипов Epson. Использование её с принтерами других брендов невозможно, так как протоколы обмена данными и архитектура контроллеров совершенно разные.</p>
+</details>
+
+<details>
+  <summary>Сколько раз можно сбрасывать счетчик отработанных чернил?</summary>
+  <p>С программной точки зрения сброс можно выполнять бесконечное количество раз. Однако физический объем абсорбирующей прокладки ограничен. После 2-3 сбросов рекомендуется чистить или менять прокладку, чтобы избежать протечек.</p>
+</details>
+
+<details>
+  <summary>Что делать, если после сброса ошибка не исчезает?</summary>
+  <p>Попробуйте полностью выключить принтер кнопкой, затем извлеките шнур питания из розетки на 1-2 минуты. Также проверьте, не переполнена ли физическая прокладка, так как датчик может срабатывать механически.</p>
+</details>
+
+<details>
+  <summary>Нужно ли скачивать драйверы отдельно для работы утилиты?</summary>
+  <p>Да, утилита работает поверх установленных драйверов принтера. Убедитесь, что принтер корректно определен в системе и может печатать тестовую страницу до запуска SSC Service Utility.</p>
+</details>
+
+<p>Итак, владение навыками работы с утилитой <em>SSC Service Utility</em> открывает перед владельцами принтеров <strong>Epson Stylus</strong> широкие возможности для самостоятельного обслуживания. Это позволяет экономить на визитах в сервис и оперативно решать проблемы с переполнением памперса или засорами.</p>
+
+<p>Помните, что программное решение — это лишь часть процесса. Регулярный уход, использование качественных чернил и своевременная физическая чистка являются залогом долгой и стабильной работы вашего устройства. Если вы сомневаетесь в своих силах при выполнении сложных операций, лучше проконсультироваться со специалистом.</p></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#подготовка-оборудования-и-установка-утилиты">Подготовка оборудования и установка утилиты</a></li><li><a href="#первый-запуск-и-настройка-параметров">Первый запуск и настройка параметров</a></li><li><a href="#процедура-сброса-счетчика-отработанных-чернил">Процедура сброса счетчика отработанных чернил</a></li><li><a href="#диагностика-и-калибровка-печатающей-головки">Диагностика и калибровка печатающей головки</a></li><li><a href="#продвинутые-функции-и-управление-подачей-чернил">Продвинутые функции и управление подачей чернил</a></li><li><a href="#решение-типичных-проблем-при-работе-с-сервисом">Решение типичных проблем при работе с сервисом</a></li><li><a href="#faq-часто-задаваемые-вопросы">FAQ: Часто задаваемые вопросы</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-sbrosit-schetchik-pampersa-na-printerakh-epson-l486.html" class="related-card">Сброс счетчика памперса Epson L486: полная инструкция WIC Reset</a></li><li><a href="/articles/k/ka/kak-obnulit-printer-epson-l200.html" class="related-card">Как обнулить принтер Epson L200: сброс счетчика памперса WIC Reset</a></li><li><a href="/articles/p/po/pochemu-na-printere-epson-migayut-dve-krasnye-lampochki-kaplya-i-bumaga.html" class="related-card">Две красные лампочки на Epson: причины и способы сброса ошибки</a></li><li><a href="/articles/e/ep/epson-210-kak-snyat-pampers.html" class="related-card">Как снять и очистить памперс Epson L210: пошаговая инструкция</a></li><li><a href="/articles/p/pr/printer-epson-l222-srok-sluzhby-vpityvayushchej-chernila-podkladki-printera-zakanchivaetsya-chto-delat.html" class="related-card">Ошибка впитывающей подкладки Epson L222: срок службы и что делать</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-sbrosit-schetchik-pampersa-na-printerakh-epson-l486.html" class="related-bottom-card"><span class="related-bottom-title">Сброс счетчика памперса Epson L486: полная инструкция WIC Reset</span><span class="related-bottom-desc">Независимое руководство по обнулению Waste Ink Pad Counter для Epson L486. Программные методы, утили</span></a><a href="/articles/k/ka/kak-obnulit-printer-epson-l200.html" class="related-bottom-card"><span class="related-bottom-title">Как обнулить принтер Epson L200: сброс счетчика памперса WIC Reset</span><span class="related-bottom-desc">Пошаговая инструкция по обнулению счетчика отработанных чернил Epson L200. Оцените риски, выберите с</span></a><a href="/articles/p/po/pochemu-na-printere-epson-migayut-dve-krasnye-lampochki-kaplya-i-bumaga.html" class="related-bottom-card"><span class="related-bottom-title">Две красные лампочки на Epson: причины и способы сброса ошибки</span><span class="related-bottom-desc">Мигают капля и бумага на принтере Epson? Узнайте точные причины ошибки, пошаговые методы сброса памп</span></a><a href="/articles/e/ep/epson-210-kak-snyat-pampers.html" class="related-bottom-card"><span class="related-bottom-title">Как снять и очистить памперс Epson L210: пошаговая инструкция</span><span class="related-bottom-desc">Подробное руководство по замене абсорбирующей подушки в принтере Epson L210. Узнайте, как разблокиро</span></a><a href="/articles/p/pr/printer-epson-l222-srok-sluzhby-vpityvayushchej-chernila-podkladki-printera-zakanchivaetsya-chto-delat.html" class="related-bottom-card"><span class="related-bottom-title">Ошибка впитывающей подкладки Epson L222: срок службы и что делать</span><span class="related-bottom-desc">Принтер Epson L222 сообщает об окончании срока службы чернильной подушки. Узнайте, как сбросить счет</span></a><a href="/articles/k/ka/kak-pereproshit-printer-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как перепрошить принтер Epson: Сброс памперса и чипов</span><span class="related-bottom-desc">Инструкция по перепрошивке принтеров Epson. Сброс счетчика памперса, замена чипов, прошивка сброса. </span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🖨️</text></svg>">
+    <title>Как найти IP адрес принтера Epson: 5 рабочих способов — Эпсон Помощь</title>
+    <meta name="description" content="Полное руководство по поиску IP-адреса принтеров Epson. Инструкция для моделей с экраном и без, через веб-сервер и утилиту Epson Net Config.">
+    <link rel="canonical" href="https://printer-e.vercel.app/articles/g/gd/gde-najti-ajpi-adres-printera-epson.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как найти IP адрес принтера Epson: 5 рабочих способов">
+    <meta property="og:description" content="Полное руководство по поиску IP-адреса принтеров Epson. Инструкция для моделей с экраном и без, через веб-сервер и утилиту Epson Net Config.">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=1780388918">
+    <style>
+    .site-footer-premium {
+        margin-top: 60px; padding: 40px 0 0; background: #1e293b; color: #94a3b8;
+    }
+    .footer-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+        padding-bottom: 32px; border-bottom: 1px solid #334155;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px; }
+    .footer-about { font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+    .footer-updated { font-size: 0.8rem; color: #64748b; }
+    .footer-col h4 { color: #f1f5f9; font-size: 0.95rem; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #94a3b8; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: #60a5fa; }
+    .footer-bottom { padding: 20px 0; text-align: center; font-size: 0.85rem; }
+    @media (max-width: 640px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .cookie-popup {
+        position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #fff;
+        padding: 16px; transition: transform 0.5s ease; z-index: 9999; border-top: 2px solid #2563eb;
+        transform: translateY(100%);
+    }
+    .cookie-popup.visible { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.9rem; }
+    .cookie-btn { background: #2563eb; color: #fff; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .cookie-btn:hover { background: #1d4ed8; }
+    @media (max-width: 640px) {
+        .cookie-inner { flex-direction: column; text-align: center; }
+    }
+</style>
+    
+    <!--#include virtual="/ssi/head.html" -->
+</head>
+<body>
+        <!--#include virtual="/ssi/body_top.html" -->
+    <style>
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle {
+        background: none; border: none; cursor: pointer;
+        font: inherit; color: inherit; padding: 8px 12px;
+        border-radius: 8px; transition: background 0.2s;
+    }
+    .dropdown-toggle:hover { background: rgba(0,0,0,0.05); }
+    .dropdown-menu {
+        display: none; position: absolute; right: 0; top: 100%;
+        min-width: 240px; max-height: 70vh; overflow-y: auto;
+        background: var(--card-bg, #fff); border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        padding: 8px 0; z-index: 1000;
+    }
+    .nav-dropdown::after {
+        content: ''; position: absolute; left: 0; right: 0;
+        top: 100%; height: 12px;
+    }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { display: block; }
+    .dropdown-item {
+        display: block; padding: 10px 20px; color: var(--text, #1f2937);
+        text-decoration: none; font-size: 0.95rem; transition: background 0.15s;
+        white-space: nowrap;
+    }
+    .dropdown-item:hover { background: rgba(37,99,235,0.06); color: var(--primary, #2563eb); }
+    @media (max-width: 768px) {
+        .main-nav > .nav-link { display: none; }
+        .dropdown-toggle { display: none; }
+        .dropdown-menu {
+            display: block !important; position: static;
+            box-shadow: none; border: none; border-radius: 0;
+            min-width: auto; max-height: none; padding: 0;
+            background: transparent;
+        }
+        .dropdown-item {
+            padding: 8px 0; font-size: 1rem;
+        }
+    }
+    </style>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🖨️</span>
+                <span>Эпсон Помощь</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Меню" id="menuBtn">☰</button>
+            <nav class="main-nav" id="mainNav">
+                <a href="/category/chistka-golovok/" class="nav-link">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="nav-link">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="nav-link">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="nav-link">💿 Установка драйверов</a>
+<div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">📂 Все разделы ▾</button>
+            <div class="dropdown-menu"><a href="/category/chistka-golovok/" class="dropdown-item">💧 Чистка головок</a>
+<a href="/category/zapravka-chernil/" class="dropdown-item">🖊️ Заправка чернил</a>
+<a href="/category/sbros-pampersa/" class="dropdown-item">🧽 Сброс памперса</a>
+<a href="/category/ustanovka-drajverov/" class="dropdown-item">💿 Установка драйверов</a>
+<a href="/category/setevoe-podklyuchenie/" class="dropdown-item">📶 Сетевое подключение</a>
+<a href="/category/skanirovanie-i-kopirovanie/" class="dropdown-item">📄 Сканирование и копирование</a>
+<a href="/category/pechat-foto/" class="dropdown-item">📸 Печать фото</a>
+<a href="/category/remont-i-razborka/" class="dropdown-item">🔧 Ремонт и разборка</a>
+<a href="/category/ustranenie-oshibok/" class="dropdown-item">⚠️ Устранение ошибок</a>
+<a href="/category/raskhodnye-materialy/" class="dropdown-item">📦 Расходные материалы</a>
+<a href="/category/nastrojka-tsveta/" class="dropdown-item">🎨 Настройка цвета</a>
+<a href="/category/drugoe/" class="dropdown-item">📁 Другое</a></div>
+        </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs" aria-label="Навигация">
+        <div class="container"><a href="/">Главная</a><span class="breadcrumb-sep">›</span><a href="/category/setevoe-podklyuchenie/">Сетевое подключение</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Как найти IP адрес принтера Epson: 5 рабочих способов</span></div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container">
+            <div class="article-layout">
+                <article class="article-main">
+                    
+                    <h1>Где найти IP-адрес принтера Epson: полное руководство</h1>
+                    <nav class="mobile-toc"><details><summary>📋 Содержание</summary><ul><li><a href="#введение">Введение</a></li><li><a href="#печать-отчета-о-состоянии-сети-через-панель-управления">Печать отчета о состоянии сети через панель управления</a></li><li><a href="#использование-утилиты-epson-net-config">Использование утилиты Epson Net Config</a></li><li><a href="#поиск-адреса-через-веб-интерфейс-маршрутизатора">Поиск адреса через веб-интерфейс маршрутизатора</a></li><li><a href="#проверка-через-командную-строку-windows">Проверка через командную строку Windows</a></li><li><a href="#таблица-популярных-моделей-и-особенности-их-интерфейса">Таблица популярных моделей и особенности их интерфейса</a></li><li><a href="#решение-частых-проблем-при-поиске-адреса">Решение частых проблем при поиске адреса</a></li><li><a href="#частые-вопросы-faq">Частые вопросы (FAQ)</a></li></ul></details></nav>
+                    <!--#include virtual="/ssi/article_before.html" -->
+                    <div class="article-body"><h2 id="введение">Введение</h2>
+
+<p>Поиск <strong>IP-адреса</strong> является первым и критически важным шагом при настройке сетевого устройства от <em>Epson</em>. Без корректного сетевого идентификатора компьютер просто не увидит принтер в списке доступных устройств, что сделает печать невозможной.</p>
+
+<p>Многие пользователи сталкиваются с трудностями, когда <strong>сетевое подключение</strong> сбивается после перезагрузки роутера или обновления прошивки. В таких ситуациях необходимо быстро определить текущий адрес, чтобы перенастроить драйверы или проверить настройки маршрутизации.</p>
+
+<p>В этой статье мы разберем <strong>универсальные методы</strong> получения адреса, которые работают для большинства современных моделей <em>Epson</em>, включая серию EcoTank и WorkForce. Мы рассмотрим как аппаратные, так и программные способы диагностики.</p>
+
+<h2 id="печать-отчета-о-состоянии-сети-через-панель-управления">Печать отчета о состоянии сети через панель управления</h2>
+
+<p>Самый надежный способ узнать адрес — это получить официальный отчет непосредственно от самого устройства. Этот метод не требует подключения к компьютеру и показывает все текущие параметры конфигурации.</p>
+
+<p>Для принтеров с жидкокристаллическим дисплеем процесс автодиагностики практически одинаков. Вам нужно зайти в главное меню, выбрав иконку <code>Настройки</code> (обычно выглядит как шестеренка), а затем перейти в раздел <code>Настройки сети</code>.</p>
+
+<p>В списке опций найдите пункт <code>Отчет о состоянии сети</code> или <code>Network Status</code>. Подтвердите печать, нажав кнопку <code>OK</code>. На листе будет напечатан блок с заголовком <strong>Network Information</strong>, где указан текущий IP.</p>
+
+<p>Если на устройстве нет экрана, процедура выглядит иначе. На большинстве моделей <em>Epson</em> без дисплея достаточно удерживать кнопку <code>Wi-Fi</code> и кнопку <code>Статус сети</code> (часто это кнопка с изображением листка и восклицательным знаком) одновременно в течение 7 секунд.</p>
+
+<p>После начала печати отчетов устройство автоматически выведет на бумагу несколько страниц. Ищите страницу, где в таблице <strong>IP Address</strong> записаны цифры в формате <code>192.168.x.x</code>. Именно эти цифры вам понадобятся для дальнейшей настройки.</p>
+
+<blockquote>⚠️ Внимание: Если принтер печатает отчет, но в графе IP-адреса указано 0.0.0.0 или DHCP Disabled, это означает, что устройство не подключено к сети или не может получить адрес от роутера. В таком случае проверьте кабель или настройки Wi-Fi.</blockquote>
+
+<h2 id="использование-утилиты-epson-net-config">Использование утилиты Epson Net Config</h2>
+
+<p>Если у вас несколько устройств от <em>Epson</em> или вы не хотите тратить бумагу, лучшим решением станет специализированное программное обеспечение. Утилита <strong>Epson Net Config</strong> позволяет управлять всеми настройками сети прямо с компьютера.</p>
+
+<p>Скачайте дистрибутив с официального сайта производителя. После установки запустите программу. Она автоматически просканирует локальную сеть и покажет список всех найденных устройств <em>Epson</em> в главном окне.</p>
+
+<p>В колонке <strong>Device Name</strong> вы увидите название вашего принтера, а в соседней колонке <strong>IP Address</strong> — его текущий сетевой идентификатор. Это самый быстрый способ, если драйверы уже установлены на ПК.</p>
+
+<p>В случае если устройство не отображается в списке, убедитесь, что компьютер и принтер находятся в одной подсети. Иногда антивирусное ПО блокирует сканирование портов, поэтому временно отключите фаервол для проверки.</p>
+
+<p>Используйте этот инструмент для смены статического IP, если вы планируете закрепить адрес за принтером навсегда. Это исключит проблемы при сбое DHCP-сервера на вашем роутере.</p>
+
+<div class="poll-widget" id="poll-a89b7e5f"><div class="poll-widget-question">📊 Какой способ поиска IP вы используете чаще всего?</div><div class="poll-widget-option" data-poll="a89b7e5f" data-idx="0" onclick="pbPollVote(this)"><span class="poll-widget-label">Печать отчета</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="a89b7e5f" data-idx="1" onclick="pbPollVote(this)"><span class="poll-widget-label">Через настройки роутера</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="a89b7e5f" data-idx="2" onclick="pbPollVote(this)"><span class="poll-widget-label">Программа Epson Net Config</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div><div class="poll-widget-option" data-poll="a89b7e5f" data-idx="3" onclick="pbPollVote(this)"><span class="poll-widget-label">Поиск в системе Windows</span><span class="poll-widget-bar"></span><span class="poll-widget-pct"></span></div></div>
+
+<h2 id="поиск-адреса-через-веб-интерфейс-маршрутизатора">Поиск адреса через веб-интерфейс маршрутизатора</h2>
+
+<p>Часто пользователи ищут <strong>IP-адрес</strong> на самом принтере, забывая, что все устройства в сети регистрируются на роутере. Это позволяет найти адрес даже если у принтера нет дисплея и он не реагирует на кнопки.</p>
+<p>Зайдите в браузер и введите адрес вашего шлюза (обычно это <code>192.168.0.1</code> или <code>192.168.1.1</code>). Введите логин и пароль для входа в админ-панель маршрутизатора.</p>
+
+<p>Найдите раздел, отвечающий за список подключенных клиентов. В зависимости от модели роутера он может называться <code>Connected Devices</code>, <code>DHCP Clients List</code> или <code>Network Map</code>.</p>
+
+<p>В списке найдите устройство, имя которого содержит <em>Epson</em> или MAC-адрес вашего принтера (его можно найти на наклейке на задней панели корпуса). Рядом с именем будет указан текущий <strong>IP-адрес</strong>.</p>
+
+<p>Этот метод особенно полезен, когда драйверы не установлены, а принтер перестал отвечать на запросы. Вы увидите "сырые" данные маршрутизации, которые не зависят от ошибок ПО на ПК.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Запишите MAC-адрес вашего принтера в админ-панели роутера и настройте для него "Резервирование адреса" (Static DHCP). Тогда IP никогда не изменится, даже после перезагрузки устройства.</p></div>
+
+<h2 id="проверка-через-командную-строку-windows">Проверка через командную строку Windows</h2>
+
+<p>Для продвинутых пользователей существует способ проверки связи без установки дополнительного софта. Командная строка позволяет выполнить <strong>ping-запрос</strong> и увидеть ответ от устройства.</p>
+
+<p>Откройте меню <code>Пуск</code>, введите <code>cmd</code> и нажмите Enter. В черном окне введите команду <code>ping [имя_принтера]</code>, например <code>ping epson-l3110</code>.</p>
+
+<p>Если имя устройства неизвестно, можно попробовать пинговать его, если вы уже знаете часть адреса. Но лучше использовать утилиту <code>arp -a</code>. Она покажет таблицу соответствия IP-адресов и физических MAC-адресов всех устройств в вашей подсети.</p>
+
+<p>Прокрутите список до тех пор, пока не найдете адрес, начинающийся с префикса MAC-адреса <em>Epson</em> (обычно начинается на 00:1C:58 или 00:22:87). Соответствующая ему строка и будет искомым <strong>IP-адресом</strong>.</p>
+
+<p>Этот метод не требует печати листов и работает даже в том случае, если у принтера нет экрана или он находится в спящем режиме, но подключен по кабелю.</p>
+
+<div class="checklist-block"><h4>☑️ Подготовка к проверке через ARP</h4><label class="check-item"><input type="checkbox"><span>Убедиться, что кабель подключен</span></label><label class="check-item"><input type="checkbox"><span>Открыть командную строку (cmd)</span></label><label class="check-item"><input type="checkbox"><span>Ввести команду arp -a</span></label><label class="check-item"><input type="checkbox"><span>Найти MAC-адрес в списке</span></label><div class="check-progress">Выполнено: <span class="check-count">0</span> / 4</div></div>
+
+<h2 id="таблица-популярных-моделей-и-особенности-их-интерфейса">Таблица популярных моделей и особенности их интерфейса</h2>
+
+<p>Различные серии принтеров <em>Epson</em> могут иметь небольшие отличия в расположении меню. Ниже приведена таблица, которая поможет быстрее сориентироваться в интерфейсе популярных моделей.</p>
+
+<table>
+<thead>
+<tr>
+<th>Серия принтера</th>
+<th>Наличие экрана</th>
+<th>Кнопка для печати отчета</th>
+<th>Особенность настройки</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Epson WorkForce</td>
+<td>Да (LCD)</td>
+<td>Меню → Настройки → Отчет</td>
+<td>Многоязычный интерфейс</td>
+</tr>
+<tr>
+<td>Epson EcoTank</td>
+<td>Да (Touch)</td>
+<td>Настройки (шестеренка) → Отчет сети</td>
+<td>Цветной сенсорный дисплей</td>
+</tr>
+<tr>
+<td>Epson Expression</td>
+<td>Нет (только индикаторы)</td>
+<td>Wi-Fi + Статус (удержать 7 сек)</td>
+<td>Моргалки индикаторов</td>
+</tr>
+<tr>
+<td>Epson L-серия (L3110 и др.)</td>
+<td>Нет</td>
+<td>Wi-Fi + Статус (удержать 7 сек)</td>
+<td>Простая кнопка Wi-Fi</td>
+</tr>
+<tr>
+<td>Epson SureColor</td>
+<td>Да (Большой)</td>
+<td>Меню → Сеть → Отчет</td>
+<td>Профессиональные настройки</td>
+</tr>
+</tbody>
+</table>
+
+<p>Обратите внимание, что у моделей без экрана кнопка <code>Статус</code> может быть совмещена с кнопкой <code>Wi-Fi</code> или иметь отдельное обозначение в виде восклицательного знака. Порядок нажатия всегда описан в краткой инструкции на коробке.</p>
+
+<p>Для профессиональных моделей серии <em>SureColor</em> часто используются дополнительные сетевые карты, которые могут иметь собственные настройки IP, отличные от встроенного модуля Wi-Fi.</p>
+
+<blockquote>⚠️ Внимание: На моделях с сенсорным экраном меню может меняться после обновления прошивки. Если пункт "Отчет о сети" исчез, проверьте раздел "Справка" или "Информация об устройстве".</blockquote>
+
+<p>Важно понимать, что статический IP-адрес, закрепленный за принтером вручную, должен находиться в той же подсети, что и ваш роутер, но не совпадать с адресами других активных устройств.</p>
+
+<details class="faq-item"><summary>Что делать, если IP-адрес постоянно меняется?</summary><div class="faq-answer"><p>Если адрес меняется после каждой перезагрузки роутера, это стандартная работа DHCP. Для стабильной работы нужно либо закрепить IP в настройках роутера (Static DHCP), либо задать статический адрес прямо в настройках принтера, исключив его из диапазона автоматической раздачи.</p></div></details>
+
+<h2 id="решение-частых-проблем-при-поиске-адреса">Решение частых проблем при поиске адреса</h2>
+
+<p>Иногда даже при правильных действиях пользователи не могут найти <strong>IP-адрес</strong>. Самая распространенная причина — различие подсетей. Проверьте, начинается ли адрес вашего компьютера с тех же трех чисел, что и адрес принтера.</p>
+
+<p>Если вы используете Wi-Fi, убедитесь, что принтер подключен именно к вашей домашней сети, а не к гостевой (Guest Network). Роутеры часто изолируют гостевую сеть, делая устройства невидимыми для основного LAN.</p>
+
+<p>В редких случаях помогает полный сброс сетевых настроек принтера. Для этого зайдите в <code>Настройки</code> → <code>Сброс настроек</code> → <code>Сброс сетевых настроек</code>. После этого устройство перезагрузится и попытается подключиться заново.</p>
+
+<p>После сброса необходимо заново ввести пароль от Wi-Fi. Это создаст новый IP-адрес, который будет отображаться в отчете. Используйте новый адрес для обновления драйверов.</p>
+
+<p>Если принтер подключен через USB, он не имеет IP-адреса для печати, так как связь идет напрямую. Сетевой адрес появится только после подключения кабеля Ethernet или настройки беспроводного модуля.</p>
+
+<div class="attention-box attention-tip"><span class="attention-icon">💡</span><p>Самый быстрый способ вернуть работоспособность печати — это переподключить принтер к сети через утилиту настройки Wi-Fi, чтобы получить новый, валидный IP-адрес.</p></div>
+
+<h2 id="частые-вопросы-faq">Частые вопросы (FAQ)</h2>
+
+<details>
+<summary>Можно ли найти IP-адрес принтера, используя только смартфон?</summary>
+<p>Да, вы можете использовать приложение Epson iPrint или любой сканер сети (например, Fing) на смартфоне. При подключении к той же Wi-Fi сети приложение покажет список доступных устройств и их адреса.</p>
+</details>
+
+<details>
+<summary>Что делать, если в отчете напечатан IP 169.254.x.x?</summary>
+<p>Это адрес автоконфигурации (APIPA). Он означает, что принтер не смог связаться с DHCP-сервером роутера. Проверьте кабель, перезагрузите роутер или попробуйте переподключить Wi-Fi на принтере.</p>
+</details>
+
+<details>
+<summary>Можно ли изменить IP-адрес вручную на самом принтере?</summary>
+<p>Да, через <code>Настройки</code> → <code>Настройки сети</code> → <code>Настройки TCP/IP</code> можно переключиться с DHCP на ручной ввод и задать <strong>статический IP</strong>. Это удобно для корпоративных сетей.</p>
+</details>
+
+<details>
+<summary>Почему компьютер не видит принтер, хотя IP-адрес верный?</summary>
+<p>Возможно, блокирует фаервол Windows или антивирус. Также проверьте, работает ли служба Spooler печати. Попробуйте добавить принтер через "Добавить по IP-адресу" в настройках устройств, а не искать его автоматически.</p>
+</details>
+
+<p>Понимание того, как найти и закрепить <strong>сетевой адрес</strong>, является базовым навыком для любого пользователя <em>Epson</em>. Регулярная проверка настроек поможет избежать простоев в работе офиса или дома.</p></div>
+                    <!--#include virtual="/ssi/article_after.html" -->
+
+                </article>
+                <aside class="article-sidebar"><!--#include virtual="/ssi/sidebar_top.html" --><nav class="sidebar-search"><div class="sidebar-search-box"><input type="text" id="globalSearchInput" placeholder="🔍 Поиск статей..." autocomplete="off"><div class="search-dropdown" id="globalSearchDropdown"></div></div></nav><!--#include virtual="/ssi/sidebar_before_toc.html" --><nav class="sidebar-toc" id="sidebarToc"><h3>Содержание</h3><ul><li><a href="#введение">Введение</a></li><li><a href="#печать-отчета-о-состоянии-сети-через-панель-управления">Печать отчета о состоянии сети через панель управления</a></li><li><a href="#использование-утилиты-epson-net-config">Использование утилиты Epson Net Config</a></li><li><a href="#поиск-адреса-через-веб-интерфейс-маршрутизатора">Поиск адреса через веб-интерфейс маршрутизатора</a></li><li><a href="#проверка-через-командную-строку-windows">Проверка через командную строку Windows</a></li><li><a href="#таблица-популярных-моделей-и-особенности-их-интерфейса">Таблица популярных моделей и особенности их интерфейса</a></li><li><a href="#решение-частых-проблем-при-поиске-адреса">Решение частых проблем при поиске адреса</a></li><li><a href="#частые-вопросы-faq">Частые вопросы (FAQ)</a></li></ul></nav><!--#include virtual="/ssi/sidebar_before_related.html" --><nav class="sidebar-related"><h3>Похожие статьи</h3><ul><li><a href="/articles/k/ka/kak-podklyuchit-printer-epson-3150-k-wifi-cherez-wps.html" class="related-card">Подключение Epson L3150 к WiFi через WPS: Пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-ustanovit-soedinenie-s-printerom-po-wifi-epson.html" class="related-card">Как установить соединение с принтером Epson по Wi-Fi: полная инструкция</a></li><li><a href="/articles/e/ep/epson-l222-kak-podklyuchit-k-telefonu.html" class="related-card">Epson L222: как подключить к телефону — пошаговая инструкция</a></li><li><a href="/articles/k/ka/kak-uznat-parol-ot-vaj-faj-na-printere-epson-l3150.html" class="related-card">Как узнать пароль Wi-Fi на принтере Epson L3150: 5 способов</a></li><li><a href="/articles/k/ka/kak-podklyuchit-telefon-k-printeru-epson-l3151.html" class="related-card">Как подключить телефон к принтеру Epson L3151: Wi-Fi, AirPrint, EPrint</a></li></ul></nav><!--#include virtual="/ssi/sidebar_after_related.html" --></aside>
+            </div>
+        </div>
+    </main>
+
+    <!--#include virtual="/ssi/before_related_bottom.html" -->
+    <section class="related-bottom">
+        <div class="container">
+            <h2 class="related-bottom-heading">📖 Читайте также</h2>
+            <div class="related-bottom-grid"><a href="/articles/k/ka/kak-podklyuchit-printer-epson-3150-k-wifi-cherez-wps.html" class="related-bottom-card"><span class="related-bottom-title">Подключение Epson L3150 к WiFi через WPS: Пошаговая инструкция</span><span class="related-bottom-desc">Подробная инструкция как настроить принтер Epson L3150 на беспроводную печать через кнопку WPS. Реше</span></a><a href="/articles/k/ka/kak-ustanovit-soedinenie-s-printerom-po-wifi-epson.html" class="related-bottom-card"><span class="related-bottom-title">Как установить соединение с принтером Epson по Wi-Fi: полная инструкция</span><span class="related-bottom-desc">Пошаговая настройка беспроводного подключения принтеров Epson. Методы через кнопку, приложение и WPS</span></a><a href="/articles/e/ep/epson-l222-kak-podklyuchit-k-telefonu.html" class="related-bottom-card"><span class="related-bottom-title">Epson L222: как подключить к телефону — пошаговая инструкция</span><span class="related-bottom-desc">Как соединить принтер Epson L222 с Android или iPhone через Wi-Fi, USB-OTG или облако. Подробные схе</span></a><a href="/articles/k/ka/kak-uznat-parol-ot-vaj-faj-na-printere-epson-l3150.html" class="related-bottom-card"><span class="related-bottom-title">Как узнать пароль Wi-Fi на принтере Epson L3150: 5 способов</span><span class="related-bottom-desc">Пошаговая инструкция, как посмотреть или сбросить пароль от вайфая на МФУ Epson L3150. Способы через</span></a><a href="/articles/k/ka/kak-podklyuchit-telefon-k-printeru-epson-l3151.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить телефон к принтеру Epson L3151: Wi-Fi, AirPrint, EPrint</span><span class="related-bottom-desc">Пошаговая инструкция по настройке печати со смартфона на Epson L3151. Подключение через Wi-Fi Direct</span></a><a href="/articles/k/ka/kak-podklyuchit-printer-epson-l805-k-wifi.html" class="related-bottom-card"><span class="related-bottom-title">Как подключить принтер Epson L805 к WiFi: пошаговая инструкция</span><span class="related-bottom-desc">Подробное руководство по настройке Wi-Fi на принтере Epson L805. Методы через панель управления, WPS</span></a></div>
+        </div>
+    </section>
+    <!--#include virtual="/ssi/after_related_bottom.html" -->
+
+    <footer class="site-footer-premium">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">🖨️ Эпсон Помощь</div>
+                    <p class="footer-about">Полный справочник по ремонту, настройке и обслуживанию струйных принтеров и МФУ.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Разделы</h4>
+                    <ul><li><a href="/category/chistka-golovok/">💧 Чистка головок</a></li>
+<li><a href="/category/zapravka-chernil/">🖊️ Заправка чернил</a></li>
+<li><a href="/category/sbros-pampersa/">🧽 Сброс памперса</a></li>
+<li><a href="/category/ustanovka-drajverov/">💿 Установка драйверов</a></li>
+<li><a href="/category/setevoe-podklyuchenie/">📶 Сетевое подключение</a></li>
+<li><a href="/category/skanirovanie-i-kopirovanie/">📄 Сканирование и копирование</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/about.html">О проекте</a></li>
+                        <li><a href="/categories.html">Все разделы</a></li>
+                        <li><a href="/contact.html">Контакты</a></li>
+                        <li><a href="/privacy.html">Конфиденциальность</a></li>
+                        <li><a href="/sitemap.xml">Карта сайта</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Эпсон Помощь. Все права защищены.</p>
+                <!--LiveInternet counter--><div style="margin-top:10px;"><a href="https://www.liveinternet.ru/click"
+                target="_blank"><img id="licnt06C4" width="88" height="15" style="border:0" 
+                title="LiveInternet: показано число посетителей за сегодня"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+                alt=""/></a><script>(function(d,s){d.getElementById("licnt06C4").src=
+                "https://counter.yadro.ru/hit?t26.5;r"+escape(d.referrer)+
+                ((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+                (s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+                ";h"+escape(d.title.substring(0,150))+";"+Math.random()})(document,screen)</script></div><!--/LiveInternet-->
+            </div>
+        </div>
+    </footer>
+    <div id="cookie-consent" class="cookie-popup">
+        <div class="cookie-inner">
+            <span>🍪 Мы используем файлы cookie для улучшения работы сайта.</span>
+            <button id="cookie-accept" class="cookie-btn">Принять</button>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+    <script>
+    (function() {
+        const popup = document.getElementById('cookie-consent');
+        const btn = document.getElementById('cookie-accept');
+        if (popup && btn && !localStorage.getItem('cookie-accepted')) {
+            popup.classList.add('visible');
+            btn.onclick = () => {
+                localStorage.setItem('cookie-accepted', 'true');
+                popup.classList.remove('visible');
+            };
+        }
+    })();
+    </script>
+    <script>
+    function pbPollVote(el) {
+        var poll = el.closest('.poll-widget');
+        if (poll.classList.contains('voted')) return;
+        poll.classList.add('voted');
+        el.classList.add('selected');
+        var opts = poll.querySelectorAll('.poll-widget-option');
+        var n = opts.length;
+        var raw = [];
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            var v = Math.random() * 50 + 5;
+            if (opts[i] === el) v += 30;
+            raw.push(v);
+            sum += v;
+        }
+        var pcts = raw.map(function(v) { return Math.round(v / sum * 100); });
+        var diff = 100 - pcts.reduce(function(a,b){ return a+b; }, 0);
+        pcts[Array.from(opts).indexOf(el)] += diff;
+        setTimeout(function() {
+            opts.forEach(function(opt, i) {
+                opt.querySelector('.poll-widget-bar').style.width = pcts[i] + '%';
+                opt.querySelector('.poll-widget-pct').textContent = pcts[i] + '%';
+            });
+        }, 50);
+    }
+    </script>
+    <!--#include virtual="/ssi/body_bottom.html" -->
+    <script src="/static/js/inject.js" defer></script>
+</body>
+</html>
